@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%2325072F%27/%3E%3Cg fill=%27none%27 stroke=%27%23D6A23A%27 stroke-width=%271.6%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M13 6.5l2.6 2.4L20 4l4.4 4.9L27 6.5%27/%3E%3Ccircle cx=%2720%27 cy=%2717%27 r=%277.5%27/%3E%3Cpath d=%27M20 12v14M20 26c0 2.5-2 4.3-5.5 5.5M20 26c0 2.5 2 4.3 5.5 5.5M20 26v9%27/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/logo-emblem.png">
+<link rel="apple-touch-icon" href="assets/logo-emblem.png">
 <title>Rooted &amp; Crowned Collective</title>
 <meta name="description" content="Rooted & Crowned Collective — a Root-to-Crown personal-development ecosystem. Heal from the Root Up. Live from the Crown Down.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +80,9 @@ p{margin:0}
 .head-row{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:74px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ivory)}
 .brand svg{width:38px;height:38px;color:var(--gold)}
+/* logo art sits on its own purple; feather the edges into the header plum */
+.brand-logo{display:block;height:60px;width:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 72%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 72%,transparent 100%)}
+.foot-logo{display:block;width:min(300px,100%);height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%)}
 .brand-name{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.06em;line-height:1;text-transform:uppercase}
 .brand-name small{display:block;font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.32em;color:var(--gold-soft);margin-top:5px}
 .head-cta{display:flex;align-items:center;gap:10px}
@@ -101,6 +105,7 @@ p{margin:0}
 @media (max-width:640px){
   .brand-name{font-size:16px}.brand-name small{font-size:8px;letter-spacing:.24em}
   .brand svg{width:30px;height:30px}
+  .brand-logo{height:48px}
   .head-cta .btn{min-height:36px;padding:0 11px;font-size:10px;letter-spacing:.12em}
   .head-row{gap:10px;min-height:64px}
   .wrap{padding:0 20px}
@@ -185,7 +190,7 @@ p{margin:0}
 
 /* ============ offer cards ============ */
 .offers{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.offer{display:grid;grid-template-rows:auto auto 1fr auto;gap:18px;padding:40px;background:var(--white);border:1px solid var(--line-light);border-radius:2px}
+.offer{--pad:40px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:18px;padding:var(--pad);overflow:hidden;background:var(--white);border:1px solid var(--line-light);border-radius:2px}
 .offer-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
 .price{font-family:var(--serif);font-size:2.6rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;color:var(--plum)}
 .price small{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--plum-muted);margin-left:4px}
@@ -193,7 +198,7 @@ p{margin:0}
 .facts{list-style:none;margin:0;padding:0;display:grid;gap:9px;align-content:start}
 .facts li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--plum-muted)}
 .facts li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translateY(-2px)}
-@media (max-width:860px){.offers{grid-template-columns:1fr}.offer{padding:30px}}
+@media (max-width:860px){.offers{grid-template-columns:1fr}.offer{--pad:30px}}
 
 /* ============ app loop ============ */
 .loop{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line-dark);margin-top:8px}
@@ -450,6 +455,28 @@ p{margin:0}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100;max-width:min(520px,calc(100vw - 32px));padding:14px 20px;border-radius:2px;background:var(--ivory);color:var(--plum);border-left:3px solid var(--gold);font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transition:opacity .25s,transform .25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* ============ photography ============ */
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.media{display:block;width:100%;height:auto;border-radius:2px;box-shadow:0 34px 60px -32px rgba(21,17,23,.6)}
+.media--frame{outline:1px solid rgba(214,162,58,.55);outline-offset:8px;margin:8px}
+.offer-img{display:block;width:calc(100% + var(--pad)*2);max-width:none;margin:calc(var(--pad)*-1) calc(var(--pad)*-1) 4px;aspect-ratio:16/9;object-fit:cover}
+.shop-img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
+.cat-list--sm{font-size:1.25rem}
+.branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
+.branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
+@media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
+.book-cover{display:block;width:96px;aspect-ratio:2/3;object-fit:cover;border-radius:2px;box-shadow:0 16px 28px -14px rgba(37,7,47,.65)}
+.book-cover--none{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,var(--purple),var(--plum) 80%)}
+.book-cover--none img{width:72%;height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)}
+.book{grid-template-columns:96px minmax(0,1.2fr) minmax(0,1.2fr) auto}
+@media (max-width:860px){.book{grid-template-columns:96px 1fr;gap:10px 20px}.book>:not(.book-cover){grid-column:2}.book-cover{grid-row:1 / span 3}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.gallery figure{margin:0;display:grid;gap:12px;align-content:start}
+.gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;box-shadow:0 26px 50px -28px rgba(37,7,47,.6)}
+.gallery figcaption{font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--plum-muted)}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.gallery{grid-template-columns:1fr}}
+
 .page-enter{animation:fade .45s ease both}
 @keyframes fade{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
@@ -461,12 +488,7 @@ p{margin:0}
   <div class="spectrum" aria-hidden="true"></div>
   <div class="wrap head-row">
     <a class="brand" href="#/" aria-label="Rooted & Crowned Collective — home">
-      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-        <path d="M13 6.5l2.6 2.4L20 4l4.4 4.9L27 6.5"/>
-        <circle cx="20" cy="17" r="7.5"/>
-        <path d="M20 12v14M20 18l-3.5-3.2M20 16l3.4-3M20 26c0 2.5-2 4.3-5.5 5.5M20 26c0 2.5 2 4.3 5.5 5.5M20 26v9M20 29l-3 4.5M20 29l3 4.5"/>
-        <path d="M9 26h22" opacity=".55"/>
-      </svg>
+      <img class="brand-logo" src="assets/logo-emblem.png" alt="" width="372" height="324">
       <span class="brand-name">Rooted &amp; Crowned<small>Collective</small></span>
     </a>
     <div class="head-cta">
@@ -526,8 +548,7 @@ p{margin:0}
   <section class="band band--ivory">
     <div class="wrap kia">
       <figure class="arch" style="margin:0">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M13 6.5l2.6 2.4L20 4l4.4 4.9L27 6.5"/><circle cx="20" cy="17" r="7.5"/><path d="M20 12v14M20 18l-3.5-3.2M20 16l3.4-3M20 26c0 2.5-2 4.3-5.5 5.5M20 26c0 2.5 2 4.3 5.5 5.5M20 26v9"/></svg>
-        <figcaption>Branded portrait of Coach Kia</figcaption>
+        <img src="assets/kia-journaling.jpg" alt="Coach Kia journaling at her desk with the Rooted and Crowned Daily Journal" width="800" height="1000" loading="lazy">
       </figure>
       <div class="kia-copy">
         <span class="eyebrow">Founder &amp; Practitioner</span>
@@ -608,23 +629,27 @@ p{margin:0}
 
   <section class="band band--ivory2">
     <div class="wrap shop">
+      <img class="shop-img" src="assets/book-daily.jpg" alt="The Rooted and Crowned hardcover Daily Journal with a matching pen, mug and candle" width="900" height="900" loading="lazy">
       <div style="display:grid;gap:18px">
         <span class="eyebrow">The Shop</span>
         <h2 class="h-l">Shop the Collective</h2>
         <p class="script">Wear the Message. Live the Work.</p>
+        <div class="cat-list cat-list--sm" data-cats></div>
         <div class="btns"><a class="btn btn--gold" href="#" data-ext="shopify" data-label="Shopify storefront">Shop the Collective <span class="arr">→</span></a></div>
       </div>
-      <div class="cat-list" data-cats></div>
     </div>
   </section>
 
   <section class="band band--deep branches">
-    <div class="wrap" style="display:grid;gap:30px">
+    <div class="wrap branches-grid">
+     <div style="display:grid;gap:30px">
       <span class="eyebrow">One Root. Many Branches. Infinite Possibilities.</span>
       <div class="branch-list">
         <span>Journals &amp; Books</span><span>Education &amp; Classes</span><span>Community Events</span><span>Speaking &amp; Workshops</span><span>Advocacy &amp; Support</span><span>Products &amp; Merchandise</span><span>Wellness &amp; Healing</span><span>Children's Programs</span><span>Family Resources</span><span>Online Platform &amp; App</span><span>Retreats &amp; Travel</span><span>Business Strategies</span><span class="ip">Infinite Possibilities</span>
       </div>
       <div class="btns"><a class="btn btn--line" href="#/community">Explore Our Community <span class="arr">→</span></a></div>
+     </div>
+      <img class="branches-img" src="assets/extravaganza.jpg" alt="Coach Kia with children in Rooted and Crowned tees at the Community Extravaganza" width="900" height="1129" loading="lazy">
     </div>
   </section>
 
@@ -640,8 +665,7 @@ p{margin:0}
   </div></section>
   <section class="band band--ivory"><div class="wrap kia">
     <figure class="arch" style="margin:0">
-      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M13 6.5l2.6 2.4L20 4l4.4 4.9L27 6.5"/><circle cx="20" cy="17" r="7.5"/><path d="M20 12v14M20 18l-3.5-3.2M20 16l3.4-3M20 26c0 2.5-2 4.3-5.5 5.5M20 26c0 2.5 2 4.3 5.5 5.5M20 26v9"/></svg>
-      <figcaption>Branded portrait of Coach Kia</figcaption>
+      <img src="assets/kia-portrait.jpg" alt="Coach Kia, founder of Rooted and Crowned Collective, at her writing desk" width="760" height="950" loading="lazy">
     </figure>
     <div class="kia-copy">
       <span class="eyebrow">Coach Kia · Founder &amp; Practitioner</span>
@@ -703,6 +727,7 @@ p{margin:0}
         <span class="eyebrow">The Signature Experience</span>
         <h2 class="h-l">The 7-Week Root-to-Crown Experience</h2>
         <p class="caps" style="color:var(--plum)">7 Weeks · 7 Chakras · One Guided Journey</p>
+        <img class="media media--frame" src="assets/teaching.jpg" alt="Coach Kia teaching the seven chakras, from Root to Crown" width="1000" height="982" loading="lazy">
       </div>
       <div style="display:grid;gap:20px">
         <p class="lede">Seven live virtual classes, one for each energy center, moving from the ground you stand on to the purpose you're called to. Come as you are. Leave rooted, and crowned.</p>
@@ -727,6 +752,7 @@ p{margin:0}
         <span class="eyebrow">Weekly Membership</span>
         <h2 class="h-l">Rooted &amp; Crowned Journal Club</h2>
         <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
+        <img class="media media--frame" src="assets/journal-club.jpg" alt="Rooted and Crowned Journal Club: weekly live gatherings, guided journal work, reflection themes and community support, $60 a month" width="1000" height="1030" loading="lazy">
       </div>
       <div style="display:grid;gap:22px">
         <p class="lede">A weekly LIVE Zoom gathering centered around guided reflection, meaningful conversation, accountability, personal awareness and intentional action.</p>
@@ -911,6 +937,7 @@ p{margin:0}
       </div>
       <div style="display:grid;gap:22px">
         <p class="lede">Gatherings that bring every branch together: vendors, workshops, speakers, families and celebration. Retreats, partnerships and scholarships will grow from here.</p>
+        <img class="media media--frame" src="assets/extravaganza.jpg" alt="Community Extravaganza: resources, workshops, family fun, health and wellness, kids zone, live music, vendors and food" width="900" height="1129" loading="lazy" style="max-width:440px">
         <div class="btns"><a class="btn btn--line" href="#/contact">Vendor or partnership inquiry</a></div>
       </div>
     </article>
@@ -948,6 +975,14 @@ p{margin:0}
     </div>
     <div class="cat-list" data-cats></div>
   </div></section>
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">Made to be lived in</span><h2 class="h-l">Carry the message everywhere.</h2></div>
+    <div class="gallery">
+      <figure><img src="assets/book-daily.jpg" alt="Hardcover Daily Journal with a matching pen" width="900" height="900" loading="lazy"><figcaption>Hardcover Daily Journal</figcaption></figure>
+      <figure><img src="assets/kia-journaling.jpg" alt="Coach Kia in a Rooted and Crowned top with a mug, candle and journal" width="800" height="1000" loading="lazy"><figcaption>Apparel, mugs &amp; journals</figcaption></figure>
+      <figure><img src="assets/extravaganza.jpg" alt="A family in Rooted and Crowned tees" width="900" height="1129" loading="lazy" style="object-position:50% 75%"><figcaption>Tees for the whole family</figcaption></figure>
+    </div>
+  </div></section>
 </div>
 
 <!-- ===================== START HERE ===================== -->
@@ -984,7 +1019,7 @@ p{margin:0}
       <div class="btns"><button class="btn btn--gold" type="submit">Send Message <span class="arr">→</span></button></div>
     </form>
     <div class="contact-aside">
-      <div id="speaking"><span class="eyebrow">Speaking &amp; Workshops</span><h3>Bring Root to Crown to your stage.</h3><p>Coach Kia speaks and leads workshops on healing, voice, purpose and building from the root. Choose “Speaking request” or “Workshop request” and share your date, audience and location.</p></div>
+      <div id="speaking"><img class="media" src="assets/teaching.jpg" alt="Coach Kia leading a workshop on the chakra system" width="1000" height="982" loading="lazy" style="margin-bottom:10px"><span class="eyebrow">Speaking &amp; Workshops</span><h3>Bring Root to Crown to your stage.</h3><p>Coach Kia speaks and leads workshops on healing, voice, purpose and building from the root. Choose “Speaking request” or “Workshop request” and share your date, audience and location.</p></div>
       <div><span class="eyebrow">Podcast</span><h3>Be a guest or suggest a topic.</h3><p>Rooted &amp; Crowned Conversations welcomes stories of healing, alignment, voice, purpose and legacy.</p></div>
       <div><span class="eyebrow">Orders &amp; App</span><h3>Need help with a purchase?</h3><p>For merchandise orders, classes, memberships or app support, choose the matching topic and include your order email.</p></div>
     </div>
@@ -1016,8 +1051,7 @@ p{margin:0}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <span class="n">Rooted &amp; Crowned Collective</span>
-        <span class="script">Grounded Roots. Crown Driven.</span>
+        <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
         <li><a href="#/">Home</a></li><li><a href="#/about">About</a></li><li><a href="#/root-to-crown">Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Conversations</a></li><li><a href="#/app">App</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
@@ -1096,11 +1130,11 @@ const CHAKRAS = [
 ];
 
 const BOOKS = [
-  {kind:"Guided Journal",title:"My Rooted & Crowned Journey",desc:"A 75-page Root-to-Crown guided journal with check-ins, reflection prompts, My Tree exercises, planning, affirmations and integration.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Affirmation Book",title:"Rooted in Words, Crowned in Truth",desc:"A chakra-aligned affirmation and reflection book.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Daily Journal",title:"Rooted and Crowned Daily Journal",desc:"Morning and evening reflection around mood, energy, gratitude, habits, goals and action.",fmts:[["Digital","$39","stanBooks"]]},
+  {kind:"Guided Journal",title:"My Rooted & Crowned Journey",img:"assets/book-journey.jpg",desc:"A 75-page Root-to-Crown guided journal with check-ins, reflection prompts, My Tree exercises, planning, affirmations and integration.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
+  {kind:"Affirmation Book",title:"Rooted in Words, Crowned in Truth",img:"assets/book-words.jpg",desc:"A chakra-aligned affirmation and reflection book.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
+  {kind:"Daily Journal",title:"Rooted and Crowned Daily Journal",img:"assets/book-daily.jpg",desc:"Morning and evening reflection around mood, energy, gratitude, habits, goals and action.",fmts:[["Digital","$39","stanBooks"]]},
   {kind:"For Practitioners",title:"Practitioner Double Book Series",desc:"A two-journal practitioner and business-strategy system.",fmts:[["Series","$99","stanBooks"]]},
-  {kind:"Memoir",title:"A Journey from Survival to Healing",desc:"Coach Kia's Root-to-Crown story, connecting lived experience, relationships, identity, survival, healing and purpose.",fmts:[["PDF","$49","stanBooks"]]},
+  {kind:"Memoir",title:"A Journey from Survival to Healing",img:"assets/book-survival.jpg",desc:"Coach Kia's Root-to-Crown story, connecting lived experience, relationships, identity, survival, healing and purpose.",fmts:[["PDF","$49","stanBooks"]]},
   {kind:"Financial Reflection",title:"Crown Your Coins",desc:"A savings, budgeting, debt-payoff, income and cash-flow reflection system.",soon:true}
 ];
 
@@ -1144,12 +1178,14 @@ $$("[data-weeks]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
 
 $$("[data-offers]").forEach(el=>el.innerHTML=`
   <article class="offer">
+    <img class="offer-img" src="assets/teaching.jpg" alt="Coach Kia teaching the chakra system to a room of women" loading="lazy">
     <div class="offer-top"><span class="eyebrow">7 Weeks · 7 Chakras</span><span class="price">$99<small>INTRO</small></span></div>
     <h3 class="h-m">The 7-Week Root-to-Crown Experience</h3>
     <ul class="facts"><li>LIVE virtual classes via Zoom</li><li>One guided journey, root to crown</li><li>Reflection and conversation with Coach Kia</li></ul>
     <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation</a><a class="btn btn--line" href="#/root-to-crown-experience">Learn More</a></div>
   </article>
   <article class="offer">
+    <img class="offer-img" src="assets/kia-portrait.jpg" alt="Coach Kia writing in her journal" style="object-position:50% 18%" loading="lazy">
     <div class="offer-top"><span class="eyebrow">Weekly · Live on Zoom</span><span class="price">$60<small>/MO</small></span></div>
     <h3 class="h-m">Rooted &amp; Crowned Journal Club</h3>
     <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
@@ -1159,7 +1195,7 @@ $$("[data-offers]").forEach(el=>el.innerHTML=`
 $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join(""));
 
 $$("[data-shelf]").forEach(el=>el.innerHTML=BOOKS.map(b=>`
-  <li class="book"><div><p class="kind">${b.kind}</p><h3>${esc(b.title)}</h3></div><p>${b.desc}</p>
+  <li class="book">${b.img?`<img class="book-cover" src="${b.img}" alt="Cover of ${esc(b.title)}" loading="lazy">`:`<span class="book-cover book-cover--none" aria-hidden="true"><img src="assets/logo-emblem.png" alt=""></span>`}<div><p class="kind">${b.kind}</p><h3>${esc(b.title)}</h3></div><p>${b.desc}</p>
   <div class="formats">${b.soon?`<span class="soon">Coming soon</span>`:b.fmts.map(([f,p,k])=>`<div class="fmt"><span class="p">${p}</span><a class="btn btn--line btn--sm" href="#" data-ext="${k}" data-label="${esc(b.title)} — ${f.toLowerCase()} (${k==="shopify"?"Shopify":"Stan"})">${f}${k==="shopify"?" · Shop":""}</a></div>`).join("")}</div></li>`).join(""));
 
 $$("[data-doors]").forEach(el=>el.innerHTML=DOORS.map(([k,t,d,p,link,cta],i)=>`

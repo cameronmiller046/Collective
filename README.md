@@ -37,8 +37,13 @@ At the top of the `<script>` in `public/index.html`, fill in the `LINKS` object:
 
 While a link is empty, its button shows a "link goes here" notice instead of going anywhere.
 
+## Logo
+
+`public/assets/logo-emblem.png` (header and browser tab icon) and `public/assets/logo-full.png` (footer) are cut from `logo-source.png`, a 992×667 screenshot of the logo. To make them sharper, replace them with crops from the original high-resolution logo file, keeping the same file names.
+
 ## Still to supply
 
+- The original high-resolution logo file (see above)
 - Coach Kia's branded portrait (it replaces the arch placeholder on Home and Our Story)
 - Coach Kia's origin story, in her own words (Our Story page)
 - Final Privacy, Terms, Refund and Shipping policy text
