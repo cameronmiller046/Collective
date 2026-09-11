@@ -110,14 +110,14 @@ p{margin:0}
 
 /* ============ hero ============ */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(88,32,100,.75),transparent 70%),var(--plum)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:32px;padding-block:56px 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:center;gap:32px;padding-block:56px 40px}
 .hero-copy{display:grid;gap:22px;align-content:center}
 .hero-copy .script{font-size:clamp(2rem,3.4vw,2.8rem)}
 .hero h1 em{font-style:italic;color:var(--gold-soft)}
 .pillar-line{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;font-weight:600;letter-spacing:.3em;color:var(--ivory);margin-top:6px}
 .pillar-line span{display:inline-flex;align-items:center;gap:18px}
 .pillar-line span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
-.tree-wrap{position:relative;aspect-ratio:9/10;width:100%;max-width:560px;justify-self:center}
+.tree-wrap{position:relative;aspect-ratio:9/10;width:100%;max-width:660px;justify-self:center}
 .tree-wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;padding-top:36px}
@@ -1246,7 +1246,7 @@ function build(){
   const dpr=Math.min(window.devicePixelRatio||1,2);
   const W=r.width,H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
   const rand=mulberry32(11), segs=[], tips=[];
-  const cx=W*.5, ground=H*.66, trunkTop=H*.42, crownY=H*.2;
+  const cx=W*.5, ground=H*.68, trunkTop=H*.42, crownY=H*.13;
   function grow(x,y,len,ang,depth,w,kind){
     const x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
     segs.push({x,y,x2,y2,w,kind,depth,bend:(rand()-.5)*len*.25});
@@ -1301,7 +1301,7 @@ function frame(now){
     const gr=ctx.createRadialGradient(cx,py,0,cx,py,26); gr.addColorStop(0,"rgba(247,241,232,.55)"); gr.addColorStop(1,"rgba(247,241,232,0)");
     ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(cx,py,26,0,Math.PI*2); ctx.fill();
   }
-  const fs=Math.max(11,Math.min(13,W/40)), ph=Math.round(fs*2.15), gap=15, padX=11;
+  const fs=Math.max(11.5,Math.min(17,W/35)), ph=Math.round(fs*2.1), gap=Math.round(fs*1.2), padX=Math.round(fs*.85);
   const nameFont=`700 ${fs}px Montserrat, Arial, sans-serif`, verbFont=`italic 600 ${fs*1.7}px "Cormorant Garamond", Georgia, serif`;
   const pill=(x,y,w,h,edge)=>{
     ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,h,h/2); else ctx.rect(x,y,w,h);
@@ -1311,7 +1311,7 @@ function frame(now){
   nodes.forEach((n,i)=>{
     let k=reduce?.75:.55+.45*Math.exp(-(((n.y-(py??-999))/22)**2));
     if(!reduce && t>.7 && t<.92 && i===6) k=Math.max(k,1-(t-.7)/.22*.45);
-    const rad=9+13*k;
+    const rad=fs*(.8+1.1*k);
     const gg=ctx.createRadialGradient(cx,n.y,0,cx,n.y,rad);
     gg.addColorStop(0,n.c+"cc"); gg.addColorStop(1,n.c+"00");
     ctx.fillStyle=gg; ctx.beginPath(); ctx.arc(cx,n.y,rad,0,Math.PI*2); ctx.fill();
@@ -1326,8 +1326,8 @@ function frame(now){
     const verbW=ctx.measureText(n.verb).width;
     pill(cx-gap-verbW-padX*2,n.y-ph/2,verbW+padX*2,ph,"rgba(229,190,101,.45)");
     ctx.fillStyle="#E5BE65"; ctx.textAlign="right"; ctx.fillText(n.verb,cx-gap-padX,n.y);
-    ctx.fillStyle=n.c; ctx.beginPath(); ctx.arc(cx,n.y,5,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle=`rgba(247,241,232,${.5+.5*k})`; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(cx,n.y,7.5,0,Math.PI*2); ctx.stroke();
+    ctx.fillStyle=n.c; ctx.beginPath(); ctx.arc(cx,n.y,fs*.42,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle=`rgba(247,241,232,${.5+.5*k})`; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(cx,n.y,fs*.62,0,Math.PI*2); ctx.stroke();
   });
   if(!reduce) raf=requestAnimationFrame(frame);
 }
