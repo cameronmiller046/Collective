@@ -110,9 +110,11 @@ p{margin:0}
 
 /* ============ hero ============ */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(88,32,100,.75),transparent 70%),var(--plum)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:center;gap:32px;padding-block:56px 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:32px;padding-block:56px 40px}
 .hero-copy{display:grid;gap:22px;align-content:center}
-.hero-copy .script{font-size:clamp(2rem,3.4vw,2.8rem)}
+.hero-copy .script{font-size:clamp(1.7rem,2.6vw,2.3rem);white-space:nowrap}
+.hero-copy .btn{padding:0 20px}
+@media (max-width:420px){.hero-copy .script{white-space:normal}}
 .hero h1 em{font-style:italic;color:var(--gold-soft)}
 .pillar-line{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;font-weight:600;letter-spacing:.3em;color:var(--ivory);margin-top:6px}
 .pillar-line span{display:inline-flex;align-items:center;gap:18px}
