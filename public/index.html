@@ -85,6 +85,7 @@ p{margin:0}
 .foot-logo{display:block;width:min(300px,100%);height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%)}
 .brand-name{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.06em;line-height:1;text-transform:uppercase}
 .brand-name small{display:block;font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.32em;color:var(--gold-soft);margin-top:5px}
+.brand-sig{display:block;font-family:var(--script);font-size:17px;line-height:1;color:var(--gold-soft);margin-top:6px;white-space:nowrap}
 .head-cta{display:flex;align-items:center;gap:10px}
 .nav-row{border-top:1px solid rgba(229,190,101,.1)}
 .nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 30px;padding-block:12px 13px;margin:0 auto;list-style:none}
@@ -103,7 +104,7 @@ p{margin:0}
   .drawer a[aria-current="page"]{color:var(--gold-soft)}
 }
 @media (max-width:640px){
-  .brand-name{font-size:16px}.brand-name small{font-size:8px;letter-spacing:.24em}
+  .brand-name{font-size:16px}.brand-name small{font-size:8px;letter-spacing:.24em}.brand-sig{display:none}
   .brand svg{width:30px;height:30px}
   .brand-logo{height:48px}
   .head-cta .btn{min-height:36px;padding:0 11px;font-size:10px;letter-spacing:.12em}
@@ -111,16 +112,15 @@ p{margin:0}
   .wrap{padding:0 20px}
   .band{padding:76px 0}
 }
-@media (max-width:460px){.brand-name{display:none}}
+@media (max-width:460px){.brand-text{display:none}}
 
 /* ============ hero ============ */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(88,32,100,.75),transparent 70%),var(--plum)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:32px;padding-block:56px 40px}
 .hero-copy{display:grid;gap:22px;align-content:center}
-.hero-copy .script{font-size:clamp(1.7rem,2.6vw,2.3rem);white-space:nowrap}
 .hero-copy .btn{padding:0 20px}
-@media (max-width:420px){.hero-copy .script{white-space:normal}}
-.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero h1 span{display:block}
+.hero h1 em{display:block;font-style:italic;color:var(--gold-soft)}
 .pillar-line{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;font-weight:600;letter-spacing:.3em;color:var(--ivory);margin-top:6px}
 .pillar-line span{display:inline-flex;align-items:center;gap:18px}
 .pillar-line span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
@@ -136,14 +136,13 @@ p{margin:0}
 .pillar{padding:34px 28px 10px 0;display:grid;gap:10px;align-content:start}
 .pillar+.pillar{padding-left:28px;border-left:1px solid var(--line-dark)}
 .pillar h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.32em;color:var(--gold-soft)}
-.pillar p{font-family:var(--serif);font-size:1.45rem;line-height:1.3;color:var(--ivory)}
-.mission{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin-bottom:40px}
-.mission p{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.35;max-width:36ch}
+.pillar p{font-family:var(--serif);font-size:1.3rem;line-height:1.3;color:var(--ivory)}
+.mission{display:grid;gap:22px;margin-bottom:56px}
+.mission p{font-family:var(--serif);font-size:clamp(1.6rem,2.9vw,2.5rem);line-height:1.3;max-width:34ch}
 @media (max-width:860px){
   .pillars{grid-template-columns:1fr 1fr}
   .pillar:nth-child(3){padding-left:0;border-left:0}
   .pillar:nth-child(n+3){border-top:1px solid var(--line-dark)}
-  .mission{grid-template-columns:1fr}
 }
 @media (max-width:520px){.pillars{grid-template-columns:1fr}.pillar+.pillar{padding-left:0;border-left:0;border-top:1px solid var(--line-dark)}}
 
@@ -159,20 +158,32 @@ p{margin:0}
 @media (max-width:860px){.kia{grid-template-columns:1fr;gap:48px}.arch{max-width:340px}}
 
 /* ============ framework spectrum (home) ============ */
-.chakra-row{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
-.chakra-col{display:grid;gap:12px;align-content:start;padding:28px 18px 30px;text-decoration:none;color:inherit;transition:background .25s}
-.chakra-col+.chakra-col{border-left:1px solid var(--line-dark)}
-.chakra-col:hover{background:rgba(88,32,100,.45)}
-.dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent),0 0 18px color-mix(in srgb,var(--c) 60%,transparent)}
-.chakra-col .n{font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--lav);font-variant-numeric:tabular-nums}
-.chakra-col h3{font-size:1.55rem}
-.chakra-col p{font-size:12.5px;line-height:1.6;color:var(--lav)}
+.stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line-dark)}
+.stage{position:relative;display:grid;gap:10px;justify-items:center;text-align:center;padding:36px 8px 30px;border-top:3px solid var(--c)}
+.stage+.stage{border-left:1px solid var(--line-dark)}
+.stage+.stage::after{content:"→";position:absolute;left:0;top:50%;transform:translate(-50%,-50%);padding:2px 1px;background:var(--plum);color:var(--gold);font-size:13px;line-height:1}
+.stage .dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent),0 0 18px color-mix(in srgb,var(--c) 60%,transparent)}
+.stage b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.45rem,2.3vw,2.1rem);line-height:1.1;color:var(--ivory)}
+.stage span{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--lav)}
+.frame-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:52px}
+.updown{display:grid;grid-template-columns:1fr 1fr}
+.updown>div{display:grid;gap:8px;align-content:start;padding:4px 28px}
+.updown>div:first-child{padding-left:0}
+.updown>div+div{border-left:1px solid var(--line-dark)}
+.updown .caps{color:var(--gold-soft);letter-spacing:.3em}
+.updown p{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.3}
 .r2c{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:40px}
 .r2c-text{display:grid;gap:6px}
 .r2c-text .caps{color:var(--gold-soft);letter-spacing:.34em}
 .r2c-text p{font-family:var(--serif);font-style:italic;font-size:1.6rem}
-@media (max-width:980px){.chakra-row{grid-template-columns:repeat(4,1fr)}.chakra-col:nth-child(5){border-left:0}.chakra-col:nth-child(n+5){border-top:1px solid var(--line-dark)}}
-@media (max-width:560px){.chakra-row{grid-template-columns:1fr 1fr}.chakra-col{border-left:0!important;border-top:1px solid var(--line-dark)}.chakra-col:nth-child(-n+2){border-top:0}.chakra-col:nth-child(even){border-left:1px solid var(--line-dark)!important}}
+@media (max-width:980px){.stages{grid-template-columns:repeat(4,1fr)}.stage::after{display:none}.stage:nth-child(5){border-left:0}.stage:nth-child(n+5){border-top-width:3px}.frame-foot{grid-template-columns:1fr;gap:36px}}
+@media (max-width:560px){.stages{grid-template-columns:1fr 1fr}.stage:nth-child(odd){border-left:0}.stage:nth-child(even){border-left:1px solid var(--line-dark)}.updown{grid-template-columns:1fr;gap:22px}.updown>div{padding:0}.updown>div+div{border-left:0;border-top:1px solid var(--line-dark);padding-top:22px}}
+
+/* ============ home: centered sections ============ */
+.center{display:grid;gap:22px;justify-items:center;text-align:center;max-width:780px;margin:0 auto}
+.center .lede{max-width:58ch}
+.center .script{font-size:clamp(1.7rem,3vw,2.4rem);text-wrap:balance}
+.center .btns{justify-content:center}
 
 /* ============ conversations ============ */
 .conv{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:start}
@@ -199,18 +210,22 @@ p{margin:0}
 .facts li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--plum-muted)}
 .facts li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translateY(-2px)}
 @media (max-width:860px){.offers{grid-template-columns:1fr}.offer{--pad:30px}}
+.offers--3{grid-template-columns:repeat(3,1fr);gap:24px}
+.offers--3 .offer{--pad:28px;display:flex;flex-direction:column;gap:14px}
+.offers--3 .offer .script{font-size:1.5rem}
+.offers--3 .btn{width:100%;white-space:normal;text-align:center;padding:12px 18px;line-height:1.4}
+.offers--3 .offer .desc{font-size:14.5px;color:var(--plum-muted)}
+.offer-foot{margin-top:auto;display:grid;gap:18px;padding-top:10px}
+.price-line{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--line-light)}
+.price-line .caps{font-size:10.5px;color:var(--plum-muted)}
+.price-line .price{font-size:2.2rem}
+@media (max-width:980px){.offers--3{grid-template-columns:1fr;max-width:560px}}
 
 /* ============ app loop ============ */
-.loop{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line-dark);margin-top:8px}
-.loop-step{padding:22px 16px 0 0;display:grid;gap:6px;position:relative}
-.loop-step+.loop-step{padding-left:16px;border-left:1px solid var(--line-dark)}
-.loop-step b{font-size:12px;letter-spacing:.24em;font-weight:700;color:var(--gold-soft)}
-.loop-step span{font-size:13px;color:var(--lav);line-height:1.55}
-.app-tease{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;margin-bottom:44px}
-.badge-note{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ivory);padding:10px 16px;border:1px solid var(--line-dark);border-radius:2px}
-.badge-note::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--heart)}
-@media (max-width:900px){.loop{grid-template-columns:repeat(3,1fr)}.loop-step:nth-child(4){border-left:0;padding-left:0}.loop-step:nth-child(n+4){margin-top:18px}.app-tease{grid-template-columns:1fr}}
-@media (max-width:520px){.loop{grid-template-columns:1fr 1fr}.loop-step{border-left:0!important;padding-left:0!important}}
+.app-tease{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center}
+.badge-note{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);padding:14px 22px;border:1px solid var(--gold);border-radius:2px;white-space:nowrap}
+.badge-note::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+@media (max-width:900px){.app-tease{grid-template-columns:1fr;gap:28px}.badge-note{justify-self:start}}
 
 /* ============ shop band ============ */
 .shop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
@@ -220,21 +235,32 @@ p{margin:0}
 .cat-list span:not(:last-child)::after{content:"•";color:var(--gold);margin:0 14px;font-size:1rem;vertical-align:middle}
 @media (max-width:860px){.shop{grid-template-columns:1fr;gap:36px}}
 
-/* ============ branches ============ */
-.branches{text-align:left}
-.branch-list{display:flex;flex-wrap:wrap;gap:14px 0;font-family:var(--serif);font-size:clamp(1.4rem,2.3vw,1.9rem);line-height:1.3;max-width:1000px}
-.branch-list span{white-space:nowrap}
-.branch-list span:not(:last-child)::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin:0 18px;vertical-align:middle}
-.branch-list .ip{color:var(--gold-soft);font-style:italic}
+/* ============ home: community ============ */
+.comm{display:grid;border-top:1px solid var(--line-dark)}
+.comm-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-dark)}
+.comm-item h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory)}
+.comm-item p{font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.2;color:var(--gold-soft);text-align:right}
+.comm-ip{display:grid;gap:8px;margin-top:28px}
+.comm-ip h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+.comm-ip p{font-size:14.5px;color:var(--lav);max-width:52ch}
+@media (max-width:560px){.comm-item{grid-template-columns:1fr;gap:4px}.comm-item p{text-align:left}}
 
-/* ============ signup ============ */
-.signup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+/* ============ home: final invitation ============ */
+.final{padding:120px 0 110px;background:radial-gradient(ellipse 60% 90% at 50% 0%,rgba(88,32,100,.7),transparent 70%),var(--plum-deep)}
+.final .center{gap:26px;max-width:880px}
+.final-lines{display:grid;gap:4px}
+.final-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.35;color:var(--lav)}
+.btn--lg{min-height:56px;padding:0 34px;font-size:13px}
+.final .sign{margin-top:6px}
+.final h2 span{display:block}
+@media (max-width:640px){.final{padding:84px 0 76px}}
+
+/* ============ footer signup ============ */
 .signup-form{display:flex;gap:10px;flex-wrap:wrap}
 .field{flex:1 1 220px;min-height:48px;padding:0 16px;border-radius:2px;border:1px solid var(--line-dark);background:rgba(255,255,255,.04);color:var(--ivory);font:inherit;font-size:14.5px}
 .field::placeholder{color:rgba(205,169,218,.7)}
 .field:focus{outline:none;border-color:var(--gold)}
 .fine{font-size:12px;color:var(--lav);margin-top:12px}
-@media (max-width:860px){.signup{grid-template-columns:1fr;gap:28px}}
 
 /* ============ inner page hero ============ */
 .page-hero{padding:84px 0 64px;background:radial-gradient(ellipse 50% 90% at 85% 0%,rgba(88,32,100,.7),transparent 70%),var(--plum)}
@@ -443,6 +469,10 @@ p{margin:0}
 .foot-nav,.foot-social,.foot-legal{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;margin:0;padding:0}
 .foot-nav a{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--lav)}
 .foot-nav a:hover,.foot-social a:hover,.foot-legal a:hover{color:var(--gold-soft)}
+.foot-signup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line-dark)}
+.foot-signup h3{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+.foot-signup .fine{margin-top:0}
+@media (max-width:760px){.foot-signup{grid-template-columns:1fr;gap:18px}}
 .foot-mid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:26px 0;border-bottom:1px solid var(--line-dark)}
 .foot-social a{display:inline-flex;align-items:center;gap:8px;font-size:13px;text-decoration:none;color:var(--ivory)}
 .foot-social svg{width:16px;height:16px;color:var(--gold)}
@@ -459,7 +489,7 @@ p{margin:0}
 .arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .media{display:block;width:100%;height:auto;border-radius:2px;box-shadow:0 34px 60px -32px rgba(21,17,23,.6)}
 .media--frame{outline:1px solid rgba(214,162,58,.55);outline-offset:8px;margin:8px}
-.offer-img{display:block;width:calc(100% + var(--pad)*2);max-width:none;margin:calc(var(--pad)*-1) calc(var(--pad)*-1) 4px;aspect-ratio:16/9;object-fit:cover}
+.offer-img{display:block;flex:none;width:calc(100% + var(--pad)*2);height:auto;max-width:none;margin:calc(var(--pad)*-1) calc(var(--pad)*-1) 4px;aspect-ratio:16/9;object-fit:cover}
 .shop-img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
 .cat-list--sm{font-size:1.25rem}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
@@ -489,7 +519,7 @@ p{margin:0}
   <div class="wrap head-row">
     <a class="brand" href="#/" aria-label="Rooted & Crowned Collective — home">
       <img class="brand-logo" src="assets/logo-emblem.png" alt="" width="372" height="324">
-      <span class="brand-name">Rooted &amp; Crowned<small>Collective</small></span>
+      <span class="brand-text"><span class="brand-name">Rooted &amp; Crowned<small>Collective</small></span><span class="brand-sig">Grounded Roots. Crown Driven.</span></span>
     </a>
     <div class="head-cta">
       <a class="btn btn--gold btn--sm" href="#/start-here">Start Here</a>
@@ -511,15 +541,16 @@ p{margin:0}
 
 <!-- ===================== HOME ===================== -->
 <div data-page="home">
+
+  <!-- 1 · PROMISE -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <span class="eyebrow">Rooted &amp; Crowned Collective</span>
-        <p class="script">Grounded Roots. Crown Driven.</p>
-        <h1 class="h-xl">Heal from the Root Up. <em>Live from the Crown Down.</em></h1>
-        <p class="lede">A personal-development ecosystem created to help you reconnect with your foundation, rediscover your voice, align with purpose and build what comes next.</p>
+        <h1 class="h-xl"><span>Heal from the Root Up.</span><em>Live from the Crown Down.</em></h1>
+        <p class="lede">A personal-development framework and community created to help you reconnect with your foundation, rediscover your voice, align with purpose, and intentionally build what comes next.</p>
         <div class="btns">
-          <a class="btn btn--gold" href="#" data-ext="stan" data-label="Stan Store">Start Your Journey <span class="arr">→</span></a>
+          <a class="btn btn--gold" href="#/start-here">Start Your Journey <span class="arr">→</span></a>
           <a class="btn btn--line" href="#/root-to-crown">Discover the Framework</a>
         </div>
         <div class="pillar-line" aria-label="Heal, Grow, Thrive, Together"><span>HEAL</span><span>GROW</span><span>THRIVE</span><span>TOGETHER</span></div>
@@ -530,130 +561,181 @@ p{margin:0}
     </div>
   </section>
 
+  <!-- 2 · MISSION -->
   <section class="band band--plum2">
     <div class="wrap">
       <div class="mission">
         <span class="eyebrow">Our Mission</span>
-        <p>To empower women to heal, align and rise by reconnecting to their roots and stepping into their crown.</p>
+        <p>To empower women to heal, align, and rise by reconnecting with their roots, reclaiming their voice, recognizing their power, and intentionally stepping into the life they are ready to create.</p>
       </div>
       <div class="pillars">
-        <div class="pillar"><h3>HEAL</h3><p>Release the past and restore wholeness.</p></div>
-        <div class="pillar"><h3>GROW</h3><p>Align with purpose and inner power.</p></div>
-        <div class="pillar"><h3>THRIVE</h3><p>Build the life and business you desire.</p></div>
-        <div class="pillar"><h3>TOGETHER</h3><p>Rise in community and transformation.</p></div>
+        <div class="pillar"><h3>HEAL</h3><p>Reflect on what shaped you and release what no longer serves you.</p></div>
+        <div class="pillar"><h3>GROW</h3><p>Reconnect with your voice, power, and possibilities.</p></div>
+        <div class="pillar"><h3>THRIVE</h3><p>Turn awareness into intentional choices, purpose, and action.</p></div>
+        <div class="pillar"><h3>TOGETHER</h3><p>Rise through connection, community, and shared growth.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- 3 · FOUNDER -->
   <section class="band band--ivory">
     <div class="wrap kia">
       <figure class="arch" style="margin:0">
         <img src="assets/kia-journaling.jpg" alt="Coach Kia journaling at her desk with the Rooted and Crowned Daily Journal" width="800" height="1000" loading="lazy">
       </figure>
       <div class="kia-copy">
-        <span class="eyebrow">Founder &amp; Practitioner</span>
+        <span class="eyebrow">Founder • Author • Life Coach • Visionary</span>
         <h2 class="h-l">Meet Coach Kia</h2>
-        <div class="roles"><span>Spiritual Practitioner</span><span>Author</span><span>Teacher</span><span>Mentor</span><span>Business Builder</span><span>Seer</span><span>Healer</span><span>Guide</span></div>
         <blockquote class="quote" style="margin:8px 0">“I help women rise from what broke them and build what sets them free.”</blockquote>
+        <div class="prose"><p>Rooted &amp; Crowned was born from a journey that taught Coach Kia the difference between simply surviving and intentionally living. Through life’s transitions, motherhood, advocacy, relationships, rebuilding, and rediscovery, she began developing a framework for turning reflection into intentional growth.</p></div>
         <div class="btns"><a class="btn btn--gold" href="#/about">Meet Coach Kia <span class="arr">→</span></a></div>
       </div>
     </div>
   </section>
 
+  <!-- 4 · FRAMEWORK -->
   <section class="band">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">The Root-to-Crown Framework</span>
-        <h2 class="h-l">Seven energy centers. One path from foundation to purpose.</h2>
+        <h2 class="h-l">Seven Stages. One Intentional Journey.</h2>
       </div>
-      <div class="chakra-row" data-chakra-row></div>
-      <div class="r2c">
-        <div class="r2c-text"><span class="caps">Root → Crown</span><p>Ground. Create. Empower. Love. Speak. See. Integrate.</p></div>
-        <a class="btn btn--gold" href="#/root-to-crown">Experience Root to Crown <span class="arr">→</span></a>
+      <ol class="stages" data-stages aria-label="Ground, Create, Empower, Love, Speak, See, Integrate"></ol>
+      <div class="frame-foot">
+        <p class="lede">The Rooted &amp; Crowned Framework moves through seven areas of reflection and personal development—from understanding the foundation that shaped you to intentionally integrating purpose into the way you live.</p>
+        <div class="updown">
+          <div><span class="caps">Root Up ↑</span><p>Reflect. Recognize. Release. Realign.</p></div>
+          <div><span class="caps">Crown Down ↓</span><p>Envision. Choose. Create. Live.</p></div>
+        </div>
       </div>
+      <div class="btns" style="margin-top:44px"><a class="btn btn--gold" href="#/root-to-crown">Explore the Framework <span class="arr">→</span></a></div>
     </div>
   </section>
 
-  <section class="band band--plum2">
-    <div class="wrap conv">
-      <div style="display:grid;gap:20px">
-        <span class="eyebrow">The Podcast · Free</span>
-        <h2 class="h-l">Rooted &amp; Crowned Conversations</h2>
-        <p class="script">Same Energy. Different Frequency.</p>
-        <p class="lede">Real Conversations. Deeper Healing. Purposeful Living. The podcast is the front door: the place to hear the message, get to know Coach Kia, and understand the philosophy before choosing where to go next.</p>
-        <div class="flow" aria-label="Listen, connect, trust, engage"><span>LISTEN</span><i>→</i><span>CONNECT</span><i>→</i><span>TRUST</span><i>→</i><span>ENGAGE</span></div>
-        <div class="tags"><span class="tag">Healing</span><span class="tag">Alignment</span><span class="tag">Voice</span><span class="tag">Purpose</span><span class="tag">Legacy</span></div>
-      </div>
-      <aside class="gift">
-        <span class="caps">Free welcome resource</span>
-        <h3>The Rooted &amp; Crowned Conversations Newsletter</h3>
-        <p class="muted">A three-page launch newsletter, free when you join the conversation, sent straight to your inbox.</p>
-        <a class="btn btn--gold" href="#" data-ext="stanEmail" data-label="Conversations sign-up (Stan)">Join the Conversation <span class="arr">→</span></a>
-        <a class="btn btn--line" href="#/conversations">Explore the Podcast</a>
-      </aside>
-    </div>
-  </section>
-
+  <!-- 5 · WAYS TO BEGIN -->
   <section class="band band--ivory">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Programs</span>
-        <h2 class="h-l">Choose your experience</h2>
-        <p class="lede">Live, guided and in community. Enrollment happens through our Stan Store.</p>
+        <span class="eyebrow">Begin Your Journey</span>
+        <h2 class="h-l">Choose Where You Want to Begin.</h2>
       </div>
-      <div class="offers" data-offers></div>
+      <div class="offers offers--3">
+        <article class="offer">
+          <img class="offer-img" src="assets/teaching.jpg" alt="Coach Kia teaching the seven chakras to a room of women" width="1000" height="982" loading="lazy">
+          <span class="eyebrow">7 Weeks • 7 Chakras • One Guided Journey</span>
+          <h3 class="h-m">The 7-Week Root-to-Crown Experience</h3>
+          <p class="desc">Live virtual classes via Zoom exploring the Root-to-Crown Framework through guided teaching, reflection, conversation, and practice.</p>
+          <div class="offer-foot">
+            <div class="price-line"><span class="caps">Introductory Experience</span><span class="price">$99</span></div>
+            <div class="btns"><a class="btn btn--gold" href="#/root-to-crown-experience">Explore the Experience <span class="arr">→</span></a></div>
+          </div>
+        </article>
+        <article class="offer">
+          <img class="offer-img" src="assets/kia-portrait.jpg" alt="Coach Kia writing in her journal" style="object-position:50% 18%" width="760" height="950" loading="lazy">
+          <span class="eyebrow">Weekly • Live on Zoom</span>
+          <h3 class="h-m">Rooted &amp; Crowned Journal Club</h3>
+          <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
+          <p class="desc">A weekly live Zoom community where guided journaling becomes reflection, conversation, connection, and intentional action.</p>
+          <div class="offer-foot">
+            <div class="price-line"><span class="caps">Membership</span><span class="price">$60<small>/MONTH</small></span></div>
+            <div class="btns"><a class="btn btn--gold" href="#/journal-club">Join the Journal Journey <span class="arr">→</span></a></div>
+          </div>
+        </article>
+        <article class="offer">
+          <img class="offer-img" src="assets/book-journey.jpg" alt="My Rooted and Crowned Journey, a Root-to-Crown guided journal" style="object-position:50% 48%" width="600" height="850" loading="lazy">
+          <span class="eyebrow">At Your Own Pace</span>
+          <h3 class="h-m">Books &amp; Guided Journals</h3>
+          <p class="desc">Continue your journey at your own pace through Rooted &amp; Crowned books, journals, affirmation experiences, and guided reflection tools.</p>
+          <div class="offer-foot">
+            <div class="btns"><a class="btn btn--gold" href="#/books">Explore Books &amp; Journals <span class="arr">→</span></a></div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="band">
+  <!-- 6 · PODCAST -->
+  <section class="band band--plum2">
     <div class="wrap">
-      <div class="app-tease">
-        <div style="display:grid;gap:18px">
-          <span class="eyebrow">The Rooted &amp; Crowned App</span>
-          <h2 class="h-l">Your Daily Energy Companion</h2>
-          <p class="lede">Answer a few questions about your energy, emotions and habits. Receive a Root-to-Crown reflection theme, an affirmation and a short practice. Watch your journey take shape over time.</p>
-          <div class="btns"><a class="btn btn--gold" href="#/app">Try the App Preview <span class="arr">→</span></a></div>
-        </div>
-        <span class="badge-note">Supports reflection, not diagnosis</span>
-      </div>
-      <div class="loop" aria-label="The daily loop">
-        <div class="loop-step"><b>CHECK IN</b><span>Two to four minutes, simple scales.</span></div>
-        <div class="loop-step"><b>REFLECT</b><span>Notice what's present today.</span></div>
-        <div class="loop-step"><b>RECEIVE</b><span>An insight, affirmation and prompt.</span></div>
-        <div class="loop-step"><b>PRACTICE</b><span>A short grounding or voice exercise.</span></div>
-        <div class="loop-step"><b>TRACK</b><span>See themes and trends over time.</span></div>
-        <div class="loop-step"><b>CONNECT</b><span>Go deeper in classes and community.</span></div>
+      <div class="center">
+        <span class="eyebrow">The Podcast</span>
+        <h2 class="h-l">Rooted &amp; Crowned Conversations</h2>
+        <p class="script">Real Conversations. Deeper Healing. Purposeful Living.</p>
+        <p class="lede">Some conversations help us recognize what we’ve carried. Others remind us of what’s still possible. Join Coach Kia for authentic conversations about life, growth, relationships, purpose, identity, family, and the journey of becoming.</p>
+        <div class="btns"><a class="btn btn--gold" href="#/conversations">Listen to the Conversations <span class="arr">→</span></a></div>
       </div>
     </div>
   </section>
 
+  <!-- 7 · COMMUNITY -->
+  <section class="band band--deep">
+    <div class="wrap branches-grid">
+      <div style="display:grid;gap:34px">
+        <div style="display:grid;gap:16px">
+          <span class="eyebrow">More than a program. A community.</span>
+          <h2 class="h-l">There Is Room for Your Journey Here.</h2>
+        </div>
+        <div class="comm">
+          <div class="comm-item"><h3>Rooted &amp; Crowned Sisterhood</h3><p>Connection • Support • Growth</p></div>
+          <div class="comm-item"><h3>Rooted &amp; Crowned Men’s Collective</h3><p>Brotherhood • Purpose • Leadership</p></div>
+          <div class="comm-item"><h3>Rooted &amp; Crowned Children</h3><p>Growth • Identity • Possibility</p></div>
+        </div>
+        <div class="comm-ip">
+          <span class="eyebrow">In development</span>
+          <h3>Infinite Possibilities</h3>
+          <p>Supporting a future vision for neurodiverse individuals and families.</p>
+        </div>
+        <div class="btns"><a class="btn btn--line" href="#/community">Explore Our Community <span class="arr">→</span></a></div>
+      </div>
+      <img class="branches-img" src="assets/extravaganza.jpg" alt="Coach Kia with children in Rooted and Crowned tees at the Community Extravaganza" width="900" height="1129" loading="lazy">
+    </div>
+  </section>
+
+  <!-- 8 · APP -->
+  <section class="band">
+    <div class="wrap app-tease">
+      <div style="display:grid;gap:18px">
+        <span class="eyebrow">Your Journey. In Your Hands.</span>
+        <h2 class="h-l">The Rooted &amp; Crowned App</h2>
+        <p class="lede">A digital companion designed to bring Root-to-Crown reflection, intentional practices, journaling, affirmations, and community into your everyday life.</p>
+        <div class="btns"><a class="btn btn--gold" href="#/app">Learn About the App <span class="arr">→</span></a></div>
+      </div>
+      <span class="badge-note">Coming Soon</span>
+    </div>
+  </section>
+
+  <!-- 9 · SHOP -->
   <section class="band band--ivory2">
     <div class="wrap shop">
       <img class="shop-img" src="assets/book-daily.jpg" alt="The Rooted and Crowned hardcover Daily Journal with a matching pen, mug and candle" width="900" height="900" loading="lazy">
       <div style="display:grid;gap:18px">
         <span class="eyebrow">The Shop</span>
-        <h2 class="h-l">Shop the Collective</h2>
-        <p class="script">Wear the Message. Live the Work.</p>
-        <div class="cat-list cat-list--sm" data-cats></div>
+        <h2 class="h-l">Carry the Journey With You.</h2>
+        <div class="cat-list cat-list--sm"><span>Journals</span><span>Books</span><span>Apparel</span><span>Accessories</span><span>Wellness &amp; Lifestyle</span></div>
         <div class="btns"><a class="btn btn--gold" href="#" data-ext="shopify" data-label="Shopify storefront">Shop the Collective <span class="arr">→</span></a></div>
       </div>
     </div>
   </section>
 
-  <section class="band band--deep branches">
-    <div class="wrap branches-grid">
-     <div style="display:grid;gap:30px">
-      <span class="eyebrow">One Root. Many Branches. Infinite Possibilities.</span>
-      <div class="branch-list">
-        <span>Journals &amp; Books</span><span>Education &amp; Classes</span><span>Community Events</span><span>Speaking &amp; Workshops</span><span>Advocacy &amp; Support</span><span>Products &amp; Merchandise</span><span>Wellness &amp; Healing</span><span>Children's Programs</span><span>Family Resources</span><span>Online Platform &amp; App</span><span>Retreats &amp; Travel</span><span>Business Strategies</span><span class="ip">Infinite Possibilities</span>
+  <!-- 10 · INVITATION -->
+  <section class="final">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Your next chapter can begin here.</span>
+        <h2 class="h-l"><span>Wherever You Are in Your Journey,</span> <span>You Don’t Have to Stay Where You Started.</span></h2>
+        <div class="final-lines">
+          <p>Your roots tell the story of where you’ve been.</p>
+          <p>Your crown reminds you that you still get to decide where you’re going.</p>
+        </div>
+        <div class="btns">
+          <a class="btn btn--gold btn--lg" href="#/start-here">Start Your Journey <span class="arr">→</span></a>
+          <a class="btn btn--line btn--lg" href="#/root-to-crown">Discover the Framework</a>
+        </div>
+        <div class="spectrum spectrum--short" aria-hidden="true"></div>
+        <p class="script sign">Grounded Roots. Crown Driven.</p>
       </div>
-      <div class="btns"><a class="btn btn--line" href="#/community">Explore Our Community <span class="arr">→</span></a></div>
-     </div>
-      <img class="branches-img" src="assets/extravaganza.jpg" alt="Coach Kia with children in Rooted and Crowned tees at the Community Extravaganza" width="900" height="1129" loading="lazy">
     </div>
   </section>
-
-  <section class="band band--plum2" data-signup></section>
 </div>
 
 <!-- ===================== OUR STORY ===================== -->
@@ -692,7 +774,6 @@ p{margin:0}
     <div class="pillar"><h3>THRIVE</h3><p>Build the life and business you desire.</p></div>
     <div class="pillar"><h3>TOGETHER</h3><p>Rise in community and transformation.</p></div>
   </div></div></section>
-  <section class="band band--plum2" data-signup></section>
 </div>
 
 <!-- ===================== FRAMEWORK ===================== -->
@@ -764,7 +845,6 @@ p{margin:0}
     </div>
     <div class="verbs4"><div>Write it.</div><div>Witness it.</div><div>Voice it.</div><div>Work through it.</div></div>
   </div></section>
-  <section class="band band--plum2" data-signup></section>
 </div>
 
 <!-- ===================== CONVERSATIONS ===================== -->
@@ -803,7 +883,6 @@ p{margin:0}
       <div class="btns"><a class="btn btn--line btn--sm" href="#" data-ext="podcast" data-label="podcast platform">Listen on your podcast app</a></div>
     </div>
   </div></section>
-  <section class="band band--plum2" data-signup></section>
 </div>
 
 <!-- ===================== BOOKS ===================== -->
@@ -957,7 +1036,6 @@ p{margin:0}
     <div class="paths" data-paths></div>
     <div class="scope"><b>Scope of this program</b>Infinite Possibilities offers education, reflection, connection and community. It is not psychotherapy, diagnosis, crisis care or behavioral treatment, and it does not replace medical, psychological, psychiatric, educational or other licensed professional services. If you or your child are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
   </div></section>
-  <section class="band band--plum2" data-signup></section>
 </div>
 
 <!-- ===================== SHOP ===================== -->
@@ -1034,7 +1112,7 @@ p{margin:0}
     <div class="spectrum spectrum--short"></div>
   </div></section>
   <section class="band band--ivory"><div class="wrap legal-list">
-    <div id="disclaimer"><h3>Disclaimer</h3><p>Rooted &amp; Crowned Collective provides educational, spiritual and personal-development resources. Content is not intended to diagnose, treat or replace medical, psychological, psychiatric, educational or other licensed professional services.</p></div>
+    <div id="disclaimer"><h3>Disclaimer</h3><p>Rooted &amp; Crowned Collective’s coaching, educational, spiritual-reflection and personal-development resources are not medical care or mental-health treatment. Content is not intended to diagnose, treat or replace medical, psychological, psychiatric, educational or other licensed professional services. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</p></div>
     <div id="privacy"><h3>Privacy Policy</h3><p>Final policy text to be supplied before launch. It will cover email sign-ups, contact forms, analytics, app accounts, private journal data, and how to export or delete your data.</p></div>
     <div id="terms"><h3>Terms &amp; Conditions</h3><p>Final terms to be supplied before launch.</p></div>
     <div id="refund"><h3>Refund Policy</h3><p>Final refund terms for classes, memberships and digital products to be supplied before launch.</p></div>
@@ -1054,16 +1132,17 @@ p{margin:0}
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">About</a></li><li><a href="#/root-to-crown">Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Conversations</a></li><li><a href="#/app">App</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">App</a></li><li><a href="#/community">Community</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
       </ul>
     </div>
+    <div class="foot-signup" data-signup></div>
     <div class="foot-mid">
       <ul class="foot-social" data-social></ul>
       <ul class="foot-legal">
         <li><a href="#/privacy">Privacy Policy</a></li><li><a href="#/terms">Terms &amp; Conditions</a></li><li><a href="#/legal">Refund Policy</a></li><li><a href="#/legal">Shipping Policy</a></li><li><a href="#/accessibility">Accessibility</a></li><li><a href="#/legal">Disclaimer</a></li>
       </ul>
     </div>
-    <p class="disclaimer">Rooted &amp; Crowned Collective provides educational, spiritual and personal-development resources. Content is not intended to diagnose, treat or replace medical, psychological, psychiatric, educational or other licensed professional services.</p>
+    <p class="disclaimer">Rooted &amp; Crowned Collective’s coaching, educational, spiritual-reflection and personal-development resources are not medical care or mental-health treatment. Content is not intended to diagnose, treat or replace medical, psychological, psychiatric, educational or other licensed professional services.</p>
     <p class="copy">Copyright © <span data-year></span> Rooted &amp; Crowned Collective.</p>
   </div>
 </footer>
@@ -1163,10 +1242,8 @@ function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show"
 $$("[data-nav]").forEach(ul=>{ul.innerHTML=NAV.map(([l,h])=>`<li><a href="#${h}" data-route="${h}">${esc(l)}</a></li>`).join("")+
   (ul.closest(".drawer")?`<li><a href="#/start-here" data-route="/start-here">Start Here</a></li><li><a href="#/shop" data-route="/shop">Shop</a></li>`:"");});
 
-$$("[data-chakra-row]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
-  <a class="chakra-col" href="#/root-to-crown" style="--c:${c.c}">
-    <span class="dot"></span><span class="n">${String(i+1).padStart(2,"0")}</span>
-    <h3>${c.name}</h3><p>${c.themes.replace(/ · /g,"<br>")}</p></a>`).join(""));
+$$("[data-stages]").forEach(el=>el.innerHTML=CHAKRAS.map(c=>`
+  <li class="stage" style="--c:${c.c}"><i class="dot" aria-hidden="true"></i><b>${c.verb}</b><span>${c.name}</span></li>`).join(""));
 
 $$("[data-ladder]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
   <li class="rung" style="--c:${c.c}"><span class="node" aria-hidden="true"></span>
@@ -1175,22 +1252,6 @@ $$("[data-ladder]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
 
 $$("[data-weeks]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
   <li class="week" style="--c:${c.c}"><span class="caps">Week ${i+1}</span><h4>${c.name}</h4><p>${c.tease}</p></li>`).join(""));
-
-$$("[data-offers]").forEach(el=>el.innerHTML=`
-  <article class="offer">
-    <img class="offer-img" src="assets/teaching.jpg" alt="Coach Kia teaching the chakra system to a room of women" loading="lazy">
-    <div class="offer-top"><span class="eyebrow">7 Weeks · 7 Chakras</span><span class="price">$99<small>INTRO</small></span></div>
-    <h3 class="h-m">The 7-Week Root-to-Crown Experience</h3>
-    <ul class="facts"><li>LIVE virtual classes via Zoom</li><li>One guided journey, root to crown</li><li>Reflection and conversation with Coach Kia</li></ul>
-    <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation</a><a class="btn btn--line" href="#/root-to-crown-experience">Learn More</a></div>
-  </article>
-  <article class="offer">
-    <img class="offer-img" src="assets/kia-portrait.jpg" alt="Coach Kia writing in her journal" style="object-position:50% 18%" loading="lazy">
-    <div class="offer-top"><span class="eyebrow">Weekly · Live on Zoom</span><span class="price">$60<small>/MO</small></span></div>
-    <h3 class="h-m">Rooted &amp; Crowned Journal Club</h3>
-    <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
-    <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey</a><a class="btn btn--line" href="#/journal-club">Learn More</a></div>
-  </article>`);
 
 $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join(""));
 
@@ -1210,13 +1271,11 @@ $$("[data-paths]").forEach(el=>{el.innerHTML=`
 
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
-const SIGNUP = `<div class="wrap signup">
-  <div style="display:grid;gap:14px"><span class="eyebrow">Join the Collective</span><h2 class="h-l">Stay Rooted. Stay Connected.</h2>
-  <p class="lede">Receive new conversations, upcoming experiences, reflection resources and announcements from the Rooted &amp; Crowned Collective.</p></div>
+const SIGNUP = `<div style="display:grid;gap:8px"><h3>Stay Rooted. Stay Connected.</h3>
+  <p class="fine">New conversations, upcoming experiences and announcements, plus a free welcome gift: the Rooted &amp; Crowned Conversations newsletter.</p></div>
   <form class="signup-form-wrap" novalidate><div class="signup-form">
     <input class="field" type="email" name="email" placeholder="Your email address" aria-label="Email address" autocomplete="email" required>
-    <button class="btn btn--gold" type="submit">Join the Collective</button></div>
-    <p class="fine">Your welcome gift: the free Rooted &amp; Crowned Conversations newsletter.</p></form></div>`;
+    <button class="btn btn--gold" type="submit">Join the Collective</button></div></form>`;
 $$("[data-signup]").forEach(el=>el.innerHTML=SIGNUP);
 
 const ICONS = {
