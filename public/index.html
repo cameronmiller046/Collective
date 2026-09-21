@@ -586,6 +586,29 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
+/* infinite possibilities page */
+.page-hero .ip-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center}
+.ip-hero-copy{display:grid;gap:18px;align-content:center}
+.ip-flow{color:var(--gold-soft);letter-spacing:.3em}
+.ip-frame{margin:0}
+.ip-frame img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.55);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
+.ip-frame--light img{outline-color:rgba(131,92,16,.5);box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
+.ip-hint{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--lav);opacity:.85}
+.confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
+.ip-two{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:center}
+.ip-two--flip{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.ip-two--flip .ip-frame{order:2}
+.ip-copy{display:grid;gap:20px}
+.ip-copy--light h2{color:var(--plum)}
+.ip-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-dark)}
+.ip-list li{display:grid;gap:2px;padding:16px 0;border-bottom:1px solid var(--line-dark)}
+.ip-list b{font-family:var(--serif);font-weight:500;font-size:1.45rem;line-height:1.25;color:var(--ivory)}
+.ip-list span{font-size:14.5px;color:var(--lav)}
+.ip-list--light{border-top-color:var(--line-light)}
+.ip-list--light li{border-bottom-color:var(--line-light)}
+.ip-list--light b{color:var(--plum)}
+.ip-list--light span{color:var(--plum-muted)}
+@media (max-width:900px){.page-hero .ip-hero,.ip-two,.ip-two--flip{grid-template-columns:1fr;gap:48px}.ip-two--flip .ip-frame{order:0}.ip-frame{max-width:460px;width:100%}.ip-hero .ip-frame{margin:0 10px}}
 .pod-photo{margin:0 auto;max-width:960px}
 .pod-photo--wide{max-width:1124px}
 .pod-photo img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
@@ -1479,12 +1502,19 @@ p{margin:0}
 
 <!-- ===================== INFINITE POSSIBILITIES ===================== -->
 <div data-page="infinite" hidden>
-  <section class="page-hero"><div class="wrap">
-    <span class="eyebrow">In development</span>
-    <h1 class="h-xl">Rooted &amp; Crowned Infinite Possibilities</h1>
-    <p class="script">Every Mind. Every Voice. Every Possibility.</p>
-    <p class="lede">Support for neurodiverse families through education, reflection, connection, age-appropriate classes, resources and community, with a Root-to-Crown pathway for parents and caregivers and one for children and young adults.</p>
-    <div class="spectrum spectrum--short"></div>
+  <section class="page-hero"><div class="wrap ip-hero">
+    <div class="ip-hero-copy">
+      <span class="eyebrow">In development</span>
+      <h1 class="h-xl">Rooted &amp; Crowned Infinite Possibilities</h1>
+      <p class="script">Every Mind. Every Voice. Every Possibility.</p>
+      <p class="lede">Support for neurodiverse families through education, reflection, connection, age-appropriate classes, resources and community, with a Root-to-Crown pathway for parents and caregivers and one for children and young adults.</p>
+      <p class="caps ip-flow">Support • Empower • Include • Belong</p>
+      <div class="spectrum spectrum--short"></div>
+      <p class="ip-hint">Click or tap anywhere to celebrate</p>
+    </div>
+    <figure class="ip-frame">
+      <img src="assets/ip-poster.webp" alt="Infinite Possibilities: Support, Empower, Include, Belong. A glowing silhouette of a child with a rainbow tree of life in their hair, colorful puzzle pieces and a golden infinity symbol with a heart, with the words Different Abilities, Same Infinite Potential, and a safe space for neurodiverse families" width="1072" height="1467">
+    </figure>
   </div></section>
 
   <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
@@ -1493,6 +1523,42 @@ p{margin:0}
       <h2 class="h-l">A Root-to-Crown journey for the whole family.</h2>
     </div>
     <div class="paths" data-paths></div>
+  </div></section>
+
+  <section class="band band--plum2"><div class="wrap ip-two">
+    <figure class="ip-frame" style="margin:0">
+      <img src="assets/ip-programs.webp" alt="Infinite Possibilities programs and services: a smiling child with headphones, beside a list of parent workshops and support circles, child enrichment programs, family coaching and advocacy, a resource library, community events, and scholarships and sponsorships. Every Child Belongs. Every Family Matters." width="1072" height="1358" loading="lazy">
+    </figure>
+    <div class="ip-copy">
+      <span class="eyebrow">Programs &amp; Services</span>
+      <h2 class="h-l">Real Support. Real Tools. Real Change.</h2>
+      <ul class="ip-list">
+        <li><b>Parent Workshops &amp; Support Circles</b><span>Education, resources and connection</span></li>
+        <li><b>Child Enrichment Programs</b><span>Creative, sensory and confidence-building activities</span></li>
+        <li><b>Family Coaching &amp; Advocacy</b><span>Guidance through school and community systems</span></li>
+        <li><b>Resource Library</b><span>Tools, templates and trusted referrals</span></li>
+        <li><b>Community Events</b><span>Inclusive experiences for the whole family</span></li>
+        <li><b>Scholarships &amp; Sponsorships</b><span>Expanding access and opportunity</span></li>
+      </ul>
+      <p class="story-line" style="color:var(--gold-soft)">Every Child Belongs. Every Family Matters.</p>
+    </div>
+  </div></section>
+
+  <section class="band band--ivory"><div class="wrap ip-two ip-two--flip">
+    <figure class="ip-frame ip-frame--light" style="margin:0">
+      <img src="assets/ip-affirmations.webp" alt="Affirmations for Infinite Possibilities: three book covers with the Rooted and Crowned tree, one in rainbow watercolor for the Parent and Caregiver Edition, one in black and gold for the Children and Teens Edition, and one in soft pastels for the Special Needs Edition, each showing a silhouette of a family holding hands" width="1072" height="1467" loading="lazy">
+    </figure>
+    <div class="ip-copy ip-copy--light">
+      <span class="eyebrow">Affirmation Books</span>
+      <h2 class="h-l">Affirmations for Infinite Possibilities</h2>
+      <p class="disc-sub">Every Voice Matters. Every Journey Counts.</p>
+      <ul class="ip-list ip-list--light">
+        <li><b>Parent &amp; Caregiver Edition</b><span>Encouragement for the journey.</span></li>
+        <li><b>Children &amp; Teens Edition</b><span>Belief. Confidence. Empowerment.</span></li>
+        <li><b>Special Needs Edition</b><span>Support. Acceptance. Possibilities.</span></li>
+      </ul>
+      <p class="disc-close">Positivity builds resilience. Affirmations inspire change. Inclusion strengthens communities.</p>
+    </div>
   </div></section>
 
   <section class="band"><div class="wrap">
@@ -1786,6 +1852,55 @@ function startCountdown(box, target){
   const id = setInterval(()=>{ if(tick()) clearInterval(id); }, 1000);
 }
 $$("[data-countdown]").forEach(b=>startCountdown(b, RELEASE_AT));
+
+/* ---------- Infinite Possibilities: confetti on click ---------- */
+const confetti=(()=>{
+  let cv,ctx,dpr=1,parts=[],raf=null,last=0;
+  const COLORS=[...CHAKRAS.map(c=>c.c),"#D6A23A","#E5BE65","#F7F1E8"];
+  const MAX=420, rnd=(a,b)=>a+Math.random()*(b-a);
+  function setup(){
+    if(cv) return;
+    cv=document.createElement("canvas"); cv.className="confetti"; cv.setAttribute("aria-hidden","true");
+    document.body.appendChild(cv); ctx=cv.getContext("2d");
+    addEventListener("resize",size); size();
+  }
+  function size(){ dpr=Math.min(devicePixelRatio||1,2); cv.width=Math.round(innerWidth*dpr); cv.height=Math.round(innerHeight*dpr); }
+  function piece(x,y,vx,vy){
+    return {x,y,vx,vy,w:rnd(6,11),h:rnd(4,8),rot:rnd(0,6.28),vr:rnd(-.25,.25),c:COLORS[Math.floor(Math.random()*COLORS.length)],round:Math.random()<.25,sway:rnd(0,6.28),swaySpd:rnd(.03,.09)};
+  }
+  function burst(x,y){
+    setup();
+    const room=MAX-parts.length; if(room<=0) return;
+    const n=Math.min(70,room);
+    for(let i=0;i<n;i++){                       // burst from the click, then it falls
+      const a=rnd(-Math.PI*.95,-Math.PI*.05), s=rnd(4,11);
+      parts.push(piece(x,y,Math.cos(a)*s,Math.sin(a)*s));
+    }
+    const m=Math.min(50,MAX-parts.length);
+    for(let i=0;i<m;i++) parts.push(piece(rnd(0,innerWidth),rnd(-innerHeight*.35,-10),rnd(-1.2,1.2),rnd(1,3.5))); // a light shower from the top
+    if(!raf){ last=performance.now(); raf=requestAnimationFrame(frame); }
+  }
+  function frame(now){
+    const dt=Math.min(2.5,(now-last)/16.7); last=now;
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.setTransform(dpr,0,0,dpr,0,0);
+    parts=parts.filter(p=>p.y<innerHeight+24);
+    for(const p of parts){
+      p.vy+=.16*dt; p.vx*=Math.pow(.992,dt); p.vy*=Math.pow(.992,dt);
+      p.sway+=p.swaySpd*dt; p.x+=(p.vx+Math.sin(p.sway)*.6)*dt; p.y+=p.vy*dt; p.rot+=p.vr*dt;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.c;
+      if(p.round){ ctx.beginPath(); ctx.arc(0,0,p.w/2.4,0,6.283); ctx.fill(); } else ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    }
+    if(parts.length){ raf=requestAnimationFrame(frame); }
+    else { raf=null; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); }
+  }
+  return {burst, count:()=>parts.length};
+})();
+document.addEventListener("click",e=>{
+  if(reduce || $('[data-page="infinite"]').hidden) return;
+  if(e.target.closest("a,button,input,select,textarea,label,summary,form")) return;
+  confetti.burst(e.clientX,e.clientY);
+});
 
 /* ---------- forms ---------- */
 document.addEventListener("submit",e=>{
