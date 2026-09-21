@@ -586,6 +586,10 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
+.pod-photo{margin:0 auto;max-width:960px}
+.pod-photo--wide{max-width:1124px}
+.pod-photo img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
+@media (max-width:600px){.pod-photo img{outline-offset:5px}}
 .poster{margin:0 auto;max-width:520px}
 .poster img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -1074,8 +1078,8 @@ p{margin:0}
     <div class="spectrum spectrum--short"></div>
   </div></section>
   <section class="band" style="padding-top:0"><div class="wrap">
-    <figure class="poster">
-      <img src="assets/podcast-studio.jpg" alt="Rooted and Crowned: The Podcast. Coach Kia at the microphone in the podcast studio, with the words Real Conversations. Deeper Healing. Purposeful Living." width="1102" height="1427">
+    <figure class="pod-photo">
+      <img src="assets/podcast-conversation.webp" alt="Conversations Create Change, the podcast with Coach Kia: Coach Kia in a teal blazer resting her chin on her hand as she listens to a guest, in a warm plum and gold studio, with the words Real Conversations, Deeper Healing, Purposeful Living on the table" width="1374" height="1145">
     </figure>
   </div></section>
   <section class="band band--plum2"><div class="wrap conv">
@@ -1096,6 +1100,11 @@ p{margin:0}
       <a class="btn btn--gold" href="#" data-ext="stanEmail" data-label="Conversations sign-up (Stan)">Join the Conversation <span class="arr">→</span></a>
       <a class="btn btn--line" href="#/contact">Suggest a topic or be a guest</a>
     </aside>
+  </div></section>
+  <section class="band band--deep"><div class="wrap">
+    <figure class="pod-photo pod-photo--wide">
+      <img src="assets/podcast-set.webp" alt="The Rooted and Crowned podcast set: two cream armchairs with plum and teal cushions around a round plum table, beneath the Rooted and Crowned Collective logo, with a candle reading Same Energy, Different Frequency and the words Real Conversations, Deeper Healing, Purposeful Living" width="1374" height="1145" loading="lazy">
+    </figure>
   </div></section>
   <section class="band"><div class="wrap" style="display:grid;gap:20px">
     <span class="eyebrow">Episodes</span>
