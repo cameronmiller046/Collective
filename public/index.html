@@ -593,7 +593,6 @@ p{margin:0}
 .ip-frame{margin:0}
 .ip-frame img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.55);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
 .ip-frame--light img{outline-color:rgba(131,92,16,.5);box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
-.ip-hint{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--lav);opacity:.85}
 .confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
 .ip-two{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:center}
 .ip-two--flip{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
@@ -1510,7 +1509,6 @@ p{margin:0}
       <p class="lede">Support for neurodiverse families through education, reflection, connection, age-appropriate classes, resources and community, with a Root-to-Crown pathway for parents and caregivers and one for children and young adults.</p>
       <p class="caps ip-flow">Support • Empower • Include • Belong</p>
       <div class="spectrum spectrum--short"></div>
-      <p class="ip-hint">Click or tap anywhere to celebrate</p>
     </div>
     <figure class="ip-frame">
       <img src="assets/ip-poster.webp" alt="Infinite Possibilities: Support, Empower, Include, Belong. A glowing silhouette of a child with a rainbow tree of life in their hair, colorful puzzle pieces and a golden infinity symbol with a heart, with the words Different Abilities, Same Infinite Potential, and a safe space for neurodiverse families" width="1072" height="1467">
@@ -1853,9 +1851,9 @@ function startCountdown(box, target){
 }
 $$("[data-countdown]").forEach(b=>startCountdown(b, RELEASE_AT));
 
-/* ---------- Infinite Possibilities: confetti on click ---------- */
+/* ---------- Infinite Possibilities: confetti falls when the page opens ---------- */
 const confetti=(()=>{
-  let cv,ctx,dpr=1,parts=[],raf=null,last=0;
+  let cv,ctx,dpr=1,parts=[],raf=null,last=0,timers=[];
   const COLORS=[...CHAKRAS.map(c=>c.c),"#D6A23A","#E5BE65","#F7F1E8"];
   const MAX=420, rnd=(a,b)=>a+Math.random()*(b-a);
   function setup(){
@@ -1866,26 +1864,25 @@ const confetti=(()=>{
   }
   function size(){ dpr=Math.min(devicePixelRatio||1,2); cv.width=Math.round(innerWidth*dpr); cv.height=Math.round(innerHeight*dpr); }
   function piece(x,y,vx,vy){
-    return {x,y,vx,vy,w:rnd(6,11),h:rnd(4,8),rot:rnd(0,6.28),vr:rnd(-.25,.25),c:COLORS[Math.floor(Math.random()*COLORS.length)],round:Math.random()<.25,sway:rnd(0,6.28),swaySpd:rnd(.03,.09)};
+    return {x,y,vx,vy,g:rnd(.035,.07),w:rnd(6,11),h:rnd(4,8),rot:rnd(0,6.28),vr:rnd(-.2,.2),c:COLORS[Math.floor(Math.random()*COLORS.length)],round:Math.random()<.25,sway:rnd(0,6.28),swaySpd:rnd(.03,.08)};
   }
-  function burst(x,y){
-    setup();
-    const room=MAX-parts.length; if(room<=0) return;
-    const n=Math.min(70,room);
-    for(let i=0;i<n;i++){                       // burst from the click, then it falls
-      const a=rnd(-Math.PI*.95,-Math.PI*.05), s=rnd(4,11);
-      parts.push(piece(x,y,Math.cos(a)*s,Math.sin(a)*s));
-    }
-    const m=Math.min(50,MAX-parts.length);
-    for(let i=0;i<m;i++) parts.push(piece(rnd(0,innerWidth),rnd(-innerHeight*.35,-10),rnd(-1.2,1.2),rnd(1,3.5))); // a light shower from the top
-    if(!raf){ last=performance.now(); raf=requestAnimationFrame(frame); }
+  function start(){ if(!raf){ last=performance.now(); raf=requestAnimationFrame(frame); } }
+  function shower(){                                  // waves of confetti drifting down from the top of the screen
+    setup(); stop();
+    const WAVES=7, PER=38;
+    for(let w=0;w<WAVES;w++) timers.push(setTimeout(()=>{
+      const n=Math.min(PER,MAX-parts.length);
+      for(let i=0;i<n;i++) parts.push(piece(rnd(-20,innerWidth+20),rnd(-70,-10),rnd(-1,1),rnd(.6,2.4)));
+      start();
+    },250+w*320));
   }
+  function stop(){ timers.forEach(clearTimeout); timers=[]; parts=[]; }   // leaving the page clears anything still falling
   function frame(now){
     const dt=Math.min(2.5,(now-last)/16.7); last=now;
     ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.setTransform(dpr,0,0,dpr,0,0);
     parts=parts.filter(p=>p.y<innerHeight+24);
     for(const p of parts){
-      p.vy+=.16*dt; p.vx*=Math.pow(.992,dt); p.vy*=Math.pow(.992,dt);
+      p.vy+=p.g*dt; p.vx*=Math.pow(.985,dt); p.vy*=Math.pow(.985,dt);
       p.sway+=p.swaySpd*dt; p.x+=(p.vx+Math.sin(p.sway)*.6)*dt; p.y+=p.vy*dt; p.rot+=p.vr*dt;
       ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.c;
       if(p.round){ ctx.beginPath(); ctx.arc(0,0,p.w/2.4,0,6.283); ctx.fill(); } else ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
@@ -1894,13 +1891,8 @@ const confetti=(()=>{
     if(parts.length){ raf=requestAnimationFrame(frame); }
     else { raf=null; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); }
   }
-  return {burst, count:()=>parts.length};
+  return {shower, stop, count:()=>parts.length};
 })();
-document.addEventListener("click",e=>{
-  if(reduce || $('[data-page="infinite"]').hidden) return;
-  if(e.target.closest("a,button,input,select,textarea,label,summary,form")) return;
-  confetti.burst(e.clientX,e.clientY);
-});
 
 /* ---------- forms ---------- */
 document.addEventListener("submit",e=>{
@@ -1921,10 +1913,15 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
   "children":["community","children"],"infinite-possibilities":"infinite","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",infinite:"/infinite-possibilities",contact:"/contact",start:"/start-here",shop:"/shop"};
-let first=true;
+let first=true, curPage=null;
 function route(){
   const slug=location.hash.replace(/^#\/?/,"").split(/[?#]/)[0].replace(/\/$/,"");
   const r=ROUTES[slug]??"home"; const [page,anchor]=Array.isArray(r)?r:[r,null];
+  if(page!==curPage){                       // confetti falls each time the Infinite Possibilities page opens
+    if(page==="infinite" && !reduce) confetti.shower();
+    else if(curPage==="infinite") confetti.stop();
+    curPage=page;
+  }
   $$("[data-page]").forEach(s=>{const on=s.dataset.page===page; s.hidden=!on; if(on&&!first){s.classList.remove("page-enter");void s.offsetWidth;s.classList.add("page-enter");}});
   $$("[data-route]").forEach(a=>{ if(a.dataset.route===PAGE_NAV[page]) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   closeDrawer();
