@@ -592,6 +592,18 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
+/* support: what a gift can strengthen, and the ways to give */
+.give-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.give{display:grid;gap:6px;align-content:start;padding:22px 24px;background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--c);border-radius:2px}
+.give h3{font-size:1.45rem;line-height:1.2;color:var(--plum)}
+.give p{font-size:14.5px;line-height:1.6;color:var(--plum-muted)}
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.way{display:grid;gap:14px;align-content:start;padding:28px 26px;border:1px solid var(--line-dark);border-radius:2px;background:rgba(26,4,33,.35)}
+.way h3{font-size:1.6rem;line-height:1.2;color:var(--ivory)}
+.way p{font-size:14.5px;line-height:1.65;color:var(--lav)}
+.way .btn{justify-self:start;margin-top:auto}
+@media (max-width:1000px){.ways{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.give-grid,.ways{grid-template-columns:1fr}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:var(--plum);transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -1552,6 +1564,25 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     <div class="roots" data-roots></div>
   </div></section>
 
+  <section class="band band--ivory" id="invest" style="scroll-margin-top:110px"><div class="wrap" style="display:grid;gap:44px">
+    <div class="center" style="max-width:860px">
+      <h2 class="h-l">Invest in the Possibilities</h2>
+      <p class="lede">Your support strengthens the roots, expands the reach, and helps create opportunities for individuals, families, and communities to grow and thrive. What we nurture today can create opportunities that reach generations.</p>
+      <p class="script">One Root. Many Branches. Infinite Possibilities.</p>
+    </div>
+    <div style="display:grid;gap:18px">
+      <p class="caps" style="color:var(--plum);text-align:center">Your support can help strengthen:</p>
+      <div class="give-grid" data-give></div>
+    </div>
+    <div class="center" style="max-width:820px">
+      <div class="btns"><a class="btn btn--gold btn--lg" href="#/support">Support the Ecosystem <span class="arr">→</span></a></div>
+      <p class="story-line" style="font-size:clamp(1.3rem,2.2vw,1.75rem)">Every contribution becomes part of something larger—helping turn possibilities into programs, programs into opportunities, and opportunities into lasting impact.</p>
+      <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="script" style="font-size:clamp(1.7rem,3vw,2.3rem)">Grounded Roots. Crown Driven.</p>
+      <p class="caps" style="color:var(--plum-muted);letter-spacing:.3em">Heal • Grow • Thrive • Together</p>
+    </div>
+  </div></section>
+
   <section class="band band--deep"><div class="wrap">
     <div class="center" style="max-width:860px">
       <p class="script" style="font-size:clamp(1.9rem,3.6vw,3rem)">Different Abilities. Same Infinite Potential.</p>
@@ -1560,7 +1591,55 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
         <a class="btn btn--gold btn--lg" href="#/infinite-possibilities">Infinite Possibilities <span class="arr">→</span></a>
         <a class="btn btn--line btn--lg" href="#/community">Explore Our Community</a>
       </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ===================== SUPPORT OUR ECOSYSTEM ===================== -->
+<div data-page="support" hidden>
+  <section class="page-hero"><div class="wrap ip-hero">
+    <div class="ip-hero-copy">
+      <span class="eyebrow">Support Our Ecosystem</span>
+      <h1 class="h-xl">Help Us Grow What Matters.</h1>
+      <p class="lede">Every branch represents a possibility. Every root strengthens the foundation. Every person who supports the vision helps us reach farther.</p>
+      <p class="caps ip-flow">Heal • Grow • Thrive • Together</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+    <figure class="ip-frame">
+      <img src="assets/ecosystem.webp" alt="The Rooted and Crowned Collective ecosystem: a glowing tree of life with twelve branches, crowned by Infinite Possibilities, and roots of People, Purpose, Foundation, Community and Impact" width="1072" height="1467">
+    </figure>
+  </div></section>
+
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">What your support can strengthen</span>
+      <h2 class="h-l">One Root. Many Branches. Infinite Possibilities.</h2>
+      <p class="lede">Rooted &amp; Crowned Collective is being built to create spaces where individuals, families, and communities can heal, grow, learn, connect, and thrive together. Your support helps us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p>
+    </div>
+    <div class="give-grid" data-give></div>
+  </div></section>
+
+  <section class="band band--plum2"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">Ways to support</span>
+      <h2 class="h-l">Choose how you’d like to be part of it.</h2>
+    </div>
+    <div class="ways">
+      <article class="way"><h3>Support the Collective</h3><p>Help us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p><a class="btn btn--gold btn--sm" href="#" data-ext="support" data-label="Support the Collective">Support the Collective <span class="arr">→</span></a></article>
+      <article class="way"><h3>Sponsor a Family</h3><p>Support family-centered resources, activities, and opportunities.</p><a class="btn btn--gold btn--sm" href="#" data-ext="sponsorFamily" data-label="Sponsor a Family">Sponsor a Family <span class="arr">→</span></a></article>
+      <article class="way"><h3>Fund a Scholarship</h3><p>Help reduce financial barriers to participation.</p><a class="btn btn--gold btn--sm" href="#" data-ext="scholarship" data-label="Fund a Scholarship">Fund a Scholarship <span class="arr">→</span></a></article>
+      <article class="way"><h3>Support a Community Event</h3><p>Help bring people together through meaningful community experiences.</p><a class="btn btn--line btn--sm" href="#/contact">Ask About Events <span class="arr">→</span></a></article>
+      <article class="way"><h3>Become a Community Partner</h3><p>Businesses and community organizations can get involved in ways that go beyond an individual gift.</p><a class="btn btn--line btn--sm" href="#/contact">Partner With Us <span class="arr">→</span></a></article>
+      <article class="way"><h3>Sponsor a Program</h3><p>Expand access to learning and personal-development experiences.</p><a class="btn btn--line btn--sm" href="#/contact">Sponsor a Program <span class="arr">→</span></a></article>
+    </div>
+  </div></section>
+
+  <section class="band band--deep"><div class="wrap">
+    <div class="center" style="max-width:860px">
+      <p class="story-line" style="color:var(--gold-soft)">Every contribution becomes part of something larger—helping turn possibilities into programs, programs into opportunities, and opportunities into lasting impact.</p>
+      <div class="btns"><a class="btn btn--gold btn--lg" href="#" data-ext="support" data-label="Support the Collective">Support the Collective <span class="arr">→</span></a></div>
       <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="script" style="font-size:clamp(1.7rem,3vw,2.3rem)">Grounded Roots. Crown Driven.</p>
       <p class="caps" style="color:var(--gold-soft);letter-spacing:.3em">Heal • Grow • Thrive • Together</p>
     </div>
   </div></section>
@@ -1628,6 +1707,19 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 
   <section class="band"><div class="wrap">
     <div class="scope" style="background:var(--white)"><b>Scope of this program</b>Infinite Possibilities offers education, reflection, connection and community. It is not psychotherapy, diagnosis, crisis care or behavioral treatment, and it does not replace medical, psychological, psychiatric, educational or other licensed professional services. If you or your child are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+
+  <section class="band band--ivory2" id="ip-support" style="scroll-margin-top:110px"><div class="wrap">
+    <div class="center" style="max-width:860px">
+      <h2 class="h-l">Help Make More Possibilities Possible</h2>
+      <p class="script">Different Abilities. Same Infinite Potential.</p>
+      <p class="lede">Your support can help expand access to inclusive programs, family resources, educational opportunities, community experiences, scholarships, and sponsorships for individuals and families within Rooted &amp; Crowned Infinite Possibilities.</p>
+      <div class="btns">
+        <a class="btn btn--gold" href="#" data-ext="sponsorFamily" data-label="Sponsor a Family">Sponsor a Family <span class="arr">→</span></a>
+        <a class="btn btn--gold" href="#" data-ext="scholarship" data-label="Support a Scholarship">Support a Scholarship <span class="arr">→</span></a>
+        <a class="btn btn--line" href="#/contact">Partner With Us <span class="arr">→</span></a>
+      </div>
+    </div>
   </div></section>
 
   <section class="band band--deep"><div class="wrap">
@@ -1733,7 +1825,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li><li><a href="#/support">Support</a></li>
       </ul>
     </div>
     <div class="foot-signup" data-signup></div>
@@ -1760,6 +1852,9 @@ const LINKS = {
   stanApp: "",         // App subscription / waitlist
   stanBooks: "",       // Digital books & journals
   shopify: "",         // Shopify storefront
+  support: "",         // Support the Collective: general gift / support page
+  sponsorFamily: "",   // Sponsor a Family
+  scholarship: "",     // Fund a Scholarship
   podcast: "",         // Podcast platform
   instagram: "", tiktok: "", youtube: "", facebook: ""
 };
@@ -1844,7 +1939,7 @@ const ROOTS = [
   ["Community",["Inclusion","Education","Opportunity"]],
   ["Impact",["Stronger Families","Brighter Futures","Generational Change"]]
 ];
-const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
+const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Sponsorship / community partner","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
 
 const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Our Ecosystem","/ecosystem"],["Infinite Possibilities","/infinite-possibilities"],["Contact","/contact"]];
 
@@ -1881,6 +1976,15 @@ $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
   const c=CHAKRAS[i%7].c, inner=`<h3>${esc(n)}</h3><p>${esc(t)}</p>${href?`<span class="go">Explore →</span>`:""}`;
   return href?`<a class="branch" href="#${href}" style="--c:${c}">${inner}</a>`:`<div class="branch" style="--c:${c}">${inner}</div>`;
 }).join(""));
+const GIVE = [
+  ["Education & Classes","Expand access to learning and personal-development experiences"],
+  ["Children & Families","Support family-centered resources, activities, and opportunities"],
+  ["Infinite Possibilities","Help create inclusive opportunities for neurodiverse individuals and families"],
+  ["Community Events","Help bring people together through meaningful community experiences"],
+  ["Scholarships & Sponsorships","Help reduce financial barriers to participation"],
+  ["Resources & Tools","Support the creation of books, journals, educational materials, and practical resources"]
+];
+$$("[data-give]").forEach(el=>el.innerHTML=GIVE.map(([n,d],i)=>`<div class="give" style="--c:${CHAKRAS[i].c}"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join(""));
 $$("[data-roots]").forEach(el=>el.innerHTML=ROOTS.map(([n,l])=>`<div class="root-item"><h3>${esc(n)}</h3><ul>${l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join(""));
 
 const PARENT = ["Grounding","Emotional permission","Advocacy","Self-care","Family voice","Perspective","Hope & purpose"];
@@ -2005,7 +2109,7 @@ document.addEventListener("submit",e=>{
 /* ---------- router ---------- */
 const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"programs","root-to-crown-experience":["programs","seven-week"],"journal-club":["programs","journal-club"],
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
-  "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","events":["community","extravaganza"],"shop":"shop","start-here":"start",
+  "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",contact:"/contact",start:"/start-here",shop:"/shop"};
 let first=true, curPage=null;

@@ -32,6 +32,9 @@ At the top of the `<script>` in `public/index.html`, fill in the `LINKS` object:
 | `stanApp` | App subscription / waitlist |
 | `stanBooks` | Digital books & journals |
 | `shopify` | Shopify storefront |
+| `support` | Support the Collective: your general gift or support page |
+| `sponsorFamily` | Sponsor a Family |
+| `scholarship` | Fund a Scholarship |
 | `podcast` | Podcast platform |
 | `instagram`, `tiktok`, `youtube`, `facebook` | Social profiles |
 
