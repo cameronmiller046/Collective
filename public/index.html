@@ -228,6 +228,7 @@ p{margin:0}
 .price-line{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--line-light)}
 .price-line .caps{font-size:10.5px;color:var(--plum-muted)}
 .price-line .price{font-size:2.2rem}
+.offers--2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:980px){.offers--3{grid-template-columns:1fr;max-width:560px}}
 
 /* ============ app loop ============ */
@@ -306,11 +307,15 @@ p{margin:0}
 .week .caps{color:var(--plum-muted);font-size:10.5px;font-variant-numeric:tabular-nums}
 .week h4{font-size:1.35rem;display:flex;align-items:center;gap:10px}
 .week h4::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}
-.week p{font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.35;color:var(--plum-muted)}
-@media (max-width:1000px){.weeks{grid-template-columns:repeat(2,1fr)}.week{border-left:0!important;padding-left:0!important;border-bottom:1px solid var(--line-light);padding-bottom:18px}}
+.week .wt{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.2;color:var(--plum)}
+.week .wd{font-size:13.5px;line-height:1.6;color:var(--plum-muted)}
+@media (max-width:1140px){.weeks{grid-template-columns:repeat(4,1fr);column-gap:20px}.week{border-left:0!important;padding-left:0!important;border-bottom:1px solid var(--line-light);padding-bottom:20px}}
+@media (max-width:700px){.weeks{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){.weeks{grid-template-columns:1fr}}
 .verbs4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
-.verbs4 div{padding:26px 20px;font-family:var(--serif);font-style:italic;font-size:1.9rem;text-align:center}
+.verbs4 div{display:grid;gap:8px;align-content:start;padding:26px 20px;text-align:center}
+.verbs4 b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.9rem;line-height:1.15}
+.verbs4 span{font-size:13.5px;line-height:1.5;color:var(--lav)}
 .verbs4 div+div{border-left:1px solid var(--line-dark)}
 @media (max-width:640px){.verbs4{grid-template-columns:1fr 1fr}.verbs4 div:nth-child(3){border-left:0}.verbs4 div:nth-child(n+3){border-top:1px solid var(--line-dark)}}
 
@@ -842,8 +847,9 @@ p{margin:0}
 <div data-page="programs" hidden>
   <section class="page-hero"><div class="wrap">
     <span class="eyebrow">Programs</span>
-    <h1 class="h-xl">Guided experiences, live and in community.</h1>
-    <p class="lede">Every program is held live over Zoom and grounded in the Root-to-Crown framework. Enroll through our Stan Store.</p>
+    <h1 class="h-xl">Experiences designed to move you from reflection to transformation.</h1>
+    <p class="lede">Rooted &amp; Crowned programs are live, guided experiences created to help you reflect, reconnect, practice and grow—within a community of women walking their own Root-to-Crown journey.</p>
+    <p class="caps" style="color:var(--gold-soft)">Live Virtual Experiences • Guided by Coach Kia</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
 
@@ -856,20 +862,29 @@ p{margin:0}
         <img class="media media--frame" src="assets/teaching.jpg" alt="Coach Kia teaching the seven chakras, from Root to Crown" width="1000" height="982" loading="lazy">
       </div>
       <div style="display:grid;gap:20px">
-        <p class="lede">Seven live virtual classes, one for each energy center, moving from the ground you stand on to the purpose you're called to. Come as you are. Leave rooted, and crowned.</p>
+        <p class="story-line">Seven weeks. Seven chakra themes. One guided journey back to yourself.</p>
+        <p class="lede">The Root-to-Crown Experience is a live personal-development journey designed to help you explore what has shaped you, recognize what may be holding you back, reconnect with your voice and personal power, and become more intentional about what comes next.</p>
+        <p class="lede">Each week, we move through one chakra-inspired theme—from foundation and creativity to love, voice, vision and purpose.</p>
         <ul class="facts">
-          <li>LIVE virtual classes via Zoom</li>
-          <li>One chakra theme each week, in Root-to-Crown order</li>
-          <li>Guided reflection, conversation and practice with Coach Kia</li>
-          <li>A circle of women walking the same journey</li>
+          <li>7 LIVE weekly classes via Zoom</li>
+          <li>One chakra-inspired theme each week, Root to Crown</li>
+          <li>Guided teaching, reflection, conversation and practice with Coach Kia</li>
+          <li>A community of women moving through the journey together</li>
         </ul>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
-          <span class="price">$99<small>INTRODUCTORY</small></span>
+          <span class="price">$99<small>INTRODUCTORY EXPERIENCE</small></span>
           <a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a>
         </div>
       </div>
     </div>
     <ol class="weeks" data-weeks></ol>
+  </div></section>
+
+  <section class="band band--plum2" style="padding:80px 0"><div class="wrap">
+    <div class="center">
+      <h2 class="h-m">Your journey doesn’t have to end at week seven.</h2>
+      <p class="lede">The Root-to-Crown Experience creates space for discovery. Journal Club creates space to keep showing up, reflecting and putting what you’re learning into practice.</p>
+    </div>
   </div></section>
 
   <section class="band" id="journal-club" style="scroll-margin-top:120px"><div class="wrap" style="display:grid;gap:44px">
@@ -881,14 +896,58 @@ p{margin:0}
         <img class="media media--frame" src="assets/journal-club.jpg" alt="Rooted and Crowned Journal Club: weekly live gatherings, guided journal work, reflection themes and community support, $60 a month" width="1000" height="1030" loading="lazy">
       </div>
       <div style="display:grid;gap:22px">
-        <p class="lede">A weekly LIVE Zoom gathering centered around guided reflection, meaningful conversation, accountability, personal awareness and intentional action.</p>
+        <h3 class="h-m">Your journal holds the words. Your voice gives them life.</h3>
+        <p class="lede">Rooted &amp; Crowned Journal Club is a weekly LIVE Zoom gathering where reflection moves beyond the page. Through guided prompts, meaningful conversation, personal awareness and community, we create space to recognize what is showing up, give language to what we’ve been carrying and turn reflection into intentional action.</p>
+        <p class="muted" style="font-size:15px">Your membership includes weekly LIVE Zoom gatherings, guided journal prompts, reflection themes, meaningful conversation, accountability, encouragement and community support.</p>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
           <span class="price" style="color:var(--ivory)">$60<small style="color:var(--lav)">/ MONTH</small></span>
           <a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a>
         </div>
       </div>
     </div>
-    <div class="verbs4"><div>Write it.</div><div>Witness it.</div><div>Voice it.</div><div>Work through it.</div></div>
+    <div class="verbs4">
+      <div><b>Write it.</b><span>Put what’s within you on the page.</span></div>
+      <div><b>Witness it.</b><span>Notice what your words reveal.</span></div>
+      <div><b>Voice it.</b><span>Give language to what matters.</span></div>
+      <div><b>Work through it.</b><span>Turn awareness into intentional action.</span></div>
+    </div>
+  </div></section>
+
+  <section class="band band--ivory" id="which-program" style="scroll-margin-top:120px"><div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Not sure where to begin?</span>
+      <h2 class="h-l">Choose the experience that meets you where you are.</h2>
+    </div>
+    <div class="offers offers--3 offers--2">
+      <article class="offer">
+        <span class="eyebrow">7-Week Root-to-Crown Experience</span>
+        <h3 class="h-m">Best for you if you’re ready to:</h3>
+        <ul class="facts">
+          <li>Explore your story and patterns</li>
+          <li>Experience the complete Root-to-Crown framework</li>
+          <li>Move through seven guided themes</li>
+          <li>Begin a structured personal-development journey</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="price-line"><span class="caps">7 Weeks</span><span class="price">$99<small>INTRODUCTORY</small></span></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a></div>
+        </div>
+      </article>
+      <article class="offer">
+        <span class="eyebrow">Rooted &amp; Crowned Journal Club</span>
+        <h3 class="h-m">Best for you if you’re ready to:</h3>
+        <ul class="facts">
+          <li>Build a consistent reflection practice</li>
+          <li>Connect in community</li>
+          <li>Continue working through what you’re discovering</li>
+          <li>Receive weekly support and accountability</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="price-line"><span class="caps">Weekly Live Gatherings</span><span class="price">$60<small>/MONTH</small></span></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a></div>
+        </div>
+      </article>
+    </div>
   </div></section>
 </div>
 
@@ -1199,7 +1258,7 @@ p{margin:0}
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">App</a></li><li><a href="#/community">Community</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
       </ul>
     </div>
     <div class="foot-signup" data-signup></div>
@@ -1232,47 +1291,50 @@ const LINKS = {
 
 const CHAKRAS = [
   {key:"root",name:"Root",c:"#D62828",themes:"Foundation · Safety · Survival",verb:"Ground",statement:"Ground the body and examine your foundation.",
-   tease:"Look at what you were built on, and what you're ready to release.",
    focus:"Grounding",cat:"Safety",q:"How grounded and supported do you feel today?",lo:"UNSTEADY",hi:"GROUNDED",
    insight:"Your responses suggest that safety, stability or feeling grounded may be worth exploring today.",
    affirm:"I am allowed to feel safe and supported.",prompt:"What would help me feel supported today?",
    practice:"Plant both feet on the floor. Breathe slowly for two minutes and name five things around you that feel steady.",ptype:"Grounding",book:"My Rooted & Crowned Journey"},
   {key:"sacral",name:"Sacral",c:"#F77F00",themes:"Creativity · Emotion · Desire",verb:"Create",statement:"Reclaim creativity and emotional expression.",
-   tease:"Come back to what you create when no one is watching.",
    focus:"Creativity & Emotion",cat:"Creativity",q:"How open do you feel to creating or expressing yourself?",lo:"CLOSED",hi:"OPEN",
    insight:"Your responses suggest that creativity, feeling or desire may be worth exploring today.",
    affirm:"My feelings are welcome here, and so is my creativity.",prompt:"What would I make today if it didn't have to be perfect?",
    practice:"Set a timer for five minutes and create something small: a sketch, a list, a few lines. No editing.",ptype:"Creative reflection",book:"Rooted in Words, Crowned in Truth"},
   {key:"solar",name:"Solar Plexus",c:"#F4C430",themes:"Confidence · Identity · Power",verb:"Empower",statement:"Strengthen confidence and personal power.",
-   tease:"Remember where your power went, and call it home.",
    focus:"Confidence",cat:"Confidence",q:"How confident do you feel making decisions today?",lo:"UNSURE",hi:"CONFIDENT",
    insight:"Your responses suggest that confidence, identity or personal power may be worth exploring today.",
    affirm:"I trust myself to choose what is right for me.",prompt:"Where have I been waiting for permission I can give myself?",
    practice:"Write down one decision you've been putting off, then one small step you can take on it before tonight.",ptype:"Intention setting",book:"My Rooted & Crowned Journey"},
   {key:"heart",name:"Heart",c:"#2EAD61",themes:"Love · Compassion · Boundaries",verb:"Love",statement:"Explore love while maintaining healthy boundaries.",
-   tease:"Love fully, without leaving yourself behind.",
    focus:"Compassion & Boundaries",cat:"Heart",q:"How connected do you feel today, rather than guarded?",lo:"GUARDED",hi:"CONNECTED",
    insight:"Your responses suggest that connection, compassion or boundaries may be worth exploring today.",
    affirm:"I can love others without losing myself.",prompt:"Where do I need to offer myself the care I give others?",
    practice:"Name one boundary that would protect your peace this week, and write the sentence you'd use to say it kindly.",ptype:"Boundary exercise",book:"Rooted in Words, Crowned in Truth"},
   {key:"throat",name:"Throat",c:"#27A9D6",themes:"Voice · Truth · Expression",verb:"Speak",statement:"Speak truth and communicate intentionally.",
-   tease:"Find the words you've been holding.",
    focus:"Voice",cat:"Voice",q:"How freely are you saying what you need to say?",lo:"HOLDING BACK",hi:"FREELY",
    insight:"Your responses suggest that voice, truth or expression may be worth exploring today.",
    affirm:"My voice matters.",prompt:"What truth have I been holding back?",
    practice:"Take five minutes to write what you would say if you knew you would be heard.",ptype:"Voice exercise",book:"Rooted in Words, Crowned in Truth"},
   {key:"third",name:"Third Eye",c:"#4653B8",themes:"Intuition · Insight · Pattern Awareness",verb:"See",statement:"Recognize patterns and develop perspective.",
-   tease:"See the pattern, and see past it.",
    focus:"Perspective",cat:"Perspective",q:"How clearly can you see the patterns in your thoughts today?",lo:"FOGGY",hi:"CLEAR",
    insight:"Your responses suggest that intuition, insight or noticing patterns may be worth exploring today.",
    affirm:"I trust what I am beginning to see.",prompt:"What thought or situation keeps returning, and what might it be showing me?",
    practice:"Sit quietly for three minutes. Afterward, note the one thought that kept coming back, without judging it.",ptype:"Mindfulness",book:"My Rooted & Crowned Journey"},
   {key:"crown",name:"Crown",c:"#8E44AD",themes:"Purpose · Meaning · Integration",verb:"Integrate",statement:"Integrate the journey into meaning and purpose.",
-   tease:"Gather it all into purpose.",
    focus:"Meaning & Purpose",cat:"Purpose",q:"How connected do you feel to what matters to you today?",lo:"DISCONNECTED",hi:"CONNECTED",
    insight:"Your responses suggest that meaning, purpose or bringing things together may be worth exploring today.",
    affirm:"My life is moving toward something meaningful.",prompt:"What matters most to me right now, and did today reflect it?",
    practice:"Write three things you're grateful for, then one intention that connects today to your bigger purpose.",ptype:"Gratitude",book:"A Journey from Survival to Healing"}
+];
+
+const WEEKS = [
+  ["Breaking the Chains","Explore the foundation you were built on, the patterns you’ve carried and what you’re ready to release."],
+  ["Reclaiming Creation","Reconnect with creativity, emotion, desire and your ability to create beyond survival."],
+  ["Taking Back My Power","Explore confidence, choice, boundaries and the personal power to move differently."],
+  ["Loving Without Losing Me","Explore love, compassion and connection without abandoning yourself."],
+  ["Speak Your Truth","Reconnect with your voice and practice expressing what you know, need and believe."],
+  ["Seeing Beyond the Pattern","Recognize patterns, strengthen discernment and begin seeing beyond what you’ve always known."],
+  ["Crowned in Purpose","Bring the journey together through purpose, intention and the life you’re choosing to create."]
 ];
 
 const BOOKS = [
@@ -1318,7 +1380,7 @@ $$("[data-ladder]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
     <p class="st">${c.statement}</p><span class="verb">${c.verb}.</span></li>`).join(""));
 
 $$("[data-weeks]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
-  <li class="week" style="--c:${c.c}"><span class="caps">Week ${i+1}</span><h4>${c.name}</h4><p>${c.tease}</p></li>`).join(""));
+  <li class="week" style="--c:${c.c}"><span class="caps">Week ${i+1}</span><h4>${c.name}</h4><p class="wt">${WEEKS[i][0]}</p><p class="wd">${WEEKS[i][1]}</p></li>`).join(""));
 
 $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join(""));
 
@@ -1339,7 +1401,7 @@ $$("[data-paths]").forEach(el=>{el.innerHTML=`
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
 const SIGNUP = `<div style="display:grid;gap:8px"><h3>Stay Rooted. Stay Connected.</h3>
-  <p class="fine">Receive new conversations, upcoming experiences, reflection resources and announcements from the Rooted &amp; Crowned Collective.</p></div>
+  <p class="fine">Join the Rooted &amp; Crowned community for reflections, new conversations, upcoming experiences and first access to announcements.</p></div>
   <form class="signup-form-wrap" novalidate><div class="signup-form">
     <input class="field" type="email" name="email" placeholder="Your email address" aria-label="Email address" autocomplete="email" required>
     <button class="btn btn--gold" type="submit">Join the Collective</button></div></form>`;
