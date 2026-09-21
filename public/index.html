@@ -334,16 +334,63 @@ p{margin:0}
 @media (max-width:640px){.verbs4{grid-template-columns:1fr 1fr}.verbs4 div:nth-child(3){border-left:0}.verbs4 div:nth-child(n+3){border-top:1px solid var(--line-dark)}}
 
 /* ============ books ============ */
-.shelf{list-style:none;margin:0;padding:0;border-top:1px solid var(--plum)}
-.book{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.2fr) auto;gap:32px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line-light)}
-.book h3{font-size:1.75rem;color:var(--plum)}
-.book .kind{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:6px}
-.book p{font-size:14px;color:var(--plum-muted)}
-.formats{display:grid;gap:8px;justify-items:end;min-width:230px}
-.fmt{display:flex;align-items:center;gap:14px}
-.fmt .p{font-family:var(--serif);font-size:1.5rem;font-variant-numeric:tabular-nums;color:var(--plum);min-width:3ch;text-align:right}
-.soon{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border:1px dashed var(--gold-ink);color:var(--gold-ink);border-radius:2px}
-@media (max-width:860px){.book{grid-template-columns:1fr;gap:14px}.formats{justify-items:start;min-width:0}}
+.soon{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border:1px dashed var(--gold-ink);color:var(--gold-ink);border-radius:2px;justify-self:start}
+.stack span{display:block}
+
+/* library hero */
+.lib-hero{padding:88px 0 96px}
+.lib-hero .lib-hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.lib-hero-copy{display:grid;gap:20px;align-content:center}
+.lib-hero h1{font-size:clamp(2.3rem,3.9vw,3.25rem)}
+.lib-hero .script{font-size:clamp(1.6rem,2.4vw,2.1rem)}
+.lib-flow{color:var(--gold-soft);letter-spacing:.3em}
+.lib-hero-img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:10px;box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
+@media (max-width:900px){.lib-hero{padding:56px 0 72px}.lib-hero .lib-hero-grid{grid-template-columns:1fr;gap:48px}.lib-hero-img{margin:0 10px;width:calc(100% - 20px)}}
+
+/* what are you looking for */
+.pathways{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pathway{display:grid;gap:12px;align-content:start;padding:28px 24px 26px;background:var(--white);border:1px solid var(--line-light);border-radius:2px;text-decoration:none;color:var(--plum);transition:border-color .2s,transform .2s,box-shadow .2s}
+.pathway:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(37,7,47,.5)}
+.pathway .n{font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--gold-ink);font-style:normal}
+.pathway b{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.55}
+.pathway .d{font-size:14px;line-height:1.6;color:var(--plum-muted)}
+.pathway .go{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
+@media (max-width:1000px){.pathways{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pathways{grid-template-columns:1fr}}
+
+/* featured discoveries */
+.disc-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:72px;align-items:start}
+.disc--flip .disc-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.disc--flip .disc-media{order:2}
+.disc-media{position:sticky;top:150px;padding:10px}
+.disc-media img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
+.disc-copy{display:grid;gap:18px}
+.disc-kick{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink)}
+.disc-copy h2{color:var(--plum)}
+.disc-sub{font-family:var(--script);font-size:clamp(1.6rem,2.4vw,2rem);line-height:1.2;color:var(--gold-ink)}
+.disc-q{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,2.3vw,1.95rem);line-height:1.3;color:var(--plum)}
+.disc-copy p.t{font-size:16px;line-height:1.8;color:var(--plum-muted)}
+.disc-asks{display:grid;gap:6px;padding:18px 22px;border-left:2px solid var(--gold);background:rgba(214,162,58,.08)}
+.disc-asks .caps{color:var(--plum)}
+.disc-asks p{font-family:var(--serif);font-style:italic;font-size:1.3rem;line-height:1.35;color:var(--plum)}
+.disc-meta{display:grid;gap:4px;padding:16px 0;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--plum)}
+.disc-meta span{color:var(--plum-muted)}
+.disc-close{font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.35;color:var(--gold-ink)}
+.disc-more{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
+@media (max-width:900px){.disc-grid,.disc--flip .disc-grid{grid-template-columns:1fr;gap:48px}.disc-media,.disc--flip .disc-media{position:static;order:0;max-width:520px;width:100%}}
+.disc--story{background:radial-gradient(ellipse 70% 60% at 15% 0%,rgba(214,162,58,.30),transparent 65%),radial-gradient(ellipse 60% 60% at 100% 100%,rgba(88,32,100,.14),transparent 70%),#F1E2C8}
+.disc-open{display:grid;gap:6px;text-align:center;margin:8px auto 60px;max-width:900px}
+.disc-open p{font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,3.4vw,2.9rem);line-height:1.2;color:var(--plum)}
+.disc-open p:last-child{color:var(--gold-ink)}
+.disc--story .disc-media img{outline:2px solid var(--gold);outline-offset:12px}
+.disc-head{display:grid;gap:14px;justify-items:center;text-align:center;margin-bottom:34px}
+
+/* the connection */
+.conn-lines{display:grid;gap:4px}
+.conn-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.4;color:var(--lav)}
+.conn-big{display:grid;gap:6px;margin:14px 0 6px}
+.conn-big p{font-family:var(--serif);font-weight:500;font-size:clamp(1.55rem,3.3vw,2.8rem);line-height:1.12;letter-spacing:.04em;text-transform:uppercase;color:var(--ivory)}
+.conn-big span{color:var(--gold-soft)}
 
 /* ============ app page ============ */
 .app-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:64px;align-items:start}
@@ -521,13 +568,6 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
-.book-cover{display:block;width:150px;aspect-ratio:1;object-fit:cover;border-radius:2px;box-shadow:0 16px 28px -14px rgba(37,7,47,.65)}
-.book-cover--none{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,var(--purple),var(--plum) 80%)}
-.book-cover--none img{width:72%;height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)}
-.book{grid-template-columns:150px minmax(0,1.2fr) minmax(0,1.2fr) auto}
-@media (max-width:860px){.book{grid-template-columns:110px 1fr;gap:10px 20px}.book>:not(.book-cover){grid-column:2}.book-cover{width:110px;grid-row:1 / span 3}}
-.lib{margin:0;display:grid;gap:22px}
-.lib img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
 .poster{margin:0 auto;max-width:520px}
 .poster img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -1042,20 +1082,198 @@ p{margin:0}
 
 <!-- ===================== BOOKS ===================== -->
 <div data-page="books" hidden>
-  <section class="page-hero"><div class="wrap">
-    <span class="eyebrow">Books &amp; Journals</span>
-    <h1 class="h-xl">Take the work home.</h1>
-    <p class="lede">Guided journals, affirmation books and story, written to walk alongside you from root to crown. Digital editions from our Stan Store; hard copies from the Shop.</p>
-    <div class="spectrum spectrum--short"></div>
+  <!-- 1 · THE LIBRARY -->
+  <section class="page-hero lib-hero"><div class="wrap lib-hero-grid">
+    <div class="lib-hero-copy">
+      <span class="eyebrow">The Rooted &amp; Crowned Library</span>
+      <h1 class="h-xl stack"><span>A Wealth of Knowledge</span><span>at Your Fingertips.</span></h1>
+      <p class="script">Your story. Your growth. Your next discovery.</p>
+      <p class="lede">The Rooted &amp; Crowned Library is more than a collection of books and journals. It is a space created for reflection, self-discovery, intentional growth and the conversations we sometimes need to have with ourselves.</p>
+      <p class="lede">Whether you’re ready to explore your story, change the words you speak over your life, create a daily practice or discover what’s possible beyond survival, there is something here for your journey.</p>
+      <p class="caps lib-flow">Discover • Reflect • Grow • Become</p>
+      <div class="btns"><a class="btn btn--gold" href="#" data-scroll="library-start">Enter the Library <span class="arr">→</span></a></div>
+    </div>
+    <img class="lib-hero-img" src="assets/library.jpg" alt="The Rooted and Crowned library: a bright reading lounge with the four Coach Kia titles displayed on a shelf beneath the words Discover, Reflect, Grow and Belong" width="1536" height="1024">
   </div></section>
-  <section class="band band--ivory2"><div class="wrap">
-    <figure class="lib">
-      <div class="sec-head" style="margin:0"><span class="eyebrow">The Library</span><h2 class="h-l">Books &amp; Journals Library</h2></div>
-      <img src="assets/library.jpg" alt="The Rooted and Crowned Books and Journals library: a bright reading lounge with the four Coach Kia titles displayed on a shelf beneath the words Discover, Reflect, Grow and Belong" width="1536" height="1024">
+
+  <!-- 2 · WHAT ARE YOU LOOKING FOR -->
+  <section class="band band--ivory" id="library-start" style="scroll-margin-top:110px"><div class="wrap">
+    <div class="sec-head">
+      <h2 class="h-l">What are you looking for today?</h2>
+      <p class="lede">You don’t have to know exactly where you’re going. Start with what is calling you.</p>
+    </div>
+    <div class="pathways">
+      <a class="pathway" href="#" data-scroll="discovery-01"><i class="n">01</i><b>I want to understand myself</b><span class="d">Explore your experiences, patterns and possibilities.</span><span class="go">See the journal →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-02"><i class="n">02</i><b>I want to change my words</b><span class="d">Explore affirmations, voice and intentional language.</span><span class="go">See the book →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-03"><i class="n">03</i><b>I want to create a daily practice</b><span class="d">Build space for reflection, gratitude and alignment.</span><span class="go">See the journal →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-04"><i class="n">04</i><b>I want to discover the story</b><span class="d">Journey with Coach Kia from survival toward healing and purpose.</span><span class="go">See the memoir →</span></a>
+    </div>
+    <p class="story-line" style="text-align:center;margin-top:48px">Find the resource that meets you where you are.</p>
+  </div></section>
+
+  <!-- 3 · FEATURED DISCOVERY 01 -->
+  <section class="band band--ivory2 disc" id="discovery-01" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-journey.jpg" alt="My Rooted and Crowned Journey: Finding My Way Back to Self, a black and gold guided journal with a glowing chakra tree on the cover" width="1100" height="1100" loading="lazy">
     </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 01</span>
+      <span class="disc-kick">Guided Root-to-Crown Journal</span>
+      <h2 class="h-l">My Rooted &amp; Crowned Journey</h2>
+      <p class="disc-sub">Finding My Way Back to Self</p>
+      <p class="disc-q">What if finding your way forward begins with understanding what you’ve carried with you?</p>
+      <p class="t">My Rooted &amp; Crowned Journey is a 75-page guided printable journal created for the person who is ready to look beneath the surface.</p>
+      <p class="t">Moving from Root to Crown, you’ll explore the experiences, patterns, beliefs, emotions and possibilities that have shaped you—while creating space to decide what deserves to come with you into the next chapter of your life.</p>
+      <p class="t">Through intentional prompts, affirmations, My Tree exercises, action planning and reflection, this journal doesn’t tell you who you should become.</p>
+      <p class="disc-q" style="font-size:1.4rem">It gives you space to discover who you are becoming.</p>
+      <div class="disc-asks"><span class="caps">Perfect for you if you’re asking:</span><p>Why do I keep repeating this?</p><p>What have I outgrown?</p><p>What do I really want now?</p></div>
+      <div class="disc-meta">75 Pages • Printable Digital Journal • $49</div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="My Rooted &amp; Crowned Journey (Stan)">Begin My Journey <span class="arr">→</span></a></div>
+      <p class="disc-close">Sometimes the way forward begins by returning to yourself.</p>
+    </div>
   </div></section>
+
+  <!-- FEATURED DISCOVERY 02 -->
+  <section class="band band--ivory disc disc--flip" id="discovery-02" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-words.jpg" alt="Rooted in Words, Crowned in Truth, the Throat Chakra Edition: a radiant blue affirmation and reflection book with a rainbow chakra tree" width="1032" height="1100" loading="lazy">
+    </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 02</span>
+      <span class="disc-kick">Affirmation &amp; Reflection Book</span>
+      <h2 class="h-l">Rooted in Words, Crowned in Truth</h2>
+      <p class="disc-sub">A Root-to-Crown Affirmation &amp; Reflection Journey</p>
+      <p class="disc-q">What have you been saying about yourself—and what might change if you chose different words?</p>
+      <p class="t">Words don’t simply describe our experiences. They can influence how we interpret them, how we see ourselves and how we approach what comes next.</p>
+      <p class="t">Rooted in Words, Crowned in Truth takes you beyond simply reading positive affirmations.</p>
+      <p class="t">Moving through all seven chakra-inspired themes, you’ll pause with each affirmation, explore what it means in your life and give yourself space to recognize the language, beliefs and inner narratives you’ve been carrying.</p>
+      <p class="t">Because saying the words is only the beginning.</p>
+      <p class="disc-q" style="font-size:1.4rem">The reflection is where the affirmation becomes personal.</p>
+      <p class="t">The special Throat Chakra Edition, wrapped in radiant blue, honors voice, truth, communication and self-expression—reminding you that sometimes growth requires giving language to what you already know inside.</p>
+      <div class="disc-meta">50 Pages • Digital Affirmation &amp; Reflection Book • $49<span>Hard Copy • $75</span></div>
+      <div class="disc-more">
+        <a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted in Words, Crowned in Truth (Stan)">Find My Voice <span class="arr">→</span></a>
+        <a class="btn btn--line btn--sm" href="#" data-ext="shopify" data-label="Rooted in Words, Crowned in Truth — hard copy (Shopify)">Hard Copy · Shop</a>
+      </div>
+      <p class="disc-close">Your voice is more than sound. It is expression. It is choice. It is truth.</p>
+    </div>
+  </div></section>
+
+  <!-- FEATURED DISCOVERY 03 -->
+  <section class="band band--ivory2 disc" id="discovery-03" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-daily.jpg" alt="The Rooted and Crowned Daily Journal: a plum hardcover guided journal with a golden chakra tree, beside a pen and candle" width="1100" height="1100" loading="lazy">
+    </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 03</span>
+      <span class="disc-kick">Daily Reflection Journal</span>
+      <h2 class="h-l">Rooted and Crowned Daily Journal</h2>
+      <p class="disc-sub">A Guided Daily Practice to Reconnect, Realign &amp; Rise</p>
+      <p class="disc-q">You spend so much of your day responding to everything around you. When do you check in with yourself?</p>
+      <p class="t">The Rooted and Crowned Daily Journal creates a place for that conversation.</p>
+      <p class="t">This 50-page guided journaling experience is designed to help you slow down, notice how you’re feeling, reconnect with your intentions and become more conscious of how you’re moving through each day.</p>
+      <p class="t">Morning and evening reflections invite you to explore your mood, energy, gratitude, goals, habits and actions while Root-to-Crown awareness keeps you connected to the bigger picture.</p>
+      <div class="disc-asks"><p>You don’t need hours.</p><p>You don’t need the perfect words.</p><p>You simply need a few intentional moments that belong to you.</p></div>
+      <p class="t">Inside, you’ll discover daily prompts, intention-setting exercises, personal anchors, gratitude and abundance practices, weekly reflections, a monthly check-in and a six-week closing reflection.</p>
+      <div class="disc-meta">50 Pages • Fillable &amp; Printable Digital Journal • $39</div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted and Crowned Daily Journal (Stan)">Put Me First <span class="arr">→</span></a></div>
+      <p class="disc-close">Finding Me → Putting Me First → Becoming More Intentional About Me.</p>
+    </div>
+  </div></section>
+
+  <!-- FEATURED DISCOVERY 04 · THE MEMOIR -->
+  <section class="band band--ivory2 disc disc--story" id="discovery-04" style="scroll-margin-top:100px"><div class="wrap">
+    <div class="disc-head">
+      <span class="eyebrow">Featured Discovery 04</span>
+      <span class="disc-kick">Coach Kia’s Upcoming Memoir</span>
+      <h2 class="h-xl stack" style="color:var(--plum)"><span>A Journey from</span><span>Survival to Healing</span></h2>
+      <p class="disc-sub">Chakra Alignment</p>
+    </div>
+    <div class="disc-open">
+      <p>Some stories survive us.</p>
+      <p>Some stories transform us.</p>
+      <p>And some stories may help someone else find their way.</p>
+    </div>
+    <div class="disc-grid">
+      <figure class="disc-media" style="margin:0">
+        <img src="assets/photo-survival.jpg" alt="A Journey from Survival to Healing by Coach Kia: an autumn-toned hardcover showing Coach Kia journaling among fall leaves, beside a candle and a stack of journals" width="1100" height="1100" loading="lazy">
+      </figure>
+      <div class="disc-copy">
+        <p class="t">A Journey from Survival to Healing is Coach Kia’s deeply personal Root-to-Crown story—connecting lived experiences of family, relationships, identity, survival, healing and purpose.</p>
+        <p class="t">Rather than presenting healing as a perfectly straight path, the story explores what it can look like to recognize what you’ve survived, examine what you’ve carried forward and begin making different choices about what comes next.</p>
+        <p class="t">Through the lens of the chakra framework, Coach Kia connects her own experiences to themes of foundation, creativity, personal power, love, expression, clarity and divine connection.</p>
+        <p class="t">This isn’t a story about pretending the past didn’t happen.</p>
+        <p class="disc-q" style="font-size:1.5rem">It’s about discovering what can happen when the past no longer gets to write the ending.</p>
+        <div class="disc-meta">Upcoming Book • $49 • PDF Only</div>
+        <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="A Journey from Survival to Healing (Stan)">Discover the Story <span class="arr">→</span></a></div>
+        <p class="disc-close">Your story matters. Your healing creates change.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- 4 · THE ROOTED & CROWNED CONNECTION -->
+  <section class="band band--deep"><div class="wrap">
+    <div class="center" style="max-width:1000px">
+      <span class="eyebrow">More than books</span>
+      <h2 class="h-xl stack"><span>A Place to Meet Yourself</span><span>on the Page.</span></h2>
+      <p class="lede">You may come to the Rooted &amp; Crowned Library looking for a journal, an affirmation, a story or a tool.</p>
+      <p class="lede">But each resource was created around something larger: the opportunity to become more aware of yourself.</p>
+      <div class="conn-lines">
+        <p>To ask better questions.</p>
+        <p>To recognize patterns.</p>
+        <p>To honor where you’ve been without allowing it to determine where you’re going.</p>
+        <p>To put language around what you’ve been feeling.</p>
+        <p>And to make more intentional choices about what happens next.</p>
+      </div>
+      <div class="conn-big">
+        <p><span>Reflection</span> creates awareness.</p>
+        <p><span>Awareness</span> creates choice.</p>
+        <p><span>Choice</span> creates possibility.</p>
+      </div>
+      <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="script">Heal from the Root Up. Live from the Crown Down.</p>
+    </div>
+  </div></section>
+
+  <!-- 5 · EXPLORE MORE FROM THE COLLECTIVE -->
   <section class="band band--ivory"><div class="wrap">
-    <ol class="shelf" data-shelf></ol>
+    <div class="sec-head">
+      <h2 class="h-l">Explore more from the Collective</h2>
+    </div>
+    <div class="offers offers--3 offers--2">
+      <article class="offer">
+        <span class="eyebrow">For Practitioners</span>
+        <h3 class="h-m">Practitioner Double Book Series</h3>
+        <p class="desc">A two-journal practitioner and business-strategy system created to help turn purpose into practice.</p>
+        <div class="offer-foot">
+          <div class="price-line"><span class="caps">Series</span><span class="price">$99</span></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Practitioner Double Book Series (Stan)">Explore the Series <span class="arr">→</span></a></div>
+        </div>
+      </article>
+      <article class="offer">
+        <span class="eyebrow">Financial Reflection • Coming Soon</span>
+        <h3 class="h-m">Crown Your Coins</h3>
+        <p class="script">Because alignment should reach your finances too.</p>
+        <p class="desc">A practical savings, budgeting, debt-payoff, income and cash-flow reflection system designed to help bring greater intention to the way you manage money.</p>
+        <div class="offer-foot"><span class="soon">Coming soon</span></div>
+      </article>
+    </div>
+  </div></section>
+
+  <!-- 6 · FINAL CALL TO ACTION -->
+  <section class="band band--ivory2"><div class="wrap">
+    <div class="center" style="max-width:1000px">
+      <span class="eyebrow">The Rooted &amp; Crowned Library</span>
+      <h2 class="h-l stack" style="color:var(--plum)"><span>Your Next Chapter</span><span>Doesn’t Have to Look Like Your Last.</span></h2>
+      <p class="lede">You don’t have to have every answer before you begin.</p>
+      <p class="lede">Sometimes one question, one page, one reflection or one new truth is enough to start seeing your life differently.</p>
+      <p class="story-line">What will you discover?</p>
+      <div class="btns">
+        <a class="btn btn--gold btn--lg" href="#" data-scroll="library-start">Explore the Library <span class="arr">→</span></a>
+        <a class="btn btn--line btn--lg" href="#" data-ext="shopify" data-label="Shopify storefront (hard copies)">Shop Hard Copies <span class="arr">→</span></a>
+      </div>
+      <p class="script" style="font-size:clamp(1.8rem,3vw,2.4rem)">Grounded Roots. Crown Driven.</p>
+    </div>
   </div></section>
 </div>
 
@@ -1383,15 +1601,6 @@ const WEEKS = [
   ["Crowned in Purpose","Bring the journey together through purpose, intention and the life you’re choosing to create."]
 ];
 
-const BOOKS = [
-  {kind:"Guided Journal",title:"My Rooted & Crowned Journey",img:"assets/photo-journey.jpg",desc:"A 75-page Root-to-Crown guided journal with check-ins, reflection prompts, My Tree exercises, planning, affirmations and integration.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Affirmation Book",title:"Rooted in Words, Crowned in Truth",img:"assets/photo-words.jpg",desc:"A chakra-aligned affirmation and reflection book.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Daily Journal",title:"Rooted and Crowned Daily Journal",img:"assets/photo-daily.jpg",desc:"Morning and evening reflection around mood, energy, gratitude, habits, goals and action.",fmts:[["Digital","$39","stanBooks"]]},
-  {kind:"For Practitioners",title:"Practitioner Double Book Series",desc:"A two-journal practitioner and business-strategy system.",fmts:[["Series","$99","stanBooks"]]},
-  {kind:"Memoir",title:"A Journey from Survival to Healing",img:"assets/photo-survival.jpg",desc:"Coach Kia's Root-to-Crown story, connecting lived experience, relationships, identity, survival, healing and purpose.",fmts:[["PDF","$49","stanBooks"]]},
-  {kind:"Financial Reflection",title:"Crown Your Coins",desc:"A savings, budgeting, debt-payoff, income and cash-flow reflection system.",soon:true}
-];
-
 const CATS = ["T-shirts","Sweatshirts","Baseball Caps","Coffee Mugs","Travel Cups","Beach Towels","Yoga Mats","Chakra Exercise Weights","Journals","Stationery","Keychains","Bookmarks","Bags & Accessories"];
 
 const DOORS = [
@@ -1431,10 +1640,6 @@ $$("[data-weeks]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
 
 $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join(""));
 
-$$("[data-shelf]").forEach(el=>el.innerHTML=BOOKS.map(b=>`
-  <li class="book">${b.img?`<img class="book-cover" src="${b.img}" alt="${esc(b.title)} by Coach Kia" loading="lazy">`:`<span class="book-cover book-cover--none" aria-hidden="true"><img src="assets/logo-emblem.png" alt=""></span>`}<div><p class="kind">${b.kind}</p><h3>${esc(b.title)}</h3></div><p>${b.desc}</p>
-  <div class="formats">${b.soon?`<span class="soon">Coming soon</span>`:b.fmts.map(([f,p,k])=>`<div class="fmt"><span class="p">${p}</span><a class="btn btn--line btn--sm" href="#" data-ext="${k}" data-label="${esc(b.title)} — ${f.toLowerCase()} (${k==="shopify"?"Shopify":"Stan"})">${f}${k==="shopify"?" · Shop":""}</a></div>`).join("")}</div></li>`).join(""));
-
 $$("[data-doors]").forEach(el=>el.innerHTML=DOORS.map(([k,t,d,p,link,cta],i)=>`
   <li class="door"><span class="step">${i+1}</span><div><p class="kind caps" style="color:var(--gold-ink);margin-bottom:4px">${k}</p><h3>${t}</h3><p>${d}</p></div>
   <span class="p">${p}</span><a class="btn btn--gold btn--sm" href="#" data-ext="${link}" data-label="${esc(t)} (Stan)">${cta}</a></li>`).join(""));
@@ -1471,6 +1676,13 @@ document.addEventListener("click",e=>{
   const url=LINKS[a.dataset.ext];
   if(url) location.href=url;
   else toast(`Preview: the ${a.dataset.label} link goes here once the live URL is added.`);
+});
+
+/* ---------- in-page links (scroll to a section on the same page) ---------- */
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-scroll]"); if(!a) return;
+  e.preventDefault();
+  document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
 });
 
 /* ---------- forms ---------- */
