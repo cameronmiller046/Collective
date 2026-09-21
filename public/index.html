@@ -171,6 +171,26 @@ p{margin:0}
 .thanks .h-m{color:var(--plum)}
 .thanks .lede{max-width:52ch}
 @media (max-width:640px){.thanks{padding:56px 0}}
+.thanks .wrap{display:grid;gap:44px}
+/* gratitude wall: cards sit side by side and wrap, so more can be added; a single card is centred */
+.thanks-wall{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+.thanks-card{margin:0;width:min(540px,100%);display:grid;gap:12px}
+.thanks-card figcaption{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.4;text-align:center;color:var(--plum-muted)}
+.thanks-zoom{position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:2px;outline:1px solid rgba(131,92,16,.5);outline-offset:8px;box-shadow:0 30px 56px -30px rgba(37,7,47,.6);transition:transform .25s,box-shadow .25s}
+.thanks-zoom:hover{transform:translateY(-3px);box-shadow:0 38px 62px -30px rgba(37,7,47,.7)}
+.thanks-zoom img{display:block;width:100%;height:auto;border-radius:2px}
+.thanks-hint{display:block;margin-top:6px;font-family:var(--sans);font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+.zoom-dialog{padding:0;border:0;background:transparent;max-width:96vw;max-height:96vh;overflow:visible}
+.zoom-dialog::backdrop{background:rgba(10,1,14,.86)}
+.zoom-dialog img{display:block;max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.zoom-close{position:absolute;top:-14px;right:-14px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);background:var(--plum);color:var(--gold-soft);font-size:24px;line-height:1;cursor:pointer}
+/* on tablets and phones the card opens wider than the screen and can be scrolled sideways, so its small print is readable */
+@media (max-width:900px){
+  .zoom-dialog{width:100vw;height:100vh;max-width:100vw;max-height:100vh;overflow:auto;display:none;align-items:center;-webkit-overflow-scrolling:touch}
+  .zoom-dialog[open]{display:flex}
+  .zoom-dialog img{max-width:none;max-height:none;width:960px;margin:0 auto;flex:none}
+  .zoom-close{position:fixed;top:10px;right:10px}
+}
 .begin-lines{display:grid;gap:4px}
 .begin-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.35;color:var(--plum)}
 @media (max-width:860px){.kia--story .arch{position:static}}
@@ -920,10 +940,26 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
       <span class="eyebrow">With gratitude</span>
       <h2 class="h-m">To the people who walked with me.</h2>
       <p class="lede">No one rebuilds alone. To the family, friends, mentors, teachers and community who held space, told me the truth and believed in me before I could see it for myself: thank you. This journey carries your fingerprints.</p>
+    </div>
+    <!-- Gratitude wall: to add another card, copy one <figure class="thanks-card"> and change the image, alt text and caption -->
+    <div class="thanks-wall">
+      <figure class="thanks-card">
+        <button class="thanks-zoom" type="button" data-zoom="assets/gratitude-01.webp" aria-label="Open this gratitude card full size">
+          <img src="assets/gratitude-01.webp" alt="A gratitude card from Coach Kia: three women in Rooted and Crowned Collective t-shirts, with the words Rooted and Crowned Collective and Infinite Possibilities above them. On the left, From Vision to Reality and Beyond: I am standing here today because of the guidance, wisdom and support from Coach TT and Elevated Gospel. You helped me see what was possible, gave me the tools to build it, and reminded me to keep going. This is bigger than me, it is a mission to help others heal, align and thrive. Thank you, Coach TT, for pouring into me. On the right, My Plan to Give Back: at the 100,000 dollar net profit milestone, 10 percent, 10,000 dollars, goes to Elevated Gospel, because what was poured into me helped make this possible, and I will always pour back into the source. Gratitude creates a cycle of blessings. Below: Same energy. Bigger impact. We create. We heal. We elevate. Together." width="1536" height="1024" loading="lazy">
+        </button>
+        <figcaption>Thank you, Coach TT and Elevated Gospel, for pouring into me.<span class="thanks-hint">Click or tap the card to read it full size</span></figcaption>
+      </figure>
+    </div>
+    <div class="center" style="max-width:720px;gap:18px;margin-top:8px">
       <div class="spectrum spectrum--short" aria-hidden="true"></div>
       <p class="script">Thank you.</p>
     </div>
   </div></section>
+
+  <dialog class="zoom-dialog" id="zoom-dialog" aria-label="Gratitude card, full size">
+    <button class="zoom-close" type="button" aria-label="Close">×</button>
+    <img id="zoom-img" alt="">
+  </dialog>
   <section class="band band--plum2"><div class="wrap">
     <div class="center">
       <h2 class="h-l">The journey became the framework.</h2>
@@ -2092,6 +2128,16 @@ const confetti=(()=>{
   }
   return {shower, stop, count:()=>parts.length};
 })();
+
+/* ---------- gratitude cards: click to view full size ---------- */
+{
+  const dlg=$("#zoom-dialog"), big=$("#zoom-img");
+  document.addEventListener("click",e=>{
+    const z=e.target.closest("[data-zoom]");
+    if(z){ big.src=z.dataset.zoom; big.alt=z.querySelector("img")?.alt||""; if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open",""); return; }
+    if(e.target===dlg || e.target.closest(".zoom-close")) dlg.close();     // click outside the picture, or the X
+  });
+}
 
 /* ---------- forms ---------- */
 document.addEventListener("submit",e=>{
