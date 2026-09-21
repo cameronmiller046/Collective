@@ -88,14 +88,15 @@ p{margin:0}
 .brand-sig{display:block;font-family:var(--script);font-size:17px;line-height:1;color:var(--gold-soft);margin-top:6px;white-space:nowrap}
 .head-cta{display:flex;align-items:center;gap:10px}
 .nav-row{border-top:1px solid rgba(229,190,101,.1)}
-.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 22px;padding-block:12px 13px;margin:0 auto;list-style:none}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;padding-block:12px 13px;margin:0 auto;list-style:none}
+.nav-row .nav.wrap{max-width:1360px}
 .nav a{font-size:11px;font-weight:500;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;text-decoration:none;color:var(--lav);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .nav a:hover{color:var(--ivory)}
 .nav a[aria-current="page"]{color:var(--gold-soft);border-bottom-color:var(--gold)}
 .burger{display:none;width:44px;height:44px;border:1px solid var(--line-dark);background:transparent;color:var(--ivory);border-radius:2px;cursor:pointer;align-items:center;justify-content:center}
 .burger svg{width:20px;height:20px}
 .drawer{display:none}
-@media (max-width:1140px){
+@media (max-width:1240px){
   .nav-row{display:none}
   .burger{display:inline-flex}
   .drawer:not([hidden]){display:block;border-top:1px solid var(--line-dark);padding-block:10px 22px}
@@ -586,6 +587,21 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
+/* ecosystem page */
+.branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:var(--plum);transition:border-color .2s,transform .2s,box-shadow .2s}
+a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(37,7,47,.5)}
+.branch h3{font-size:1.45rem;line-height:1.2}
+.branch p{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--plum-muted)}
+.branch .go{margin-top:6px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
+.roots{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-dark)}
+.root-item{display:grid;gap:12px;align-content:start;padding:28px 22px 8px 0}
+.root-item+.root-item{padding-left:22px;border-left:1px solid var(--line-dark)}
+.root-item h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-soft)}
+.root-item ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.root-item li{font-family:var(--serif);font-size:1.3rem;line-height:1.3}
+@media (max-width:1000px){.branches{grid-template-columns:1fr 1fr}.roots{grid-template-columns:repeat(3,1fr)}.root-item:nth-child(4){padding-left:0;border-left:0}.root-item:nth-child(n+4){border-top:1px solid var(--line-dark);margin-top:24px}}
+@media (max-width:620px){.branches{grid-template-columns:1fr}.roots{grid-template-columns:1fr 1fr}.root-item{padding-left:0!important;border-left:0!important;border-top:1px solid var(--line-dark);margin-top:0!important}.root-item:nth-child(-n+2){border-top:0}.root-item:nth-child(even){padding-left:16px!important;border-left:1px solid var(--line-dark)!important}}
 /* infinite possibilities page */
 .page-hero .ip-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center}
 .ip-hero-copy{display:grid;gap:18px;align-content:center}
@@ -1029,7 +1045,7 @@ p{margin:0}
   <section class="band" id="journal-club" style="scroll-margin-top:120px"><div class="wrap" style="display:grid;gap:44px">
     <div class="two">
       <div style="display:grid;gap:16px">
-        <span class="eyebrow">Weekly Membership</span>
+        <span class="eyebrow">Monthly Membership</span>
         <h2 class="h-l">Rooted &amp; Crowned Journal Club</h2>
         <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
         <img class="media media--frame" src="assets/programs-journal-club.webp" alt="Rooted and Crowned Journal Club, a safe space to write, heal, reflect and grow together: Coach Kia in a forest-green sweater writing in a journal, with weekly live gatherings, guided journal work, reflection themes and accountability and community support, $60 a month" width="1236" height="1273" loading="lazy">
@@ -1499,6 +1515,52 @@ p{margin:0}
   </div></section>
 </div>
 
+<!-- ===================== ECOSYSTEM ===================== -->
+<div data-page="ecosystem" hidden>
+  <section class="page-hero"><div class="wrap ip-hero">
+    <div class="ip-hero-copy">
+      <span class="eyebrow">Our Ecosystem</span>
+      <h1 class="h-xl">One Root. Many Branches. Infinite Possibilities.</h1>
+      <p class="lede">Rooted &amp; Crowned Collective is built like a tree: one root of healing, growth and alignment, and many branches that reach the people, families and communities we serve. This is how we plan to grow.</p>
+      <p class="caps ip-flow">Heal • Grow • Thrive • Together</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+    <figure class="ip-frame">
+      <img src="assets/ecosystem.webp" alt="The Rooted and Crowned Collective ecosystem: a glowing tree of life with seven chakra points up the trunk and twelve branches, Journals and Books, Education and Classes, Community Events, Speaking and Workshops, Advocacy and Support, Products and Merchandise, Wellness and Healing, Children's Programs, Family Resources, Online Platform and App, Retreats and Travel, and Business Strategies, crowned by Infinite Possibilities, with roots of People, Purpose, Foundation, Community and Impact" width="1072" height="1467">
+    </figure>
+  </div></section>
+
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">The Branches</span>
+      <h2 class="h-l">Twelve ways this work reaches people.</h2>
+      <p class="lede">Some branches are open today. Others are still growing.</p>
+    </div>
+    <div class="branches" data-branches></div>
+  </div></section>
+
+  <section class="band band--plum2"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">The Roots</span>
+      <h2 class="h-l">What every branch grows from.</h2>
+    </div>
+    <div class="roots" data-roots></div>
+  </div></section>
+
+  <section class="band band--deep"><div class="wrap">
+    <div class="center" style="max-width:860px">
+      <p class="script" style="font-size:clamp(1.9rem,3.6vw,3rem)">Different Abilities. Same Infinite Potential.</p>
+      <p class="lede">Everything above grows toward one crown: Infinite Possibilities, a future where every mind, every voice and every family belongs.</p>
+      <div class="btns">
+        <a class="btn btn--gold btn--lg" href="#/infinite-possibilities">Infinite Possibilities <span class="arr">→</span></a>
+        <a class="btn btn--line btn--lg" href="#/community">Explore Our Community</a>
+      </div>
+      <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="caps" style="color:var(--gold-soft);letter-spacing:.3em">Heal • Grow • Thrive • Together</p>
+    </div>
+  </div></section>
+</div>
+
 <!-- ===================== INFINITE POSSIBILITIES ===================== -->
 <div data-page="infinite" hidden>
   <section class="page-hero"><div class="wrap ip-hero">
@@ -1666,7 +1728,7 @@ p{margin:0}
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact</a></li>
       </ul>
     </div>
     <div class="foot-signup" data-signup></div>
@@ -1755,9 +1817,31 @@ const DOORS = [
   ["Every day","The Rooted & Crowned App","Daily check-ins, reflections and progress.","$9.99/mo","stanApp","Join the App Waitlist"]
 ];
 
+/* ---------- ecosystem: twelve branches and five roots (from the ecosystem graphic) ---------- */
+const BRANCHES = [
+  ["Journals & Books","Write • Heal • Transform","/books"],
+  ["Education & Classes","Learn • Align • Apply","/programs"],
+  ["Community Events","Connect • Grow • Belong","/community"],
+  ["Speaking & Workshops","Inspire • Equip • Empower","/speaking"],
+  ["Advocacy & Support","Champion • Educate • Include","/infinite-possibilities"],
+  ["Products & Merchandise","Wear • Use • Spread the Message","/shop"],
+  ["Wellness & Healing","Mind • Body • Spirit",""],
+  ["Children’s Programs","Nurture • Empower • Include","/children"],
+  ["Family Resources","Support • Guide • Strengthen","/infinite-possibilities"],
+  ["Online Platform & App","Access • Engage • Grow","/app"],
+  ["Retreats & Travel","Recharge • Reconnect • Rise",""],
+  ["Business Strategies","Build • Expand • Create Wealth",""]
+];
+const ROOTS = [
+  ["People",["Support","Community","Collaboration"]],
+  ["Purpose",["Meaning","Direction","Service"]],
+  ["Foundation",["Healing","Growth","Alignment"]],
+  ["Community",["Inclusion","Education","Opportunity"]],
+  ["Impact",["Stronger Families","Brighter Futures","Generational Change"]]
+];
 const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
 
-const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Infinite Possibilities","/infinite-possibilities"],["Contact","/contact"]];
+const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Our Ecosystem","/ecosystem"],["Infinite Possibilities","/infinite-possibilities"],["Contact","/contact"]];
 
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
@@ -1787,6 +1871,12 @@ $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join
 $$("[data-doors]").forEach(el=>el.innerHTML=DOORS.map(([k,t,d,p,link,cta],i)=>`
   <li class="door"><span class="step">${i+1}</span><div><p class="kind caps" style="color:var(--gold-ink);margin-bottom:4px">${k}</p><h3>${t}</h3><p>${d}</p></div>
   <span class="p">${p}</span><a class="btn btn--gold btn--sm" href="#" data-ext="${link}" data-label="${esc(t)} (Stan)">${cta}</a></li>`).join(""));
+
+$$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
+  const c=CHAKRAS[i%7].c, inner=`<h3>${esc(n)}</h3><p>${esc(t)}</p>${href?`<span class="go">Explore →</span>`:""}`;
+  return href?`<a class="branch" href="#${href}" style="--c:${c}">${inner}</a>`:`<div class="branch" style="--c:${c}">${inner}</div>`;
+}).join(""));
+$$("[data-roots]").forEach(el=>el.innerHTML=ROOTS.map(([n,l])=>`<div class="root-item"><h3>${esc(n)}</h3><ul>${l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join(""));
 
 const PARENT = ["Grounding","Emotional permission","Advocacy","Self-care","Family voice","Perspective","Hope & purpose"];
 const KIDS = ["I Am Safe","I Can Feel & Create","I Can Grow in My Own Way","I Am Worthy of Love & Connection","My Voice Matters","My Mind Has Its Own Strengths","I Belong & I Have Purpose"];
@@ -1910,9 +2000,9 @@ document.addEventListener("submit",e=>{
 /* ---------- router ---------- */
 const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"programs","root-to-crown-experience":["programs","seven-week"],"journal-club":["programs","journal-club"],
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
-  "children":["community","children"],"infinite-possibilities":"infinite","events":["community","extravaganza"],"shop":"shop","start-here":"start",
+  "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
-const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",infinite:"/infinite-possibilities",contact:"/contact",start:"/start-here",shop:"/shop"};
+const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",contact:"/contact",start:"/start-here",shop:"/shop"};
 let first=true, curPage=null;
 function route(){
   const slug=location.hash.replace(/^#\/?/,"").split(/[?#]/)[0].replace(/\/$/,"");
