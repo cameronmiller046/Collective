@@ -334,18 +334,18 @@ p{margin:0}
 @media (max-width:640px){.verbs4{grid-template-columns:1fr 1fr}.verbs4 div:nth-child(3){border-left:0}.verbs4 div:nth-child(n+3){border-top:1px solid var(--line-dark)}}
 
 /* ============ books ============ */
-.soon{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border:1px dashed var(--gold-ink);color:var(--gold-ink);border-radius:2px;justify-self:start}
 .stack span{display:block}
 
-/* library hero */
-.lib-hero{padding:88px 0 96px}
-.lib-hero .lib-hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:64px;align-items:center}
-.lib-hero-copy{display:grid;gap:20px;align-content:center}
-.lib-hero h1{font-size:clamp(2.3rem,3.9vw,3.25rem)}
-.lib-hero .script{font-size:clamp(1.6rem,2.4vw,2.1rem)}
+/* library banner */
+.lib-top{padding:76px 0 60px;text-align:center;background:radial-gradient(ellipse 60% 90% at 50% 0%,rgba(88,32,100,.65),transparent 70%),var(--plum)}
+.lib-top .wrap{display:grid;justify-items:center;gap:18px}
+.lib-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3.4vw,2.6rem);letter-spacing:.2em;text-transform:uppercase;line-height:1.15;color:var(--gold-soft)}
+.lib-headline{font-size:clamp(2.1rem,5vw,4.1rem);line-height:1.08;color:var(--ivory)}
+.lib-banner2{background:var(--plum-deep)}
+.lib-banner-img2{display:block;width:100%;max-width:1920px;height:auto;margin:0 auto}
 .lib-flow{color:var(--gold-soft);letter-spacing:.3em}
-.lib-hero-img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:10px;box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
-@media (max-width:900px){.lib-hero{padding:56px 0 72px}.lib-hero .lib-hero-grid{grid-template-columns:1fr;gap:48px}.lib-hero-img{margin:0 10px;width:calc(100% - 20px)}}
+.lib-intro .script{font-size:clamp(1.7rem,3vw,2.4rem)}
+@media (max-width:700px){.lib-top{padding:52px 0 40px}.lib-title{letter-spacing:.14em}}
 
 /* what are you looking for */
 .pathways{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -1097,18 +1097,22 @@ p{margin:0}
 <!-- ===================== BOOKS ===================== -->
 <div data-page="books" hidden>
   <!-- 1 · THE LIBRARY -->
-  <section class="page-hero lib-hero"><div class="wrap lib-hero-grid">
-    <div class="lib-hero-copy">
-      <span class="eyebrow">The Rooted &amp; Crowned Library</span>
-      <h1 class="h-xl stack"><span>A Wealth of Knowledge</span><span>at Your Fingertips.</span></h1>
-      <p class="script">Your story. Your growth. Your next discovery.</p>
-      <p class="lede">The Rooted &amp; Crowned Library is more than a collection of books and journals. It is a space created for reflection, self-discovery, intentional growth and the conversations we sometimes need to have with ourselves.</p>
-      <p class="lede">Whether you’re ready to explore your story, change the words you speak over your life, create a daily practice or discover what’s possible beyond survival, there is something here for your journey.</p>
-      <p class="caps lib-flow">Discover • Reflect • Grow • Become</p>
-      <div class="btns"><a class="btn btn--gold" href="#" data-scroll="library-start">Enter the Library <span class="arr">→</span></a></div>
-    </div>
-    <img class="lib-hero-img" src="assets/library.jpg" alt="The Rooted and Crowned library: a bright reading lounge with the four Coach Kia titles displayed on a shelf beneath the words Discover, Reflect, Grow and Belong" width="1536" height="1024">
+  <section class="lib-top"><div class="wrap">
+    <h1 class="lib-title">The Rooted &amp; Crowned Library</h1>
+    <h2 class="lib-headline stack"><span>A Wealth of Knowledge</span><span>at Your Fingertips.</span></h2>
+    <div class="spectrum spectrum--short" aria-hidden="true"></div>
   </div></section>
+  <section class="lib-banner2">
+    <img class="lib-banner-img2" src="assets/library.jpg" alt="The Rooted and Crowned library: a bright reading lounge with the four Coach Kia titles displayed on a shelf beneath the words Discover, Reflect, Grow and Belong" width="1536" height="1024">
+  </section>
+
+  <section class="band lib-intro"><div class="wrap"><div class="center" style="max-width:840px">
+    <p class="script">Your story. Your growth. Your next discovery.</p>
+    <p class="lede">The Rooted &amp; Crowned Library is more than a collection of books and journals. It is a space created for reflection, self-discovery, intentional growth and the conversations we sometimes need to have with ourselves.</p>
+    <p class="lede">Whether you’re ready to explore your story, change the words you speak over your life, create a daily practice or discover what’s possible beyond survival, there is something here for your journey.</p>
+    <p class="caps lib-flow">Discover • Reflect • Grow • Become</p>
+    <div class="btns"><a class="btn btn--gold" href="#" data-scroll="library-start">Enter the Library <span class="arr">→</span></a></div>
+  </div></div></section>
 
   <!-- 2 · WHAT ARE YOU LOOKING FOR -->
   <section class="band band--ivory" id="library-start" style="scroll-margin-top:110px"><div class="wrap">
@@ -1117,88 +1121,18 @@ p{margin:0}
       <p class="lede">You don’t have to know exactly where you’re going. Start with what is calling you.</p>
     </div>
     <div class="pathways">
-      <a class="pathway" href="#" data-scroll="discovery-01"><i class="n">01</i><b>I want to understand myself</b><span class="d">Explore your experiences, patterns and possibilities.</span><span class="go">See the journal →</span></a>
-      <a class="pathway" href="#" data-scroll="discovery-02"><i class="n">02</i><b>I want to change my words</b><span class="d">Explore affirmations, voice and intentional language.</span><span class="go">See the book →</span></a>
-      <a class="pathway" href="#" data-scroll="discovery-03"><i class="n">03</i><b>I want to create a daily practice</b><span class="d">Build space for reflection, gratitude and alignment.</span><span class="go">See the journal →</span></a>
-      <a class="pathway" href="#" data-scroll="discovery-04"><i class="n">04</i><b>I want to discover the story</b><span class="d">Journey with Coach Kia from survival toward healing and purpose.</span><span class="go">See the memoir →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-01"><i class="n">01</i><b>I want to discover the story</b><span class="d">Journey with Coach Kia from survival toward healing and purpose.</span><span class="go">See the memoir →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-02"><i class="n">02</i><b>I want to understand myself</b><span class="d">Explore your experiences, patterns and possibilities.</span><span class="go">See the journal →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-03"><i class="n">03</i><b>I want to change my words</b><span class="d">Explore affirmations, voice and intentional language.</span><span class="go">See the book →</span></a>
+      <a class="pathway" href="#" data-scroll="discovery-04"><i class="n">04</i><b>I want to create a daily practice</b><span class="d">Build space for reflection, gratitude and alignment.</span><span class="go">See the journal →</span></a>
     </div>
     <p class="story-line" style="text-align:center;margin-top:48px">Find the resource that meets you where you are.</p>
   </div></section>
 
-  <!-- 3 · FEATURED DISCOVERY 01 -->
-  <section class="band band--ivory2 disc" id="discovery-01" style="scroll-margin-top:100px"><div class="wrap disc-grid">
-    <figure class="disc-media" style="margin:0">
-      <img src="assets/photo-journey.jpg" alt="My Rooted and Crowned Journey: Finding My Way Back to Self, a black and gold guided journal with a glowing chakra tree on the cover" width="1100" height="1100" loading="lazy">
-    </figure>
-    <div class="disc-copy">
-      <span class="eyebrow">Featured Discovery 01</span>
-      <span class="disc-kick">Guided Root-to-Crown Journal</span>
-      <h2 class="h-l">My Rooted &amp; Crowned Journey</h2>
-      <p class="disc-sub">Finding My Way Back to Self</p>
-      <p class="disc-q">What if finding your way forward begins with understanding what you’ve carried with you?</p>
-      <p class="t">My Rooted &amp; Crowned Journey is a 75-page guided printable journal created for the person who is ready to look beneath the surface.</p>
-      <p class="t">Moving from Root to Crown, you’ll explore the experiences, patterns, beliefs, emotions and possibilities that have shaped you—while creating space to decide what deserves to come with you into the next chapter of your life.</p>
-      <p class="t">Through intentional prompts, affirmations, My Tree exercises, action planning and reflection, this journal doesn’t tell you who you should become.</p>
-      <p class="disc-q" style="font-size:1.4rem">It gives you space to discover who you are becoming.</p>
-      <div class="disc-asks"><span class="caps">Perfect for you if you’re asking:</span><p>Why do I keep repeating this?</p><p>What have I outgrown?</p><p>What do I really want now?</p></div>
-      <div class="disc-meta">75 Pages • Printable Digital Journal • $49</div>
-      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="My Rooted &amp; Crowned Journey (Stan)">Begin My Journey <span class="arr">→</span></a></div>
-      <p class="disc-close">Sometimes the way forward begins by returning to yourself.</p>
-    </div>
-  </div></section>
-
-  <!-- FEATURED DISCOVERY 02 -->
-  <section class="band band--ivory disc disc--flip" id="discovery-02" style="scroll-margin-top:100px"><div class="wrap disc-grid">
-    <figure class="disc-media" style="margin:0">
-      <img src="assets/photo-words.jpg" alt="Rooted in Words, Crowned in Truth, the Throat Chakra Edition: a radiant blue affirmation and reflection book with a rainbow chakra tree" width="1032" height="1100" loading="lazy">
-    </figure>
-    <div class="disc-copy">
-      <span class="eyebrow">Featured Discovery 02</span>
-      <span class="disc-kick">Affirmation &amp; Reflection Book</span>
-      <h2 class="h-l">Rooted in Words, Crowned in Truth</h2>
-      <p class="disc-sub">A Root-to-Crown Affirmation &amp; Reflection Journey</p>
-      <p class="disc-q">What have you been saying about yourself—and what might change if you chose different words?</p>
-      <p class="t">Words don’t simply describe our experiences. They can influence how we interpret them, how we see ourselves and how we approach what comes next.</p>
-      <p class="t">Rooted in Words, Crowned in Truth takes you beyond simply reading positive affirmations.</p>
-      <p class="t">Moving through all seven chakra-inspired themes, you’ll pause with each affirmation, explore what it means in your life and give yourself space to recognize the language, beliefs and inner narratives you’ve been carrying.</p>
-      <p class="t">Because saying the words is only the beginning.</p>
-      <p class="disc-q" style="font-size:1.4rem">The reflection is where the affirmation becomes personal.</p>
-      <p class="t">The special Throat Chakra Edition, wrapped in radiant blue, honors voice, truth, communication and self-expression—reminding you that sometimes growth requires giving language to what you already know inside.</p>
-      <div class="disc-meta">50 Pages • Digital Affirmation &amp; Reflection Book • $49<span>Hard Copy • $75</span></div>
-      <div class="disc-more">
-        <a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted in Words, Crowned in Truth (Stan)">Find My Voice <span class="arr">→</span></a>
-        <a class="btn btn--line btn--sm" href="#" data-ext="shopify" data-label="Rooted in Words, Crowned in Truth — hard copy (Shopify)">Hard Copy · Shop</a>
-      </div>
-      <p class="disc-close">Your voice is more than sound. It is expression. It is choice. It is truth.</p>
-    </div>
-  </div></section>
-
-  <!-- FEATURED DISCOVERY 03 -->
-  <section class="band band--ivory2 disc" id="discovery-03" style="scroll-margin-top:100px"><div class="wrap disc-grid">
-    <figure class="disc-media" style="margin:0">
-      <img src="assets/photo-daily.jpg" alt="The Rooted and Crowned Daily Journal: a plum hardcover guided journal with a golden chakra tree, beside a pen and candle" width="1100" height="1100" loading="lazy">
-    </figure>
-    <div class="disc-copy">
-      <span class="eyebrow">Featured Discovery 03</span>
-      <span class="disc-kick">Daily Reflection Journal</span>
-      <h2 class="h-l">Rooted and Crowned Daily Journal</h2>
-      <p class="disc-sub">A Guided Daily Practice to Reconnect, Realign &amp; Rise</p>
-      <p class="disc-q">You spend so much of your day responding to everything around you. When do you check in with yourself?</p>
-      <p class="t">The Rooted and Crowned Daily Journal creates a place for that conversation.</p>
-      <p class="t">This 50-page guided journaling experience is designed to help you slow down, notice how you’re feeling, reconnect with your intentions and become more conscious of how you’re moving through each day.</p>
-      <p class="t">Morning and evening reflections invite you to explore your mood, energy, gratitude, goals, habits and actions while Root-to-Crown awareness keeps you connected to the bigger picture.</p>
-      <div class="disc-asks"><p>You don’t need hours.</p><p>You don’t need the perfect words.</p><p>You simply need a few intentional moments that belong to you.</p></div>
-      <p class="t">Inside, you’ll discover daily prompts, intention-setting exercises, personal anchors, gratitude and abundance practices, weekly reflections, a monthly check-in and a six-week closing reflection.</p>
-      <div class="disc-meta">50 Pages • Fillable &amp; Printable Digital Journal • $39</div>
-      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted and Crowned Daily Journal (Stan)">Put Me First <span class="arr">→</span></a></div>
-      <p class="disc-close">Finding Me → Putting Me First → Becoming More Intentional About Me.</p>
-    </div>
-  </div></section>
-
-  <!-- FEATURED DISCOVERY 04 · THE MEMOIR -->
-  <section class="band band--ivory2 disc disc--story" id="discovery-04" style="scroll-margin-top:100px"><div class="wrap">
+  <!-- 3 · FEATURED DISCOVERY 01 · THE MEMOIR -->
+  <section class="band band--ivory2 disc disc--story" id="discovery-01" style="scroll-margin-top:100px"><div class="wrap">
     <div class="disc-head">
-      <span class="eyebrow">Featured Discovery 04</span>
+      <span class="eyebrow">Featured Discovery 01</span>
       <span class="disc-kick" data-release="Coach Kia’s Memoir">Coach Kia’s Upcoming Memoir</span>
       <h2 class="h-xl stack" style="color:var(--plum)"><span>A Journey from</span><span>Survival to Healing</span></h2>
       <p class="disc-sub">Chakra Alignment</p>
@@ -1232,6 +1166,76 @@ p{margin:0}
         <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="A Journey from Survival to Healing (Stan)">Discover the Story <span class="arr">→</span></a></div>
         <p class="disc-close">Your story matters. Your healing creates change.</p>
       </div>
+    </div>
+  </div></section>
+
+  <!-- FEATURED DISCOVERY 02 -->
+  <section class="band band--ivory2 disc" id="discovery-02" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-journey.jpg" alt="My Rooted and Crowned Journey: Finding My Way Back to Self, a black and gold guided journal with a glowing chakra tree on the cover" width="1100" height="1100" loading="lazy">
+    </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 02</span>
+      <span class="disc-kick">Guided Root-to-Crown Journal</span>
+      <h2 class="h-l">My Rooted &amp; Crowned Journey</h2>
+      <p class="disc-sub">Finding My Way Back to Self</p>
+      <p class="disc-q">What if finding your way forward begins with understanding what you’ve carried with you?</p>
+      <p class="t">My Rooted &amp; Crowned Journey is a 75-page guided printable journal created for the person who is ready to look beneath the surface.</p>
+      <p class="t">Moving from Root to Crown, you’ll explore the experiences, patterns, beliefs, emotions and possibilities that have shaped you—while creating space to decide what deserves to come with you into the next chapter of your life.</p>
+      <p class="t">Through intentional prompts, affirmations, My Tree exercises, action planning and reflection, this journal doesn’t tell you who you should become.</p>
+      <p class="disc-q" style="font-size:1.4rem">It gives you space to discover who you are becoming.</p>
+      <div class="disc-asks"><span class="caps">Perfect for you if you’re asking:</span><p>Why do I keep repeating this?</p><p>What have I outgrown?</p><p>What do I really want now?</p></div>
+      <div class="disc-meta">75 Pages • Printable Digital Journal • $49</div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="My Rooted &amp; Crowned Journey (Stan)">Begin My Journey <span class="arr">→</span></a></div>
+      <p class="disc-close">Sometimes the way forward begins by returning to yourself.</p>
+    </div>
+  </div></section>
+
+  <!-- FEATURED DISCOVERY 03 -->
+  <section class="band band--ivory disc disc--flip" id="discovery-03" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-words.jpg" alt="Rooted in Words, Crowned in Truth, the Throat Chakra Edition: a radiant blue affirmation and reflection book with a rainbow chakra tree" width="1032" height="1100" loading="lazy">
+    </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 03</span>
+      <span class="disc-kick">Affirmation &amp; Reflection Book</span>
+      <h2 class="h-l">Rooted in Words, Crowned in Truth</h2>
+      <p class="disc-sub">A Root-to-Crown Affirmation &amp; Reflection Journey</p>
+      <p class="disc-q">What have you been saying about yourself—and what might change if you chose different words?</p>
+      <p class="t">Words don’t simply describe our experiences. They can influence how we interpret them, how we see ourselves and how we approach what comes next.</p>
+      <p class="t">Rooted in Words, Crowned in Truth takes you beyond simply reading positive affirmations.</p>
+      <p class="t">Moving through all seven chakra-inspired themes, you’ll pause with each affirmation, explore what it means in your life and give yourself space to recognize the language, beliefs and inner narratives you’ve been carrying.</p>
+      <p class="t">Because saying the words is only the beginning.</p>
+      <p class="disc-q" style="font-size:1.4rem">The reflection is where the affirmation becomes personal.</p>
+      <p class="t">The special Throat Chakra Edition, wrapped in radiant blue, honors voice, truth, communication and self-expression—reminding you that sometimes growth requires giving language to what you already know inside.</p>
+      <div class="disc-meta">50 Pages • Digital Affirmation &amp; Reflection Book • $49<span>Hard Copy • $75</span></div>
+      <div class="disc-more">
+        <a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted in Words, Crowned in Truth (Stan)">Find My Voice <span class="arr">→</span></a>
+        <a class="btn btn--line btn--sm" href="#" data-ext="shopify" data-label="Rooted in Words, Crowned in Truth — hard copy (Shopify)">Hard Copy · Shop</a>
+      </div>
+      <p class="disc-close">Your voice is more than sound. It is expression. It is choice. It is truth.</p>
+    </div>
+  </div></section>
+
+  <!-- FEATURED DISCOVERY 04 -->
+  <section class="band band--ivory2 disc" id="discovery-04" style="scroll-margin-top:100px"><div class="wrap disc-grid">
+    <figure class="disc-media" style="margin:0">
+      <img src="assets/photo-daily.jpg" alt="The Rooted and Crowned Daily Journal: a plum hardcover guided journal with a golden chakra tree, beside a pen and candle" width="1100" height="1100" loading="lazy">
+    </figure>
+    <div class="disc-copy">
+      <span class="eyebrow">Featured Discovery 04</span>
+      <span class="disc-kick">Daily Reflection Journal</span>
+      <h2 class="h-l">Rooted and Crowned Daily Journal</h2>
+      <p class="disc-sub">A Guided Daily Practice to Reconnect, Realign &amp; Rise</p>
+      <p class="disc-q">You spend so much of your day responding to everything around you. When do you check in with yourself?</p>
+      <p class="t">The Rooted and Crowned Daily Journal creates a place for that conversation.</p>
+      <p class="t">This 50-page guided journaling experience is designed to help you slow down, notice how you’re feeling, reconnect with your intentions and become more conscious of how you’re moving through each day.</p>
+      <p class="t">Morning and evening reflections invite you to explore your mood, energy, gratitude, goals, habits and actions while Root-to-Crown awareness keeps you connected to the bigger picture.</p>
+      <div class="disc-asks"><p>You don’t need hours.</p><p>You don’t need the perfect words.</p><p>You simply need a few intentional moments that belong to you.</p></div>
+      <p class="t">Inside, you’ll discover daily prompts, intention-setting exercises, personal anchors, gratitude and abundance practices, weekly reflections, a monthly check-in and a six-week closing reflection.</p>
+      <div class="disc-meta">50 Pages • Fillable &amp; Printable Digital Journal • $39</div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted and Crowned Daily Journal (Stan)">Put Me First <span class="arr">→</span></a></div>
+      <p class="disc-close">Finding Me → Putting Me First → Becoming More Intentional About Me.</p>
     </div>
   </div></section>
 
@@ -1281,7 +1285,9 @@ p{margin:0}
         <h3 class="h-m">Crown Your Coins</h3>
         <p class="script">Because alignment should reach your finances too.</p>
         <p class="desc">A practical savings, budgeting, debt-payoff, income and cash-flow reflection system designed to help bring greater intention to the way you manage money.</p>
-        <div class="offer-foot"><span class="soon">Coming soon</span></div>
+        <div class="offer-foot">
+          <div class="price-line"><span class="caps">Coming Soon</span><span class="price">$24.99</span></div>
+        </div>
       </article>
     </div>
   </div></section>
