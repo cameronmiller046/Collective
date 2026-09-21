@@ -152,10 +152,18 @@ p{margin:0}
 .arch svg{width:44%;opacity:.85}
 .arch figcaption{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--lav)}
 .kia-copy{display:grid;gap:22px}
-.roles{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--plum-muted)}
-.roles span+span::before{content:"·";margin-right:14px;color:var(--gold-ink)}
 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.22;color:var(--plum);max-width:24ch;position:relative;padding-left:26px;border-left:2px solid var(--gold)}
 @media (max-width:860px){.kia{grid-template-columns:1fr;gap:48px}.arch{max-width:340px}}
+/* our story: long-form origin story beside a photo that stays in view */
+.kia--story{align-items:start}
+.kia--story .arch{position:sticky;top:150px}
+.kia--story .prose{max-width:60ch}
+.story-title{font-size:clamp(1.6rem,2.4vw,2rem);color:var(--plum);margin-top:6px}
+.story-line{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.25;color:var(--gold-ink)}
+.prose p.em{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--ivory)}
+.begin-lines{display:grid;gap:4px}
+.begin-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.35;color:var(--plum)}
+@media (max-width:860px){.kia--story .arch{position:static}}
 
 /* ============ framework spectrum (home) ============ */
 .stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line-dark)}
@@ -184,6 +192,7 @@ p{margin:0}
 .center .lede{max-width:58ch}
 .center .script{font-size:clamp(1.7rem,3vw,2.4rem);text-wrap:balance}
 .center .btns{justify-content:center}
+@media (max-width:560px){.center .btn{white-space:normal;text-align:center;line-height:1.4;padding-block:12px;min-height:46px}}
 
 /* ============ conversations ============ */
 .conv{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:start}
@@ -274,8 +283,6 @@ p{margin:0}
 .band--ivory .prose p,.band--ivory2 .prose p{color:var(--plum-muted)}
 .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 @media (max-width:860px){.two{grid-template-columns:1fr;gap:40px}}
-.draft-note{padding:22px 24px;border:1px dashed var(--gold-ink);border-radius:2px;font-size:14px;color:var(--plum-muted);background:rgba(214,162,58,.08)}
-.draft-note b{color:var(--plum)}
 
 /* ============ framework page ladder ============ */
 .ladder{list-style:none;margin:0;padding:0;position:relative}
@@ -749,35 +756,69 @@ p{margin:0}
     <h1 class="h-xl">Rise from what broke you. Build what sets you free.</h1>
     <div class="spectrum spectrum--short"></div>
   </div></section>
-  <section class="band band--ivory"><div class="wrap kia">
+  <section class="band band--ivory"><div class="wrap kia kia--story">
     <figure class="arch" style="margin:0;aspect-ratio:2/3">
       <img src="assets/kia-founder-portrait.webp" alt="Coach Kia, founder of Rooted and Crowned Collective, resting her chin on her hand in a purple blouse. The photo is captioned Rooted and Crowned Collective Founder, Grounded Roots. Crown Driven." width="1024" height="1536" loading="lazy" style="object-position:50% 50%">
     </figure>
     <div class="kia-copy">
-      <span class="eyebrow">Coach Kia · Founder &amp; Practitioner</span>
+      <span class="eyebrow">Coach Kia • Founder • Author • Life Coach • Visionary</span>
       <h2 class="h-l">A guide for the whole journey, root to crown.</h2>
-      <div class="roles"><span>Spiritual Practitioner</span><span>Author</span><span>Teacher</span><span>Mentor</span><span>Business Builder</span><span>Seer</span><span>Healer</span><span>Guide</span></div>
       <blockquote class="quote" style="margin:6px 0">“I help women rise from what broke them and build what sets them free.”</blockquote>
-      <div class="draft-note"><b>Coach Kia's origin story goes here.</b> Write it in her own words: where the journey began, what survival taught her, and how Rooted &amp; Crowned was born.</div>
+      <h3 class="story-title">Rooted &amp; Crowned was born from the journey.</h3>
+      <div class="prose">
+        <p>Rooted &amp; Crowned Collective was not created from theory alone. It was created from a life that required me to learn how to begin again—more than once.</p>
+        <p>My journey has moved through love and loss, marriage and divorce, motherhood and advocacy, raising children with unique needs, rebuilding relationships, rediscovering myself, and learning that sometimes the life we planned and the life we are given are not the same.</p>
+        <p>For years, I knew how to survive. But eventually, survival was no longer enough. I wanted to understand the patterns beneath my experiences, reconnect with the parts of myself I had lost along the way, and become intentional about the woman I was becoming.</p>
+        <p>That journey became the foundation of Rooted &amp; Crowned.</p>
+        <p>I began looking at growth from the Root up—our foundation, creativity, personal power, relationships, voice, vision, and purpose. But I also realized that awareness could not be the destination. What we discover about ourselves must eventually become part of how we live.</p>
+        <p>That became the heart of my philosophy:</p>
+        <p class="story-line">Heal from the Root Up. Live from the Crown Down.</p>
+        <p>Rooted &amp; Crowned Collective grew from that understanding—a space where we can acknowledge where we’ve been without allowing it to become the conclusion of our story. A place where reflection becomes action, our voices matter, and what once challenged us can become wisdom for what we build next.</p>
+        <p>I don’t stand here as someone who has lived a perfect life. I stand here as a woman who has lived, learned, rebuilt, created, and continued becoming.</p>
+        <p>And now I create spaces for other women to do the same.</p>
+      </div>
+    </div>
+  </div></section>
+  <section class="band band--plum2"><div class="wrap">
+    <div class="center">
+      <h2 class="h-l">The journey became the framework.</h2>
+      <p class="lede">What began as my own search for understanding became a way of looking at growth differently: not as one moment of transformation, but as a journey from foundation to purpose—and from awareness into intentional living.</p>
+      <div class="btns"><a class="btn btn--gold" href="#/root-to-crown">Discover the Root-to-Crown Framework <span class="arr">→</span></a></div>
     </div>
   </div></section>
   <section class="band"><div class="wrap two">
-    <div style="display:grid;gap:18px">
+    <div style="display:grid;gap:18px;align-content:start">
       <span class="eyebrow">The Mission</span>
       <h2 class="h-l">Heal, align and rise.</h2>
-      <p class="script">Heal from the Root Up. Live from the Crown Down.</p>
     </div>
     <div class="prose">
-      <p class="muted">Rooted &amp; Crowned Collective exists to empower women to heal, align and rise by reconnecting to their roots and stepping into their crown.</p>
-      <p class="muted">This is not an online store with a few programs attached. It is a Root-to-Crown personal-development ecosystem: the podcast creates connection, classes and Journal Club create transformation, books and journals carry the work home, the app supports you every day, and our community branches create long-term impact.</p>
+      <p class="muted">Rooted &amp; Crowned Collective exists to empower women to heal, align, and rise by reconnecting with their roots, reclaiming their voice, recognizing their power, and intentionally stepping into the life they are ready to create.</p>
+      <p class="muted">Rooted &amp; Crowned is a personal-development framework and growing community designed to support the whole journey. Through conversations, classes, guided reflection, books, journals, digital experiences, and community, we create multiple ways to learn, reflect, connect, practice, and grow.</p>
+      <p class="em">Because transformation isn’t only about understanding where you’ve been. It’s about becoming intentional about where you go next.</p>
     </div>
   </div>
   <div class="wrap" style="margin-top:64px"><div class="pillars">
-    <div class="pillar"><h3>HEAL</h3><p>Release the past and restore wholeness.</p></div>
-    <div class="pillar"><h3>GROW</h3><p>Align with purpose and inner power.</p></div>
-    <div class="pillar"><h3>THRIVE</h3><p>Build the life and business you desire.</p></div>
-    <div class="pillar"><h3>TOGETHER</h3><p>Rise in community and transformation.</p></div>
+    <div class="pillar"><h3>HEAL</h3><p>Reflect on what shaped you and release what no longer serves you.</p></div>
+    <div class="pillar"><h3>GROW</h3><p>Reconnect with your voice, power, and possibilities.</p></div>
+    <div class="pillar"><h3>THRIVE</h3><p>Turn awareness into intentional choices, purpose, and action.</p></div>
+    <div class="pillar"><h3>TOGETHER</h3><p>Rise through connection, community, and shared growth.</p></div>
   </div></div></section>
+  <section class="band band--ivory2"><div class="wrap">
+    <div class="center">
+      <span class="eyebrow">This journey is yours, too</span>
+      <h2 class="h-l">You Don’t Have to Have It All Figured Out to Begin.</h2>
+      <p class="lede">Maybe you’re rebuilding after a chapter you never expected. Maybe you’re rediscovering your voice, questioning old patterns, redefining relationships, reconnecting with your creativity, or simply realizing that the version of you who survived isn’t the only version of you allowed to exist.</p>
+      <p class="lede">Wherever you are, Rooted &amp; Crowned invites you to begin there.</p>
+      <div class="begin-lines">
+        <p>Not with perfection. With awareness.</p>
+        <p>Not with all the answers. With one intentional choice.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn--gold" href="#/start-here">Start Your Journey <span class="arr">→</span></a>
+        <a class="btn btn--line" href="#/root-to-crown">Explore the Framework <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div></section>
 </div>
 
 <!-- ===================== FRAMEWORK ===================== -->
@@ -1298,7 +1339,7 @@ $$("[data-paths]").forEach(el=>{el.innerHTML=`
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
 const SIGNUP = `<div style="display:grid;gap:8px"><h3>Stay Rooted. Stay Connected.</h3>
-  <p class="fine">New conversations, upcoming experiences and announcements, plus a free welcome gift: the Rooted &amp; Crowned Conversations newsletter.</p></div>
+  <p class="fine">Receive new conversations, upcoming experiences, reflection resources and announcements from the Rooted &amp; Crowned Collective.</p></div>
   <form class="signup-form-wrap" novalidate><div class="signup-form">
     <input class="field" type="email" name="email" placeholder="Your email address" aria-label="Email address" autocomplete="email" required>
     <button class="btn btn--gold" type="submit">Join the Collective</button></div></form>`;
