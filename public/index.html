@@ -177,8 +177,8 @@ p{margin:0}
 .thanks .lede{max-width:52ch}
 @media (max-width:640px){.thanks{padding:56px 0}}
 .thanks .wrap{display:grid;gap:44px}
-/* gratitude wall: cards sit side by side and wrap, so more can be added; a single card is centred */
-.thanks-wall{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+/* gratitude wall: cards stack one under another, centred, so more can be added below */
+.thanks-wall{display:flex;flex-direction:column;align-items:center;gap:36px}
 .thanks-card{margin:0;width:min(540px,100%);display:grid;gap:12px}
 .thanks-card figcaption{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.4;text-align:center;color:var(--plum-muted)}
 .thanks-note{display:grid;gap:18px;justify-items:center;text-align:center;padding:46px 38px;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(88,32,100,.75),transparent 75%),var(--plum);color:var(--ivory);border:1px solid var(--gold);outline:1px solid rgba(214,162,58,.4);outline-offset:8px;border-radius:2px;box-shadow:0 30px 56px -30px rgba(37,7,47,.6)}
@@ -959,7 +959,12 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
           <div class="spectrum spectrum--short" aria-hidden="true"></div>
           <p class="script">Gratitude Creates a Cycle of Blessings.</p>
         </div>
-        <figcaption>Thank you, Coach TT and Elevated Gospel, for pouring into me.</figcaption>
+      </figure>
+      <figure class="thanks-card">
+        <button class="thanks-zoom" type="button" data-zoom="assets/gratitude-coach-tt.webp" aria-label="Open this gratitude card full size">
+          <img src="assets/gratitude-coach-tt.webp" alt="A gratitude card from Coach Kia: three women in Rooted and Crowned Collective t-shirts beneath the Rooted and Crowned Collective logo, Grounded Roots. Crown Driven., with the words Infinite Possibilities. On the left, From Vision to Reality and Beyond: I am standing here today because of the guidance, wisdom and support from Coach TT and Elevated Gospel. You helped me see what was possible, gave me the tools to build it, and reminded me to keep going. This is bigger than me, it is a mission to help others heal, align and thrive. Thank you, Coach TT, for pouring into me. Below: Same energy. Bigger impact. We create. We heal. We elevate. Together." width="1536" height="1024" loading="lazy">
+        </button>
+        <figcaption>Thank you, Coach TT and Elevated Gospel, for pouring into me.<span class="thanks-hint">Click or tap the card to read it full size</span></figcaption>
       </figure>
       <!-- photo card example:
       <figure class="thanks-card">
