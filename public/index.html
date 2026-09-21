@@ -128,6 +128,8 @@ p{margin:0}
 .tree-wrap{position:relative;aspect-ratio:9/10;width:100%;max-width:660px;justify-self:center}
 .tree-wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .tree-wrap.hero--logo{aspect-ratio:1/1;max-width:680px}
+/* on wide screens, nudge the logo into the empty margin on the right so it sits away from the headline; never more than the margin allows */
+@media (min-width:901px){.tree-wrap.hero--logo{transform:translateX(max(0px,min(64px,calc(50vw - 570px))))}}
 @media (max-width:900px){.tree-wrap.hero--logo{max-width:560px}}
 @media (max-width:560px){.tree-wrap.hero--logo{aspect-ratio:4/5;max-width:440px}}
 @media (max-width:900px){
