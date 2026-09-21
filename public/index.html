@@ -385,6 +385,20 @@ p{margin:0}
 .disc--story .disc-media img{outline:2px solid var(--gold);outline-offset:12px}
 .disc-head{display:grid;gap:14px;justify-items:center;text-align:center;margin-bottom:34px}
 
+/* release countdown */
+.cd-wrap{display:grid;justify-items:center;gap:18px;margin:0 auto 68px}
+.cd-label{font-size:11.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-ink)}
+.cd{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:min(660px,100%);padding:36px 10px 30px;background:linear-gradient(160deg,var(--plum-2),var(--plum-deep));border:1px solid var(--gold);border-radius:2px;outline:1px solid rgba(214,162,58,.4);outline-offset:7px;box-shadow:0 34px 64px -30px rgba(37,7,47,.8)}
+.cd::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--root) 0 14.285%,var(--sacral) 14.285% 28.57%,var(--solar) 28.57% 42.855%,var(--heart) 42.855% 57.14%,var(--throat) 57.14% 71.425%,var(--third) 71.425% 85.71%,var(--crown) 85.71% 100%)}
+.cd-cell{display:grid;gap:10px;justify-items:center;padding:0 6px}
+.cd-cell+.cd-cell{border-left:1px solid rgba(229,190,101,.22)}
+.cd-cell b{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,6.6vw,3.9rem);line-height:1;color:var(--ivory);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
+.cd-cell span{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+.cd-live{display:none;grid-column:1/-1;text-align:center;padding:6px 0;font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--gold-soft)}
+.cd.is-live .cd-cell{display:none}
+.cd.is-live .cd-live{display:block}
+@media (max-width:480px){.cd{padding:28px 4px 24px}.cd-cell{padding:0 2px}.cd-cell span{font-size:9px;letter-spacing:.14em}}
+
 /* the connection */
 .conn-lines{display:grid;gap:4px}
 .conn-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.4;color:var(--lav)}
@@ -1185,7 +1199,7 @@ p{margin:0}
   <section class="band band--ivory2 disc disc--story" id="discovery-04" style="scroll-margin-top:100px"><div class="wrap">
     <div class="disc-head">
       <span class="eyebrow">Featured Discovery 04</span>
-      <span class="disc-kick">Coach Kia’s Upcoming Memoir</span>
+      <span class="disc-kick" data-release="Coach Kia’s Memoir">Coach Kia’s Upcoming Memoir</span>
       <h2 class="h-xl stack" style="color:var(--plum)"><span>A Journey from</span><span>Survival to Healing</span></h2>
       <p class="disc-sub">Chakra Alignment</p>
     </div>
@@ -1193,6 +1207,16 @@ p{margin:0}
       <p>Some stories survive us.</p>
       <p>Some stories transform us.</p>
       <p>And some stories may help someone else find their way.</p>
+    </div>
+    <div class="cd-wrap">
+      <span class="cd-label" data-release="Now available">Releasing January 1, 2027</span>
+      <div class="cd" data-countdown role="timer" aria-label="Countdown to the release of A Journey from Survival to Healing on January 1, 2027">
+        <div class="cd-cell"><b data-cd="d">--</b><span>Days</span></div>
+        <div class="cd-cell"><b data-cd="h">--</b><span>Hours</span></div>
+        <div class="cd-cell"><b data-cd="m">--</b><span>Minutes</span></div>
+        <div class="cd-cell"><b data-cd="s">--</b><span>Seconds</span></div>
+        <p class="cd-live">The story is here.</p>
+      </div>
     </div>
     <div class="disc-grid">
       <figure class="disc-media" style="margin:0">
@@ -1204,7 +1228,7 @@ p{margin:0}
         <p class="t">Through the lens of the chakra framework, Coach Kia connects her own experiences to themes of foundation, creativity, personal power, love, expression, clarity and divine connection.</p>
         <p class="t">This isn’t a story about pretending the past didn’t happen.</p>
         <p class="disc-q" style="font-size:1.5rem">It’s about discovering what can happen when the past no longer gets to write the ending.</p>
-        <div class="disc-meta">Upcoming Book • $49 • PDF Only</div>
+        <div class="disc-meta" data-release="Now Available • $49 • PDF Only">Upcoming Book • $49 • PDF Only</div>
         <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="A Journey from Survival to Healing (Stan)">Discover the Story <span class="arr">→</span></a></div>
         <p class="disc-close">Your story matters. Your healing creates change.</p>
       </div>
@@ -1684,6 +1708,28 @@ document.addEventListener("click",e=>{
   e.preventDefault();
   document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
 });
+
+/* ---------- release countdown: A Journey from Survival to Healing ---------- */
+const RELEASE_AT = new Date("2027-01-01T00:00:00-05:00"); // January 1, 2027, 12:00 AM US Eastern
+function startCountdown(box, target){
+  const set = (k,v)=>{ const el=box.querySelector(`[data-cd="${k}"]`); if(el) el.textContent=v; };
+  const pad = n=>String(n).padStart(2,"0");
+  function tick(){
+    const left = target - Date.now();
+    if(left <= 0){
+      box.classList.add("is-live");
+      // once it has released, the page stops calling the book "upcoming"
+      $$("[data-release]").forEach(el=>{ el.textContent = el.dataset.release; });
+      return true;
+    }
+    const s = Math.floor(left/1000);
+    set("d", Math.floor(s/86400)); set("h", pad(Math.floor(s%86400/3600))); set("m", pad(Math.floor(s%3600/60))); set("s", pad(s%60));
+    return false;
+  }
+  if(tick()) return;
+  const id = setInterval(()=>{ if(tick()) clearInterval(id); }, 1000);
+}
+$$("[data-countdown]").forEach(b=>startCountdown(b, RELEASE_AT));
 
 /* ---------- forms ---------- */
 document.addEventListener("submit",e=>{
