@@ -495,11 +495,15 @@ p{margin:0}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
 @media (max-width:860px){.branches-grid{grid-template-columns:1fr}.branches-img{max-width:420px}}
-.book-cover{display:block;width:96px;aspect-ratio:2/3;object-fit:cover;border-radius:2px;box-shadow:0 16px 28px -14px rgba(37,7,47,.65)}
+.book-cover{display:block;width:150px;aspect-ratio:1;object-fit:cover;border-radius:2px;box-shadow:0 16px 28px -14px rgba(37,7,47,.65)}
 .book-cover--none{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,var(--purple),var(--plum) 80%)}
 .book-cover--none img{width:72%;height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)}
-.book{grid-template-columns:96px minmax(0,1.2fr) minmax(0,1.2fr) auto}
-@media (max-width:860px){.book{grid-template-columns:96px 1fr;gap:10px 20px}.book>:not(.book-cover){grid-column:2}.book-cover{grid-row:1 / span 3}}
+.book{grid-template-columns:150px minmax(0,1.2fr) minmax(0,1.2fr) auto}
+@media (max-width:860px){.book{grid-template-columns:110px 1fr;gap:10px 20px}.book>:not(.book-cover){grid-column:2}.book-cover{width:110px;grid-row:1 / span 3}}
+.lib{margin:0;display:grid;gap:22px}
+.lib img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
+.poster{margin:0 auto;max-width:520px}
+.poster img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .gallery figure{margin:0;display:grid;gap:12px;align-content:start}
 .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;box-shadow:0 26px 50px -28px rgba(37,7,47,.6)}
@@ -893,6 +897,12 @@ p{margin:0}
     <p class="lede">Guided journals, affirmation books and story, written to walk alongside you from root to crown. Digital editions from our Stan Store; hard copies from the Shop.</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
+  <section class="band band--ivory2"><div class="wrap">
+    <figure class="lib">
+      <div class="sec-head" style="margin:0"><span class="eyebrow">The Library</span><h2 class="h-l">Books &amp; Journals Library</h2></div>
+      <img src="assets/library.jpg" alt="The Rooted and Crowned Books and Journals library: a bright reading lounge with the four Coach Kia titles displayed on a shelf beneath the words Discover, Reflect, Grow and Belong" width="1536" height="1024">
+    </figure>
+  </div></section>
   <section class="band band--ivory"><div class="wrap">
     <ol class="shelf" data-shelf></ol>
   </div></section>
@@ -905,6 +915,11 @@ p{margin:0}
     <h1 class="h-xl">Your Daily Energy Companion</h1>
     <p class="script">Answer. Align. Elevate.</p>
     <div class="spectrum spectrum--short"></div>
+  </div></section>
+  <section class="band band--deep"><div class="wrap">
+    <figure class="poster">
+      <img src="assets/app-poster.jpg" alt="The Rooted and Crowned App: Coach Kia in a plum suit beside the message Meet Yourself Where You Are, Align With Where You're Going, with the seven chakra areas and a Join the App Waitlist button" width="954" height="1145" loading="lazy">
+    </figure>
   </div></section>
   <section class="band band--plum2"><div class="wrap app-grid">
     <div style="display:grid;gap:40px">
@@ -1209,11 +1224,11 @@ const CHAKRAS = [
 ];
 
 const BOOKS = [
-  {kind:"Guided Journal",title:"My Rooted & Crowned Journey",img:"assets/book-journey.jpg",desc:"A 75-page Root-to-Crown guided journal with check-ins, reflection prompts, My Tree exercises, planning, affirmations and integration.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Affirmation Book",title:"Rooted in Words, Crowned in Truth",img:"assets/book-words.jpg",desc:"A chakra-aligned affirmation and reflection book.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
-  {kind:"Daily Journal",title:"Rooted and Crowned Daily Journal",img:"assets/book-daily.jpg",desc:"Morning and evening reflection around mood, energy, gratitude, habits, goals and action.",fmts:[["Digital","$39","stanBooks"]]},
+  {kind:"Guided Journal",title:"My Rooted & Crowned Journey",img:"assets/photo-journey.jpg",desc:"A 75-page Root-to-Crown guided journal with check-ins, reflection prompts, My Tree exercises, planning, affirmations and integration.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
+  {kind:"Affirmation Book",title:"Rooted in Words, Crowned in Truth",img:"assets/photo-words.jpg",desc:"A chakra-aligned affirmation and reflection book.",fmts:[["Digital","$49","stanBooks"],["Hard copy","$75","shopify"]]},
+  {kind:"Daily Journal",title:"Rooted and Crowned Daily Journal",img:"assets/photo-daily.jpg",desc:"Morning and evening reflection around mood, energy, gratitude, habits, goals and action.",fmts:[["Digital","$39","stanBooks"]]},
   {kind:"For Practitioners",title:"Practitioner Double Book Series",desc:"A two-journal practitioner and business-strategy system.",fmts:[["Series","$99","stanBooks"]]},
-  {kind:"Memoir",title:"A Journey from Survival to Healing",img:"assets/book-survival.jpg",desc:"Coach Kia's Root-to-Crown story, connecting lived experience, relationships, identity, survival, healing and purpose.",fmts:[["PDF","$49","stanBooks"]]},
+  {kind:"Memoir",title:"A Journey from Survival to Healing",img:"assets/photo-survival.jpg",desc:"Coach Kia's Root-to-Crown story, connecting lived experience, relationships, identity, survival, healing and purpose.",fmts:[["PDF","$49","stanBooks"]]},
   {kind:"Financial Reflection",title:"Crown Your Coins",desc:"A savings, budgeting, debt-payoff, income and cash-flow reflection system.",soon:true}
 ];
 
@@ -1256,7 +1271,7 @@ $$("[data-weeks]").forEach(el=>el.innerHTML=CHAKRAS.map((c,i)=>`
 $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join(""));
 
 $$("[data-shelf]").forEach(el=>el.innerHTML=BOOKS.map(b=>`
-  <li class="book">${b.img?`<img class="book-cover" src="${b.img}" alt="Cover of ${esc(b.title)}" loading="lazy">`:`<span class="book-cover book-cover--none" aria-hidden="true"><img src="assets/logo-emblem.png" alt=""></span>`}<div><p class="kind">${b.kind}</p><h3>${esc(b.title)}</h3></div><p>${b.desc}</p>
+  <li class="book">${b.img?`<img class="book-cover" src="${b.img}" alt="${esc(b.title)} by Coach Kia" loading="lazy">`:`<span class="book-cover book-cover--none" aria-hidden="true"><img src="assets/logo-emblem.png" alt=""></span>`}<div><p class="kind">${b.kind}</p><h3>${esc(b.title)}</h3></div><p>${b.desc}</p>
   <div class="formats">${b.soon?`<span class="soon">Coming soon</span>`:b.fmts.map(([f,p,k])=>`<div class="fmt"><span class="p">${p}</span><a class="btn btn--line btn--sm" href="#" data-ext="${k}" data-label="${esc(b.title)} — ${f.toLowerCase()} (${k==="shopify"?"Shopify":"Stan"})">${f}${k==="shopify"?" · Shop":""}</a></div>`).join("")}</div></li>`).join(""));
 
 $$("[data-doors]").forEach(el=>el.innerHTML=DOORS.map(([k,t,d,p,link,cta],i)=>`
