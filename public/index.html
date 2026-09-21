@@ -127,6 +127,9 @@ p{margin:0}
 .pillar-line span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
 .tree-wrap{position:relative;aspect-ratio:9/10;width:100%;max-width:660px;justify-self:center}
 .tree-wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tree-wrap.hero--logo{aspect-ratio:1/1;max-width:680px}
+@media (max-width:900px){.tree-wrap.hero--logo{max-width:560px}}
+@media (max-width:560px){.tree-wrap.hero--logo{aspect-ratio:4/5;max-width:440px}}
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;padding-top:36px}
   .tree-wrap{max-width:440px;order:-1;margin-bottom:-40px}
@@ -685,8 +688,8 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
         </div>
         <div class="pillar-line" aria-label="Heal, Grow, Thrive, Together"><span>HEAL</span><span>GROW</span><span>THRIVE</span><span>TOGETHER</span></div>
       </div>
-      <div class="tree-wrap">
-        <canvas id="tree" role="img" aria-label="The Rooted & Crowned tree: roots below the ground line, a crown of branches above, and seven chakra points rising up the trunk from Root to Crown."></canvas>
+      <div class="tree-wrap hero--logo">
+        <canvas id="tree" role="img" aria-label="The Rooted and Crowned Collective logo: a rainbow tree of life with seven chakra points rising up the trunk from Root to Crown (Ground, Create, Empower, Love, Speak, See, Integrate), a golden crown hanging from a branch above a family, and roots below."></canvas>
       </div>
     </div>
   </section>
@@ -2025,105 +2028,251 @@ function closeDrawer(){drawer.hidden=true;burger.setAttribute("aria-expanded","f
 burger.addEventListener("click",()=>{const open=drawer.hidden;drawer.hidden=!open;burger.setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
 
-/* ---------- hero tree (canvas) ---------- */
+/* ---------- hero (canvas) ---------- */
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+/* HERO_STYLE chooses what the home page hero draws:
+     "logo" = the business logo with travelling lights and the stage words in bubbles (current)
+     "tree" = the original drawn tree with its labelled pills, kept exactly as it was
+   Change this one word to switch. The original is also saved in git as the tag original-hero-tree. */
+const HERO_STYLE="logo";
 const cv=$("#tree"); const ctx=cv.getContext("2d");
-let TREE=null, base=null, raf=null, t0=performance.now();
-function build(){
-  const r=cv.getBoundingClientRect(); if(!r.width) return false;
-  const dpr=Math.min(window.devicePixelRatio||1,2);
-  const W=r.width,H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
-  const rand=mulberry32(11), segs=[], tips=[];
-  const cx=W*.5, ground=H*.68, trunkTop=H*.42, crownY=H*.13;
-  function grow(x,y,len,ang,depth,w,kind){
-    const x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
-    segs.push({x,y,x2,y2,w,kind,depth,bend:(rand()-.5)*len*.25});
-    if(depth<=0||len<2.5){ if(kind==="branch") tips.push({x:x2,y:y2,r:rand()}); return; }
-    const n=rand()<.28?3:2;
-    for(let i=0;i<n;i++){
-      let off=n===2?(i?1:-1)*(.26+rand()*.22):(i-1)*(.36+rand()*.16);
-      let a=ang+off+(rand()-.5)*.14;
-      if(kind==="root") a=Math.min(Math.max(a,.1),Math.PI-.1);
-      else a=Math.min(Math.max(a,-Math.PI+.05),-.05);
-      grow(x2,y2,len*(.7+rand()*.1),a,depth-1,w*.7,kind);
-    }
-  }
-  segs.push({x:cx,y:ground+H*.015,x2:cx,y2:trunkTop,w:W*.024,kind:"trunk",depth:9,bend:0});
-  [-2.62,-2.12,-1.57,-1.02,-.52].forEach((a,i)=>grow(cx,trunkTop+(i%2?H*.02:0),H*.078*(i===2?1.08:.96),a+(rand()-.5)*.08,7,W*.013,"branch"));
-  [.3,.9,1.57,2.24,2.84].forEach((a,i)=>grow(cx,ground,H*.064*(i===2?1.1:1),a+(rand()-.5)*.08,7,W*.012,"root"));
-  TREE={W,H,dpr,cx,ground,trunkTop,crownY,
-    nodes:CHAKRAS.map((c,i)=>({c:c.c,name:c.name,verb:c.verb,y:ground-i*(ground-crownY)/6}))};
-  // paint static layer
-  base=document.createElement("canvas"); base.width=cv.width; base.height=cv.height;
-  const b=base.getContext("2d"); b.scale(dpr,dpr); b.lineCap="round";
-  // ground line
-  const g=b.createLinearGradient(W*.04,0,W*.96,0); g.addColorStop(0,"rgba(229,190,101,0)"); g.addColorStop(.5,"rgba(229,190,101,.7)"); g.addColorStop(1,"rgba(229,190,101,0)");
-  b.strokeStyle=g; b.lineWidth=1; b.beginPath(); b.moveTo(W*.04,ground); b.lineTo(W*.96,ground); b.stroke();
-  for(const s of segs){
-    const a=s.kind==="root"?.2+.07*s.depth:s.kind==="trunk"?.95:.12+.1*s.depth;
-    b.strokeStyle=s.kind==="root"?`rgba(214,162,58,${Math.min(a,.8)})`:`rgba(229,190,101,${Math.min(a,.95)})`;
-    b.lineWidth=Math.max(.45,s.w);
-    const mx=(s.x+s.x2)/2, my=(s.y+s.y2)/2, dx=s.x2-s.x, dy=s.y2-s.y, L=Math.hypot(dx,dy)||1;
-    b.beginPath(); b.moveTo(s.x,s.y); b.quadraticCurveTo(mx-dy/L*s.bend,my+dx/L*s.bend,s.x2,s.y2); b.stroke();
-  }
-  for(const p of tips){
-    if(p.r<.62) continue;
-    b.fillStyle=p.r>.93?"rgba(205,169,218,.6)":p.r>.8?"rgba(247,241,232,.35)":"rgba(229,190,101,.55)";
-    b.beginPath(); b.arc(p.x,p.y,.6+(p.r-.62)*3.2,0,Math.PI*2); b.fill();
-  }
-  // energy axis
-  b.strokeStyle="rgba(247,241,232,.18)"; b.lineWidth=1; b.setLineDash([2,4]);
-  b.beginPath(); b.moveTo(cx,ground); b.lineTo(cx,TREE.crownY); b.stroke(); b.setLineDash([]);
-  return true;
-}
-function frame(now){
-  raf=null;
-  if(!TREE||!base) return;
-  if($('[data-page="home"]').hidden) return;
-  const {W,H,dpr,cx,ground,crownY,nodes}=TREE;
-  ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(base,0,0);
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  const cycle=7000, t=((now-t0)%cycle)/cycle, travel=Math.min(t/.7,1);
-  const py=reduce?null:ground-(ground-crownY)*(travel*travel*(3-2*travel));
-  if(py!==null && t<.78){
-    const gr=ctx.createRadialGradient(cx,py,0,cx,py,26); gr.addColorStop(0,"rgba(247,241,232,.55)"); gr.addColorStop(1,"rgba(247,241,232,0)");
-    ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(cx,py,26,0,Math.PI*2); ctx.fill();
-  }
-  const fs=Math.max(11.5,Math.min(17,W/35)), ph=Math.round(fs*2.1), gap=Math.round(fs*1.2), padX=Math.round(fs*.85);
-  const nameFont=`700 ${fs}px Montserrat, Arial, sans-serif`, verbFont=`italic 600 ${fs*1.7}px "Cormorant Garamond", Georgia, serif`;
-  const pill=(x,y,w,h,edge)=>{
-    ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,h,h/2); else ctx.rect(x,y,w,h);
-    ctx.fillStyle="rgba(26,4,33,.9)"; ctx.fill();
-    ctx.strokeStyle=edge; ctx.lineWidth=1; ctx.stroke();
-  };
-  nodes.forEach((n,i)=>{
-    let k=reduce?.75:.55+.45*Math.exp(-(((n.y-(py??-999))/22)**2));
-    if(!reduce && t>.7 && t<.92 && i===6) k=Math.max(k,1-(t-.7)/.22*.45);
-    const rad=fs*(.8+1.1*k);
-    const gg=ctx.createRadialGradient(cx,n.y,0,cx,n.y,rad);
-    gg.addColorStop(0,n.c+"cc"); gg.addColorStop(1,n.c+"00");
-    ctx.fillStyle=gg; ctx.beginPath(); ctx.arc(cx,n.y,rad,0,Math.PI*2); ctx.fill();
-    // labels sit on solid pills so they stay readable over the branches
-    ctx.textBaseline="middle";
-    ctx.font=nameFont; if("letterSpacing" in ctx) ctx.letterSpacing="1.5px";
-    const label=n.name.toUpperCase(), nameW=ctx.measureText(label).width;
-    pill(cx+gap,n.y-ph/2,nameW+padX*2,ph,n.c+"b3");
-    ctx.fillStyle="#F7F1E8"; ctx.textAlign="left"; ctx.fillText(label,cx+gap+padX,n.y+1);
-    if("letterSpacing" in ctx) ctx.letterSpacing="0px";
-    ctx.font=verbFont;
-    const verbW=ctx.measureText(n.verb).width;
-    pill(cx-gap-verbW-padX*2,n.y-ph/2,verbW+padX*2,ph,"rgba(229,190,101,.45)");
-    ctx.fillStyle="#E5BE65"; ctx.textAlign="right"; ctx.fillText(n.verb,cx-gap-padX,n.y);
-    ctx.fillStyle=n.c; ctx.beginPath(); ctx.arc(cx,n.y,fs*.42,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle=`rgba(247,241,232,${.5+.5*k})`; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(cx,n.y,fs*.62,0,Math.PI*2); ctx.stroke();
-  });
-  if(!reduce) raf=requestAnimationFrame(frame);
-}
-function startTree(){ if(!TREE) build(); if(!raf) raf=requestAnimationFrame(frame); }
-new ResizeObserver(()=>{ if(build()) { if(raf) cancelAnimationFrame(raf); raf=null; startTree(); } }).observe(cv);
-document.fonts?.ready.then(()=>{ if(raf) cancelAnimationFrame(raf); raf=null; startTree(); });
+const heroWrap=cv.closest(".tree-wrap");
+let startTree=()=>{};
 
+/* ---- the original tree, unchanged ---- */
+function initClassicTree(){
+  heroWrap.classList.remove("hero--logo");
+  cv.setAttribute("aria-label","The Rooted & Crowned tree: roots below the ground line, a crown of branches above, and seven chakra points rising up the trunk from Root to Crown.");
+  let TREE=null, base=null, raf=null, t0=performance.now();
+  function build(){
+    const r=cv.getBoundingClientRect(); if(!r.width) return false;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const W=r.width,H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+    const rand=mulberry32(11), segs=[], tips=[];
+    const cx=W*.5, ground=H*.68, trunkTop=H*.42, crownY=H*.13;
+    function grow(x,y,len,ang,depth,w,kind){
+      const x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
+      segs.push({x,y,x2,y2,w,kind,depth,bend:(rand()-.5)*len*.25});
+      if(depth<=0||len<2.5){ if(kind==="branch") tips.push({x:x2,y:y2,r:rand()}); return; }
+      const n=rand()<.28?3:2;
+      for(let i=0;i<n;i++){
+        let off=n===2?(i?1:-1)*(.26+rand()*.22):(i-1)*(.36+rand()*.16);
+        let a=ang+off+(rand()-.5)*.14;
+        if(kind==="root") a=Math.min(Math.max(a,.1),Math.PI-.1);
+        else a=Math.min(Math.max(a,-Math.PI+.05),-.05);
+        grow(x2,y2,len*(.7+rand()*.1),a,depth-1,w*.7,kind);
+      }
+    }
+    segs.push({x:cx,y:ground+H*.015,x2:cx,y2:trunkTop,w:W*.024,kind:"trunk",depth:9,bend:0});
+    [-2.62,-2.12,-1.57,-1.02,-.52].forEach((a,i)=>grow(cx,trunkTop+(i%2?H*.02:0),H*.078*(i===2?1.08:.96),a+(rand()-.5)*.08,7,W*.013,"branch"));
+    [.3,.9,1.57,2.24,2.84].forEach((a,i)=>grow(cx,ground,H*.064*(i===2?1.1:1),a+(rand()-.5)*.08,7,W*.012,"root"));
+    TREE={W,H,dpr,cx,ground,trunkTop,crownY,
+      nodes:CHAKRAS.map((c,i)=>({c:c.c,name:c.name,verb:c.verb,y:ground-i*(ground-crownY)/6}))};
+    // paint static layer
+    base=document.createElement("canvas"); base.width=cv.width; base.height=cv.height;
+    const b=base.getContext("2d"); b.scale(dpr,dpr); b.lineCap="round";
+    // ground line
+    const g=b.createLinearGradient(W*.04,0,W*.96,0); g.addColorStop(0,"rgba(229,190,101,0)"); g.addColorStop(.5,"rgba(229,190,101,.7)"); g.addColorStop(1,"rgba(229,190,101,0)");
+    b.strokeStyle=g; b.lineWidth=1; b.beginPath(); b.moveTo(W*.04,ground); b.lineTo(W*.96,ground); b.stroke();
+    for(const s of segs){
+      const a=s.kind==="root"?.2+.07*s.depth:s.kind==="trunk"?.95:.12+.1*s.depth;
+      b.strokeStyle=s.kind==="root"?`rgba(214,162,58,${Math.min(a,.8)})`:`rgba(229,190,101,${Math.min(a,.95)})`;
+      b.lineWidth=Math.max(.45,s.w);
+      const mx=(s.x+s.x2)/2, my=(s.y+s.y2)/2, dx=s.x2-s.x, dy=s.y2-s.y, L=Math.hypot(dx,dy)||1;
+      b.beginPath(); b.moveTo(s.x,s.y); b.quadraticCurveTo(mx-dy/L*s.bend,my+dx/L*s.bend,s.x2,s.y2); b.stroke();
+    }
+    for(const p of tips){
+      if(p.r<.62) continue;
+      b.fillStyle=p.r>.93?"rgba(205,169,218,.6)":p.r>.8?"rgba(247,241,232,.35)":"rgba(229,190,101,.55)";
+      b.beginPath(); b.arc(p.x,p.y,.6+(p.r-.62)*3.2,0,Math.PI*2); b.fill();
+    }
+    // energy axis
+    b.strokeStyle="rgba(247,241,232,.18)"; b.lineWidth=1; b.setLineDash([2,4]);
+    b.beginPath(); b.moveTo(cx,ground); b.lineTo(cx,TREE.crownY); b.stroke(); b.setLineDash([]);
+    return true;
+  }
+  function frame(now){
+    raf=null;
+    if(!TREE||!base) return;
+    if($('[data-page="home"]').hidden) return;
+    const {W,H,dpr,cx,ground,crownY,nodes}=TREE;
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(base,0,0);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cycle=7000, t=((now-t0)%cycle)/cycle, travel=Math.min(t/.7,1);
+    const py=reduce?null:ground-(ground-crownY)*(travel*travel*(3-2*travel));
+    if(py!==null && t<.78){
+      const gr=ctx.createRadialGradient(cx,py,0,cx,py,26); gr.addColorStop(0,"rgba(247,241,232,.55)"); gr.addColorStop(1,"rgba(247,241,232,0)");
+      ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(cx,py,26,0,Math.PI*2); ctx.fill();
+    }
+    const fs=Math.max(11.5,Math.min(17,W/35)), ph=Math.round(fs*2.1), gap=Math.round(fs*1.2), padX=Math.round(fs*.85);
+    const nameFont=`700 ${fs}px Montserrat, Arial, sans-serif`, verbFont=`italic 600 ${fs*1.7}px "Cormorant Garamond", Georgia, serif`;
+    const pill=(x,y,w,h,edge)=>{
+      ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,h,h/2); else ctx.rect(x,y,w,h);
+      ctx.fillStyle="rgba(26,4,33,.9)"; ctx.fill();
+      ctx.strokeStyle=edge; ctx.lineWidth=1; ctx.stroke();
+    };
+    nodes.forEach((n,i)=>{
+      let k=reduce?.75:.55+.45*Math.exp(-(((n.y-(py??-999))/22)**2));
+      if(!reduce && t>.7 && t<.92 && i===6) k=Math.max(k,1-(t-.7)/.22*.45);
+      const rad=fs*(.8+1.1*k);
+      const gg=ctx.createRadialGradient(cx,n.y,0,cx,n.y,rad);
+      gg.addColorStop(0,n.c+"cc"); gg.addColorStop(1,n.c+"00");
+      ctx.fillStyle=gg; ctx.beginPath(); ctx.arc(cx,n.y,rad,0,Math.PI*2); ctx.fill();
+      // labels sit on solid pills so they stay readable over the branches
+      ctx.textBaseline="middle";
+      ctx.font=nameFont; if("letterSpacing" in ctx) ctx.letterSpacing="1.5px";
+      const label=n.name.toUpperCase(), nameW=ctx.measureText(label).width;
+      pill(cx+gap,n.y-ph/2,nameW+padX*2,ph,n.c+"b3");
+      ctx.fillStyle="#F7F1E8"; ctx.textAlign="left"; ctx.fillText(label,cx+gap+padX,n.y+1);
+      if("letterSpacing" in ctx) ctx.letterSpacing="0px";
+      ctx.font=verbFont;
+      const verbW=ctx.measureText(n.verb).width;
+      pill(cx-gap-verbW-padX*2,n.y-ph/2,verbW+padX*2,ph,"rgba(229,190,101,.45)");
+      ctx.fillStyle="#E5BE65"; ctx.textAlign="right"; ctx.fillText(n.verb,cx-gap-padX,n.y);
+      ctx.fillStyle=n.c; ctx.beginPath(); ctx.arc(cx,n.y,fs*.42,0,Math.PI*2); ctx.fill();
+      ctx.strokeStyle=`rgba(247,241,232,${.5+.5*k})`; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(cx,n.y,fs*.62,0,Math.PI*2); ctx.stroke();
+    });
+    if(!reduce) raf=requestAnimationFrame(frame);
+  }
+  startTree=function(){ if(!TREE) build(); if(!raf) raf=requestAnimationFrame(frame); };
+  new ResizeObserver(()=>{ if(build()) { if(raf) cancelAnimationFrame(raf); raf=null; startTree(); } }).observe(cv);
+  document.fonts?.ready.then(()=>{ if(raf) cancelAnimationFrame(raf); raf=null; startTree(); });
+}
+
+/* ---- the business logo with travelling lights ---- */
+function initLogoHero(){
+  heroWrap.classList.add("hero--logo");
+  cv.setAttribute("aria-label","The Rooted and Crowned Collective logo: a rainbow tree of life with seven chakra points rising up the trunk from Root to Crown (Ground, Create, Empower, Love, Speak, See, Integrate), a golden crown hanging from a branch above a family, and roots below.");
+  /* positions are in the logo's own pixels (900 x 1125) */
+  const LOGO={src:"assets/logo-tree.webp",w:900,h:1125,axis:439,ground:705,top:132,star:[447,127],
+    ys:[633,595,556,517,477,440,402],          // the seven chakra circles on the trunk, Root first
+    nodeR:19, labels:true, mode:"bubbles"};
+  let TREE=null, base=null, raf=null, t0=performance.now(), logoImg=null, spark=null, flies=null;
+  {const i=new Image(); i.onload=()=>{logoImg=i; if(build()) startTree();}; i.onerror=()=>initClassicTree(); i.src=LOGO.src;}   // if the logo cannot load, the original tree is drawn instead
+  
+  /* twinkle points: picked from the bright, colourful pixels of the logo itself, so they always sit on a leaf or a root */
+  function makeLights(){
+    const c=document.createElement("canvas"); c.width=LOGO.w; c.height=LOGO.h;
+    const x=c.getContext("2d",{willReadFrequently:true}); x.drawImage(logoImg,0,0);
+    const d=x.getImageData(0,0,LOGO.w,LOGO.h).data, rand=mulberry32(7), pts=[];
+    for(let y=6;y<LOGO.h;y+=3) for(let px=6;px<LOGO.w;px+=3){
+      const k=(y*LOGO.w+px)*4; if(d[k+3]<235) continue;
+      const r=d[k],g=d[k+1],b=d[k+2], mx=Math.max(r,g,b), mn=Math.min(r,g,b);
+      if(mx>170 && mx-mn>80 && rand()<.03) pts.push({x:px,y,c:[r,g,b]});
+    }
+    const step=Math.max(1,Math.ceil(pts.length/95));
+    spark=pts.filter((_,i)=>i%step===0).map(p=>({...p,ph:rand()*6.283,sp:.7+rand()*1.5,sz:5+rand()*8}));
+    flies=Array.from({length:16},()=>({cx:445+(rand()-.5)*470,cy:400+(rand()-.5)*470,ax:14+rand()*34,ay:12+rand()*30,sp:.25+rand()*.35,ph:rand()*6.283}));
+  }
+  function build(){
+    const r=cv.getBoundingClientRect(); if(!r.width||!logoImg) return false;
+    const dpr=Math.min(devicePixelRatio||1,2), W=r.width, H=r.height;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+    /* "bubbles" mode: the stage word (left) and the chakra name (right) sit in white bubbles outside the tree, joined to each circle by a line */
+    const bub=(LOGO.labels && LOGO.mode==="bubbles" && W>=480)?(()=>{
+      const v=Math.max(12.5,W*.0235), n=Math.max(8,W*.0142), ph=Math.round(v*1.85), padX=Math.round(v*.7), edge=2;
+      ctx.font=`italic 600 ${v}px "Cormorant Garamond",Georgia,serif`; if("letterSpacing" in ctx) ctx.letterSpacing="0px";
+      const wL=Math.ceil(Math.max(...CHAKRAS.map(c=>ctx.measureText(c.verb).width)))+padX*2;
+      ctx.font=`700 ${n}px Montserrat,Arial,sans-serif`; if("letterSpacing" in ctx) ctx.letterSpacing="1px";
+      const wR=Math.ceil(Math.max(...CHAKRAS.map(c=>ctx.measureText(c.name.toUpperCase()).width)))+padX*2;
+      if("letterSpacing" in ctx) ctx.letterSpacing="0px";
+      return {v,n,ph,step:ph+7,wL,wR,edge};
+    })():null;
+    const lap=W*.05;                                 // the logo's outer margins are empty, so the bubbles may sit slightly over them
+    const gl=bub?Math.max(0,bub.wL+bub.edge+8-lap):0, gr=bub?Math.max(0,bub.wR+bub.edge+8-lap):0;
+    const s=Math.min((W-gl-gr)/LOGO.w,H/LOGO.h), ox=gl+(W-gl-gr-LOGO.w*s)/2, oy=(H-LOGO.h*s)/2;
+    if(!spark) makeLights();
+    TREE={W,H,dpr,s,ox,oy,bub};
+    base=document.createElement("canvas"); base.width=cv.width; base.height=cv.height;
+    const b=base.getContext("2d"); b.scale(dpr,dpr);
+    // a soft lilac glow behind the logo so it lifts off the plum
+    const gx=ox+LOGO.w*s*.5, gy=oy+LOGO.h*s*.42, gr2=b.createRadialGradient(gx,gy,0,gx,gy,LOGO.w*s*.66);
+    gr2.addColorStop(0,"rgba(205,169,218,.32)"); gr2.addColorStop(.55,"rgba(120,50,140,.20)"); gr2.addColorStop(1,"rgba(88,32,100,0)");
+    b.fillStyle=gr2; b.fillRect(0,0,W,H);
+    b.imageSmoothingQuality="high"; b.drawImage(logoImg,ox,oy,LOGO.w*s,LOGO.h*s);
+    return true;
+  }
+  function frame(now){
+    raf=null;
+    if(!TREE||!base) return;
+    if($('[data-page="home"]').hidden) return;
+    const {W,H,dpr,s,ox,oy,bub}=TREE, X=x=>ox+x*s, Y=y=>oy+y*s;
+    const sec=(now-t0)/1000;
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(base,0,0);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cycle=7, t=(sec%cycle)/cycle, travel=Math.min(t/.7,1), e=travel*travel*(3-2*travel);
+    const py=reduce?null:LOGO.ground-(LOGO.ground-LOGO.top)*e;              // height of the travelling light, in logo pixels
+    const act=i=>reduce?.5:Math.min(1,.3+.7*Math.exp(-(((LOGO.ys[i]-(py??-999))/34)**2)));
+    ctx.globalCompositeOperation="lighter";
+    const glow=(x,y,R,rgb,a)=>{const g=ctx.createRadialGradient(x,y,0,x,y,R); g.addColorStop(0,`rgba(${rgb},${a})`); g.addColorStop(1,`rgba(${rgb},0)`); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,R,0,6.283); ctx.fill();};
+    /* twinkles on leaves and roots */
+    if(!reduce) for(const p of spark){
+      const I=Math.pow(Math.max(0,Math.sin(p.ph+sec*p.sp)),8); if(I<.05) continue;
+      const x=X(p.x), y=Y(p.y), R=p.sz*s*(.5+I);
+      glow(x,y,R*1.7,`${p.c[0]},${p.c[1]},${p.c[2]}`,.75*I); glow(x,y,R*.6,"255,255,255",.95*I);
+      ctx.strokeStyle=`rgba(255,255,255,${.85*I})`; ctx.lineWidth=1; ctx.beginPath();
+      ctx.moveTo(x-R*1.7,y); ctx.lineTo(x+R*1.7,y); ctx.moveTo(x,y-R*1.7); ctx.lineTo(x,y+R*1.7); ctx.stroke();
+    }
+    /* a few gold lights drifting through the canopy */
+    if(!reduce) for(const f of flies){
+      const x=X(f.cx+f.ax*Math.sin(sec*f.sp+f.ph)), y=Y(f.cy+f.ay*Math.cos(sec*f.sp*.8+f.ph)), a=.35+.35*Math.sin(sec*1.7+f.ph*2);
+      glow(x,y,9*s,"255,214,120",a); glow(x,y,3*s,"255,250,235",a+.2);
+    }
+    /* the travelling light, rising from the roots to the crown */
+    if(py!==null && t<.78){
+      const x=X(LOGO.axis), y=Y(py), tr=ctx.createLinearGradient(x,y,x,y+170*s);
+      tr.addColorStop(0,"rgba(247,241,232,.5)"); tr.addColorStop(1,"rgba(247,241,232,0)");
+      ctx.fillStyle=tr; ctx.fillRect(x-5*s,y,10*s,170*s);
+      glow(x,y,46*s,"247,241,232",.6); glow(x,y,16*s,"255,255,255",.9);
+    }
+    /* the chakra circles pulse as the light passes; Crown flares when it arrives */
+    LOGO.ys.forEach((ny,i)=>{
+      let k=reduce?.75:.5+.5*Math.exp(-(((ny-(py??-999))/34)**2))+.07*Math.sin(sec*2+i);
+      if(!reduce && t>.7 && t<.92 && i===6) k=Math.max(k,1-(t-.7)/.22*.45);
+      const x=X(LOGO.axis), y=Y(ny);
+      glow(x,y,LOGO.nodeR*s*(1.2+1.7*k),CHAKRAS[i].c.replace("#","").match(/../g).map(h=>parseInt(h,16)).join(","),.55*k+.1);
+      ctx.strokeStyle=`rgba(255,255,255,${.12+.5*k})`; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(x,y,LOGO.nodeR*s,0,6.283); ctx.stroke();
+    });
+    if(!reduce && t>.66 && t<.96){ const f=1-Math.abs((t-.76)/.2); if(f>0) glow(X(LOGO.star[0]),Y(LOGO.star[1]),(40+70*f)*s,"255,232,170",.75*f); }
+    ctx.globalCompositeOperation="source-over";
+    if(bub){
+      /* rows of matching bubbles: the stage word on the left, the chakra name on the right, Integrate at the top and Ground at the bottom */
+      const cy=Y(LOGO.ys[3]), rows=[6,5,4,3,2,1,0].map((i,k)=>({i,yc:cy+(k-3)*bub.step}));
+      const xLin=bub.edge+bub.wL, xRin=W-bub.edge-bub.wR, xN=X(LOGO.axis), rN=LOGO.nodeR*s+1;
+      for(const rw of rows){                          // lines first, so the bubbles sit on top of them
+        const c=CHAKRAS[rw.i], k=act(rw.i), y0=Y(LOGO.ys[rw.i]);
+        for(const side of [-1,1]){
+          const x0=xN+side*rN, x1=side<0?xLin:xRin, dx=x1-x0;
+          ctx.beginPath(); ctx.moveTo(x0,y0); ctx.bezierCurveTo(x0+dx*.5,y0,x1-dx*.4,rw.yc,x1,rw.yc);
+          ctx.strokeStyle=c.c; ctx.globalAlpha=.22+.3*k; ctx.lineWidth=4; ctx.stroke();
+          ctx.globalAlpha=.55+.45*k; ctx.lineWidth=1.5; ctx.stroke(); ctx.globalAlpha=1;
+        }
+        ctx.fillStyle=c.c; ctx.beginPath(); ctx.arc(xN-rN,y0,2.2,0,6.283); ctx.arc(xN+rN,y0,2.2,0,6.283); ctx.fill();
+      }
+      ctx.textBaseline="middle"; ctx.textAlign="center";
+      const bubble=(x,yc,w,c,k)=>{
+        const y=yc-bub.ph/2, r=bub.ph/2;
+        ctx.save(); ctx.shadowColor=c.c; ctx.shadowBlur=3+12*k; ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,bub.ph,r); else ctx.rect(x,y,w,bub.ph); ctx.fillStyle="#FFFFFF"; ctx.fill(); ctx.restore();
+        ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,bub.ph,r); else ctx.rect(x,y,w,bub.ph); ctx.strokeStyle=c.c; ctx.lineWidth=1.5+1.2*k; ctx.stroke();
+      };
+      for(const rw of rows){
+        const c=CHAKRAS[rw.i], k=act(rw.i);
+        bubble(bub.edge,rw.yc,bub.wL,c,k);
+        ctx.font=`italic 600 ${bub.v}px "Cormorant Garamond",Georgia,serif`; if("letterSpacing" in ctx) ctx.letterSpacing="0px"; ctx.fillStyle="#25072F"; ctx.fillText(c.verb,bub.edge+bub.wL/2,rw.yc+.5);
+        bubble(xRin,rw.yc,bub.wR,c,k);
+        ctx.font=`700 ${bub.n}px Montserrat,Arial,sans-serif`; if("letterSpacing" in ctx) ctx.letterSpacing="1px"; ctx.fillStyle="#25072F"; ctx.fillText(c.name.toUpperCase(),xRin+bub.wR/2,rw.yc+.5);
+        if("letterSpacing" in ctx) ctx.letterSpacing="0px";
+      }
+    }
+    if(!reduce) raf=requestAnimationFrame(frame);
+  }
+  startTree=function(){ if(!TREE) build(); if(!raf) raf=requestAnimationFrame(frame); };
+  new ResizeObserver(()=>{ if(build()) { if(raf) cancelAnimationFrame(raf); raf=null; startTree(); } }).observe(cv);
+  document.fonts?.ready.then(()=>{ if(raf) cancelAnimationFrame(raf); raf=null; startTree(); });
+}
+
+(HERO_STYLE==="tree"?initClassicTree:initLogoHero)();
 /* ---------- app preview ---------- */
 const QUESTIONS=[{cat:"Energy",q:"How would you describe your energy today?",lo:"LOW",hi:"HIGH",chakra:null},...CHAKRAS.map((c,i)=>({cat:c.cat,q:c.q,lo:c.lo,hi:c.hi,chakra:i}))];
 const SAMPLE_ANSWERS=[3,4,3,4,3,2,3,4];
