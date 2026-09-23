@@ -630,11 +630,15 @@ p{margin:0}
 .give{display:grid;gap:6px;align-content:start;padding:22px 24px;background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--c);border-radius:2px}
 .give h3{font-size:1.45rem;line-height:1.2;color:var(--plum)}
 .give p{font-size:14.5px;line-height:1.6;color:var(--plum-muted)}
+.give-grid--moss .give{background:#556B2F;border-color:rgba(0,0,0,.12)}
+.give-grid--moss .give h3{color:#FFFFFF}
+.give-grid--moss .give p{color:#DCE6C8}
 .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.way{display:grid;gap:14px;align-content:start;padding:28px 26px;border:1px solid var(--line-dark);border-radius:2px;background:rgba(26,4,33,.35)}
+.way{display:grid;gap:14px;align-content:start;padding:28px 26px;border:1px solid rgba(0,0,0,.15);border-radius:2px;background:rgba(26,4,33,.35)}
 .way h3{font-size:1.6rem;line-height:1.2;color:var(--ivory)}
-.way p{font-size:14.5px;line-height:1.65;color:var(--lav)}
-.way .btn{justify-self:start;margin-top:auto}
+.way p{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.88)}
+.way .btn{justify-self:start;margin-top:auto;background:#fff;border-color:#fff;color:var(--plum)}
+.way .btn:hover{background:var(--plum);border-color:var(--plum);color:#fff}
 @media (max-width:1000px){.ways{grid-template-columns:1fr 1fr}}
 @media (max-width:700px){.give-grid,.ways{grid-template-columns:1fr}}
 /* ecosystem page */
@@ -1703,7 +1707,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
       <h2 class="h-l">One Root. Many Branches. Infinite Possibilities.</h2>
       <p class="lede">Rooted &amp; Crowned Collective is being built to create spaces where individuals, families, and communities can heal, grow, learn, connect, and thrive together. Your support helps us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p>
     </div>
-    <div class="give-grid" data-give></div>
+    <div class="give-grid give-grid--moss" data-give></div>
   </div></section>
 
   <section class="band band--plum2"><div class="wrap" style="display:grid;gap:40px">
@@ -1712,12 +1716,12 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
       <h2 class="h-l">Choose how you’d like to be part of it.</h2>
     </div>
     <div class="ways">
-      <article class="way"><h3>Support the Collective</h3><p>Help us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p><a class="btn btn--gold btn--sm" href="#" data-ext="support" data-label="Support the Collective">Support the Collective <span class="arr">→</span></a></article>
-      <article class="way"><h3>Sponsor a Family</h3><p>Support family-centered resources, activities, and opportunities.</p><a class="btn btn--gold btn--sm" href="#" data-ext="sponsorFamily" data-label="Sponsor a Family">Sponsor a Family <span class="arr">→</span></a></article>
-      <article class="way"><h3>Fund a Scholarship</h3><p>Help reduce financial barriers to participation.</p><a class="btn btn--gold btn--sm" href="#" data-ext="scholarship" data-label="Fund a Scholarship">Fund a Scholarship <span class="arr">→</span></a></article>
-      <article class="way"><h3>Support a Community Event</h3><p>Help bring people together through meaningful community experiences.</p><a class="btn btn--line btn--sm" href="#/contact">Ask About Events <span class="arr">→</span></a></article>
-      <article class="way"><h3>Become a Community Partner</h3><p>Businesses and community organizations can get involved in ways that go beyond an individual gift.</p><a class="btn btn--line btn--sm" href="#/contact">Partner With Us <span class="arr">→</span></a></article>
-      <article class="way"><h3>Sponsor a Program</h3><p>Expand access to learning and personal-development experiences.</p><a class="btn btn--line btn--sm" href="#/contact">Sponsor a Program <span class="arr">→</span></a></article>
+      <article class="way" style="background:#D62828"><h3>Support the Collective</h3><p>Help us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p><a class="btn btn--sm" href="#" data-ext="support" data-label="Support the Collective">Support the Collective <span class="arr">→</span></a></article>
+      <article class="way" style="background:#F77F00"><h3>Sponsor a Family</h3><p>Support family-centered resources, activities, and opportunities.</p><a class="btn btn--sm" href="#" data-ext="sponsorFamily" data-label="Sponsor a Family">Sponsor a Family <span class="arr">→</span></a></article>
+      <article class="way" style="background:#2EAD61"><h3>Fund a Scholarship</h3><p>Help reduce financial barriers to participation.</p><a class="btn btn--sm" href="#" data-ext="scholarship" data-label="Fund a Scholarship">Fund a Scholarship <span class="arr">→</span></a></article>
+      <article class="way" style="background:#27A9D6"><h3>Support a Community Event</h3><p>Help bring people together through meaningful community experiences.</p><a class="btn btn--sm" href="#/contact">Ask About Events <span class="arr">→</span></a></article>
+      <article class="way" style="background:#4653B8"><h3>Become a Community Partner</h3><p>Businesses and community organizations can get involved in ways that go beyond an individual gift.</p><a class="btn btn--sm" href="#/contact">Partner With Us <span class="arr">→</span></a></article>
+      <article class="way" style="background:#8E44AD"><h3>Sponsor a Program</h3><p>Expand access to learning and personal-development experiences.</p><a class="btn btn--sm" href="#/contact">Sponsor a Program <span class="arr">→</span></a></article>
     </div>
   </div></section>
 
@@ -1945,6 +1949,7 @@ const LINKS = {
   support: "",         // Support the Collective: general gift / support page
   sponsorFamily: "",   // Sponsor a Family
   scholarship: "",     // Fund a Scholarship
+  sponsorInitiative: "", // Rooted Together: sponsor an initiative
   podcast: "",         // Podcast platform
   instagram: "", tiktok: "", youtube: "", facebook: ""
 };
