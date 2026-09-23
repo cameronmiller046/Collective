@@ -88,7 +88,7 @@ p{margin:0}
 .brand-sig{display:block;font-family:var(--script);font-size:17px;line-height:1.15;color:var(--gold-soft);margin-top:6px;max-width:min(46vw,400px)}
 .head-cta{display:flex;align-items:center;gap:10px}
 .nav-row{border-top:1px solid rgba(229,190,101,.1)}
-.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;padding-block:12px 13px;margin:0 auto;list-style:none}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 14px;padding-block:12px 13px;margin:0 auto;list-style:none}
 .nav-row .nav.wrap{max-width:1360px}
 .nav a{font-size:11px;font-weight:500;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;text-decoration:none;color:var(--lav);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .nav a:hover{color:var(--ivory)}
@@ -2027,7 +2027,7 @@ const ROOTS = [
 ];
 const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Sponsorship / community partner","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
 
-const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Our Ecosystem","/ecosystem"],["Infinite Possibilities","/infinite-possibilities"],["Contact","/contact"]];
+const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Our Ecosystem","/ecosystem"],["Infinite Possibilities","/infinite-possibilities"],["Support","/support"],["Contact","/contact"]];
 
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
@@ -2221,7 +2221,7 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
   "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
-const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",contact:"/contact",start:"/start-here",shop:"/shop"};
+const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",support:"/support",contact:"/contact",start:"/start-here",shop:"/shop"};
 let first=true, curPage=null;
 function route(){
   const slug=location.hash.replace(/^#\/?/,"").split(/[?#]/)[0].replace(/\/$/,"");
