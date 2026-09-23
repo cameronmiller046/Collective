@@ -180,9 +180,9 @@ p{margin:0}
 .thanks .lede{max-width:52ch}
 @media (max-width:640px){.thanks{padding:56px 0}}
 .thanks .wrap{display:grid;gap:44px}
-/* gratitude wall: cards stack one under another, centred, so more can be added below */
-.thanks-wall{display:flex;flex-direction:column;align-items:center;gap:36px}
-.thanks-card{margin:0;width:min(540px,100%);display:grid;gap:12px}
+/* gratitude wall: cards sit side by side and wrap, so more can be added over time */
+.thanks-wall{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:36px}
+.thanks-card{margin:0;width:min(360px,100%);display:grid;gap:12px}
 .thanks-card figcaption{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.4;text-align:center;color:var(--plum-muted)}
 .thanks-note{display:grid;gap:18px;justify-items:center;text-align:center;padding:46px 38px;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(88,32,100,.75),transparent 75%),var(--plum);color:var(--ivory);border:1px solid var(--gold);outline:1px solid rgba(214,162,58,.4);outline-offset:8px;border-radius:2px;box-shadow:0 30px 56px -30px rgba(37,7,47,.6)}
 .thanks .thanks-note .eyebrow,.thanks .thanks-note .script{color:var(--gold-soft)}
