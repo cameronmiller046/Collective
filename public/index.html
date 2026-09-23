@@ -638,11 +638,24 @@ p{margin:0}
 @media (max-width:700px){.give-grid,.ways{grid-template-columns:1fr}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:var(--plum);transition:border-color .2s,transform .2s,box-shadow .2s}
+.branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:#556B2F;border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:#FFFFFF;transition:border-color .2s,transform .2s,box-shadow .2s}
 a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(37,7,47,.5)}
-.branch h3{font-size:1.45rem;line-height:1.2}
-.branch p{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--plum-muted)}
-.branch .go{margin-top:6px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
+.branch h3{font-size:1.45rem;line-height:1.2;color:#FFFFFF}
+.branch p{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#DCE6C8}
+.branch .go{margin-top:6px;display:inline-flex;width:fit-content;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3F5323;background:#FFFFFF;padding:6px 13px;border-radius:20px}
+
+/* falling chakra trees behind the Branches section */
+.branches-band{position:relative;overflow:hidden}
+.tree-fall-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.tree-fall{position:absolute;top:-40px;opacity:0;animation:tree-fall linear infinite}
+.tree-fall img{width:100%;display:block;filter:drop-shadow(0 2px 3px rgba(37,7,47,.25))}
+@keyframes tree-fall{
+  0%{transform:translateY(-40px);opacity:0}
+  8%{opacity:.9}
+  92%{opacity:.9}
+  100%{transform:translateY(640px);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.tree-fall{display:none}}
 .roots{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-dark)}
 .root-item{display:grid;gap:12px;align-content:start;padding:28px 22px 8px 0}
 .root-item+.root-item{padding-left:22px;border-left:1px solid var(--line-dark)}
@@ -1610,11 +1623,13 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     </figure>
   </div></section>
 
-  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
-    <div class="sec-head" style="margin:0">
-      <span class="eyebrow">The Branches</span>
-      <h2 class="h-l">Twelve ways this work reaches people.</h2>
-      <p class="lede">Some branches are open today. Others are still growing.</p>
+  <section class="band band--ivory branches-band">
+    <div class="tree-fall-layer" data-tree-fall aria-hidden="true"></div>
+    <div class="wrap" style="display:grid;gap:40px;position:relative">
+    <div class="sec-head" style="margin:0;background:#556B2F;padding:34px 42px;border-radius:6px;outline:1px solid rgba(63,83,35,.5);outline-offset:6px;box-shadow:0 22px 50px -26px rgba(37,7,47,.6)">
+      <span class="eyebrow" style="color:var(--gold-soft)">The Branches</span>
+      <h2 class="h-l" style="color:#FFFFFF">Twelve ways this work reaches people.</h2>
+      <p class="lede" style="color:#DCE6C8">Some branches are open today. Others are still growing.</p>
     </div>
     <div class="branches" data-branches></div>
   </div></section>
@@ -2039,6 +2054,20 @@ $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
   const c=CHAKRAS[i%7].c, inner=`<h3>${esc(n)}</h3><p>${esc(t)}</p>${href?`<span class="go">Explore →</span>`:""}`;
   return href?`<a class="branch" href="#${href}" style="--c:${c}">${inner}</a>`:`<div class="branch" style="--c:${c}">${inner}</div>`;
 }).join(""));
+
+/* falling chakra trees behind the Branches section on Our Ecosystem */
+$$("[data-tree-fall]").forEach(layer=>{
+  for(let i=0;i<20;i++){
+    const el=document.createElement("div");
+    el.className="tree-fall";
+    el.style.left=(Math.random()*94)+"%";
+    el.style.width=(22+Math.random()*20)+"px";
+    el.style.animationDuration=(5+Math.random()*4)+"s";
+    el.style.animationDelay="-"+(Math.random()*9).toFixed(2)+"s";
+    el.innerHTML=`<img src="assets/chakra-tree.webp" alt="">`;
+    layer.appendChild(el);
+  }
+});
 const GIVE = [
   ["Education & Classes","Expand access to learning and personal-development experiences"],
   ["Children & Families","Support family-centered resources, activities, and opportunities"],
