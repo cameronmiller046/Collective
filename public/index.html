@@ -85,7 +85,7 @@ p{margin:0}
 .foot-logo{display:block;width:min(300px,100%);height:auto;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 68%,transparent 100%)}
 .brand-name{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.06em;line-height:1;text-transform:uppercase}
 .brand-name small{display:block;font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.32em;color:var(--gold-soft);margin-top:5px}
-.brand-sig{display:block;font-family:var(--script);font-size:17px;line-height:1;color:var(--gold-soft);margin-top:6px;white-space:nowrap}
+.brand-sig{display:block;font-family:var(--script);font-size:17px;line-height:1.15;color:var(--gold-soft);margin-top:6px;max-width:min(46vw,400px)}
 .head-cta{display:flex;align-items:center;gap:10px}
 .nav-row{border-top:1px solid rgba(229,190,101,.1)}
 .nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;padding-block:12px 13px;margin:0 auto;list-style:none}
@@ -103,6 +103,9 @@ p{margin:0}
   .drawer ul{list-style:none;margin:0;padding:0;display:grid}
   .drawer a{display:block;padding:12px 0;border-bottom:1px solid rgba(229,190,101,.1);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--lav)}
   .drawer a[aria-current="page"]{color:var(--gold-soft)}
+}
+@media (max-width:900px){
+  .brand-sig{font-size:10.5px;line-height:1.25;max-width:min(40vw,260px);margin-top:3px}
 }
 @media (max-width:640px){
   .brand-name{font-size:16px}.brand-name small{font-size:8px;letter-spacing:.24em}.brand-sig{display:none}
@@ -695,7 +698,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   <div class="wrap head-row">
     <a class="brand" href="#/" aria-label="Rooted & Crowned Collective — home">
       <img class="brand-logo" src="assets/logo-emblem.png" alt="" width="372" height="324">
-      <span class="brand-text"><span class="brand-name">Rooted &amp; Crowned<small>Collective</small></span><span class="brand-sig">Grounded Roots. Crown Driven.</span></span>
+      <span class="brand-text"><span class="brand-name">Rooted &amp; Crowned<small>Collective</small></span><span class="brand-sig">Heal from the Root Up. Live from the Crown Down.</span></span>
     </a>
     <div class="head-cta">
       <a class="btn btn--gold btn--sm" href="#/start-here">Start Here</a>
@@ -723,7 +726,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <span class="eyebrow">Rooted &amp; Crowned Collective</span>
-        <h1 class="h-xl"><span>Heal from the Root Up.</span><em>Live from the Crown Down.</em></h1>
+        <h1 class="h-xl"><em>Grounded Roots.</em><em>Crown Driven.</em></h1>
         <p class="lede">A personal-development framework and community created to help you reconnect with your foundation, rediscover your voice, align with purpose, and intentionally build what comes next.</p>
         <div class="btns">
           <a class="btn btn--gold" href="#/start-here">Start Your Journey <span class="arr">→</span></a>
