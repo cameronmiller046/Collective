@@ -180,11 +180,12 @@ p{margin:0}
 .thanks .lede{max-width:52ch}
 @media (max-width:640px){.thanks{padding:56px 0}}
 .thanks .wrap{display:grid;gap:44px}
-/* gratitude wall: cards sit side by side and wrap, so more can be added over time */
+/* gratitude wall: photo/poster cards sit side by side and wrap, so more can be added over time */
 .thanks-wall{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:36px}
-.thanks-card{margin:0;width:min(360px,100%);display:grid;gap:12px}
+.thanks-card{margin:0;width:min(500px,100%);display:grid;gap:12px}
 .thanks-card figcaption{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.4;text-align:center;color:var(--plum-muted)}
 .thanks-note{display:grid;gap:18px;justify-items:center;text-align:center;padding:46px 38px;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(88,32,100,.75),transparent 75%),var(--plum);color:var(--ivory);border:1px solid var(--gold);outline:1px solid rgba(214,162,58,.4);outline-offset:8px;border-radius:2px;box-shadow:0 30px 56px -30px rgba(37,7,47,.6)}
+.thanks-note--solo{width:min(560px,100%);margin:0 auto}
 .thanks .thanks-note .eyebrow,.thanks .thanks-note .script{color:var(--gold-soft)}
 .thanks-say{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,1.95rem);line-height:1.3}
 .thanks-note .script{font-size:clamp(1.7rem,3vw,2.2rem)}
@@ -966,16 +967,14 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
       <h2 class="h-m">To the people who walked with me.</h2>
       <p class="lede">No one rebuilds alone. To the family, friends, mentors, teachers and community who held space, told me the truth and believed in me before I could see it for myself: thank you. This journey carries your fingerprints.</p>
     </div>
-    <!-- Gratitude wall: cards sit side by side and wrap. To add a photo card, copy the photo-card example below (kept as a comment) and change the image, alt text and caption. -->
+    <div class="thanks-note thanks-note--solo">
+      <span class="eyebrow">Paying it forward</span>
+      <p class="thanks-say">What was poured into me helped make this possible. As I’m able, I will keep pouring into others.</p>
+      <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="script">Gratitude Creates a Cycle of Blessings.</p>
+    </div>
+    <!-- Gratitude wall: photo/poster cards sit side by side and wrap. To add one, copy the card example below (kept as a comment) and change the image, alt text and caption. -->
     <div class="thanks-wall">
-      <figure class="thanks-card thanks-card--text">
-        <div class="thanks-note">
-          <span class="eyebrow">Paying it forward</span>
-          <p class="thanks-say">What was poured into me helped make this possible. As I’m able, I will keep pouring into others.</p>
-          <div class="spectrum spectrum--short" aria-hidden="true"></div>
-          <p class="script">Gratitude Creates a Cycle of Blessings.</p>
-        </div>
-      </figure>
       <figure class="thanks-card">
         <button class="thanks-zoom" type="button" data-zoom="assets/gratitude-coach-tt.webp" aria-label="Open this gratitude card full size">
           <img src="assets/gratitude-coach-tt.webp" alt="A gratitude card from Coach Kia: three women in Rooted and Crowned Collective t-shirts beneath the Rooted and Crowned Collective logo, Grounded Roots. Crown Driven., with the words Infinite Possibilities. On the left, From Vision to Reality and Beyond: I am standing here today because of the guidance, wisdom and support from Coach TT and Elevated Gospel. You helped me see what was possible, gave me the tools to build it, and reminded me to keep going. This is bigger than me, it is a mission to help others heal, align and thrive. Thank you, Coach TT, for pouring into me. Below: Same energy. Bigger impact. We create. We heal. We elevate. Together." width="1536" height="1024" loading="lazy">
@@ -983,20 +982,12 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
         <figcaption>Thank you, Coach TT and Elevated Gospel, for pouring into me.<span class="thanks-hint">Click or tap the card to read it full size</span></figcaption>
       </figure>
       <figure class="thanks-card">
-        <button class="thanks-zoom" type="button" data-zoom="assets/gratitude-coach-tt-2.webp" aria-label="Open this photo of Coach Kia and Coach TT full size">
-          <img src="assets/gratitude-coach-tt-2.webp" alt="Coach Kia and Coach TT, foreheads together with hands clasped in prayer, eyes closed" width="1075" height="1464" loading="lazy">
+        <button class="thanks-zoom" type="button" data-zoom="assets/gratitude-coach-tt-3.webp" aria-label="Open this gratitude card full size">
+          <img src="assets/gratitude-coach-tt-3.webp" alt="A gratitude card from Coach Kia: Coach Kia and Coach TT with foreheads together and hands clasped in prayer, beside the Rooted and Crowned Collective logo and the words Rooted in Gratitude. Crowned in Purpose. A personal thank you to Coach TT. Coach TT, thank you for seeing the vision in me, for pouring into me, and for creating a space where purpose became possible. Elevated Gospel did not just teach me, it opened a pathway, gave me structure, encouragement and tools to build, and reminded me that I can do more, be more and help more. This journey is bigger than me. Your guidance helped me recognize that healing can create healing for others, and that when we invest in people, we can change families, communities and generations. My Crown does not erase the hands that helped strengthen my Roots, Coach Kia. I am forever grateful. A gold banner reads Healing People Changes Generations." width="1536" height="1024" loading="lazy">
         </button>
-        <div class="thanks-note" style="margin-top:14px">
-          <span class="eyebrow">A personal thank you to Coach TT &amp; Elevated Gospel</span>
-          <p class="script">Rooted in Gratitude. Crowned in Purpose.</p>
-          <p>Coach TT, thank you for seeing the vision in me, for pouring into me, and for creating a space where purpose became possible. Elevated Gospel did not just teach me — it opened a pathway, gave me structure, encouragement and tools to build, and reminded me that I can do more, be more and help more.</p>
-          <p>This journey is bigger than me. Your guidance helped me recognize that healing can create healing for others, and that when we invest in people, we can change families, communities and generations.</p>
-          <div class="spectrum spectrum--short" aria-hidden="true"></div>
-          <p style="font-style:italic">“My Crown does not erase the hands that helped strengthen my Roots.”<br>— Coach Kia</p>
-          <p>I am forever grateful. ♥</p>
-        </div>
+        <figcaption>Rooted in Gratitude. Crowned in Purpose. A thank you to Coach TT.<span class="thanks-hint">Click or tap the card to read it full size</span></figcaption>
       </figure>
-      <!-- photo card example:
+      <!-- card example:
       <figure class="thanks-card">
         <button class="thanks-zoom" type="button" data-zoom="assets/YOUR-IMAGE.webp" aria-label="Open this gratitude card full size">
           <img src="assets/YOUR-IMAGE.webp" alt="Describe the card, including its wording" width="1536" height="1024" loading="lazy">
