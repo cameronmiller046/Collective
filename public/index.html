@@ -641,6 +641,20 @@ p{margin:0}
 .way .btn:hover{background:var(--plum);border-color:var(--plum);color:#fff}
 @media (max-width:1000px){.ways{grid-template-columns:1fr 1fr}}
 @media (max-width:700px){.give-grid,.ways{grid-template-columns:1fr}}
+
+.rooted-together-bg{background:linear-gradient(rgba(247,241,232,.4),rgba(247,241,232,.4)),url('assets/chakra-tree.webp') 0 0/110px 110px repeat,var(--ivory)}
+
+/* Support page: goal tree beside the personal note */
+.note-grid{display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:start;justify-items:center}
+.goal-tree-card{display:grid;justify-items:center;gap:10px;padding:26px 22px;background:var(--white);border:1px solid var(--line-light);border-radius:6px;box-shadow:0 22px 44px -30px rgba(37,7,47,.5);position:sticky;top:120px}
+.goal-tree{position:relative;width:180px;height:220px}
+.goal-tree-bg,.goal-tree-fill{position:absolute;inset:0;width:100%;height:100%}
+.goal-tree-bg{fill:rgba(37,7,47,.08)}
+.goal-tree-fill{clip-path:inset(100% 0 0 0);transition:clip-path 1.4s cubic-bezier(.22,.61,.36,1)}
+.goal-amount{font-family:var(--serif);font-size:1.7rem;color:var(--plum);line-height:1}
+.goal-amount span{display:block;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--plum-muted);margin-top:4px}
+.goal-target{font-size:12px;color:var(--plum-muted);text-align:center}
+@media (max-width:900px){.note-grid{grid-template-columns:1fr;justify-items:center}.goal-tree-card{position:static}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:#556B2F;border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:#FFFFFF;transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -1684,17 +1698,14 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 
 <!-- ===================== SUPPORT OUR ECOSYSTEM ===================== -->
 <div data-page="support" hidden>
-  <section class="page-hero"><div class="wrap ip-hero">
-    <div class="ip-hero-copy">
+  <section class="page-hero"><div class="wrap">
+    <div class="center" style="max-width:760px">
       <span class="eyebrow">Support Our Ecosystem</span>
       <h1 class="h-xl">Help Us Grow What Matters.</h1>
       <p class="lede">Every branch represents a possibility. Every root strengthens the foundation. Every person who supports the vision helps us reach farther.</p>
       <p class="caps ip-flow">Heal • Grow • Thrive • Together</p>
       <div class="spectrum spectrum--short"></div>
     </div>
-    <figure class="ip-frame">
-      <img src="assets/ecosystem.webp" alt="The Rooted and Crowned Collective ecosystem: a glowing tree of life with twelve branches, crowned by Infinite Possibilities, and roots of People, Purpose, Foundation, Community and Impact" width="1072" height="1467">
-    </figure>
   </div></section>
 
   <section class="lib-banner2">
@@ -1702,10 +1713,15 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   </section>
 
   <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
-    <div class="sec-head" style="margin:0">
-      <span class="eyebrow">What your support can strengthen</span>
-      <h2 class="h-l">One Root. Many Branches. Infinite Possibilities.</h2>
-      <p class="lede">Rooted &amp; Crowned Collective is being built to create spaces where individuals, families, and communities can heal, grow, learn, connect, and thrive together. Your support helps us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p>
+    <div class="ip-two ip-two--flip">
+      <div class="sec-head" style="margin:0">
+        <span class="eyebrow">What your support can strengthen</span>
+        <h2 class="h-l">One Root. Many Branches. Infinite Possibilities.</h2>
+        <p class="lede">Rooted &amp; Crowned Collective is being built to create spaces where individuals, families, and communities can heal, grow, learn, connect, and thrive together. Your support helps us continue developing the programs, resources, experiences, and opportunities represented throughout our ecosystem.</p>
+      </div>
+      <figure class="ip-frame" style="margin:0">
+        <img src="assets/ecosystem.webp" alt="The Rooted and Crowned Collective ecosystem: a glowing tree of life with twelve branches, crowned by Infinite Possibilities, and roots of People, Purpose, Foundation, Community and Impact" width="1072" height="1467">
+      </figure>
     </div>
     <div class="give-grid give-grid--moss" data-give></div>
   </div></section>
@@ -1738,8 +1754,8 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     </div>
   </div></section>
 
-  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
-    <div class="sec-head" style="margin:0">
+  <section class="band band--ivory rooted-together-bg"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0;background:#F7F1E8;padding:34px 42px;border-radius:6px;outline:1px solid rgba(131,92,16,.4);outline-offset:6px;box-shadow:0 22px 50px -26px rgba(37,7,47,.6);max-width:640px">
       <span class="eyebrow">Why we are Rooted Together</span>
       <h2 class="h-l">A tree grows strong from what happens underground.</h2>
       <p class="lede">Roots intertwine. They share space. They endure storms. They create the foundation that allows something greater to rise. We believe communities work the same way: when people have access to support, knowledge, advocacy, mentorship, wellness resources, creative expression, and meaningful community, possibilities begin to expand. Through Rooted Together, our goal is to help cultivate those possibilities. Our impact will center around:</p>
@@ -1763,8 +1779,46 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     </div>
   </div></section>
 
-  <section class="band band--ivory"><div class="wrap">
-    <div style="max-width:680px;margin:0 auto;display:grid;gap:16px">
+  <section class="band band--ivory" style="background:#E4D3ED"><div class="wrap">
+    <div class="note-grid">
+      <aside class="goal-tree-card">
+        <div class="goal-tree" data-goal-tree>
+          <svg class="goal-tree-bg" viewBox="0 14 220 248" aria-hidden="true">
+            <rect x="98" y="176" width="24" height="86" rx="6"/>
+            <circle cx="110" cy="150" r="54"/>
+            <circle cx="66" cy="120" r="42"/>
+            <circle cx="154" cy="120" r="42"/>
+            <circle cx="82" cy="78" r="40"/>
+            <circle cx="138" cy="78" r="40"/>
+            <circle cx="110" cy="58" r="44"/>
+          </svg>
+          <svg class="goal-tree-fill" viewBox="0 14 220 248" aria-hidden="true" data-goal-fill>
+            <defs>
+              <linearGradient id="goalGrad" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#D62828"/>
+                <stop offset="17%" stop-color="#F77F00"/>
+                <stop offset="34%" stop-color="#F4C430"/>
+                <stop offset="50%" stop-color="#2EAD61"/>
+                <stop offset="67%" stop-color="#27A9D6"/>
+                <stop offset="83%" stop-color="#4653B8"/>
+                <stop offset="100%" stop-color="#8E44AD"/>
+              </linearGradient>
+            </defs>
+            <g fill="url(#goalGrad)">
+              <rect x="98" y="176" width="24" height="86" rx="6"/>
+              <circle cx="110" cy="150" r="54"/>
+              <circle cx="66" cy="120" r="42"/>
+              <circle cx="154" cy="120" r="42"/>
+              <circle cx="82" cy="78" r="40"/>
+              <circle cx="138" cy="78" r="40"/>
+              <circle cx="110" cy="58" r="44"/>
+            </g>
+          </svg>
+        </div>
+        <p class="goal-amount" data-goal-amount>$100 <span>raised</span></p>
+        <p class="goal-target" data-goal-target>toward our $100,000 goal</p>
+      </aside>
+      <div style="max-width:680px;display:grid;gap:16px">
       <div class="center" style="max-width:680px;gap:6px;margin-bottom:8px">
         <span class="eyebrow">A personal note from Coach Kia</span>
         <p class="script">Founder, Rooted &amp; Crowned Collective</p>
@@ -1786,6 +1840,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
         <p class="story-line">With love, purpose, and gratitude,</p>
         <p class="script" style="font-size:clamp(1.7rem,3vw,2.2rem)">Coach Kia</p>
         <p class="caps" style="color:var(--gold-ink)">Founder, Rooted &amp; Crowned Collective</p>
+      </div>
       </div>
     </div>
   </div></section>
@@ -2032,6 +2087,9 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 
 <script>
 /* ---------- Paste real URLs here before launch ---------- */
+/* Support page goal tree: update RAISED by hand as gifts come in until a real donation platform reports totals */
+const GOAL_RAISED = 100, GOAL_TARGET = 100000;
+
 const LINKS = {
   stan: "",            // Stan Store home
   stanEmail: "",       // Conversations newsletter / email sign-up page
@@ -2178,6 +2236,18 @@ $$("[data-tree-fall]").forEach(layer=>{
     el.innerHTML=`<img src="assets/chakra-tree.webp" alt="">`;
     layer.appendChild(el);
   }
+});
+
+/* Support page: goal tree fill */
+$$("[data-goal-tree]").forEach(el=>{
+  const pct=Math.min(100,(GOAL_RAISED/GOAL_TARGET)*100);
+  const visualPct=Math.max(pct,4); // keep a visible sliver even for a small gift
+  const fill=el.querySelector("[data-goal-fill]");
+  const amount=el.closest(".goal-tree-card").querySelector("[data-goal-amount]");
+  const target=el.closest(".goal-tree-card").querySelector("[data-goal-target]");
+  amount.innerHTML=`$${GOAL_RAISED.toLocaleString()} <span>raised</span>`;
+  target.textContent=`toward our $${GOAL_TARGET.toLocaleString()} goal · ${pct.toFixed(1)}%`;
+  requestAnimationFrame(()=>{ fill.style.clipPath=`inset(${100-visualPct}% 0 0 0)`; });
 });
 const GIVE = [
   ["Education & Classes","Expand access to learning and personal-development experiences"],
