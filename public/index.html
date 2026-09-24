@@ -2477,8 +2477,8 @@ $$("[data-roots]").forEach(el=>el.innerHTML=ROOTS.map(([n,l])=>`<div class="root
 const PARENT = ["Grounding","Emotional permission","Advocacy","Self-care","Family voice","Perspective","Hope & purpose"];
 const KIDS = ["I Am Safe","I Can Feel & Create","I Can Grow in My Own Way","I Am Worthy of Love & Connection","My Voice Matters","My Mind Has Its Own Strengths","I Belong & I Have Purpose"];
 $$("[data-paths]").forEach(el=>{el.innerHTML=`
-  <div><h4>Parents &amp; Caregivers</h4><ol>${PARENT.map((p,i)=>`<li style="--c:${CHAKRAS[i].c}"><i></i>${p}</li>`).join("")}</ol></div>
-  <div><h4>Children &amp; Young Adults</h4><ol>${KIDS.map((p,i)=>`<li style="--c:${CHAKRAS[i].c}"><i></i><span style="font-family:var(--serif);font-style:italic;font-size:1.15rem">${p}</span></li>`).join("")}</ol></div>`;});
+  <div><h4>Parents &amp; Caregivers</h4><ol>${PARENT.map((p,i)=>({p,c:CHAKRAS[i].c})).reverse().map(({p,c})=>`<li style="--c:${c}"><i></i>${p}</li>`).join("")}</ol></div>
+  <div><h4>Children &amp; Young Adults</h4><ol>${KIDS.map((p,i)=>({p,c:CHAKRAS[i].c})).reverse().map(({p,c})=>`<li style="--c:${c}"><i></i><span style="font-family:var(--serif);font-style:italic;font-size:1.15rem">${p}</span></li>`).join("")}</ol></div>`;});
 
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
