@@ -721,14 +721,8 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   100%{transform:translateY(var(--fall,640px));opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.tree-fall{display:none}}
-.roots{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-dark)}
-.root-item{display:grid;gap:12px;align-content:start;padding:28px 22px 8px 0}
-.root-item+.root-item{padding-left:22px;border-left:1px solid var(--line-dark)}
-.root-item h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-soft)}
-.root-item ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
-.root-item li{font-family:var(--serif);font-size:1.3rem;line-height:1.3}
-@media (max-width:1000px){.branches{grid-template-columns:1fr 1fr}.roots{grid-template-columns:repeat(3,1fr)}.root-item:nth-child(4){padding-left:0;border-left:0}.root-item:nth-child(n+4){border-top:1px solid var(--line-dark);margin-top:24px}}
-@media (max-width:620px){.branches{grid-template-columns:1fr}.roots{grid-template-columns:1fr 1fr}.root-item{padding-left:0!important;border-left:0!important;border-top:1px solid var(--line-dark);margin-top:0!important}.root-item:nth-child(-n+2){border-top:0}.root-item:nth-child(even){padding-left:16px!important;border-left:1px solid var(--line-dark)!important}}
+@media (max-width:1000px){.branches{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.branches{grid-template-columns:1fr}}
 /* infinite possibilities page */
 .page-hero .ip-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center}
 .ip-hero-copy{display:grid;gap:18px;align-content:center}
@@ -2120,13 +2114,9 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <div class="branches" data-branches></div>
   </div></section>
 
-  <section class="band band--plum2"><div class="wrap" style="display:grid;gap:40px">
-    <div class="sec-head" style="margin:0">
-      <span class="eyebrow">The Roots</span>
-      <h2 class="h-l">What every branch grows from.</h2>
-    </div>
-    <div class="roots" data-roots></div>
-  </div></section>
+  <section class="lib-banner2">
+    <img class="lib-banner-img2" src="assets/ecosystem-roots.webp" alt="The Roots: what every branch grows from. A glowing rainbow-leafed tree of life rooted on a mountainside overlooking a sunlit lake, with a gold crown reading Grounded Roots, Crown Driven. Five columns beneath: People — Support, Community, Collaboration; Purpose — Meaning, Direction, Service; Foundation — Healing, Growth, Alignment; Community — Inclusion, Education, Opportunity; Impact — Stronger Families, Brighter Futures, Generational Change." width="2000" height="667">
+  </section>
 
   <section class="band band--ivory branches-band" id="invest" style="scroll-margin-top:110px">
     <div class="tree-fall-layer" data-tree-fall aria-hidden="true"></div>
@@ -2697,13 +2687,6 @@ const BRANCHES = [
   ["Retreats & Travel","Recharge • Reconnect • Rise","/contact"],
   ["Business Strategies","Build • Expand • Create Wealth","/contact"]
 ];
-const ROOTS = [
-  ["People",["Support","Community","Collaboration"]],
-  ["Purpose",["Meaning","Direction","Service"]],
-  ["Foundation",["Healing","Growth","Alignment"]],
-  ["Community",["Inclusion","Education","Opportunity"]],
-  ["Impact",["Stronger Families","Brighter Futures","Generational Change"]]
-];
 const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Sponsorship / community partner","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
 
 const NAV = [["Home","/"],["Our Story","/about"],["The Framework","/root-to-crown"],["Programs","/programs"],["Podcast","/conversations"],["Books & Journals","/books"],["The App","/app"],["Community","/community"],["Our Ecosystem","/ecosystem"],["Infinite Possibilities","/infinite-possibilities"],["Support Us","/support"],["Contact","/contact"]];
@@ -2850,7 +2833,6 @@ const GIVE = [
   ["Resources & Tools","Support the creation of books, journals, educational materials, and practical resources"]
 ];
 $$("[data-give]").forEach(el=>el.innerHTML=GIVE.map(([n,d],i)=>`<div class="give" style="--c:${CHAKRAS[i].c}"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join(""));
-$$("[data-roots]").forEach(el=>el.innerHTML=ROOTS.map(([n,l])=>`<div class="root-item"><h3>${esc(n)}</h3><ul>${l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join(""));
 
 const PARENT = ["Grounding","Emotional permission","Advocacy","Self-care","Family voice","Perspective","Hope & purpose"];
 const KIDS = ["I Am Safe","I Can Feel & Create","I Can Grow in My Own Way","I Am Worthy of Love & Connection","My Voice Matters","My Mind Has Its Own Strengths","I Belong & I Have Purpose"];
