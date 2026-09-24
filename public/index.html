@@ -552,7 +552,8 @@ p{margin:0}
 .paths>div+div{border-left:1px solid var(--line-light)}
 .paths h4{font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:18px 22px;border-bottom:1px solid var(--line-light);color:var(--plum)}
 .paths ol{list-style:none;margin:0;padding:0}
-.paths li{display:grid;grid-template-columns:12px 1fr;gap:14px;align-items:center;padding:13px 22px;border-bottom:1px solid var(--line-light);font-size:14px;color:var(--plum)}
+.paths li{display:grid;grid-template-columns:12px 1fr;gap:14px;align-items:center;padding:13px 22px;border-bottom:1px solid var(--line-light);font-size:14px;line-height:24px;color:var(--plum)}
+.paths li span{line-height:24px;display:inline-block}
 .paths li:last-child{border-bottom:0}
 .paths li i{width:10px;height:10px;border-radius:50%;background:var(--c)}
 .paths.kids li{font-family:var(--serif);font-size:1.2rem;font-style:italic}
@@ -1746,7 +1747,9 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     <div class="roots" data-roots></div>
   </div></section>
 
-  <section class="band band--ivory" id="invest" style="scroll-margin-top:110px"><div class="wrap" style="display:grid;gap:44px">
+  <section class="band band--ivory branches-band" id="invest" style="scroll-margin-top:110px">
+    <div class="tree-fall-layer" data-tree-fall aria-hidden="true"></div>
+    <div class="wrap" style="display:grid;gap:44px;position:relative">
     <div class="center" style="max-width:860px">
       <div class="invest-title-row">
         <div class="invest-tree-card"><img src="assets/gold-tree-emblem.webp" alt="" aria-hidden="true"></div>
