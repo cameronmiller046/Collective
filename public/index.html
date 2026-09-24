@@ -697,6 +697,10 @@ p{margin:0}
 }
 @media (prefers-reduced-motion:reduce){.chakra-glow{display:none}}
 @media (max-width:700px){.big-goal-row{gap:14px}.goal-tree-card--lg{padding:32px 20px 26px}}
+/* Support page: full-width scattered-leaf border strip, used above and below the goal-tree section's wording */
+.leaf-border{position:relative;width:100vw;left:50%;margin-left:-50vw;height:40px;overflow:visible;pointer-events:none}
+.lb-leaf{position:absolute;top:50%;width:15px;height:11px;border-radius:0 100% 0 100%;opacity:.85;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:#556B2F;border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:#FFFFFF;transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -2208,7 +2212,8 @@ details.course-mod summary::-webkit-details-marker{display:none}
 
   <section class="band band--ivory2"><div class="wrap">
     <div class="support-goal-wrap">
-    <div class="center" style="max-width:720px;gap:16px;margin-bottom:36px">
+    <div class="leaf-border" data-leaf-border aria-hidden="true"></div>
+    <div class="center" style="max-width:720px;gap:16px;margin:16px 0 36px">
       <span class="eyebrow">Our $100,000 community impact goal</span>
       <h2 class="h-l">Watch Possibility Come to Life.</h2>
       <p class="lede">Our goal is to raise $100,000 to help Rooted &amp; Crowned Collective expand programs, resources, community experiences, and opportunities designed to strengthen individuals and families.</p>
@@ -2236,6 +2241,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <div class="spectrum spectrum--short" aria-hidden="true"></div>
       <p class="caps" style="color:var(--gold-ink);letter-spacing:.22em">Rooted in people. Crowned in purpose. Growing infinite possibilities.</p>
     </div>
+    <div class="leaf-border" data-leaf-border aria-hidden="true" style="margin-top:16px"></div>
     </div>
   </div></section>
 
@@ -2789,6 +2795,23 @@ $$("[data-big-goal-leaves]").forEach(layer=>{
     el.style.setProperty("--drift",(Math.random()*40-20)+"px");
     el.style.animationDuration=(6+Math.random()*5)+"s";
     el.style.animationDelay="-"+(Math.random()*11).toFixed(2)+"s";
+    layer.appendChild(el);
+  }
+});
+
+/* Support page: full-width scattered-leaf border strip above/below the goal section's wording */
+$$("[data-leaf-border]").forEach(layer=>{
+  const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
+  const N=60;
+  for(let i=0;i<N;i++){
+    const el=document.createElement("div");
+    el.className="lb-leaf";
+    const segment=100/N;
+    const left=(i*segment)+Math.random()*segment; // stratified so it reaches both edges
+    el.style.left=left+"%";
+    el.style.marginTop=(Math.random()*22-11)+"px";
+    el.style.background=colors[i%colors.length];
+    el.style.transform=`translateY(-50%) rotate(${Math.floor(Math.random()*360)}deg) scale(${(0.7+Math.random()*0.6).toFixed(2)})`;
     layer.appendChild(el);
   }
 });
