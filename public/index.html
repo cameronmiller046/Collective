@@ -1769,6 +1769,20 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
     <div class="give-grid give-grid--moss" data-give></div>
   </div></section>
 
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">Why we give</span><h2 class="h-l">People. Purpose. Possibilities. Impact.</h2></div>
+    <div class="give-grid">
+      <div class="give" style="--c:#D62828"><h3>People</h3><p>Strengthening Individuals &amp; Families — creating accessible opportunities for individuals and families to participate in supportive experiences centered around personal growth, self-discovery, wellness, education, and connection.</p></div>
+      <div class="give" style="--c:#F4C430"><h3>Purpose</h3><p>Creating Meaningful Programs — developing workshops, classes, community experiences, educational resources, and practical tools that help people reflect, learn, practice, align, and grow.</p></div>
+      <div class="give" style="--c:#2EAD61"><h3>Possibilities</h3><p>Expanding Access &amp; Opportunity — providing sponsorships, community resources, youth and family opportunities, and reduced-cost or supported access so finances do not have to be the reason someone misses an opportunity to participate.</p></div>
+      <div class="give" style="--c:#8E44AD"><h3>Impact</h3><p>Investing in Stronger Communities — bringing people, practitioners, families, organizations, and resources together through community initiatives designed to create connection and opportunities that can extend beyond one person to families and future generations.</p></div>
+    </div>
+    <div class="center" style="max-width:640px;gap:6px">
+      <p class="story-line" style="font-size:clamp(1.2rem,2vw,1.5rem)">When we invest in people, we create possibilities.</p>
+      <p class="story-line" style="font-size:clamp(1.2rem,2vw,1.5rem)">When possibilities are nurtured, communities can grow.</p>
+    </div>
+  </div></section>
+
   <section class="band band--ivory2"><div class="wrap">
     <div class="center" style="max-width:720px;gap:16px;margin-bottom:36px">
       <span class="eyebrow">Our $100,000 community impact goal</span>
@@ -2351,8 +2365,10 @@ $$("[data-big-goal-leafpile]").forEach(layer=>{
   for(let i=0;i<N;i++){
     const el=document.createElement("div");
     el.className="pile-leaf";
-    // spread widely across the whole base circumference, following the full spread of the roots
-    const left=Math.random()*100;
+    // stratified spread: guarantees even coverage all the way to both edges, so the pile
+    // reads as one connected ring rather than leaving a gap on one side by chance
+    const segment=100/N;
+    const left=(i*segment)+Math.random()*segment;
     el.style.left=left+"%";
     el.style.bottom=(Math.random()*85)+"%";
     el.style.background=colors[i%colors.length];
