@@ -741,7 +741,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   0%{transform:translateY(-40px);opacity:0}
   8%{opacity:.9}
   92%{opacity:.9}
-  100%{transform:translateY(640px);opacity:0}
+  100%{transform:translateY(var(--fall,640px));opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.tree-fall{display:none}}
 .roots{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-dark)}
@@ -2361,14 +2361,17 @@ $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
   return href?`<a class="branch" href="#${href}" style="--c:${c}">${inner}</a>`:`<div class="branch" style="--c:${c}">${inner}</div>`;
 }).join(""));
 
-/* falling chakra trees behind the Branches section on Our Ecosystem */
+/* falling chakra trees behind the Branches and Invest sections on Our Ecosystem */
 $$("[data-tree-fall]").forEach(layer=>{
-  for(let i=0;i<20;i++){
+  const fallDist=Math.max(640,layer.getBoundingClientRect().height+80);
+  const N=Math.round(20*Math.max(1,fallDist/640));
+  for(let i=0;i<N;i++){
     const el=document.createElement("div");
     el.className="tree-fall";
     el.style.left=(Math.random()*94)+"%";
     el.style.width=(22+Math.random()*20)+"px";
-    el.style.animationDuration=(5+Math.random()*4)+"s";
+    el.style.setProperty("--fall",fallDist+"px");
+    el.style.animationDuration=(fallDist/120+Math.random()*4)+"s";
     el.style.animationDelay="-"+(Math.random()*9).toFixed(2)+"s";
     el.innerHTML=`<img src="assets/chakra-tree.webp" alt="">`;
     layer.appendChild(el);
