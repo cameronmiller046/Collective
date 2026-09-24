@@ -664,23 +664,37 @@ p{margin:0}
 
 /* Support page: large goal tree with $1,000 milestone ticks and falling leaves */
 .big-goal-row{display:flex;justify-content:center;align-items:stretch;gap:28px;width:100%}
-.goal-tree-card--lg{position:static;width:min(560px,100%);margin:0 auto;padding:44px 40px 32px}
-.goal-tree-card--lg .goal-tree{width:100%;max-width:420px}
-.big-goal-scale{position:relative;flex:0 0 30px;width:30px}
+.goal-tree-card--lg{position:static;width:min(760px,100%);margin:0 auto;padding:56px 50px 40px}
+.goal-tree-card--lg .goal-tree{width:100%;max-width:600px}
+.goal-tree-card--lg .goal-amount{font-size:2.3rem}
+.goal-tree-card--lg .goal-target{font-size:13.5px}
+.big-goal-scale{position:relative;flex:0 0 38px;width:38px}
 .big-goal-scale::before{content:"";position:absolute;inset:0;background:
   repeating-linear-gradient(to top,rgba(131,92,16,.9) 0,rgba(131,92,16,.9) 2px,transparent 2px,transparent calc(100%/10)),
   repeating-linear-gradient(to top,rgba(131,92,16,.35) 0,rgba(131,92,16,.35) 1px,transparent 1px,transparent calc(100%/100));
   }
-.big-goal-scale-label{position:absolute;right:8px;transform:translateY(50%);font-family:var(--sans);font-size:10px;font-weight:700;color:var(--plum-muted);white-space:nowrap}
+.big-goal-scale-label{position:absolute;right:10px;transform:translateY(50%);font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--plum-muted);white-space:nowrap}
 .big-goal-leaves{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
-.leaf{position:absolute;top:-16px;width:13px;height:10px;border-radius:0 100% 0 100%;opacity:0;animation:leaf-fall linear infinite}
+.leaf{position:absolute;top:-16px;width:17px;height:13px;border-radius:0 100% 0 100%;opacity:0;animation:leaf-fall linear infinite}
 @keyframes leaf-fall{
   0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:0}
   8%{opacity:.9}
   80%{opacity:.85}
-  100%{transform:translateY(480px) translateX(var(--drift,15px)) rotate(220deg);opacity:0}
+  100%{transform:translateY(660px) translateX(var(--drift,15px)) rotate(220deg);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.leaf{display:none}}
+.big-goal-leafpile{position:absolute;left:-6%;right:-6%;bottom:-11%;height:11%;pointer-events:none;z-index:2}
+.pile-leaf{position:absolute;bottom:0;width:19px;height:14px;border-radius:0 100% 0 100%;opacity:.92;box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.big-goal-chakras{position:absolute;inset:0;pointer-events:none;z-index:3}
+.chakra-glow{position:absolute;width:7%;aspect-ratio:1;left:49.7%;border-radius:50%;transform:translate(-50%,-50%) scale(1);
+  background:radial-gradient(circle,var(--c) 0%,var(--c) 35%,transparent 72%);opacity:0;
+  animation:chakra-glow 7s ease-in-out infinite}
+@keyframes chakra-glow{
+  0%,9%,100%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+  2%{opacity:1;transform:translate(-50%,-50%) scale(1.5)}
+  6%{opacity:.6;transform:translate(-50%,-50%) scale(1.1)}
+}
+@media (prefers-reduced-motion:reduce){.chakra-glow{display:none}}
 @media (max-width:700px){.big-goal-row{gap:14px}.goal-tree-card--lg{padding:32px 20px 26px}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -1754,10 +1768,11 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   </div></section>
 
   <section class="band band--ivory2"><div class="wrap">
-    <div class="center" style="max-width:760px;gap:16px;margin-bottom:36px">
-      <span class="eyebrow">Our fundraising goal</span>
-      <h2 class="h-l">Watch the tree grow.</h2>
-      <p class="lede">Every gift fills the tree a little more, root to crown, with a mark for every $1,000 along the way. Follow our progress toward $100,000.</p>
+    <div class="center" style="max-width:720px;gap:16px;margin-bottom:36px">
+      <span class="eyebrow">Our $100,000 community impact goal</span>
+      <h2 class="h-l">Watch Possibility Come to Life.</h2>
+      <p class="lede">Our goal is to raise $100,000 to help Rooted &amp; Crowned Collective expand programs, resources, community experiences, and opportunities designed to strengthen individuals and families.</p>
+      <p class="lede">As our community gives, watch the tree transform from root to crown. Each $1,000 raised brings new color to the tree — representing another step toward creating stronger roots, greater access, and more possibilities for the people and communities we serve.</p>
     </div>
     <div class="goal-tree-card goal-tree-card--lg">
       <div class="big-goal-row">
@@ -1766,10 +1781,13 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
           <div class="big-goal-leaves" data-big-goal-leaves aria-hidden="true"></div>
           <img class="goal-tree-bg" src="assets/rooted-together-tree.webp" alt="">
           <img class="goal-tree-fill" src="assets/rooted-together-tree.webp" alt="" data-goal-fill>
+          <div class="big-goal-chakras" data-big-goal-chakras aria-hidden="true"></div>
+          <div class="big-goal-leafpile" data-big-goal-leafpile aria-hidden="true"></div>
         </div>
       </div>
       <p class="goal-amount" data-goal-amount>$100 <span>raised</span></p>
       <p class="goal-target" data-goal-target>toward our $100,000 goal</p>
+      <div class="btns" style="margin-top:18px;justify-content:center"><a class="btn btn--gold" href="#" data-ext="support" data-label="Help the Tree Grow">Help the Tree Grow <span class="arr">→</span></a></div>
     </div>
     <div class="center" style="max-width:720px;gap:16px;margin-top:40px">
       <p class="script">Don’t Let Another Leaf Fall</p>
@@ -2289,7 +2307,7 @@ $$("[data-big-goal-scale]").forEach(scale=>{
 /* Support page: chakra leaves gently falling from the large goal tree */
 $$("[data-big-goal-leaves]").forEach(layer=>{
   const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
-  for(let i=0;i<22;i++){
+  for(let i=0;i<30;i++){
     const el=document.createElement("div");
     el.className="leaf";
     el.style.left=(10+Math.random()*80)+"%";
@@ -2297,6 +2315,46 @@ $$("[data-big-goal-leaves]").forEach(layer=>{
     el.style.setProperty("--drift",(Math.random()*40-20)+"px");
     el.style.animationDuration=(6+Math.random()*5)+"s";
     el.style.animationDelay="-"+(Math.random()*11).toFixed(2)+"s";
+    layer.appendChild(el);
+  }
+});
+
+/* Support page: chakra symbols on the big goal tree light up one at a time, root to crown, continuously */
+$$("[data-big-goal-chakras]").forEach(layer=>{
+  const points=[
+    {c:"#D62828",y:77.7}, // root
+    {c:"#F77F00",y:68.6}, // sacral
+    {c:"#F4C430",y:59.8}, // solar plexus
+    {c:"#2EAD61",y:50.4}, // heart
+    {c:"#27A9D6",y:40.9}, // throat
+    {c:"#4653B8",y:31.2}, // third eye
+    {c:"#8E44AD",y:22.4}  // crown
+  ];
+  const duration=7; // seconds for one full root-to-crown cycle
+  points.forEach((p,i)=>{
+    const el=document.createElement("div");
+    el.className="chakra-glow";
+    el.style.setProperty("--c",p.c);
+    el.style.top=p.y+"%";
+    el.style.animationDelay=(-(i*duration/points.length)).toFixed(2)+"s";
+    layer.appendChild(el);
+  });
+});
+
+/* Support page: a settled pile of chakra leaves at the base of the big goal tree */
+$$("[data-big-goal-leafpile]").forEach(layer=>{
+  const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
+  const N=42;
+  for(let i=0;i<N;i++){
+    const el=document.createElement("div");
+    el.className="pile-leaf";
+    // spread widely across the whole base, following the full spread of the roots
+    const left=Math.random()*100;
+    el.style.left=left+"%";
+    el.style.bottom=(Math.random()*70)+"%";
+    el.style.background=colors[i%colors.length];
+    el.style.transform=`rotate(${Math.floor(Math.random()*360)}deg) scale(${(0.75+Math.random()*0.6).toFixed(2)})`;
+    el.style.zIndex=String(Math.floor(Math.random()*10));
     layer.appendChild(el);
   }
 });
