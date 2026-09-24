@@ -762,6 +762,10 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 .ip-frame--moss img{outline:none;border-radius:1px;box-shadow:0 6px 18px rgba(0,0,0,.45)}
 .ip-frame--gold{background:linear-gradient(155deg,var(--gold-soft),var(--gold) 55%,var(--gold-ink));padding:20px;border-radius:4px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7),inset 0 0 0 2px rgba(37,7,47,.55),inset 0 2px 10px rgba(37,7,47,.3)}
 .ip-frame--gold img{outline:none;border-radius:1px;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.invest-title-row{display:flex;align-items:center;justify-content:center;gap:32px}
+.invest-tree-card{flex:none;width:104px;aspect-ratio:3/4;background:linear-gradient(160deg,var(--plum-2),var(--plum-deep));border-radius:6px;display:grid;place-items:center;padding:12px;box-shadow:0 22px 40px -22px rgba(0,0,0,.65),inset 0 0 0 1px rgba(214,162,58,.45)}
+.invest-tree-card img{width:100%;height:auto;display:block}
+@media (max-width:760px){.invest-tree-card{display:none}}
 .confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
 .ip-two{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:center}
 .ip-two--flip{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
@@ -1744,7 +1748,11 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 
   <section class="band band--ivory" id="invest" style="scroll-margin-top:110px"><div class="wrap" style="display:grid;gap:44px">
     <div class="center" style="max-width:860px">
-      <h2 class="h-l">Invest in the Possibilities</h2>
+      <div class="invest-title-row">
+        <div class="invest-tree-card"><img src="assets/gold-tree-emblem.webp" alt="" aria-hidden="true"></div>
+        <h2 class="h-l">Invest in the Possibilities</h2>
+        <div class="invest-tree-card"><img src="assets/gold-tree-emblem.webp" alt="" aria-hidden="true"></div>
+      </div>
       <p class="lede">Your support strengthens the roots, expands the reach, and helps create opportunities for individuals, families, and communities to grow and thrive. What we nurture today can create opportunities that reach generations.</p>
       <p class="script">One Root. Many Branches. Infinite Possibilities.</p>
     </div>
