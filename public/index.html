@@ -686,8 +686,6 @@ p{margin:0}
   100%{transform:translateY(660px) translateX(var(--drift,15px)) rotate(220deg);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.leaf{display:none}}
-.big-goal-leafpile{position:absolute;left:-10%;right:-10%;bottom:-13%;height:13%;pointer-events:none;z-index:2}
-.pile-leaf{position:absolute;bottom:0;width:16px;height:12px;border-radius:0 100% 0 100%;opacity:.92;box-shadow:0 1px 2px rgba(0,0,0,.35)}
 .big-goal-chakras{position:absolute;inset:0;pointer-events:none;z-index:3}
 .chakra-glow{position:absolute;width:7%;aspect-ratio:1;left:49.7%;border-radius:50%;transform:translate(-50%,-50%) scale(1);
   background:radial-gradient(circle,var(--c) 0%,var(--c) 35%,transparent 72%);opacity:0;
@@ -699,31 +697,6 @@ p{margin:0}
 }
 @media (prefers-reduced-motion:reduce){.chakra-glow{display:none}}
 @media (max-width:700px){.big-goal-row{gap:14px}.goal-tree-card--lg{padding:32px 20px 26px}}
-
-/* Support page: rainbow chakra butterflies flutter around the goal section, never over the tree, and land in profile on the heading and closing text */
-.support-goal-wrap{position:relative}
-.support-butterflies{position:absolute;inset:0;pointer-events:none;z-index:6}
-.butterfly{position:absolute;width:36px;height:34px;margin:-17px 0 0 -18px;
-  animation:butterfly-fly var(--dur,30s) ease-in-out infinite;animation-delay:var(--del,0s)}
-.butterfly svg{position:absolute;inset:0;width:100%;height:100%;display:block;filter:drop-shadow(0 2px 5px rgba(37,7,47,.35))}
-.bf-fly{animation:bf-fly-op var(--dur,30s) ease-in-out infinite,butterfly-flutter .6s ease-in-out infinite alternate;animation-delay:var(--del,0s),0s}
-.bf-land{opacity:0;animation:bf-land-op var(--dur,30s) ease-in-out infinite;animation-delay:var(--del,0s)}
-@keyframes butterfly-flutter{0%{transform:scaleX(1)}100%{transform:scaleX(.8)}}
-@keyframes bf-fly-op{0%,6%{opacity:1}12%,17%{opacity:0}23%,62%{opacity:1}70%,76%{opacity:0}82%,100%{opacity:1}}
-@keyframes bf-land-op{0%,6%{opacity:0}12%,17%{opacity:1}23%,62%{opacity:0}70%,76%{opacity:1}82%,100%{opacity:0}}
-@keyframes butterfly-fly{
-  0%{left:var(--x0);top:var(--y0);transform:rotate(var(--r0))}
-  9%{left:var(--x1);top:var(--y1);transform:rotate(var(--r1))}
-  20%{left:var(--x1);top:var(--y1);transform:rotate(var(--r1))}
-  30%{left:var(--x2);top:var(--y2);transform:rotate(var(--r2))}
-  44%{left:var(--x3);top:var(--y3);transform:rotate(var(--r3))}
-  58%{left:var(--x4);top:var(--y4);transform:rotate(var(--r4))}
-  68%{left:var(--x5);top:var(--y5);transform:rotate(var(--r5))}
-  78%{left:var(--x5);top:var(--y5);transform:rotate(var(--r5))}
-  90%{left:var(--x6);top:var(--y6);transform:rotate(var(--r6))}
-  100%{left:var(--x0);top:var(--y0);transform:rotate(var(--r0))}
-}
-@media (prefers-reduced-motion:reduce){.butterfly{display:none}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:#556B2F;border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:#FFFFFF;transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -2249,7 +2222,6 @@ details.course-mod summary::-webkit-details-marker{display:none}
           <img class="goal-tree-bg" src="assets/rooted-together-tree.webp" alt="">
           <img class="goal-tree-fill" src="assets/rooted-together-tree.webp" alt="" data-goal-fill>
           <div class="big-goal-chakras" data-big-goal-chakras aria-hidden="true"></div>
-          <div class="big-goal-leafpile" data-big-goal-leafpile aria-hidden="true"></div>
         </div>
       </div>
       <p class="goal-amount" data-goal-amount style="margin-top:96px">$100 <span>raised</span></p>
@@ -2264,7 +2236,6 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <div class="spectrum spectrum--short" aria-hidden="true"></div>
       <p class="caps" style="color:var(--gold-ink);letter-spacing:.22em">Rooted in people. Crowned in purpose. Growing infinite possibilities.</p>
     </div>
-    <div class="support-butterflies" data-support-butterflies aria-hidden="true"></div>
     </div>
   </div></section>
 
@@ -2822,81 +2793,6 @@ $$("[data-big-goal-leaves]").forEach(layer=>{
   }
 });
 
-/* Support page: rainbow chakra butterflies flutter around the goal section - never over the tree - and land in side profile only on the headline and "Don't Let Another Leaf Fall" */
-$$("[data-support-butterflies]").forEach(layer=>{
-  const rand=(a,b)=>(a+Math.random()*(b-a)).toFixed(1);
-  const N=5;
-  for(let i=0;i<N;i++){
-    // one margin side per butterfly (stays left OR right the whole loop) so every leg of the path
-    // that isn't a landing either stays inside that margin column, or - when it does cross the
-    // full width to land - does so while already at the safe top/bottom band, never diagonally
-    // through the tree card's footprint.
-    const side = Math.random()<0.5 ? "L" : "R";
-    const marginX=()=> side==="L" ? rand(2,12)+"%" : rand(88,98)+"%";
-    const el=document.createElement("div");
-    el.className="butterfly";
-    const gid="cbg-"+i+"-"+Math.random().toString(36).slice(2,7);
-    const gidL="cbgl-"+i+"-"+Math.random().toString(36).slice(2,7);
-    el.innerHTML=`
-      <svg class="bf-fly" viewBox="0 0 40 38" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#8E44AD"/><stop offset="16%" stop-color="#4653B8"/><stop offset="33%" stop-color="#27A9D6"/><stop offset="50%" stop-color="#2EAD61"/><stop offset="66%" stop-color="#F4C430"/><stop offset="83%" stop-color="#F77F00"/><stop offset="100%" stop-color="#D62828"/>
-        </linearGradient></defs>
-        <g stroke="rgba(20,10,25,.55)" stroke-width=".6" stroke-linejoin="round">
-          <path fill="url(#${gid})" d="M20,16 C24,6 31,0 39,3 C41,9 37,16 31,18 C26,20 22,19 20,16 Z"/>
-          <path fill="url(#${gid})" d="M20,18 C24,21 27,26 29,34 C30,38 27,41 24,37 C22,32 20,25 20,18 Z"/>
-          <g transform="translate(40,0) scale(-1,1)">
-            <path fill="url(#${gid})" d="M20,16 C24,6 31,0 39,3 C41,9 37,16 31,18 C26,20 22,19 20,16 Z"/>
-            <path fill="url(#${gid})" d="M20,18 C24,21 27,26 29,34 C30,38 27,41 24,37 C22,32 20,25 20,18 Z"/>
-          </g>
-        </g>
-        <g fill="#fff" opacity=".85">
-          <circle cx="34" cy="6" r="1"/><circle cx="36" cy="11" r=".8"/><circle cx="27" cy="30" r=".9"/>
-          <circle cx="6" cy="6" r="1"/><circle cx="4" cy="11" r=".8"/><circle cx="13" cy="30" r=".9"/>
-        </g>
-        <path d="M20,5 C18,10 18,28 20,34 C22,28 22,10 20,5 Z" fill="#2A1430"/>
-        <path d="M20,5 C18,3 16,2 14,2" stroke="#2A1430" stroke-width=".8" fill="none" stroke-linecap="round"/>
-        <path d="M20,5 C22,3 24,2 26,2" stroke="#2A1430" stroke-width=".8" fill="none" stroke-linecap="round"/>
-      </svg>
-      <svg class="bf-land" viewBox="0 0 50 40" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="${gidL}" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#8E44AD"/><stop offset="20%" stop-color="#4653B8"/><stop offset="40%" stop-color="#27A9D6"/><stop offset="55%" stop-color="#2EAD61"/><stop offset="70%" stop-color="#F4C430"/><stop offset="85%" stop-color="#F77F00"/><stop offset="100%" stop-color="#D62828"/>
-        </linearGradient></defs>
-        <g stroke="rgba(20,10,25,.55)" stroke-width=".6" stroke-linejoin="round">
-          <path fill="url(#${gidL})" opacity=".9" d="M19,22 C23,26 27,30 31,37 C32,39 29,40 26,38 C22,34 19,28 18,23 Z"/>
-          <path fill="url(#${gidL})" d="M21,19 C25,8 35,2 46,5 C48,12 43,19 36,22 C30,24 24,23 21,19 Z"/>
-        </g>
-        <g fill="#fff" opacity=".85">
-          <circle cx="43" cy="8" r="1.1"/><circle cx="45" cy="13" r=".9"/><circle cx="35" cy="19" r=".9"/><circle cx="28" cy="34" r=".9"/>
-        </g>
-        <path d="M6,29 C11,26 17,23 22,20" stroke="#2A1430" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-        <circle cx="6" cy="29" r="1.6" fill="#2A1430"/>
-        <path d="M6,29 C3,26 1,24 -1,23" stroke="#2A1430" stroke-width=".7" fill="none" stroke-linecap="round"/>
-        <path d="M6,29 C4,25 3,22 2,19" stroke="#2A1430" stroke-width=".7" fill="none" stroke-linecap="round"/>
-      </svg>`;
-    // x0,x2: margin, top band (same safe y-band as the x1 headline landing either side of it)
-    el.style.setProperty("--x0",marginX());         el.style.setProperty("--y0",rand(2,12)+"%");
-    el.style.setProperty("--r0",rand(-15,15)+"deg");
-    el.style.setProperty("--x1",rand(24,76)+"%");   el.style.setProperty("--y1",rand(2,5)+"%"); // lands on "Watch Possibility Come to Life."
-    el.style.setProperty("--r1",rand(-6,6)+"deg");
-    el.style.setProperty("--x2",marginX());         el.style.setProperty("--y2",rand(2,12)+"%");
-    el.style.setProperty("--r2",rand(-15,15)+"deg");
-    // x3: margin, middle band - safe regardless of y because x never leaves the margin column
-    el.style.setProperty("--x3",marginX());         el.style.setProperty("--y3",rand(25,50)+"%");
-    el.style.setProperty("--r3",rand(-15,15)+"deg");
-    // x4,x6: margin, bottom band (same safe y-band as the x5 landing either side of it)
-    el.style.setProperty("--x4",marginX());         el.style.setProperty("--y4",rand(75,79)+"%");
-    el.style.setProperty("--r4",rand(-15,15)+"deg");
-    el.style.setProperty("--x5",rand(30,70)+"%");   el.style.setProperty("--y5",rand(75,79)+"%"); // lands on "Don't Let Another Leaf Fall"
-    el.style.setProperty("--r5",rand(-6,6)+"deg");
-    el.style.setProperty("--x6",marginX());         el.style.setProperty("--y6",rand(75,79)+"%");
-    el.style.setProperty("--r6",rand(-15,15)+"deg");
-    el.style.setProperty("--dur",(34+Math.random()*16).toFixed(1)+"s");
-    el.style.setProperty("--del","-"+(i*4.6+Math.random()*3).toFixed(2)+"s");
-    layer.appendChild(el);
-  }
-});
-
 /* Support page: chakra symbols on the big goal tree light up one at a time, root to crown, continuously */
 $$("[data-big-goal-chakras]").forEach(layer=>{
   const points=[
@@ -2919,25 +2815,6 @@ $$("[data-big-goal-chakras]").forEach(layer=>{
   });
 });
 
-/* Support page: a settled pile of chakra leaves at the base of the big goal tree */
-$$("[data-big-goal-leafpile]").forEach(layer=>{
-  const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
-  const N=130;
-  for(let i=0;i<N;i++){
-    const el=document.createElement("div");
-    el.className="pile-leaf";
-    // stratified spread: guarantees even coverage all the way to both edges, so the pile
-    // reads as one connected ring rather than leaving a gap on one side by chance
-    const segment=100/N;
-    const left=(i*segment)+Math.random()*segment;
-    el.style.left=left+"%";
-    el.style.bottom=(Math.random()*85)+"%";
-    el.style.background=colors[i%colors.length];
-    el.style.transform=`rotate(${Math.floor(Math.random()*360)}deg) scale(${(0.7+Math.random()*0.7).toFixed(2)})`;
-    el.style.zIndex=String(Math.floor(Math.random()*10));
-    layer.appendChild(el);
-  }
-});
 const GIVE = [
   ["Education & Classes","Expand access to learning and personal-development experiences"],
   ["Children & Families","Support family-centered resources, activities, and opportunities"],
