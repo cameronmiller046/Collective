@@ -700,6 +700,16 @@ p{margin:0}
 /* Support page: full-width scattered-leaf border strip, used above and below the goal-tree section's wording */
 .leaf-border{position:relative;width:100vw;left:50%;margin-left:-50vw;height:40px;overflow:visible;pointer-events:none}
 .lb-leaf{position:absolute;top:50%;width:15px;height:11px;border-radius:0 100% 0 100%;opacity:.85;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.support-goal-wrap{position:relative}
+.goal-leaf-fall{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none;z-index:1}
+.gl-leaf{position:absolute;top:-16px;width:16px;height:12px;border-radius:0 100% 0 100%;opacity:0;box-shadow:0 1px 2px rgba(0,0,0,.22);animation:goal-leaf-fall linear infinite}
+@keyframes goal-leaf-fall{
+  0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:0}
+  8%{opacity:.9}
+  85%{opacity:.85}
+  100%{transform:translateY(var(--fall,640px)) translateX(var(--drift,15px)) rotate(240deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.gl-leaf{display:none}}
 
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -2206,6 +2216,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="band band--ivory2"><div class="wrap">
     <div class="support-goal-wrap">
     <div class="leaf-border" data-leaf-border aria-hidden="true"></div>
+    <div class="goal-leaf-fall" data-goal-leaf-fall aria-hidden="true"></div>
     <div class="center" style="max-width:720px;gap:16px;margin:16px auto 36px">
       <span class="eyebrow">Our $100,000 community impact goal</span>
       <h2 class="h-l">Watch Possibility Come to Life.</h2>
@@ -2801,6 +2812,42 @@ $$("[data-leaf-border]").forEach(layer=>{
     layer.appendChild(el);
   }
 });
+
+/* Support page: leaves fall from the top leaf-border down to the bottom leaf-border of the goal section */
+function renderGoalLeafFall(){
+  $$("[data-goal-leaf-fall]").forEach(layer=>{
+    layer.innerHTML="";
+    const wrap=layer.closest(".support-goal-wrap");
+    const borders=wrap.querySelectorAll(".leaf-border");
+    if(borders.length<2) return;
+    const top=borders[0], bottom=borders[borders.length-1];
+    const wrapTop=wrap.getBoundingClientRect().top;
+    const topMid=top.getBoundingClientRect().top-wrapTop+top.offsetHeight/2;
+    const bottomMid=bottom.getBoundingClientRect().top-wrapTop+bottom.offsetHeight/2;
+    const fallDist=Math.max(200,bottomMid-topMid);
+    layer.style.top=topMid+"px";
+    layer.style.height=fallDist+"px";
+    const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
+    const N=Math.round(26*Math.max(1,fallDist/640));
+    for(let i=0;i<N;i++){
+      const el=document.createElement("div");
+      el.className="gl-leaf";
+      el.style.left=(Math.random()*96)+"%";
+      el.style.background=colors[i%colors.length];
+      el.style.setProperty("--fall",fallDist+"px");
+      el.style.setProperty("--drift",(Math.random()*40-20)+"px");
+      el.style.animationDuration=(fallDist/95+Math.random()*4)+"s";
+      el.style.animationDelay="-"+(Math.random()*12).toFixed(2)+"s";
+      layer.appendChild(el);
+    }
+  });
+}
+if($$("[data-goal-leaf-fall]").length){
+  if(document.readyState==="complete") renderGoalLeafFall();
+  else window.addEventListener("load",renderGoalLeafFall);
+  window.addEventListener("hashchange",()=>setTimeout(renderGoalLeafFall,50));
+  window.addEventListener("resize",()=>{clearTimeout(window.__glfResize);window.__glfResize=setTimeout(renderGoalLeafFall,200)});
+}
 
 /* Support page: chakra symbols on the big goal tree light up one at a time, root to crown, continuously */
 $$("[data-big-goal-chakras]").forEach(layer=>{
