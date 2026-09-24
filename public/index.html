@@ -683,8 +683,8 @@ p{margin:0}
   100%{transform:translateY(660px) translateX(var(--drift,15px)) rotate(220deg);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.leaf{display:none}}
-.big-goal-leafpile{position:absolute;left:-6%;right:-6%;bottom:-11%;height:11%;pointer-events:none;z-index:2}
-.pile-leaf{position:absolute;bottom:0;width:19px;height:14px;border-radius:0 100% 0 100%;opacity:.92;box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.big-goal-leafpile{position:absolute;left:-10%;right:-10%;bottom:-13%;height:13%;pointer-events:none;z-index:2}
+.pile-leaf{position:absolute;bottom:0;width:16px;height:12px;border-radius:0 100% 0 100%;opacity:.92;box-shadow:0 1px 2px rgba(0,0,0,.35)}
 .big-goal-chakras{position:absolute;inset:0;pointer-events:none;z-index:3}
 .chakra-glow{position:absolute;width:7%;aspect-ratio:1;left:49.7%;border-radius:50%;transform:translate(-50%,-50%) scale(1);
   background:radial-gradient(circle,var(--c) 0%,var(--c) 35%,transparent 72%);opacity:0;
@@ -1785,7 +1785,7 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
           <div class="big-goal-leafpile" data-big-goal-leafpile aria-hidden="true"></div>
         </div>
       </div>
-      <p class="goal-amount" data-goal-amount>$100 <span>raised</span></p>
+      <p class="goal-amount" data-goal-amount style="margin-top:58px">$100 <span>raised</span></p>
       <p class="goal-target" data-goal-target>toward our $100,000 goal</p>
       <div class="btns" style="margin-top:18px;justify-content:center"><a class="btn btn--gold" href="#" data-ext="support" data-label="Help the Tree Grow">Help the Tree Grow <span class="arr">→</span></a></div>
     </div>
@@ -2336,7 +2336,7 @@ $$("[data-big-goal-chakras]").forEach(layer=>{
     el.className="chakra-glow";
     el.style.setProperty("--c",p.c);
     el.style.top=p.y+"%";
-    el.style.animationDelay=(-(i*duration/points.length)).toFixed(2)+"s";
+    el.style.animationDelay=(i*duration/points.length).toFixed(2)+"s";
     layer.appendChild(el);
   });
 });
@@ -2344,16 +2344,16 @@ $$("[data-big-goal-chakras]").forEach(layer=>{
 /* Support page: a settled pile of chakra leaves at the base of the big goal tree */
 $$("[data-big-goal-leafpile]").forEach(layer=>{
   const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
-  const N=42;
+  const N=130;
   for(let i=0;i<N;i++){
     const el=document.createElement("div");
     el.className="pile-leaf";
-    // spread widely across the whole base, following the full spread of the roots
+    // spread widely across the whole base circumference, following the full spread of the roots
     const left=Math.random()*100;
     el.style.left=left+"%";
-    el.style.bottom=(Math.random()*70)+"%";
+    el.style.bottom=(Math.random()*85)+"%";
     el.style.background=colors[i%colors.length];
-    el.style.transform=`rotate(${Math.floor(Math.random()*360)}deg) scale(${(0.75+Math.random()*0.6).toFixed(2)})`;
+    el.style.transform=`rotate(${Math.floor(Math.random()*360)}deg) scale(${(0.7+Math.random()*0.7).toFixed(2)})`;
     el.style.zIndex=String(Math.floor(Math.random()*10));
     layer.appendChild(el);
   }
