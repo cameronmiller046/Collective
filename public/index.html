@@ -702,7 +702,7 @@ p{margin:0}
 /* Support page: rainbow chakra butterflies flutter across the whole goal section */
 .support-goal-wrap{position:relative}
 .support-butterflies{position:absolute;inset:0;pointer-events:none;z-index:6}
-.butterfly{position:absolute;width:38px;height:32px;margin:-16px 0 0 -19px;animation-name:butterfly-fly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.butterfly{position:absolute;width:36px;height:34px;margin:-17px 0 0 -18px;animation-name:butterfly-fly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
 .butterfly svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 5px rgba(37,7,47,.35));animation:butterfly-flutter .6s ease-in-out infinite alternate}
 @keyframes butterfly-flutter{0%{transform:scaleX(1)}100%{transform:scaleX(.8)}}
 @keyframes butterfly-fly{
@@ -2389,18 +2389,25 @@ $$("[data-support-butterflies]").forEach(layer=>{
     const el=document.createElement("div");
     el.className="butterfly";
     const gid="cbg-"+i+"-"+Math.random().toString(36).slice(2,7);
-    el.innerHTML=`<svg viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg">
+    el.innerHTML=`<svg viewBox="0 0 40 38" xmlns="http://www.w3.org/2000/svg">
       <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#8E44AD"/><stop offset="16%" stop-color="#4653B8"/><stop offset="33%" stop-color="#27A9D6"/><stop offset="50%" stop-color="#2EAD61"/><stop offset="66%" stop-color="#F4C430"/><stop offset="83%" stop-color="#F77F00"/><stop offset="100%" stop-color="#D62828"/>
       </linearGradient></defs>
-      <g fill="url(#${gid})" stroke="rgba(214,162,58,.6)" stroke-width=".5">
-        <ellipse cx="12" cy="11" rx="11" ry="9" transform="rotate(-16 12 11)"/>
-        <ellipse cx="28" cy="11" rx="11" ry="9" transform="rotate(16 28 11)"/>
-        <ellipse cx="14" cy="23" rx="7.5" ry="6" transform="rotate(-10 14 23)"/>
-        <ellipse cx="26" cy="23" rx="7.5" ry="6" transform="rotate(10 26 23)"/>
+      <g stroke="rgba(20,10,25,.55)" stroke-width=".6" stroke-linejoin="round">
+        <path fill="url(#${gid})" d="M20,16 C24,6 31,0 39,3 C41,9 37,16 31,18 C26,20 22,19 20,16 Z"/>
+        <path fill="url(#${gid})" d="M20,18 C24,21 27,26 29,34 C30,38 27,41 24,37 C22,32 20,25 20,18 Z"/>
+        <g transform="translate(40,0) scale(-1,1)">
+          <path fill="url(#${gid})" d="M20,16 C24,6 31,0 39,3 C41,9 37,16 31,18 C26,20 22,19 20,16 Z"/>
+          <path fill="url(#${gid})" d="M20,18 C24,21 27,26 29,34 C30,38 27,41 24,37 C22,32 20,25 20,18 Z"/>
+        </g>
       </g>
-      <rect x="18.7" y="5" width="2.6" height="24" rx="1.3" fill="#4B1F55"/>
-      <circle cx="20" cy="8" r="1.6" fill="#8E44AD"/><circle cx="20" cy="11.5" r="1.6" fill="#4653B8"/><circle cx="20" cy="15" r="1.6" fill="#27A9D6"/><circle cx="20" cy="18.5" r="1.6" fill="#2EAD61"/><circle cx="20" cy="22" r="1.6" fill="#F4C430"/><circle cx="20" cy="25.5" r="1.6" fill="#F77F00"/><circle cx="20" cy="29" r="1.6" fill="#D62828"/>
+      <g fill="#fff" opacity=".85">
+        <circle cx="34" cy="6" r="1"/><circle cx="36" cy="11" r=".8"/><circle cx="27" cy="30" r=".9"/>
+        <circle cx="6" cy="6" r="1"/><circle cx="4" cy="11" r=".8"/><circle cx="13" cy="30" r=".9"/>
+      </g>
+      <path d="M20,5 C18,10 18,28 20,34 C22,28 22,10 20,5 Z" fill="#2A1430"/>
+      <path d="M20,5 C18,3 16,2 14,2" stroke="#2A1430" stroke-width=".8" fill="none" stroke-linecap="round"/>
+      <path d="M20,5 C22,3 24,2 26,2" stroke="#2A1430" stroke-width=".8" fill="none" stroke-linecap="round"/>
     </svg>`;
     el.style.setProperty("--x0",rand(4,90)+"%");   el.style.setProperty("--y0",rand(2,96)+"%");
     el.style.setProperty("--r0",rand(-15,15)+"deg");
