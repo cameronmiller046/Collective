@@ -2737,21 +2737,32 @@ $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
 }).join(""));
 
 /* falling chakra trees behind the Branches and Invest sections on Our Ecosystem */
-$$("[data-tree-fall]").forEach(layer=>{
-  const fallDist=Math.max(640,layer.getBoundingClientRect().height+80);
-  const N=Math.round(20*Math.max(1,fallDist/640));
-  for(let i=0;i<N;i++){
-    const el=document.createElement("div");
-    el.className="tree-fall";
-    el.style.left=(Math.random()*94)+"%";
-    el.style.width=(22+Math.random()*20)+"px";
-    el.style.setProperty("--fall",fallDist+"px");
-    el.style.animationDuration=(fallDist/120+Math.random()*4)+"s";
-    el.style.animationDelay="-"+(Math.random()*9).toFixed(2)+"s";
-    el.innerHTML=`<img src="assets/chakra-tree.webp" alt="">`;
-    layer.appendChild(el);
-  }
-});
+function renderTreeFall(){
+  $$("[data-tree-fall]").forEach(layer=>{
+    layer.innerHTML="";
+    const fallDist=Math.max(640,layer.getBoundingClientRect().height+80);
+    const N=Math.round(20*Math.max(1,fallDist/640));
+    const segment=94/N;
+    for(let i=0;i<N;i++){
+      const el=document.createElement("div");
+      el.className="tree-fall";
+      const left=(i*segment)+Math.random()*segment; // stratified so trees spread evenly, not clumped on one side
+      el.style.left=left+"%";
+      el.style.width=(22+Math.random()*20)+"px";
+      el.style.setProperty("--fall",fallDist+"px");
+      el.style.animationDuration=(fallDist/120+Math.random()*4)+"s";
+      el.style.animationDelay="-"+(Math.random()*9).toFixed(2)+"s";
+      el.innerHTML=`<img src="assets/chakra-tree.webp" alt="">`;
+      layer.appendChild(el);
+    }
+  });
+}
+if($$("[data-tree-fall]").length){
+  if(document.readyState==="complete") renderTreeFall();
+  else window.addEventListener("load",renderTreeFall);
+  window.addEventListener("hashchange",()=>setTimeout(renderTreeFall,50));
+  window.addEventListener("resize",()=>{clearTimeout(window.__tfResize);window.__tfResize=setTimeout(renderTreeFall,200)});
+}
 
 /* Support page: goal tree fill */
 $$("[data-goal-tree]").forEach(el=>{
