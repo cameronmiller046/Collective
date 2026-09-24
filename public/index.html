@@ -696,23 +696,6 @@ p{margin:0}
 }
 @media (prefers-reduced-motion:reduce){.chakra-glow{display:none}}
 @media (max-width:700px){.big-goal-row{gap:14px}.goal-tree-card--lg{padding:32px 20px 26px}}
-
-/* Support page: chakra-colored butterflies flying over the goal heading and tree */
-.support-goal-wrap{position:relative}
-.support-butterflies{position:absolute;inset:0;pointer-events:none;z-index:6}
-.butterfly{position:absolute;width:23px;height:19px;margin:-10px 0 0 -12px;animation-name:butterfly-fly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
-.butterfly svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 4px var(--c));animation:butterfly-flutter .55s ease-in-out infinite alternate}
-@keyframes butterfly-flutter{0%{transform:scaleX(1)}100%{transform:scaleX(.82)}}
-@keyframes butterfly-fly{
-  0%{left:var(--x0);top:var(--y0);transform:rotate(var(--r0))}
-  14%{left:var(--x1);top:var(--y1);transform:rotate(var(--r1))}
-  28%,38%{left:var(--x2);top:var(--y2);transform:rotate(var(--r2))}
-  52%{left:var(--x3);top:var(--y3);transform:rotate(var(--r3))}
-  66%,77%{left:var(--x4);top:var(--y4);transform:rotate(var(--r4))}
-  90%{left:var(--x5);top:var(--y5);transform:rotate(var(--r5))}
-  100%{left:var(--x0);top:var(--y0);transform:rotate(var(--r0))}
-}
-@media (prefers-reduced-motion:reduce){.butterfly{display:none}}
 /* ecosystem page */
 .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .branch{display:grid;gap:6px;align-content:start;padding:22px 24px 20px;background:#556B2F;border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--c);border-radius:2px;text-decoration:none;color:#FFFFFF;transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -1799,7 +1782,6 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
   </div></section>
 
   <section class="band band--ivory2"><div class="wrap">
-    <div class="support-goal-wrap">
     <div class="center" style="max-width:720px;gap:16px;margin-bottom:36px">
       <span class="eyebrow">Our $100,000 community impact goal</span>
       <h2 class="h-l">Watch Possibility Come to Life.</h2>
@@ -1820,8 +1802,6 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
       <p class="goal-amount" data-goal-amount style="margin-top:58px">$100 <span>raised</span></p>
       <p class="goal-target" data-goal-target>toward our $100,000 goal</p>
       <div class="btns" style="margin-top:18px;justify-content:center"><a class="btn btn--gold" href="#" data-ext="support" data-label="Help the Tree Grow">Help the Tree Grow <span class="arr">→</span></a></div>
-    </div>
-    <div class="support-butterflies" data-support-butterflies aria-hidden="true"></div>
     </div>
     <div class="center" style="max-width:720px;gap:16px;margin-top:40px">
       <p class="script">Don’t Let Another Leaf Fall</p>
@@ -2366,33 +2346,6 @@ $$("[data-big-goal-leaves]").forEach(layer=>{
     el.style.animationDelay="-"+(Math.random()*11).toFixed(2)+"s";
     layer.appendChild(el);
   }
-});
-
-/* Support page: chakra-colored butterflies flying over the goal heading and landing on the tree */
-$$("[data-support-butterflies]").forEach(layer=>{
-  const colors=["#D62828","#F77F00","#F4C430","#2EAD61","#27A9D6","#4653B8","#8E44AD"];
-  const rand=(a,b)=>(a+Math.random()*(b-a)).toFixed(1);
-  colors.forEach((c,i)=>{
-    const el=document.createElement("div");
-    el.className="butterfly";
-    el.innerHTML=`<svg viewBox="0 0 24 20" xmlns="http://www.w3.org/2000/svg"><g fill="${c}" opacity=".9"><ellipse cx="7" cy="7" rx="6.5" ry="5.5" transform="rotate(-18 7 7)"/><ellipse cx="17" cy="7" rx="6.5" ry="5.5" transform="rotate(18 17 7)"/><ellipse cx="8.5" cy="14" rx="4.5" ry="3.6" transform="rotate(-12 8.5 14)"/><ellipse cx="15.5" cy="14" rx="4.5" ry="3.6" transform="rotate(12 15.5 14)"/></g><rect x="11.3" y="3" width="1.4" height="14" rx=".7" fill="${c}"/></svg>`;
-    el.style.setProperty("--c",c);
-    el.style.setProperty("--x0",rand(4,90)+"%");   el.style.setProperty("--y0",rand(4,88)+"%");
-    el.style.setProperty("--r0",rand(-15,15)+"deg");
-    el.style.setProperty("--x1",rand(10,85)+"%");  el.style.setProperty("--y1",rand(2,20)+"%");
-    el.style.setProperty("--r1",rand(-15,15)+"deg");
-    el.style.setProperty("--x2",rand(18,78)+"%");  el.style.setProperty("--y2",rand(3,20)+"%"); // lands on the heading
-    el.style.setProperty("--r2",rand(-8,8)+"deg");
-    el.style.setProperty("--x3",rand(8,90)+"%");   el.style.setProperty("--y3",rand(24,44)+"%");
-    el.style.setProperty("--r3",rand(-15,15)+"deg");
-    el.style.setProperty("--x4",rand(34,66)+"%");  el.style.setProperty("--y4",rand(46,80)+"%"); // lands on the tree
-    el.style.setProperty("--r4",rand(-8,8)+"deg");
-    el.style.setProperty("--x5",rand(6,90)+"%");   el.style.setProperty("--y5",rand(30,68)+"%");
-    el.style.setProperty("--r5",rand(-15,15)+"deg");
-    el.style.animationDuration=(24+Math.random()*10).toFixed(1)+"s";
-    el.style.animationDelay="-"+(i*3.2+Math.random()*3).toFixed(2)+"s";
-    layer.appendChild(el);
-  });
 });
 
 /* Support page: chakra symbols on the big goal tree light up one at a time, root to crown, continuously */
