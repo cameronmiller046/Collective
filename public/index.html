@@ -163,9 +163,8 @@ p{margin:0}
 .kia-copy{display:grid;gap:22px}
 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.22;color:var(--plum);max-width:24ch;position:relative;padding-left:26px;border-left:2px solid var(--gold)}
 @media (max-width:860px){.kia{grid-template-columns:1fr;gap:48px}.arch{max-width:340px}}
-/* our story: long-form origin story beside a photo that stays in view */
+/* our story: long-form origin story beside a photo that stays in view (desktop only — see min-width media query below) */
 .kia--story{align-items:start}
-.kia--story .arch{position:sticky;top:150px}
 .kia--story .prose{max-width:60ch}
 .story-title{font-size:clamp(1.6rem,2.4vw,2rem);color:var(--plum);margin-top:6px}
 .story-line{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.25;color:var(--gold-ink)}
@@ -206,7 +205,7 @@ p{margin:0}
 }
 .begin-lines{display:grid;gap:4px}
 .begin-lines p{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.35;color:var(--plum)}
-@media (max-width:860px){.kia--story .arch{position:static}}
+@media (min-width:861px){.kia--story .arch{position:sticky;top:150px}}
 
 /* ============ framework spectrum (home) ============ */
 .stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line-dark)}
