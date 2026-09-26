@@ -622,6 +622,9 @@ p{margin:0}
 .media--frame{outline:1px solid rgba(214,162,58,.55);outline-offset:8px;margin:8px}
 .offer-img{display:block;flex:none;width:calc(100% + var(--pad)*2);height:auto;max-width:none;margin:calc(var(--pad)*-1) calc(var(--pad)*-1) 4px;aspect-ratio:16/9;object-fit:cover}
 .shop-img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;outline:1px solid rgba(131,92,16,.45);outline-offset:10px;box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
+.shop-imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+.shop-img--tall{aspect-ratio:2/3}
+@media (max-width:420px){.shop-imgs{gap:10px}}
 .cat-list--sm{font-size:1.25rem}
 .branches-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .branches-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px}
@@ -1069,7 +1072,10 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <!-- 9 · SHOP -->
   <section class="band band--ivory2">
     <div class="wrap shop">
-      <img class="shop-img" src="assets/book-daily.jpg" alt="The Rooted and Crowned hardcover Daily Journal with a matching pen, mug and candle" width="900" height="900" loading="lazy">
+      <div class="shop-imgs">
+        <img class="shop-img shop-img--tall" src="assets/shop-lifestyle.webp" alt="Coach Kia journaling in bed beside the Rooted and Crowned Daily Journal, a candle reading Self Care Creates Generational Change, a mug reading More Aligned More Peaceful More Me, and books stacked Heal Grow Thrive Together and Dream Plan Journal Manifest Repeat, beneath a poster reading A Healed Woman Builds Generational Change." width="1024" height="1536" loading="lazy">
+        <img class="shop-img" src="assets/book-daily.jpg" alt="The Rooted and Crowned hardcover Daily Journal with a matching pen, mug and candle" width="900" height="900" loading="lazy">
+      </div>
       <div style="display:grid;gap:18px">
         <span class="eyebrow">The Shop</span>
         <h2 class="h-l">Carry the Journey With You.</h2>
