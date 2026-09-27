@@ -744,16 +744,12 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 .ip-frame--light img{outline-color:rgba(131,92,16,.5);box-shadow:0 34px 60px -30px rgba(37,7,47,.55)}
 /* ecosystem hero image: hover/tap hotspots over each circle icon */
 .eco-hotspots{position:absolute;inset:20px;pointer-events:none}
-.eco-dot{position:absolute;width:10%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:transparent;border:2px solid transparent;padding:0;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.eco-dot{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:transparent;border:2px solid transparent;padding:0;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}
 .eco-dot:hover,.eco-dot:focus-visible,.eco-dot.is-open{border-color:rgba(255,255,255,.9);box-shadow:0 0 0 5px rgba(37,7,47,.25),0 0 18px rgba(255,255,255,.55)}
-.eco-pop{position:absolute;top:112%;left:50%;transform:translate(-50%,-6px);width:172px;background:var(--plum);color:var(--ivory);border:1px solid var(--gold);border-radius:6px;padding:12px 14px;text-align:center;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;box-shadow:0 22px 44px -18px rgba(0,0,0,.65);z-index:5;pointer-events:none}
-.eco-dot--edge-l .eco-pop{left:0;transform:translate(0,-6px)}
-.eco-dot--edge-r .eco-pop{left:auto;right:0;transform:translate(0,-6px)}
+.eco-pop{position:absolute;top:112%;left:50%;transform:translate(-50%,-6px);width:172px;background:color-mix(in srgb, var(--hc,var(--plum)) 62%, #1A0421 38%);color:#fff;border:1px solid var(--hc,var(--gold));border-radius:6px;padding:12px 14px;text-align:center;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;box-shadow:0 22px 44px -18px rgba(0,0,0,.65);z-index:5;pointer-events:none}
 .eco-dot:hover .eco-pop,.eco-dot:focus-visible .eco-pop,.eco-dot.is-open .eco-pop{opacity:1;visibility:visible;transform:translate(-50%,0);pointer-events:auto}
-.eco-dot--edge-l:hover .eco-pop,.eco-dot--edge-l:focus-visible .eco-pop,.eco-dot--edge-l.is-open .eco-pop,
-.eco-dot--edge-r:hover .eco-pop,.eco-dot--edge-r:focus-visible .eco-pop,.eco-dot--edge-r.is-open .eco-pop{transform:translate(0,0)}
-.eco-pop b{display:block;font-family:var(--serif);font-size:1.05rem;line-height:1.2;color:var(--gold-soft);margin-bottom:4px}
-.eco-pop span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lav)}
+.eco-pop b{display:block;font-family:var(--serif);font-size:1.05rem;line-height:1.2;color:#fff;margin-bottom:4px}
+.eco-pop span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
 @media (max-width:700px){.eco-pop{width:145px;padding:10px 12px}.eco-pop b{font-size:.95rem}.eco-pop span{font-size:9.5px}}
 @media (prefers-reduced-motion:reduce){.eco-pop{transition:none}}
 .ip-frame--moss{background:#3F5323;padding:20px;border-radius:4px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7),inset 0 0 0 2px rgba(214,162,58,.65),inset 0 2px 10px rgba(0,0,0,.35)}
@@ -2721,17 +2717,17 @@ const BRANCHES = [
 ];
 /* Same 11 branches shown as circle icons on the ecosystem hero graphic, with each icon's approximate position (percent of image) so a hotspot can sit on top of it */
 const ECO_HOTSPOTS = [
-  ["Journals & Books","Write • Heal • Transform",17,21],
-  ["Wellness & Healing","Mind • Body • Spirit",77,24],
-  ["Education & Classes","Learn • Align • Apply",9,37],
-  ["Children’s Programs","Nurture • Empower • Include",86,37],
-  ["Community Events","Connect • Grow • Belong",5,49],
-  ["Family Resources","Support • Guide • Strengthen",90,52],
-  ["Speaking & Workshops","Inspire • Equip • Empower",14,68],
-  ["Online Platform & App","Access • Engage • Grow",85,65],
-  ["Advocacy & Support","Champion • Educate • Include",23,82],
-  ["Retreats & Travel","Recharge • Reconnect • Rise",76,78],
-  ["Business Strategies","Build • Expand • Create Wealth",52,82]
+  ["Journals & Books","Write • Heal • Transform",18,24,"#7B3FA0"],
+  ["Wellness & Healing","Mind • Body • Spirit",76,24,"#C22C8D"],
+  ["Education & Classes","Learn • Align • Apply",8,37,"#1E7FB8"],
+  ["Children’s Programs","Nurture • Empower • Include",86,37,"#1A93A6"],
+  ["Community Events","Connect • Grow • Belong",4,48,"#3C9142"],
+  ["Family Resources","Support • Guide • Strengthen",92,48,"#4E8C2E"],
+  ["Speaking & Workshops","Inspire • Equip • Empower",13,65,"#2657A8"],
+  ["Online Platform & App","Access • Engage • Grow",83,65,"#D9A62E"],
+  ["Advocacy & Support","Champion • Educate • Include",23,79,"#9C2140"],
+  ["Retreats & Travel","Recharge • Reconnect • Rise",75,79,"#A82E96"],
+  ["Business Strategies","Build • Expand • Create Wealth",47,84,"#6B32A0"]
 ];
 const TOPICS = ["General question","Podcast guest inquiry","Suggest a podcast topic","Speaking request","Workshop request","Partnership / collaboration","Vendor / community event","Sponsorship / community partner","Infinite Possibilities inquiry","Media inquiry","Customer / order assistance","App technical support"];
 
@@ -2773,12 +2769,10 @@ $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
 
 /* ecosystem hero image: a hotspot dot over each circle icon, tap or hover to read the branch */
 $$("[data-eco-hotspots]").forEach(layer=>{
-  layer.innerHTML=ECO_HOTSPOTS.map(([n,t,x,y])=>{
-    const edge=x<=10?" eco-dot--edge-l":x>=85?" eco-dot--edge-r":"";
-    return `<button type="button" class="eco-dot${edge}" style="left:${x}%;top:${y}%" aria-label="${esc(n)}">
+  layer.innerHTML=ECO_HOTSPOTS.map(([n,t,x,y,hc])=>
+    `<button type="button" class="eco-dot" style="left:${x}%;top:${y}%;--hc:${hc}" aria-label="${esc(n)}">
       <span class="eco-pop"><b>${esc(n)}</b><span>${esc(t)}</span></span>
-    </button>`;
-  }).join("");
+    </button>`).join("");
   layer.addEventListener("click",e=>{
     const dot=e.target.closest(".eco-dot");
     if(!dot){return;}
