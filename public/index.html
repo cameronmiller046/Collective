@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics (GA4) — consent-gated: no analytics cookies are set until the visitor accepts the cookie notice -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'analytics_storage':'denied'});
+gtag('js', new Date());
+gtag('config', 'G-QQBLTBHNEX');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQBLTBHNEX"></script>
 <link rel="icon" type="image/png" href="assets/logo-emblem.png">
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
 <title>Rooted &amp; Crowned Collective</title>
@@ -615,6 +624,12 @@ p{margin:0}
 /* toast */
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100;max-width:min(520px,calc(100vw - 32px));padding:14px 20px;border-radius:2px;background:var(--ivory);color:var(--plum);border-left:3px solid var(--gold);font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transition:opacity .25s,transform .25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ============ cookie notice ============ */
+.cookie-note{position:fixed;left:20px;right:20px;bottom:20px;z-index:110;max-width:520px;margin:0 auto;padding:20px 22px;border-radius:4px;background:var(--plum);color:var(--ivory);border:1px solid var(--gold);box-shadow:0 30px 56px -20px rgba(0,0,0,.6);display:grid;gap:14px}
+.cookie-note p{margin:0;font-size:13.5px;line-height:1.6;color:var(--lav)}
+.cookie-note-btns{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
+@media (max-width:480px){.cookie-note{left:12px;right:12px;bottom:12px;padding:18px}.cookie-note-btns{justify-content:stretch}.cookie-note-btns .btn{flex:1}}
 
 /* ============ photography ============ */
 .arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
@@ -2624,6 +2639,14 @@ details.course-mod summary::-webkit-details-marker{display:none}
 
 <div class="toast" role="status" aria-live="polite" id="toast"></div>
 
+<div class="cookie-note" id="cookieNote" role="dialog" aria-label="Cookie notice" hidden>
+  <p>We use cookies to understand how visitors use this site. You can accept or decline analytics cookies.</p>
+  <div class="cookie-note-btns">
+    <button type="button" class="btn btn--line btn--sm" id="cookieDecline">Decline</button>
+    <button type="button" class="btn btn--gold btn--sm" id="cookieAccept">Accept</button>
+  </div>
+</div>
+
 <script>
 /* ---------- Paste real URLs here before launch ---------- */
 /* Support page goal tree: update RAISED by hand as gifts come in until a real donation platform reports totals */
@@ -2742,6 +2765,29 @@ const esc = s => String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&g
 /* ---------- toast ---------- */
 let toastT;
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3800);}
+
+/* ---------- cookie consent (gates Google Analytics storage) ---------- */
+(function(){
+  const KEY="rc-cookie-consent";
+  const saved=localStorage.getItem(KEY);
+  if(saved==="granted" && window.gtag){
+    gtag('consent','update',{'analytics_storage':'granted'});
+  } else if(!saved){
+    const note=$("#cookieNote");
+    if(note){
+      note.hidden=false;
+      $("#cookieAccept",note).addEventListener("click",()=>{
+        localStorage.setItem(KEY,"granted");
+        if(window.gtag) gtag('consent','update',{'analytics_storage':'granted'});
+        note.hidden=true;
+      });
+      $("#cookieDecline",note).addEventListener("click",()=>{
+        localStorage.setItem(KEY,"denied");
+        note.hidden=true;
+      });
+    }
+  }
+})();
 
 /* ---------- render static blocks ---------- */
 $$("[data-nav]").forEach(ul=>{ul.innerHTML=NAV.map(([l,h])=>`<li><a href="#${h}" data-route="${h}">${esc(l)}</a></li>`).join("")+
