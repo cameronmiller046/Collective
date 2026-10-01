@@ -267,6 +267,9 @@ p{margin:0}
 .offer-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
 .price{font-family:var(--serif);font-size:2.6rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;color:var(--plum)}
 .price small{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--plum-muted);margin-left:4px}
+.price-row{display:flex;align-items:baseline;gap:14px;justify-content:center;flex-wrap:wrap}
+.price-was{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--plum-muted);text-decoration:line-through;text-decoration-color:var(--plum-muted)}
+.price-save{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
 .offer .script{font-size:1.75rem}
 .facts{list-style:none;margin:0;padding:0;display:grid;gap:9px;align-content:start}
 .facts li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--plum-muted)}
@@ -1338,22 +1341,50 @@ details.course-mod summary::-webkit-details-marker{display:none}
 
   <section class="band band--ivory2" id="chakra-ecourses" style="scroll-margin-top:120px"><div class="wrap" style="display:grid;gap:44px">
     <div class="two two--course">
-      <div class="sec-head" style="margin:0"><span class="eyebrow">Self-Paced</span><h2 class="h-l">The eCourse Chakra Alignment Series</h2><p class="lede">Seven deep-dive, self-paced courses — one for each chakra — with real teaching, reflection questions, exercises and a check-in before and after. Sold only as the complete Chakra Alignment Series, never individually. Coming soon.</p></div>
+      <div class="sec-head" style="margin:0"><span class="eyebrow">Self-Paced</span><h2 class="h-l">The eCourse Chakra Alignment Series</h2>
+        <div class="prose">
+          <p class="lede">Seven guided, self-paced journeys. One intentional path from Root to Crown.</p>
+          <p>Move through the chakra system one journey at a time with in-depth teaching, guided self-reflection, interactive exercises, knowledge assessments, Self-Discovery Profiles, grounding and integration practices, and intentional opportunities to apply what you discover to your everyday life.</p>
+          <p>This experience goes beyond simply learning about the seven chakras. Each stage invites you to look inward—examining the patterns that shaped you, recognizing the strengths you already carry, bringing awareness to areas ready for deeper exploration, and making conscious choices about what you want to practice moving forward.</p>
+          <p>Each chakra journey concludes with a private 15-minute Integration Consultation with Coach Kia, followed by a personalized journal reflection, integration practice, and Certificate of Completion.</p>
+          <p>The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+          <p class="em">Healing from the Root up. Living from the Crown down.</p>
+        </div>
+      </div>
       <img class="media media--frame" src="assets/ecourse-classroom.webp" alt="Rooted and Crowned Collective College for the Elite: the Chakra Alignment Series. Students with laptops branded Rooted and Crowned Collective study together in a plum and gold classroom lined with the seven chakra symbols, crystals, and books titled Chakra Studies, Energy Healing, Conscious Living, Spiritual Psychology and Personal Transformation, beneath a rainbow tree of life and the words Learn, Heal, Align, Grow, Transform." width="1774" height="887" loading="lazy">
     </div>
     <div class="give-grid">
-      <div class="give" style="--c:#D62828"><h3>Root · Breaking the Chains</h3><p>Safety, survival, belonging and foundation. Interactive, with a before-and-after check-in.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#F77F00"><h3>Sacral · Reclaiming Creation</h3><p>Creativity, emotion and desire.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#F4C430"><h3>Solar Plexus · Taking Back My Power</h3><p>Confidence, identity and personal power.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#2EAD61"><h3>Heart · Loving Without Losing Me</h3><p>Love, compassion and boundaries.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#27A9D6"><h3>Throat · Speak Your Truth</h3><p>Voice, truth and expression.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#4653B8"><h3>Third Eye · Seeing Beyond the Pattern</h3><p>Intuition, insight and pattern awareness.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
-      <div class="give" style="--c:#8E44AD"><h3>Crown · Crowned in Purpose</h3><p>Purpose, meaning and integration.</p><span class="status-pill" style="margin-top:10px">Coming soon</span></div>
+      <div class="give" style="--c:#D62828"><h3>Root · Breaking the Chains</h3><p>Safety, survival, stability, belonging and foundation. Explore what took root, what helped you survive, and what you consciously choose to carry forward.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#F77F00"><h3>Sacral · Reclaiming Creation</h3><p>Emotion, creativity, desire and your relationship with experiencing, expressing and receiving.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#F4C430"><h3>Solar Plexus · Taking Back My Power</h3><p>Confidence, identity, personal power and intentional action.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#2EAD61"><h3>Heart · Loving Without Losing Me</h3><p>Love, compassion, connection, reciprocity and boundaries without self-abandonment.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#27A9D6"><h3>Throat · Speak Your Truth</h3><p>Voice, truth, expression and the courage to communicate from a place of greater self-awareness.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#4653B8"><h3>Third Eye · Seeing Beyond the Pattern</h3><p>Intuition, insight, discernment and the awareness to recognize what exists beneath familiar patterns.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+      <div class="give" style="--c:#8E44AD"><h3>Crown · Crowned in Purpose</h3><p>Purpose, meaning, consciousness and integration—bringing the Root-to-Crown journey together.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
     </div>
-    <div class="center" style="max-width:640px;gap:10px;margin-top:8px">
-      <p class="caps" style="color:var(--plum-muted)">The eCourse Chakra Alignment Series · Not sold individually</p>
-      <span class="price">$175<small>ALL 7 ECOURSES</small></span>
-      <span class="status-pill" style="margin-top:6px">Coming soon</span>
+    <div class="center" style="max-width:560px;gap:14px;margin-top:8px">
+      <p class="caps" style="color:var(--plum-muted)">The Complete Root-to-Crown Journey</p>
+      <div class="price-row">
+        <span class="price-was">$199 Regular Price</span>
+        <span class="price">$175<small>Founding Launch Price</small></span>
+      </div>
+      <p class="price-save">Save $24 · All 7 Chakra Journeys Included</p>
+      <p class="caps" style="color:var(--plum-muted);margin-top:10px">Your Complete Journey Includes</p>
+      <ul class="facts" style="text-align:left;max-width:460px">
+        <li>7 in-depth, self-paced chakra courses</li>
+        <li>Interactive exercises and guided self-reflection</li>
+        <li>Knowledge assessments throughout the journey</li>
+        <li>Individual Self-Discovery Profiles</li>
+        <li>7 private 15-minute Integration Consultations with Coach Kia</li>
+        <li>Personalized journal reflections following each consultation</li>
+        <li>Personalized integration practices</li>
+        <li>7 individual Certificates of Completion</li>
+        <li>Final Root-to-Crown Integration Certificate upon completion of the entire journey</li>
+        <li>105 minutes of private consultation time throughout the complete series</li>
+      </ul>
+      <span class="btn btn--gold btn--lg" aria-disabled="true" style="margin-top:14px;pointer-events:none;opacity:.92">Begin the Root-to-Crown Journey — $175</span>
+      <p class="caps" style="color:var(--plum-muted)">Founding Launch Pricing · Regular Price $199</p>
+      <span class="status-pill">Coming soon</span>
     </div>
   </div></section>
 
