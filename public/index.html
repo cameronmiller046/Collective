@@ -834,8 +834,22 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 .course-quote{border-left:3px solid var(--c,var(--root));padding:4px 0 4px 20px;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:inherit;margin:18px 0}
 .course-sec--tint .course-quote{color:var(--plum)}
 .course-cover{position:relative;margin:0 auto;max-width:960px;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 30px 56px -30px rgba(0,0,0,.6)}
-.course-cover img{display:block;width:100%;height:auto;border-radius:2px}
+.course-cover img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:2px}
 .course-cover-tag{position:absolute;top:16px;left:16px;background:rgba(26,4,33,.88)}
+.give-link{justify-self:start;margin-top:4px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);text-decoration:none}
+.give-link:hover{text-decoration:underline}
+.course-rows{display:grid;gap:26px}
+.course-row{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:34px;align-items:center;padding:22px;background:var(--white);border:1px solid var(--line-light);border-left:5px solid var(--c);border-radius:2px;color:var(--plum)}
+.course-row:nth-child(even){grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+.course-row:nth-child(even) .course-row-media{order:2}
+.course-row-media{position:relative;display:block;border-radius:2px;overflow:hidden;box-shadow:0 24px 44px -28px rgba(37,7,47,.6)}
+.course-row-media img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:transform .35s}
+.course-row-media:hover img{transform:scale(1.02)}
+.course-row-body{display:grid;gap:12px;align-content:center}
+.course-row h3{font-size:clamp(1.6rem,2.4vw,2rem);color:var(--plum)}
+.course-row-body p{color:var(--plum-muted)}
+.course-row-body .course-row-reflect{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--plum)}
+@media (max-width:860px){.course-row,.course-row:nth-child(even){grid-template-columns:1fr;gap:20px;padding:18px}.course-row:nth-child(even) .course-row-media{order:0}}
 .course-list{margin:0;padding-left:20px;display:grid;gap:6px}
 .course-list li{color:inherit;opacity:.88}
 .course-sec--tint .course-list li{color:var(--plum-muted);opacity:1}
@@ -1038,7 +1052,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
           <p class="script">Write It. Witness It. Voice It. Work Through It.</p>
           <p class="desc">A weekly live Zoom community where guided journaling becomes reflection, conversation, connection, and intentional action.</p>
           <div class="offer-foot">
-            <div class="price-line"><span class="caps">Membership</span><span class="price">$60<small>/MONTH</small></span></div>
+            <div class="price-line"><span class="caps">Membership</span><span class="status-pill">Coming soon</span></div>
             <div class="btns"><a class="btn btn--gold" href="#/journal-club">Join the Journal Journey <span class="arr">→</span></a></div>
           </div>
         </article>
@@ -1313,7 +1327,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p class="lede">Understanding the framework is the beginning. The Root-to-Crown Experience gives you the space to explore it personally.</p>
       <div style="display:grid;gap:6px">
         <p class="caps" style="color:var(--gold-soft)">7 Weeks • 7 Chakras • One Guided Journey</p>
-        <p class="caps" style="color:var(--lav)">Live Virtual Classes via Zoom • $299</p>
+        <p class="caps" style="color:var(--lav)">Live Virtual Classes via Zoom • Coming soon</p>
       </div>
       <div class="btns"><a class="btn btn--gold btn--lg" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Begin Your Root-to-Crown Journey <span class="arr">→</span></a></div>
     </div>
@@ -1345,7 +1359,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
           <li>A community of women moving through the journey together</li>
         </ul>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
-          <span class="price">$299<small>LIVE EXPERIENCE</small></span>
+          <span class="status-pill">Coming soon</span>
           <a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a>
         </div>
       </div>
@@ -1368,22 +1382,92 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p>The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
       <p class="em">Healing from the Root up. Living from the Crown down.</p>
     </div>
-    <div class="give-grid">
-      <div class="give" style="--c:#D62828"><h3>Root · Breaking the Chains</h3><p>Safety, survival, stability, belonging and foundation. Explore what took root, what helped you survive, and what you consciously choose to carry forward.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#F77F00"><h3>Sacral · Reclaiming Creation</h3><p>Emotion, creativity, desire and your relationship with experiencing, expressing and receiving.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#F4C430"><h3>Solar Plexus · Taking Back My Power</h3><p>Confidence, identity, personal power and intentional action.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#2EAD61"><h3>Heart · Loving Without Losing Me</h3><p>Love, compassion, connection, reciprocity and boundaries without self-abandonment.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#27A9D6"><h3>Throat · Speak Your Truth</h3><p>Voice, truth, expression and the courage to communicate from a place of greater self-awareness.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#4653B8"><h3>Third Eye · Seeing Beyond the Pattern</h3><p>Intuition, insight, discernment and the awareness to recognize what exists beneath familiar patterns.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
-      <div class="give" style="--c:#8E44AD"><h3>Crown · Crowned in Purpose</h3><p>Purpose, meaning, consciousness and integration—bringing the Root-to-Crown journey together.</p><span class="status-pill" style="margin-top:10px">Part of the 7-Course Journey</span></div>
+    <div class="course-rows">
+      <article class="course-row" style="--c:#D62828">
+        <a class="course-row-media" href="#/courses/root" aria-label="Breaking the Chains: course details"><img src="assets/course-root-cover.webp" alt="Course cover: Root Chakra, Breaking the Chains. Foundation, Safety, Survival." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Root Chakra · Course 1 of 7</span>
+          <h3>Breaking the Chains</h3>
+          <p class="caps">Foundation • Safety • Survival</p>
+          <p>Begin the journey by exploring the foundation beneath your patterns, choices, and responses. Breaking the Chains examines how early experiences, learned behaviors, family patterns, and survival responses can shape what feels normal, safe, or necessary. Through guided learning and intentional self-reflection, you’ll identify what took root, recognize what may no longer serve you, and begin making more conscious choices about the foundation you want to build moving forward.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What took root—and what will you consciously choose to grow from here?</p>
+          <a class="give-link" href="#/courses/root">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#F77F00">
+        <a class="course-row-media" href="#/courses/sacral" aria-label="Reclaiming Creation: course details"><img src="assets/course-sacral-cover.webp" alt="Course cover: Sacral Chakra, Reclaiming Creation. Emotion, Creativity, Receiving, Pleasure, Expression." width="1672" height="941" style="object-position:100% 50%" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Sacral Chakra · Course 2 of 7</span>
+          <h3>Reclaiming Creation</h3>
+          <p class="caps">Emotion • Creativity • Receiving • Pleasure • Expression</p>
+          <p>Continue the journey by exploring your relationship with emotion, creativity, receiving, pleasure, and authentic expression. Reclaiming Creation invites you to recognize how experiences and conditioning may have influenced what you allow yourself to feel, desire, receive, enjoy, and create. Through guided learning and self-reflection, you’ll strengthen emotional awareness, reconnect with your creative self, and explore what becomes possible when you begin consciously creating from who you are becoming.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What are you ready to feel, receive, express, and create?</p>
+          <a class="give-link" href="#/courses/sacral">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#F4C430">
+        <a class="course-row-media" href="#/courses/solar-plexus" aria-label="Taking Back My Power: course details"><img src="assets/course-solar-cover.webp" alt="Course cover: Solar Plexus Chakra, Taking Back My Power. Confidence, Self-Worth, Personal Power, Clarity, Action." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Solar Plexus Chakra · Course 3 of 7</span>
+          <h3>Taking Back My Power</h3>
+          <p class="caps">Confidence • Self-Worth • Personal Power • Clarity • Action</p>
+          <p>Taking Back My Power moves the journey from awareness into personal empowerment. This course explores how experiences, conditioning, self-doubt, and learned expectations can influence your confidence, identity, choices, and relationship with your own power. Through guided learning and intentional self-reflection, you’ll examine where you may have given your power away, made yourself smaller, or allowed fear and outside expectations to shape your decisions. You’ll begin strengthening self-trust, defining who you are for yourself, and learning to move forward with greater clarity and intentional action.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What changes when you stop asking for permission to become who you already know you can be?</p>
+          <a class="give-link" href="#/courses/solar-plexus">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#2EAD61">
+        <a class="course-row-media" href="#/courses/heart" aria-label="Loving Without Losing Me: course details"><img src="assets/course-heart-cover.webp" alt="Course cover: Heart Chakra, Loving Without Losing Me. Love, Compassion, Forgiveness, Connection, Balance." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Heart Chakra · Course 4 of 7</span>
+          <h3>Loving Without Losing Me</h3>
+          <p class="caps">Love • Compassion • Forgiveness • Connection • Balance</p>
+          <p>Loving Without Losing Me explores how you experience love, connection, compassion, and relationships while remaining connected to yourself. This course invites you to examine patterns such as over-giving, people-pleasing, difficulty receiving, self-abandonment, and the boundaries that shape how you connect with others. Through guided learning and intentional self-reflection, you’ll explore the difference between loving from obligation and loving from alignment, strengthen your capacity for reciprocity, and discover how to remain open-hearted without sacrificing your needs, voice, or sense of self.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What does love look like when I no longer have to lose myself to give or receive it?</p>
+          <a class="give-link" href="#/courses/heart">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#27A9D6">
+        <a class="course-row-media" href="#/courses/throat" aria-label="Speak Your Truth: course details"><img src="assets/course-throat-cover.webp" alt="Course cover: Throat Chakra, Speak Your Truth. Voice, Truth, Expression, Communication, Authenticity." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Throat Chakra · Course 5 of 7</span>
+          <h3>Speak Your Truth</h3>
+          <p class="caps">Voice • Truth • Expression • Communication • Authenticity</p>
+          <p>Speak Your Truth explores the relationship between your inner truth and how confidently you allow it to be expressed. This course invites you to examine the experiences, fears, and learned patterns that may have taught you to silence yourself, hold back, over-explain, or shape your voice around the comfort of others. Through guided learning and intentional self-reflection, you’ll strengthen self-awareness, explore authentic communication, and learn to express your thoughts, needs, boundaries, and truth with greater clarity—without abandoning yourself or diminishing the voices of others.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What becomes possible when I trust my voice enough to speak from who I truly am?</p>
+          <a class="give-link" href="#/courses/throat">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#4653B8">
+        <a class="course-row-media" href="#/courses/third-eye" aria-label="Seeing Beyond The Pattern: course details"><img src="assets/course-thirdeye-cover.webp" alt="Course cover: Third Eye Chakra, Seeing Beyond The Pattern. Intuition, Insight, Discernment, Awareness, Perspective." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Third Eye Chakra · Course 6 of 7</span>
+          <h3>Seeing Beyond The Pattern</h3>
+          <p class="caps">Intuition • Insight • Discernment • Awareness • Perspective</p>
+          <p>Seeing Beyond The Pattern invites you to look beyond what is familiar and become more aware of what may be influencing the way you see yourself, others, and the world around you. This course explores intuition, perception, discernment, and the ability to recognize patterns without automatically repeating them. Through guided learning and intentional self-reflection, you’ll examine assumptions, strengthen trust in your inner knowing, and learn to distinguish intuition from fear, conditioning, and familiar thought patterns—creating space to see your experiences with greater clarity and perspective.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> What can I see differently when I stop allowing familiar patterns to define what I believe is true?</p>
+          <a class="give-link" href="#/courses/third-eye">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="course-row" style="--c:#8E44AD">
+        <a class="course-row-media" href="#/courses/crown" aria-label="Crowned in Purpose: course details"><img src="assets/course-crown-cover.webp" alt="Course cover: Crown Chakra, Crowned in Purpose. Purpose, Meaning, Consciousness, Alignment, Integration." width="1536" height="1024" loading="lazy"><span class="status-pill course-cover-tag">Coming soon</span></a>
+        <div class="course-row-body">
+          <span class="eyebrow">Crown Chakra · Course 7 of 7</span>
+          <h3>Crowned in Purpose</h3>
+          <p class="caps">Purpose • Meaning • Consciousness • Alignment • Integration</p>
+          <p>Crowned in Purpose brings the Root-to-Crown journey together by inviting you to reflect on who you have become through each stage of self-discovery. This course explores purpose, meaning, consciousness, and the integration of what you have learned about your foundation, emotions, personal power, relationships, voice, and inner awareness. Through guided learning and intentional self-reflection, you’ll connect the lessons of the entire journey, recognize how each part of you works together, and explore what it means to live with greater intention, alignment, and purpose.</p>
+          <p class="course-row-reflect"><b>Course Reflection:</b> How will I live differently now that I understand myself more deeply?</p>
+          <a class="give-link" href="#/courses/crown">Course details <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="center" style="max-width:820px;gap:12px">
+      <span class="eyebrow">Each Course Includes</span>
+      <p class="caps" style="color:var(--plum-muted);line-height:2.1">Self-paced learning • Knowledge checks • Reflective exercises • End-of-course self-discovery assessment • 15-minute private Integration Consultation with Coach Kia • Personalized next-step guidance • Certificate of Completion</p>
     </div>
     <div class="center" style="max-width:560px;gap:14px;margin-top:8px">
       <p class="caps" style="color:var(--plum-muted)">The Complete Root-to-Crown Journey</p>
-      <div class="price-row">
-        <span class="price-was">$199 Regular Price</span>
-        <span class="price">$175<small>Founding Launch Price</small></span>
-      </div>
-      <p class="price-save">Save $24 · All 7 Chakra Journeys Included</p>
+      <span class="status-pill" style="justify-self:center">Coming soon</span>
       <p class="caps" style="color:var(--plum-muted);margin-top:10px">Your Complete Journey Includes</p>
       <ul class="facts" style="text-align:left;max-width:460px">
         <li>7 in-depth, self-paced chakra courses</li>
@@ -1397,9 +1481,6 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <li>Final Root-to-Crown Integration Certificate upon completion of the entire journey</li>
         <li>105 minutes of private consultation time throughout the complete series</li>
       </ul>
-      <span class="btn btn--gold btn--lg" aria-disabled="true" style="margin-top:14px;pointer-events:none;opacity:.92">Begin the Root-to-Crown Journey — $175</span>
-      <p class="caps" style="color:var(--plum-muted)">Founding Launch Pricing · Regular Price $199</p>
-      <span class="status-pill">Coming soon</span>
     </div>
   </div></section>
 
@@ -1423,7 +1504,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <p class="lede">Rooted &amp; Crowned Journal Club is a weekly LIVE Zoom gathering where reflection moves beyond the page. Through guided prompts, meaningful conversation, personal awareness and community, we create space to recognize what is showing up, give language to what we’ve been carrying and turn reflection into intentional action.</p>
         <p class="muted" style="font-size:15px">Your membership includes weekly LIVE Zoom gatherings, guided journal prompts, reflection themes, meaningful conversation, accountability, encouragement and community support.</p>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
-          <span class="price" style="color:var(--ivory)">$60<small style="color:var(--lav)">/ MONTH</small></span>
+          <span class="status-pill">Coming soon</span>
           <a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a>
         </div>
       </div>
@@ -1452,7 +1533,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
           <li>Begin a structured personal-development journey</li>
         </ul>
         <div class="offer-foot">
-          <div class="price-line"><span class="caps">7 Weeks</span><span class="price">$299<small>LIVE</small></span></div>
+          <div class="price-line"><span class="caps">7 Weeks</span><span class="status-pill">Coming soon</span></div>
           <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a></div>
         </div>
       </article>
@@ -1466,7 +1547,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
           <li>Receive weekly support and accountability</li>
         </ul>
         <div class="offer-foot">
-          <div class="price-line"><span class="caps">Weekly Live Gatherings</span><span class="price">$60<small>/MONTH</small></span></div>
+          <div class="price-line"><span class="caps">Weekly Live Gatherings</span><span class="status-pill">Coming soon</span></div>
           <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a></div>
         </div>
       </article>
@@ -1481,7 +1562,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
       <span class="eyebrow" style="color:var(--root)">Chakra Alignment Series · Course 1 of 7</span>
       <h1 class="h-xl">Breaking the Chains</h1>
-      <p class="lede">The first journey in the eCourse Chakra Alignment Series, exploring foundation, safety, stability, belonging and survival.</p>
+      <p class="caps" style="color:var(--gold-soft)">Foundation • Safety • Survival</p>
       <div class="spectrum spectrum--short"></div>
     </div>
   </div></section>
@@ -1496,10 +1577,8 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="course-sec"><div class="wrap course-body">
     <span class="eyebrow" style="color:var(--root)">About This Journey</span>
     <h2>Every journey upward begins with what has taken root.</h2>
-    <p>Breaking the Chains begins at the foundation, not to remain in the past, but to understand what helped shape the beliefs, expectations, responses and survival patterns you may still carry today.</p>
-    <p>Through the Rooted &amp; Crowned lens, you will explore the Root Chakra as a spiritual-reflective framework for foundation, safety, stability, survival, belonging and grounding. You will be invited to recognize what was inherited, taught, modeled, experienced and eventually chosen. Some of it may be strength and wisdom worth carrying forward. Some of it may have protected an earlier version of you but no longer supports the life you are intentionally building.</p>
-    <p class="course-quote">What did I have to become to survive, and do I still need to be that person?</p>
-    <p>This journey is not about blaming your past or judging the person you became in order to survive it. It is about developing enough awareness to choose what comes next.</p>
+    <p>Begin the journey by exploring the foundation beneath your patterns, choices, and responses. Breaking the Chains examines how early experiences, learned behaviors, family patterns, and survival responses can shape what feels normal, safe, or necessary. Through guided learning and intentional self-reflection, you’ll identify what took root, recognize what may no longer serve you, and begin making more conscious choices about the foundation you want to build moving forward.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What took root—and what will you consciously choose to grow from here?</p>
   </div></section>
 
   <section class="course-sec course-sec--tint"><div class="wrap course-body">
@@ -1524,12 +1603,13 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <span class="eyebrow" style="color:var(--root)">Included With This Course</span>
     <h2>More than lessons. A complete experience.</h2>
     <ul class="course-list">
-      <li>Self-paced learning with guided self-reflection</li>
-      <li>A knowledge assessment</li>
-      <li>Your Root Self-Discovery Profile</li>
-      <li>A private 15-minute Root Integration Consultation with Coach Kia</li>
-      <li>A personalized journal reflection and integration practice after your consultation</li>
-      <li>Your Root Certificate of Completion</li>
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
     </ul>
   </div></section>
 
@@ -1541,6 +1621,299 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
   </div></section>
 
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== SACRAL COURSE ===================== -->
+<div data-page="sacral-course" hidden style="--c:var(--sacral)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(247,127,0,.16),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--sacral)">Chakra Alignment Series · Course 2 of 7</span>
+      <h1 class="h-xl">Reclaiming Creation</h1>
+      <p class="caps" style="color:var(--gold-soft)">Emotion • Creativity • Receiving • Pleasure • Expression</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-sacral-cover.webp" alt="Course cover for Sacral Chakra: Reclaiming Creation, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing orange gown rests with her eyes closed against an autumn tree marked with the glowing orange Sacral Chakra symbol, beside lotus flowers on a sunlit lake, above the words Sacral Chakra, Reclaiming Creation, Emotion, Creativity, Receiving, Pleasure, Expression." width="1672" height="941" style="object-position:100% 50%">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--sacral)">About This Journey</span>
+    <h2>Continue the journey into creation.</h2>
+    <p>Continue the journey by exploring your relationship with emotion, creativity, receiving, pleasure, and authentic expression. Reclaiming Creation invites you to recognize how experiences and conditioning may have influenced what you allow yourself to feel, desire, receive, enjoy, and create. Through guided learning and self-reflection, you’ll strengthen emotional awareness, reconnect with your creative self, and explore what becomes possible when you begin consciously creating from who you are becoming.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What are you ready to feel, receive, express, and create?</p>
+  </div></section>
+
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--sacral)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--sacral)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Reclaiming Creation is the second course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== SOLAR PLEXUS COURSE ===================== -->
+<div data-page="solar-course" hidden style="--c:var(--solar)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(244,196,48,.16),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--solar)">Chakra Alignment Series · Course 3 of 7</span>
+      <h1 class="h-xl">Taking Back My Power</h1>
+      <p class="caps" style="color:var(--gold-soft)">Confidence • Self-Worth • Personal Power • Clarity • Action</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-solar-cover.webp" alt="Course cover for Solar Plexus Chakra: Taking Back My Power, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing golden gown opens her arms to the sunrise, a glowing yellow Solar Plexus symbol at her waist, among golden flowers and crystals above a valley of waterfalls, with the words Solar Plexus Chakra, Taking Back My Power, Confidence, Self-Worth, Personal Power, Clarity, Action." width="1536" height="1024">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--solar)">About This Journey</span>
+    <h2>Move from awareness into empowerment.</h2>
+    <p>Taking Back My Power moves the journey from awareness into personal empowerment. This course explores how experiences, conditioning, self-doubt, and learned expectations can influence your confidence, identity, choices, and relationship with your own power. Through guided learning and intentional self-reflection, you’ll examine where you may have given your power away, made yourself smaller, or allowed fear and outside expectations to shape your decisions. You’ll begin strengthening self-trust, defining who you are for yourself, and learning to move forward with greater clarity and intentional action.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What changes when you stop asking for permission to become who you already know you can be?</p>
+  </div></section>
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--solar)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--solar)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Taking Back My Power is the third course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== HEART COURSE ===================== -->
+<div data-page="heart-course" hidden style="--c:var(--heart)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(46,173,97,.16),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--heart)">Chakra Alignment Series · Course 4 of 7</span>
+      <h1 class="h-xl">Loving Without Losing Me</h1>
+      <p class="caps" style="color:var(--gold-soft)">Love • Compassion • Forgiveness • Connection • Balance</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-heart-cover.webp" alt="Course cover for Heart Chakra: Loving Without Losing Me, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing green gown rests among pink blossoms and lotus flowers with her hands over a glowing green Heart Chakra symbol, before waterfalls and a stone arch bridge, with the words Heart Chakra, Loving Without Losing Me, Love, Compassion, Forgiveness, Connection, Balance." width="1536" height="1024">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--heart)">About This Journey</span>
+    <h2>Love, without losing yourself.</h2>
+    <p>Loving Without Losing Me explores how you experience love, connection, compassion, and relationships while remaining connected to yourself. This course invites you to examine patterns such as over-giving, people-pleasing, difficulty receiving, self-abandonment, and the boundaries that shape how you connect with others. Through guided learning and intentional self-reflection, you’ll explore the difference between loving from obligation and loving from alignment, strengthen your capacity for reciprocity, and discover how to remain open-hearted without sacrificing your needs, voice, or sense of self.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What does love look like when I no longer have to lose myself to give or receive it?</p>
+  </div></section>
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--heart)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--heart)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Loving Without Losing Me is the fourth course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== THROAT COURSE ===================== -->
+<div data-page="throat-course" hidden style="--c:var(--throat)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(39,169,214,.16),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--throat)">Chakra Alignment Series · Course 5 of 7</span>
+      <h1 class="h-xl">Speak Your Truth</h1>
+      <p class="caps" style="color:var(--gold-soft)">Voice • Truth • Expression • Communication • Authenticity</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-throat-cover.webp" alt="Course cover for Throat Chakra: Speak Your Truth, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing blue gown rests beneath blue blossoms with a glowing blue Throat Chakra symbol at her neck, beside blue lotus flowers and crystals before waterfalls and a stone arch, with the words Throat Chakra, Speak Your Truth, Voice, Truth, Expression, Communication, Authenticity." width="1536" height="1024">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--throat)">About This Journey</span>
+    <h2>Let your inner truth be heard.</h2>
+    <p>Speak Your Truth explores the relationship between your inner truth and how confidently you allow it to be expressed. This course invites you to examine the experiences, fears, and learned patterns that may have taught you to silence yourself, hold back, over-explain, or shape your voice around the comfort of others. Through guided learning and intentional self-reflection, you’ll strengthen self-awareness, explore authentic communication, and learn to express your thoughts, needs, boundaries, and truth with greater clarity—without abandoning yourself or diminishing the voices of others.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What becomes possible when I trust my voice enough to speak from who I truly am?</p>
+  </div></section>
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--throat)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--throat)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Speak Your Truth is the fifth course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== THIRD EYE COURSE ===================== -->
+<div data-page="thirdeye-course" hidden style="--c:var(--third)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(70,83,184,.2),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--lav)">Chakra Alignment Series · Course 6 of 7</span>
+      <h1 class="h-xl">Seeing Beyond The Pattern</h1>
+      <p class="caps" style="color:var(--gold-soft)">Intuition • Insight • Discernment • Awareness • Perspective</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-thirdeye-cover.webp" alt="Course cover for Third Eye Chakra: Seeing Beyond The Pattern, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing purple and gold gown rests among purple blossoms and crystals with a glowing third-eye mark on her forehead, beneath a moonlit mountain sky, with the words Third Eye Chakra, Seeing Beyond The Pattern, Intuition, Insight, Discernment, Awareness, Perspective." width="1536" height="1024">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--lav)">About This Journey</span>
+    <h2>Look beyond what is familiar.</h2>
+    <p>Seeing Beyond The Pattern invites you to look beyond what is familiar and become more aware of what may be influencing the way you see yourself, others, and the world around you. This course explores intuition, perception, discernment, and the ability to recognize patterns without automatically repeating them. Through guided learning and intentional self-reflection, you’ll examine assumptions, strengthen trust in your inner knowing, and learn to distinguish intuition from fear, conditioning, and familiar thought patterns—creating space to see your experiences with greater clarity and perspective.</p>
+    <p class="course-quote"><b>Course Reflection:</b> What can I see differently when I stop allowing familiar patterns to define what I believe is true?</p>
+  </div></section>
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--third)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--lav)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Seeing Beyond The Pattern is the sixth course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+  <section class="course-sec"><div class="wrap" style="text-align:center">
+    <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
+  </div></section>
+</div>
+
+<!-- ===================== CROWN COURSE ===================== -->
+<div data-page="crown-course" hidden style="--c:var(--crown)">
+  <section class="course-hero" style="background:linear-gradient(180deg,rgba(142,68,173,.2),transparent 60%),var(--plum)"><div class="wrap">
+    <a class="course-back" href="#/programs">← Back to Programs</a>
+    <div style="margin-top:22px;display:grid;gap:14px;max-width:820px">
+      <span class="eyebrow" style="color:var(--lav)">Chakra Alignment Series · Course 7 of 7</span>
+      <h1 class="h-xl">Crowned in Purpose</h1>
+      <p class="caps" style="color:var(--gold-soft)">Purpose • Meaning • Consciousness • Alignment • Integration</p>
+      <div class="spectrum spectrum--short"></div>
+    </div>
+  </div></section>
+  <section class="course-sec" style="padding-top:8px"><div class="wrap">
+    <figure class="course-cover">
+      <img src="assets/course-crown-cover.webp" alt="Course cover for Crown Chakra: Crowned in Purpose, part of the Rooted and Crowned Collective Chakra Alignment Series. A woman in a flowing white and gold gown rests with a glowing crown of light above her head among lavender blossoms and amethyst crystals, with a luminous crystal city on a distant mountain, and the words Crown Chakra, Crowned in Purpose, Purpose, Meaning, Consciousness, Alignment, Integration." width="1536" height="1024">
+      <span class="status-pill course-cover-tag">Coming soon</span>
+    </figure>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--lav)">About This Journey</span>
+    <h2>Bring the whole journey together.</h2>
+    <p>Crowned in Purpose brings the Root-to-Crown journey together by inviting you to reflect on who you have become through each stage of self-discovery. This course explores purpose, meaning, consciousness, and the integration of what you have learned about your foundation, emotions, personal power, relationships, voice, and inner awareness. Through guided learning and intentional self-reflection, you’ll connect the lessons of the entire journey, recognize how each part of you works together, and explore what it means to live with greater intention, alignment, and purpose.</p>
+    <p class="course-quote"><b>Course Reflection:</b> How will I live differently now that I understand myself more deeply?</p>
+  </div></section>
+  <section class="course-sec course-sec--tint"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--crown)">Included With This Course</span>
+    <h2>More than lessons. A complete experience.</h2>
+    <ul class="course-list">
+      <li>Self-paced learning</li>
+      <li>Knowledge checks</li>
+      <li>Reflective exercises</li>
+      <li>End-of-course self-discovery assessment</li>
+      <li>A 15-minute private Integration Consultation with Coach Kia</li>
+      <li>Personalized next-step guidance</li>
+      <li>A Certificate of Completion</li>
+    </ul>
+  </div></section>
+  <section class="course-sec"><div class="wrap course-body">
+    <span class="eyebrow" style="color:var(--lav)">Part of the Complete Journey</span>
+    <h2>One of seven journeys, from Root to Crown.</h2>
+    <p>Crowned in Purpose is the seventh and final course in the eCourse Chakra Alignment Series. The seven courses are experienced together as one complete Root-to-Crown journey and are not sold individually.</p>
+    <div class="btns" style="margin-top:18px"><a class="btn btn--gold" href="#/chakra-ecourses">See the Full Series <span class="arr">→</span></a></div>
+    <div class="scope" style="background:var(--white);margin-top:34px"><b>How this course is taught</b>Rooted &amp; Crowned Collective uses chakra concepts as a spiritual and reflective framework for personal development. These teachings are not presented as medical or psychological diagnoses and are not a replacement for professional medical, mental-health, legal or financial care when those services are needed. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
   <section class="course-sec"><div class="wrap" style="text-align:center">
     <a class="btn btn--gold btn--lg" href="#/programs">Back to Programs <span class="arr">→</span></a>
   </div></section>
@@ -2546,8 +2919,8 @@ const CATS = ["T-shirts","Sweatshirts","Baseball Caps","Coffee Mugs","Travel Cup
 
 const DOORS = [
   ["Listen free","Rooted & Crowned Conversations","Hear the message and get the free three-page welcome newsletter.","Free","stanEmail","Join the Conversation"],
-  ["Experience","The 7-Week Root-to-Crown Experience","Seven live Zoom classes, one for each energy center.","$299","stan7week","Start Your Transformation"],
-  ["Stay in rhythm","Rooted & Crowned Journal Club","Weekly live reflection, conversation and accountability.","$60/mo","stanJournalClub","Join the Journal Journey"],
+  ["Experience","The 7-Week Root-to-Crown Experience","Seven live Zoom classes, one for each energy center.","Coming soon","stan7week","Start Your Transformation"],
+  ["Stay in rhythm","Rooted & Crowned Journal Club","Weekly live reflection, conversation and accountability.","Coming soon","stanJournalClub","Join the Journal Journey"],
   ["Take it home","Books & Journals","Digital guided journals, affirmations and story.","From $39","stanBooks","Browse Books"],
   ["Every day","The Rooted & Crowned App","Daily check-ins, reflections and progress.","$9.99/mo","stanApp","Join the App Waitlist"]
 ];
@@ -2948,7 +3321,7 @@ document.addEventListener("submit",e=>{
 
 /* ---------- router ---------- */
 const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"programs","root-to-crown-experience":["programs","seven-week"],"journal-club":["programs","journal-club"],
-  "courses/root":"root-course","chakra-ecourses":["programs","chakra-ecourses"],
+  "courses/root":"root-course","courses/sacral":"sacral-course","courses/solar-plexus":"solar-course","courses/heart":"heart-course","courses/throat":"throat-course","courses/third-eye":"thirdeye-course","courses/crown":"crown-course","chakra-ecourses":["programs","chakra-ecourses"],
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
   "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
