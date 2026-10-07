@@ -189,7 +189,7 @@ http
         const ext = path.extname(file).toLowerCase();
         res.writeHead(200, {
           "Content-Type": TYPES[ext] || "application/octet-stream",
-          "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=86400",
+          "Cache-Control": ext === ".html" || ext === ".json" ? "no-cache" : "public, max-age=86400",
           "X-Content-Type-Options": "nosniff",
         });
         res.end(data);
