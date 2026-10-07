@@ -593,6 +593,11 @@ p{margin:0}
 .rv-ol li i{transform:scale(.2);box-shadow:0 0 0 0 transparent;transition:transform .7s cubic-bezier(.3,1.5,.5,1),box-shadow 1.2s ease;transition-delay:calc(var(--d,0s) + .15s)}
 .rv-ol.in li{opacity:1;transform:none}
 .rv-ol.in li i{transform:none;box-shadow:0 0 14px 2px var(--c)}
+.ip-soon-list{display:grid;gap:44px}
+.ip-soon-item{display:grid}
+.ip-soon-item figure{margin:0}
+.ip-soon-item img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line-light);border-bottom:0;border-radius:2px 2px 0 0}
+.ip-soon-item .give{padding:24px 28px}
 .path-desc{padding:16px 22px;border-bottom:1px solid var(--line-light);font-size:14.5px;line-height:1.7;color:var(--plum-muted);margin:0}
 .path-note{margin:-14px 0 0;font-size:13.5px;line-height:1.7;color:var(--plum-muted);max-width:72ch}
 .paths ol{list-style:none;margin:0;padding:0}
@@ -2689,9 +2694,15 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <h2 class="h-l">Walk it together. Be held while you do.</h2>
         <p class="lede" style="color:var(--plum-muted);max-width:64ch">Both Root-to-Crown pathways are coming to caregivers and their children, and with them, a place where caregivers are cared for, too.</p>
       </div>
-      <div class="give-grid">
-        <div class="give" style="--c:#8E44AD"><h3>Chakra Alignment Framework Classes</h3><p>Caregivers and their children will be able to walk these two frameworks in chakra alignment framework classes, each shaped for their age, side by side, one stage at a time, from the Root to the Crown.</p></div>
-        <div class="give" style="--c:#2BA84A"><h3>Neurodivergent Caregivers Support Group</h3><p>A circle where neurodivergent caregivers come together to journal, share and discuss their journeys, in a supportive, non-judgmental space where every story is welcome.</p></div>
+      <div class="ip-soon-list">
+        <div class="ip-soon-item">
+          <figure><img src="assets/ip-chakra-class.jpg" alt="A caregiver chakra alignment class gathered outdoors in a park beside a lake and city skyline: a woman in the center with hands in prayer position leads a circle of caregivers who rest hands over their hearts and write in Rooted and Crowned journals, with a Rooted and Crowned Collective banner, wooden signs reading Heal, Breathe, Align, Refill, Grow, Belong and Thrive, and a chalkboard reading Infinite Possibilities Caregiver Chakra Alignment Class" width="1672" height="941" loading="lazy"></figure>
+          <div class="give" style="--c:#8E44AD"><h3>Chakra Alignment Framework Classes</h3><p>Caregivers and their children will be able to walk these two frameworks in chakra alignment framework classes, each shaped for their age, side by side, one stage at a time, from the Root to the Crown.</p></div>
+        </div>
+        <div class="ip-soon-item">
+          <figure><img src="assets/ip-support-group.jpg" alt="The Neurodivergent Caregivers Support Group gathered in a circle around a fire pit on an autumn lakeshore, journaling and talking together with lanterns, blankets and Rooted and Crowned tumblers, in front of chalkboards reading Neurodivergent Caregivers Support Group, Support, Listen, Share, Encourage, Empower, Breathe, You Are Not Alone and Thrive, and a wooden sign reading Real People, Real Journeys, Real Support" width="1670" height="942" loading="lazy"></figure>
+          <div class="give" style="--c:#2BA84A"><h3>Neurodivergent Caregivers Support Group</h3><p>A circle where neurodivergent caregivers come together to journal, share and discuss their journeys, in a supportive, non-judgmental space where every story is welcome.</p></div>
+        </div>
       </div>
     </div>
   </div></section>
@@ -3238,7 +3249,7 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
   ipPage.querySelectorAll(".paths>div>h4,.paths>div>.path-desc").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",".1s");seen.observe(c)});
   ipPage.querySelectorAll(".paths ol").forEach(ol=>{ol.classList.add("rv-ol");seen.observe(ol)});
   ipPage.querySelectorAll(".path-note").forEach(c=>{c.classList.add("rv");c.style.setProperty("--d",".2s");seen.observe(c)});
-  ipPage.querySelectorAll(".ip-soon .sec-head>*,.ip-soon .give").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",(i%3*0.14)+"s");seen.observe(c)});
+  ipPage.querySelectorAll(".ip-soon .sec-head>*,.ip-soon .ip-soon-item").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",(i%3*0.14)+"s");seen.observe(c)});
 }
 
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
