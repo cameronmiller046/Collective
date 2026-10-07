@@ -2683,6 +2683,17 @@ details.course-mod summary::-webkit-details-marker{display:none}
     </div>
     <div class="paths" data-paths></div>
     <p class="path-note">Read each pathway from the bottom up. Every journey begins at the Root and rises to the Crown, one stage at a time. Chakra concepts are used as a reflective framework for personal growth, not as medical or therapeutic treatment.</p>
+    <div class="ip-soon" style="display:grid;gap:26px;margin-top:8px">
+      <div class="sec-head" style="margin:0">
+        <span class="eyebrow">Coming soon</span>
+        <h2 class="h-l">Walk it together. Be held while you do.</h2>
+        <p class="lede" style="color:var(--plum-muted);max-width:64ch">Both Root-to-Crown pathways are coming to caregivers and their children, and with them, a place where caregivers are cared for, too.</p>
+      </div>
+      <div class="give-grid">
+        <div class="give" style="--c:#8E44AD"><h3>Chakra Alignment Framework Classes</h3><p>Caregivers and their children will be able to walk these two frameworks in chakra alignment framework classes, each shaped for their age, side by side, one stage at a time, from the Root to the Crown.</p></div>
+        <div class="give" style="--c:#2BA84A"><h3>Neurodivergent Caregivers Support Group</h3><p>A circle where neurodivergent caregivers come together to journal, share and discuss their journeys, in a supportive, non-judgmental space where every story is welcome.</p></div>
+      </div>
+    </div>
   </div></section>
 
   <section class="band band--plum2"><div class="wrap ip-two">
@@ -3227,6 +3238,7 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
   ipPage.querySelectorAll(".paths>div>h4,.paths>div>.path-desc").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",".1s");seen.observe(c)});
   ipPage.querySelectorAll(".paths ol").forEach(ol=>{ol.classList.add("rv-ol");seen.observe(ol)});
   ipPage.querySelectorAll(".path-note").forEach(c=>{c.classList.add("rv");c.style.setProperty("--d",".2s");seen.observe(c)});
+  ipPage.querySelectorAll(".ip-soon .sec-head>*,.ip-soon .give").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",(i%3*0.14)+"s");seen.observe(c)});
 }
 
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
