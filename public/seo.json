@@ -1,0 +1,188 @@
+{
+  "origin": "https://www.rootedandcrownedcollective.org",
+  "siteName": "Rooted & Crowned Collective",
+  "image": "/assets/og-share.jpg",
+  "imageAlt": "Rooted & Crowned Collective: Grounded Roots. Crown Driven. A rainbow tree and golden crown above a sunlit lake and mountain landscape at sunrise.",
+  "routes": {
+    "": {
+      "title": "Rooted & Crowned Collective | Grounded Roots. Crown Driven.",
+      "description": "A personal-development framework and community built around the Root-to-Crown journey: reflection, growth and intentional living through programs, books, journals, conversations and community.",
+      "canonical": "/",
+      "sitemap": true
+    },
+    "about": {
+      "title": "Our Story | Rooted & Crowned Collective",
+      "description": "Meet Coach Kia, founder, author and life coach, and the story behind Rooted & Crowned Collective: a journey of beginning again, from the Root up.",
+      "canonical": "/about",
+      "sitemap": true
+    },
+    "root-to-crown": {
+      "title": "The Root-to-Crown Framework | Rooted & Crowned Collective",
+      "description": "A seven-part journey of reflection and intentional growth: Ground, Create, Empower, Love, Speak, See and Integrate, from Root to Crown.",
+      "canonical": "/root-to-crown",
+      "sitemap": true
+    },
+    "programs": {
+      "title": "Programs | Rooted & Crowned Collective",
+      "description": "Self-paced learning and live guided experiences: the 7-Week Root-to-Crown Experience, the eCourse Chakra Alignment Series and Journal Club.",
+      "canonical": "/programs",
+      "sitemap": true
+    },
+    "root-to-crown-experience": {
+      "title": "The 7-Week Root-to-Crown Experience | Rooted & Crowned Collective",
+      "description": "Live virtual classes via Zoom exploring the Root-to-Crown Framework through guided teaching, reflection, conversation and practice.",
+      "canonical": "/programs"
+    },
+    "journal-club": {
+      "title": "Journal Club | Rooted & Crowned Collective",
+      "description": "A space to keep showing up, reflecting and putting what you are learning into practice, with Rooted & Crowned Journal Club.",
+      "canonical": "/programs"
+    },
+    "chakra-ecourses": {
+      "title": "The eCourse Chakra Alignment Series | Rooted & Crowned Collective",
+      "description": "Seven guided, self-paced journeys from Root to Crown, with in-depth teaching, reflection, assessments and private integration consultations with Coach Kia.",
+      "canonical": "/programs"
+    },
+    "courses/root": {
+      "title": "Breaking the Chains: Root Chakra Course | Rooted & Crowned Collective",
+      "description": "The Root course in the eCourse Chakra Alignment Series: safety, survival, stability, belonging and foundation. Part of the complete 7-course journey.",
+      "canonical": "/courses/root"
+    },
+    "courses/sacral": {
+      "title": "Reclaiming Creation: Sacral Chakra Course | Rooted & Crowned Collective",
+      "description": "The Sacral course in the eCourse Chakra Alignment Series: emotion, creativity, receiving, pleasure and expression. Part of the complete 7-course journey.",
+      "canonical": "/courses/sacral"
+    },
+    "courses/solar-plexus": {
+      "title": "Taking Back My Power: Solar Plexus Chakra Course | Rooted & Crowned Collective",
+      "description": "The Solar Plexus course in the eCourse Chakra Alignment Series: confidence, self-worth, personal power, clarity and action. Part of the complete 7-course journey.",
+      "canonical": "/courses/solar-plexus"
+    },
+    "courses/heart": {
+      "title": "Loving Without Losing Me: Heart Chakra Course | Rooted & Crowned Collective",
+      "description": "The Heart course in the eCourse Chakra Alignment Series: love, compassion, forgiveness, connection and balance. Part of the complete 7-course journey.",
+      "canonical": "/courses/heart"
+    },
+    "courses/throat": {
+      "title": "Speak Your Truth: Throat Chakra Course | Rooted & Crowned Collective",
+      "description": "The Throat course in the eCourse Chakra Alignment Series: voice, truth, expression, communication and authenticity. Part of the complete 7-course journey.",
+      "canonical": "/courses/throat"
+    },
+    "courses/third-eye": {
+      "title": "Seeing Beyond The Pattern: Third Eye Chakra Course | Rooted & Crowned Collective",
+      "description": "The Third Eye course in the eCourse Chakra Alignment Series: intuition, insight, discernment, awareness and perspective. Part of the complete 7-course journey.",
+      "canonical": "/courses/third-eye"
+    },
+    "courses/crown": {
+      "title": "Crowned in Purpose: Crown Chakra Course | Rooted & Crowned Collective",
+      "description": "The Crown course in the eCourse Chakra Alignment Series: purpose, meaning, consciousness, alignment and integration. Part of the complete 7-course journey.",
+      "canonical": "/courses/crown"
+    },
+    "conversations": {
+      "title": "Rooted & Crowned Conversations | Podcast with Coach Kia",
+      "description": "Real conversations, deeper healing, purposeful living. Hear the message, meet Coach Kia and feel the philosophy behind Rooted & Crowned.",
+      "canonical": "/conversations",
+      "sitemap": true
+    },
+    "books": {
+      "title": "Books & Journals | The Rooted & Crowned Library",
+      "description": "The Rooted & Crowned Library: books and journals by Coach Kia for reflection, healing and intentional growth.",
+      "canonical": "/books",
+      "sitemap": true
+    },
+    "app": {
+      "title": "The Rooted & Crowned App | Your Daily Energy Companion",
+      "description": "Answer. Align. Elevate. A daily check-in companion that helps you notice where you are and what to practice next. Join the waitlist.",
+      "canonical": "/app",
+      "sitemap": true
+    },
+    "community": {
+      "title": "Our Community | Rooted & Crowned Collective",
+      "description": "One Root-to-Crown philosophy, shaped for the women, men, children and families it serves, from the Sisterhood Circle to the Men's Collective and community events.",
+      "canonical": "/community",
+      "sitemap": true
+    },
+    "sisterhood": {
+      "title": "Sisterhood Circle | Rooted & Crowned Collective",
+      "description": "The Rooted & Crowned Sisterhood Circle: women journaling, reflecting and growing together.",
+      "canonical": "/community"
+    },
+    "mens-collective": {
+      "title": "Men's Collective | Rooted & Crowned Collective",
+      "description": "The Rooted & Crowned Men's Collective: men connecting, talking and growing together.",
+      "canonical": "/community"
+    },
+    "children": {
+      "title": "Children's Programs | Rooted & Crowned Collective",
+      "description": "Rooted & Crowned programs and experiences for children and young people.",
+      "canonical": "/community"
+    },
+    "events": {
+      "title": "Community Events | Rooted & Crowned Collective",
+      "description": "Gatherings that bring every branch together: vendors, workshops, speakers, families and celebration.",
+      "canonical": "/community"
+    },
+    "ecosystem": {
+      "title": "Our Ecosystem | Rooted & Crowned Collective",
+      "description": "One root, many branches, infinite possibilities. See how Rooted & Crowned Collective plans to grow through books, education, community, advocacy and wellness.",
+      "canonical": "/ecosystem",
+      "sitemap": true
+    },
+    "support": {
+      "title": "Support the Collective | Rooted & Crowned Collective",
+      "description": "Help us grow what matters: support our programs, sponsor a family, fund a scholarship or partner with Rooted & Crowned Collective.",
+      "canonical": "/support",
+      "sitemap": true
+    },
+    "infinite-possibilities": {
+      "title": "Infinite Possibilities | Support for Neurodiverse Families",
+      "description": "Rooted & Crowned Infinite Possibilities, in development: education, resources and community for neurodiverse families, with Root-to-Crown pathways for parents, caregivers and children.",
+      "canonical": "/infinite-possibilities",
+      "sitemap": true
+    },
+    "shop": {
+      "title": "Shop the Collective | Rooted & Crowned Collective",
+      "description": "Apparel, drinkware, wellness gear, hardback journals and stationery made to carry the Root-to-Crown message into everyday life.",
+      "canonical": "/shop",
+      "sitemap": true
+    },
+    "start-here": {
+      "title": "Start Here | Rooted & Crowned Collective",
+      "description": "Not sure where to begin? Take the doors in order, from your first step to classes, memberships and digital resources.",
+      "canonical": "/start-here",
+      "sitemap": true
+    },
+    "contact": {
+      "title": "Contact | Rooted & Crowned Collective",
+      "description": "Questions, speaking, workshops, podcast guests and collaborations: choose a topic so your message reaches the right place.",
+      "canonical": "/contact",
+      "sitemap": true
+    },
+    "speaking": {
+      "title": "Speaking & Workshops | Rooted & Crowned Collective",
+      "description": "Invite Coach Kia to speak or lead a workshop for your organization or event.",
+      "canonical": "/contact"
+    },
+    "legal": {
+      "title": "Policies & Disclaimer | Rooted & Crowned Collective",
+      "description": "Refund, shipping and disclaimer policies for Rooted & Crowned Collective.",
+      "canonical": "/legal",
+      "sitemap": true
+    },
+    "privacy": {
+      "title": "Privacy Policy | Rooted & Crowned Collective",
+      "description": "How Rooted & Crowned Collective handles your information.",
+      "canonical": "/legal"
+    },
+    "terms": {
+      "title": "Terms & Conditions | Rooted & Crowned Collective",
+      "description": "The terms and conditions for using the Rooted & Crowned Collective website and services.",
+      "canonical": "/legal"
+    },
+    "accessibility": {
+      "title": "Accessibility | Rooted & Crowned Collective",
+      "description": "Our commitment to making the Rooted & Crowned Collective website accessible to everyone.",
+      "canonical": "/legal"
+    }
+  }
+}

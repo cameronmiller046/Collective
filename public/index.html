@@ -27,6 +27,8 @@ gtag('config', 'G-QQBLTBHNEX');
 <meta property="og:image:alt" content="Rooted &amp; Crowned Collective: Grounded Roots. Crown Driven. A rainbow tree and golden crown above a sunlit lake and mountain landscape at sunrise.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.rootedandcrownedcollective.org/assets/og-share.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Rooted & Crowned Collective","url":"https://www.rootedandcrownedcollective.org/","logo":"https://www.rootedandcrownedcollective.org/assets/logo-emblem.png","slogan":"Grounded Roots. Crown Driven."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Rooted & Crowned Collective","url":"https://www.rootedandcrownedcollective.org/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&family=Pinyon+Script&display=swap">
@@ -3067,7 +3069,7 @@ function renderTreeFall(){
 if($$("[data-tree-fall]").length){
   if(document.readyState==="complete") renderTreeFall();
   else window.addEventListener("load",renderTreeFall);
-  window.addEventListener("hashchange",()=>setTimeout(renderTreeFall,50));
+  window.addEventListener("routechange",()=>setTimeout(renderTreeFall,50));
   window.addEventListener("resize",()=>{clearTimeout(window.__tfResize);window.__tfResize=setTimeout(renderTreeFall,200)});
 }
 
@@ -3163,7 +3165,7 @@ function renderGoalLeafFall(){
 if($$("[data-goal-leaf-fall]").length){
   if(document.readyState==="complete") renderGoalLeafFall();
   else window.addEventListener("load",renderGoalLeafFall);
-  window.addEventListener("hashchange",()=>setTimeout(renderGoalLeafFall,50));
+  window.addEventListener("routechange",()=>setTimeout(renderGoalLeafFall,50));
   window.addEventListener("resize",()=>{clearTimeout(window.__glfResize);window.__glfResize=setTimeout(renderGoalLeafFall,200)});
 }
 
@@ -3337,7 +3339,7 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",support:"/support",contact:"/contact",start:"/start-here",shop:"/shop"};
 let first=true, curPage=null;
 function route(){
-  const slug=location.hash.replace(/^#\/?/,"").split(/[?#]/)[0].replace(/\/$/,"");
+  const slug=slugNow();
   const r=ROUTES[slug]??"home"; const [page,anchor]=Array.isArray(r)?r:[r,null];
   if(page!==curPage){                       // confetti falls each time the Infinite Possibilities page opens
     if(page==="infinite" && !reduce) confetti.shower();
@@ -3351,11 +3353,51 @@ function route(){
   else if(!first) window.scrollTo({top:0,behavior:"instant"});
   first=false;
   if(page==="home") startTree();
+  applySeo(slug);
+  window.dispatchEvent(new Event("routechange"));
 }
 const burger=$(".burger"), drawer=$("#drawer");
 function closeDrawer(){drawer.hidden=true;burger.setAttribute("aria-expanded","false");}
 burger.addEventListener("click",()=>{const open=drawer.hidden;drawer.hidden=!open;burger.setAttribute("aria-expanded",String(open));});
-window.addEventListener("hashchange",route);
+function slugNow(){ return location.pathname.replace(/^\/+|\/+$/g,""); }
+/* old-style links such as /#/programs turn into the real address /programs */
+function fixHash(){
+  if(/^#\//.test(location.hash)){ history.replaceState(null,"","/"+location.hash.slice(2)); return true; }
+  return false;
+}
+fixHash();
+window.addEventListener("hashchange",()=>{ if(fixHash()) route(); });
+window.addEventListener("popstate",route);
+/* in-site links change the address without reloading the page */
+document.addEventListener("click",e=>{
+  if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const a=e.target.closest("a[href]"); if(!a||a.target||a.hasAttribute("download")) return;
+  const raw=a.getAttribute("href"); if(!raw||raw[0]!=="/"||raw[1]==="/") return;
+  const u=new URL(raw,location.origin);
+  if(!(u.pathname.replace(/^\/+|\/+$/g,"") in ROUTES)) return;
+  e.preventDefault();
+  if(u.pathname!==location.pathname) history.pushState(null,"",u.pathname+u.search);
+  route();
+});
+/* each address keeps its own title, description and share tags while moving around the site */
+let SEO=null;
+fetch("/seo.json").then(r=>r.ok?r.json():null).then(j=>{SEO=j; applySeo(slugNow());}).catch(()=>{});
+function applySeo(slug){
+  if(!SEO) return;
+  const e=SEO.routes[slug]||SEO.routes[""]; if(!e) return;
+  const url=SEO.origin+e.canonical;
+  document.title=e.title;
+  const put=(sel,tag,key,keyVal,attr,val)=>{
+    let el=document.head.querySelector(sel);
+    if(!el){ el=document.createElement(tag); el.setAttribute(key,keyVal); document.head.appendChild(el); }
+    el.setAttribute(attr,val);
+  };
+  put('meta[name="description"]',"meta","name","description","content",e.description);
+  put('link[rel="canonical"]',"link","rel","canonical","href",url);
+  put('meta[property="og:title"]',"meta","property","og:title","content",e.title);
+  put('meta[property="og:description"]',"meta","property","og:description","content",e.description);
+  put('meta[property="og:url"]',"meta","property","og:url","content",url);
+}
 
 /* ---------- hero (canvas) ---------- */
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
