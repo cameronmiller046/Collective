@@ -587,6 +587,14 @@ p{margin:0}
 .paths>div{padding:0}
 .paths>div+div{border-left:1px solid var(--line-light)}
 .paths h4{font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:18px 22px;border-bottom:1px solid var(--line-light);color:var(--plum)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.rv-ol li{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv-ol li i{transform:scale(.2);box-shadow:0 0 0 0 transparent;transition:transform .7s cubic-bezier(.3,1.5,.5,1),box-shadow 1.2s ease;transition-delay:calc(var(--d,0s) + .15s)}
+.rv-ol.in li{opacity:1;transform:none}
+.rv-ol.in li i{transform:none;box-shadow:0 0 14px 2px var(--c)}
+.path-desc{padding:16px 22px;border-bottom:1px solid var(--line-light);font-size:14.5px;line-height:1.7;color:var(--plum-muted);margin:0}
+.path-note{margin:-14px 0 0;font-size:13.5px;line-height:1.7;color:var(--plum-muted);max-width:72ch}
 .paths ol{list-style:none;margin:0;padding:0}
 .paths li{display:grid;grid-template-columns:12px 1fr;gap:14px;align-items:center;padding:13px 22px;border-bottom:1px solid var(--line-light);font-size:14px;line-height:24px;color:var(--plum)}
 .paths li span{line-height:24px;display:inline-block}
@@ -2671,8 +2679,10 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <div class="sec-head" style="margin:0">
       <span class="eyebrow">Two pathways</span>
       <h2 class="h-l">A Root-to-Crown journey for the whole family.</h2>
+      <p class="lede" style="color:var(--plum-muted);max-width:64ch">Every family has roots. Some hold us steady, and some are still asking to be understood. Infinite Possibilities carries the Root-to-Crown Framework into the home through two age-appropriate pathways, each a seven-stage journey from the Root to the Crown, from &ldquo;I am safe&rdquo; to &ldquo;I belong, and I have purpose.&rdquo; Parents and children walk their own paths, side by side, toward the same place: a family where every mind is honored, every voice is heard and every possibility is believed in.</p>
     </div>
     <div class="paths" data-paths></div>
+    <p class="path-note">Read each pathway from the bottom up. Every journey begins at the Root and rises to the Crown, one stage at a time. Chakra concepts are used as a reflective framework for personal growth, not as medical or therapeutic treatment.</p>
   </div></section>
 
   <section class="band band--plum2"><div class="wrap ip-two">
@@ -3206,8 +3216,18 @@ $$("[data-give]").forEach(el=>el.innerHTML=GIVE.map(([n,d],i)=>`<div class="give
 const PARENT = ["Grounding","Emotional permission","Advocacy","Self-care","Family voice","Perspective","Hope & purpose"];
 const KIDS = ["I Am Safe","I Can Feel & Create","I Can Grow in My Own Way","I Am Worthy of Love & Connection","My Voice Matters","My Mind Has Its Own Strengths","I Belong & I Have Purpose"];
 $$("[data-paths]").forEach(el=>{el.innerHTML=`
-  <div><h4>Parents &amp; Caregivers</h4><ol>${PARENT.map((p,i)=>({p,c:CHAKRAS[i].c})).reverse().map(({p,c})=>`<li style="--c:${c}"><i></i>${p}</li>`).join("")}</ol></div>
-  <div><h4>Children &amp; Young Adults</h4><ol>${KIDS.map((p,i)=>({p,c:CHAKRAS[i].c})).reverse().map(({p,c})=>`<li style="--c:${c}"><i></i><span style="font-family:var(--serif);font-style:italic;font-size:1.15rem">${p}</span></li>`).join("")}</ol></div>`;});
+  <div><h4>Parents &amp; Caregivers</h4><p class="path-desc">For the ones who carry everyone else. A journey of reflection, education and community for the parents and caregivers who hold, advocate for and protect the people they love, and who deserve to be held, too.</p><ol>${PARENT.map((p,i)=>({p,i,c:CHAKRAS[i].c})).reverse().map(({p,i,c})=>`<li style="--c:${c};--d:${(i*0.14).toFixed(2)}s"><i></i>${p}</li>`).join("")}</ol></div>
+  <div><h4>Children &amp; Young Adults</h4><p class="path-desc">For the ones still becoming. The same seven stages, spoken in a child&rsquo;s own words and shaped for their age. Each stage is a truth to practice, an &ldquo;I&rdquo; statement to say aloud until it is believed.</p><ol>${KIDS.map((p,i)=>({p,i,c:CHAKRAS[i].c})).reverse().map(({p,i,c})=>`<li style="--c:${c};--d:${(i*0.14).toFixed(2)}s"><i></i><span style="font-family:var(--serif);font-style:italic;font-size:1.15rem">${p}</span></li>`).join("")}</ol></div>`;});
+
+/* Infinite Possibilities: the explanation fades in, then each pathway lights up from Root (bottom) to Crown (top) */
+if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+  const ipPage=$('[data-page="infinite"]');
+  const seen=new IntersectionObserver((entries,o)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}}),{threshold:.2,rootMargin:"0px 0px -6% 0px"});
+  ipPage.querySelector(".paths").closest("section").querySelectorAll(".sec-head>*").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",(i*0.14)+"s");seen.observe(c)});
+  ipPage.querySelectorAll(".paths>div>h4,.paths>div>.path-desc").forEach((c,i)=>{c.classList.add("rv");c.style.setProperty("--d",".1s");seen.observe(c)});
+  ipPage.querySelectorAll(".paths ol").forEach(ol=>{ol.classList.add("rv-ol");seen.observe(ol)});
+  ipPage.querySelectorAll(".path-note").forEach(c=>{c.classList.add("rv");c.style.setProperty("--d",".2s");seen.observe(c)});
+}
 
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
