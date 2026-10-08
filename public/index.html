@@ -2851,6 +2851,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <select name="topic" required data-topics></select>
       </label>
       <label>Message<textarea name="message" required></textarea></label>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="btns"><button class="btn btn--gold" type="submit">Send Message <span class="arr">→</span></button></div>
     </form>
     <div class="contact-aside">
@@ -3395,6 +3396,18 @@ document.addEventListener("submit",e=>{
   if(f.id==="contact-form"){
     const miss=[...f.querySelectorAll("[required]")].find(x=>!x.value.trim());
     if(miss){miss.focus();toast("Fill in every field, then send.");return;}
+    const btn=f.querySelector('[type="submit"]'), d=Object.fromEntries(new FormData(f));
+    const fail="We couldn’t send that just now. Please email hello@rootedandcrownedcollective.org directly.";
+    btn.disabled=true;
+    fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
+      .then(r=>r.json().catch(()=>({})).then(j=>({ok:r.ok,j})))
+      .then(({ok,j})=>{
+        if(ok){f.reset();toast("Thank you. Your message is on its way, and we will reply by email.");}
+        else toast(j.error==="rate"?"You’ve sent a few messages in a row. Please wait a few minutes and try again.":fail);
+      })
+      .catch(()=>toast(fail))
+      .finally(()=>{btn.disabled=false;});
+    return;
   }
   f.reset();
   toast(f.id==="contact-form"?"Preview: this form isn't connected to an inbox yet. Once it is, your message is sent here.":"Preview: sign-ups start once the email service is connected.");

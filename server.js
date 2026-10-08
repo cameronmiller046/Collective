@@ -118,6 +118,87 @@ function sitemapXml() {
 
 const robotsTxt = () => `User-agent: *\nAllow: /\n\nSitemap: ${SEO.origin}/sitemap.xml\n`;
 
+// ---- Contact form: emails each message to the right address for its topic, through Resend ----
+// The API key lives only in Railway's variables (RESEND_API_KEY). It is never written into the site files.
+// MAIL_FROM  : sender shown on the email. Use an address on a domain verified in Resend (until then the default only reaches the Resend account owner).
+// MAIL_TO_OVERRIDE : when set, every message goes to this one address instead (for testing).
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+const RESEND_URL = process.env.RESEND_API_URL || "https://api.resend.com/emails";
+const MAIL_FROM = process.env.MAIL_FROM || "Rooted & Crowned Website <onboarding@resend.dev>";
+const MAIL_TO_OVERRIDE = process.env.MAIL_TO_OVERRIDE || "";
+const MAIL_DOMAIN = "rootedandcrownedcollective.org";
+const TOPIC_TO = {
+  "General question": "hello",
+  "Podcast guest inquiry": "podcast",
+  "Suggest a podcast topic": "podcast",
+  "Speaking request": "partnerships",
+  "Workshop request": "partnerships",
+  "Partnership / collaboration": "partnerships",
+  "Vendor / community event": "community",
+  "Sponsorship / community partner": "partnerships",
+  "Infinite Possibilities inquiry": "infinitepossibilities",
+  "Media inquiry": "podcast",
+  "Customer / order assistance": "shop",
+  "App technical support": "hello",
+};
+const sends = new Map(); // ip -> recent send times, a small guard against spam
+function tooMany(ip) {
+  const now = Date.now();
+  const recent = (sends.get(ip) || []).filter((t) => now - t < 10 * 60 * 1000);
+  if (recent.length >= 5) { sends.set(ip, recent); return true; }
+  recent.push(now);
+  sends.set(ip, recent);
+  if (sends.size > 5000) sends.clear();
+  return false;
+}
+const oneLine = (s) => String(s || "").replace(/[\r\n]+/g, " ").trim();
+function reply(res, code, obj) {
+  res.writeHead(code, { "Content-Type": "application/json", "Cache-Control": "no-store" }).end(JSON.stringify(obj));
+}
+function handleContact(req, res) {
+  const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+  let size = 0;
+  const chunks = [];
+  req.on("data", (c) => {
+    size += c.length;
+    if (size > 20000) { req.destroy(); return; }
+    chunks.push(c);
+  });
+  req.on("end", async () => {
+    let b;
+    try { b = JSON.parse(Buffer.concat(chunks).toString("utf8")); } catch { return reply(res, 400, { error: "invalid" }); }
+    if (b.website) return reply(res, 200, { ok: true }); // hidden field only bots fill in: pretend it worked
+    const name = oneLine(b.name), email = oneLine(b.email), topic = String(b.topic || ""), message = String(b.message || "").trim();
+    if (!name || name.length > 100 || !/^\S+@\S+\.\S+$/.test(email) || email.length > 200 || !Object.prototype.hasOwnProperty.call(TOPIC_TO, topic) || !message || message.length > 5000) {
+      return reply(res, 400, { error: "invalid" });
+    }
+    if (!RESEND_API_KEY) return reply(res, 503, { error: "not_configured" });
+    if (tooMany(ip)) return reply(res, 429, { error: "rate" });
+    const to = MAIL_TO_OVERRIDE || `${TOPIC_TO[topic]}@${MAIL_DOMAIN}`;
+    try {
+      const r = await fetch(RESEND_URL, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: MAIL_FROM,
+          to: [to],
+          reply_to: email,
+          subject: `[${topic}] ${name}`,
+          text: `New message from the website contact form\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\n${message}\n`,
+        }),
+      });
+      if (!r.ok) {
+        console.error("contact: mail service refused the message, status", r.status);
+        return reply(res, 502, { error: "send_failed" });
+      }
+      reply(res, 200, { ok: true });
+    } catch (e) {
+      console.error("contact: could not reach the mail service:", e.message);
+      reply(res, 502, { error: "send_failed" });
+    }
+  });
+}
+
 http
   .createServer((req, res) => {
     let urlPath;
@@ -136,6 +217,11 @@ http
         "Content-Type": "text/html; charset=utf-8",
         "WWW-Authenticate": 'Basic realm="Rooted & Crowned Collective", charset="UTF-8"',
       }).end("<!doctype html><title>Site temporarily offline</title><body style=\"font-family:sans-serif;text-align:center;padding:80px 20px\"><h1>We'll be back soon.</h1><p>This site is temporarily offline. Enter the access password to continue.</p></body>");
+      return;
+    }
+    if (urlPath === "/api/contact") {
+      if (req.method !== "POST") return void reply(res, 405, { error: "method" });
+      handleContact(req, res);
       return;
     }
     const slug = urlPath.replace(/^\/+|\/+$/g, "");
