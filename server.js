@@ -20,7 +20,7 @@ function timingSafeEqual(a, b) {
   return crypto.timingSafeEqual(bufA, bufB);
 }
 
-function isAuthorized(req) {
+function checkBasic(req, wantUser, wantPass) {
   const header = req.headers["authorization"] || "";
   const [scheme, encoded] = header.split(" ");
   if (scheme !== "Basic" || !encoded) return false;
@@ -34,7 +34,28 @@ function isAuthorized(req) {
   if (sep === -1) return false;
   const user = decoded.slice(0, sep);
   const pass = decoded.slice(sep + 1);
-  return timingSafeEqual(user, SITE_USER) && timingSafeEqual(pass, SITE_PASSWORD);
+  return timingSafeEqual(user, wantUser) && timingSafeEqual(pass, wantPass);
+}
+const isAuthorized = (req) => checkBasic(req, SITE_USER, SITE_PASSWORD);
+
+// Private admin page (visitor numbers). Switched on only when ADMIN_PASSWORD is set in Railway; otherwise /admin does not exist.
+const ADMIN_USER = process.env.ADMIN_USER || "admin";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
+const adminFails = new Map(); // ip -> failed sign-in times
+let adminFailsAll = []; // every failed sign-in from anyone, so faking a visitor address cannot get around the limit
+function adminLockedOut(ip) {
+  const now = Date.now();
+  const list = (adminFails.get(ip) || []).filter((t) => now - t < 15 * 60 * 1000);
+  adminFails.set(ip, list);
+  adminFailsAll = adminFailsAll.filter((t) => now - t < 15 * 60 * 1000);
+  return list.length >= 10 || adminFailsAll.length >= 40;
+}
+function adminFailed(ip) {
+  const list = adminFails.get(ip) || [];
+  list.push(Date.now());
+  adminFails.set(ip, list);
+  adminFailsAll.push(Date.now());
+  if (adminFails.size > 2000) adminFails.clear();
 }
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -71,6 +92,19 @@ try {
   console.error("SEO setup failed; serving the page without per-address tags:", e.message);
 }
 const hasRoute = (slug) => Object.prototype.hasOwnProperty.call(SEO.routes, slug);
+
+// Visitor counting. DATA_DIR should point at a Railway Volume (for example /data) so the numbers survive site updates.
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, "data");
+const pageTitles = {};
+for (const [slug, e] of Object.entries(SEO.routes)) pageTitles[slug === "" ? "/" : "/" + slug] = String(e.title || "").split(" | ")[0];
+const analytics = require("./analytics")({
+  dataDir: DATA_DIR,
+  isRoute: (s) => hasRoute(s),
+  siteHost: SEO.origin ? new URL(SEO.origin).hostname.replace(/^www\./, "") : "",
+  titles: pageTitles,
+});
+setInterval(() => analytics.flush(), 30000).unref();
+for (const sig of ["SIGTERM", "SIGINT"]) process.on(sig, () => { analytics.flush(); process.exit(0); });
 const escText = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const escAttr = (s) => escText(s).replace(/"/g, "&quot;");
 
@@ -155,6 +189,54 @@ const oneLine = (s) => String(s || "").replace(/[\r\n]+/g, " ").trim();
 function reply(res, code, obj) {
   res.writeHead(code, { "Content-Type": "application/json", "Cache-Control": "no-store" }).end(JSON.stringify(obj));
 }
+// ---- Weekly summary and alert emails (same Resend account as the contact form) ----
+// DIGEST_TO : where the Monday summary and alerts go. Falls back to MAIL_TO_OVERRIDE. Leave both unset to switch these emails off.
+const digest = require("./digest");
+const DIGEST_TO = process.env.DIGEST_TO || MAIL_TO_OVERRIDE || "";
+const ADMIN_URL = (SEO.origin || "") + "/admin";
+async function sendMail({ to, subject, text, html }) {
+  if (!RESEND_API_KEY || !to) return { ok: false, reason: "not_configured" };
+  try {
+    const r = await fetch(RESEND_URL, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: MAIL_FROM, to: [to], subject, text, ...(html ? { html } : {}) }),
+    });
+    if (!r.ok) { console.error("mail: the mail service refused a summary email, status", r.status); return { ok: false, reason: "refused" }; }
+    return { ok: true };
+  } catch (e) {
+    console.error("mail: could not reach the mail service:", e.message);
+    return { ok: false, reason: "unreachable" };
+  }
+}
+const sendWeekly = () => sendMail({ to: DIGEST_TO, ...digest.build(analytics.weekly(), ADMIN_URL) });
+const maskEmail = (e) => (e ? e.replace(/^(.).*(@.*)$/, "$1***$2") : "");
+async function digestTick() {
+  try {
+    if (!DIGEST_TO || !RESEND_API_KEY) return;
+    const meta = analytics.meta(), today = analytics.dayKey(), now = Date.now(), RETRY = 3 * 3600 * 1000;
+    const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short", hour: "numeric", hourCycle: "h23" }).formatToParts(new Date());
+    const weekday = parts.find((p) => p.type === "weekday").value, hour = Number(parts.find((p) => p.type === "hour").value);
+    if (weekday === "Mon" && hour >= 8 && meta.lastDigest !== today && !(meta.digestTry && now - meta.digestTry < RETRY)) {
+      meta.digestTry = now;
+      const r = await sendWeekly();
+      if (r.ok) { meta.lastDigest = today; console.log("digest: weekly summary sent"); }
+      analytics.save();
+    }
+    meta.alerted = meta.alerted || {};
+    for (const k of Object.keys(meta.alerted)) if (!k.startsWith(today)) delete meta.alerted[k];
+    for (const alert of analytics.alerts()) {
+      const key = today + ":" + alert.id, prior = meta.alerted[key];
+      if (prior && (prior.ok || now - prior.t < RETRY)) continue;
+      const r = await sendMail({ to: DIGEST_TO, ...digest.buildAlert(alert, ADMIN_URL) });
+      meta.alerted[key] = { t: now, ok: r.ok };
+      analytics.save();
+    }
+  } catch (e) { console.error("digest: check failed:", e.message); }
+}
+setInterval(digestTick, 10 * 60 * 1000).unref();
+setTimeout(digestTick, 90 * 1000).unref();
+
 function handleContact(req, res) {
   const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
   let size = 0;
@@ -167,13 +249,13 @@ function handleContact(req, res) {
   req.on("end", async () => {
     let b;
     try { b = JSON.parse(Buffer.concat(chunks).toString("utf8")); } catch { return reply(res, 400, { error: "invalid" }); }
-    if (b.website) return reply(res, 200, { ok: true }); // hidden field only bots fill in: pretend it worked
+    if (b.website) { analytics.blocked("spam"); return reply(res, 200, { ok: true }); } // hidden field only bots fill in: pretend it worked
     const name = oneLine(b.name), email = oneLine(b.email), topic = String(b.topic || ""), message = String(b.message || "").trim();
     if (!name || name.length > 100 || !/^\S+@\S+\.\S+$/.test(email) || email.length > 200 || !Object.prototype.hasOwnProperty.call(TOPIC_TO, topic) || !message || message.length > 5000) {
       return reply(res, 400, { error: "invalid" });
     }
-    if (!RESEND_API_KEY) return reply(res, 503, { error: "not_configured" });
-    if (tooMany(ip)) return reply(res, 429, { error: "rate" });
+    if (!RESEND_API_KEY) { analytics.form(topic, false); return reply(res, 503, { error: "not_configured" }); }
+    if (tooMany(ip)) { analytics.blocked("rate"); return reply(res, 429, { error: "rate" }); }
     const to = MAIL_TO_OVERRIDE || `${TOPIC_TO[topic]}@${MAIL_DOMAIN}`;
     try {
       const r = await fetch(RESEND_URL, {
@@ -189,11 +271,14 @@ function handleContact(req, res) {
       });
       if (!r.ok) {
         console.error("contact: mail service refused the message, status", r.status);
+        analytics.form(topic, false);
         return reply(res, 502, { error: "send_failed" });
       }
+      analytics.form(topic, true);
       reply(res, 200, { ok: true });
     } catch (e) {
       console.error("contact: could not reach the mail service:", e.message);
+      analytics.form(topic, false);
       reply(res, 502, { error: "send_failed" });
     }
   });
@@ -212,6 +297,54 @@ http
       res.writeHead(200, { "Content-Type": "text/plain" }).end("ok");
       return;
     }
+    // Private admin page: its own password, checked before anything else, hidden entirely until ADMIN_PASSWORD is set.
+    if (urlPath === "/admin" || urlPath === "/admin/" || urlPath === "/admin/data.json" || urlPath === "/admin/send-digest") {
+      const wantsPost = urlPath === "/admin/send-digest";
+      if (!ADMIN_PASSWORD || (wantsPost ? req.method !== "POST" : req.method !== "GET" && req.method !== "HEAD")) {
+        res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
+        return;
+      }
+      const adminHeaders = {
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "no-referrer",
+        "X-Content-Type-Options": "nosniff",
+      };
+      const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+      if (adminLockedOut(ip)) {
+        res.writeHead(429, { ...adminHeaders, "Content-Type": "text/plain" }).end("Too many attempts. Try again in a few minutes.");
+        return;
+      }
+      if (!checkBasic(req, ADMIN_USER, ADMIN_PASSWORD)) {
+        if (req.headers["authorization"]) adminFailed(ip);
+        res.writeHead(401, {
+          ...adminHeaders,
+          "Content-Type": "text/plain; charset=utf-8",
+          "WWW-Authenticate": 'Basic realm="Rooted & Crowned Admin", charset="UTF-8"',
+        }).end("Sign in required.");
+        return;
+      }
+      if (urlPath === "/admin/data.json") {
+        const days = Math.min(800, Math.max(1, parseInt(new URL(req.url, "http://x").searchParams.get("days"), 10) || 30));
+        const snap = analytics.snapshot(days);
+        snap.digest = { on: !!(DIGEST_TO && RESEND_API_KEY), to: maskEmail(DIGEST_TO) };
+        res.writeHead(200, { ...adminHeaders, "Content-Type": "application/json" }).end(JSON.stringify(snap));
+        return;
+      }
+      if (wantsPost) {
+        // the custom header cannot be added by another website, which blocks cross-site requests
+        if (req.headers["x-admin-action"] !== "1") { res.writeHead(403, { ...adminHeaders, "Content-Type": "application/json" }).end('{"error":"forbidden"}'); return; }
+        if (!DIGEST_TO) { res.writeHead(400, { ...adminHeaders, "Content-Type": "application/json" }).end('{"error":"no_recipient"}'); return; }
+        sendWeekly().then((r) => res.writeHead(r.ok ? 200 : 502, { ...adminHeaders, "Content-Type": "application/json" }).end(JSON.stringify({ ok: r.ok, reason: r.reason || null })));
+        return;
+      }
+      fs.readFile(path.join(__dirname, "private", "admin.html"), (err, html) => {
+        if (err) res.writeHead(500, { ...adminHeaders, "Content-Type": "text/plain" }).end("Admin page missing.");
+        else res.writeHead(200, { ...adminHeaders, "Content-Type": "text/html; charset=utf-8" }).end(html);
+      });
+      return;
+    }
     if (SITE_LOCKED && !isAuthorized(req)) {
       res.writeHead(401, {
         "Content-Type": "text/html; charset=utf-8",
@@ -222,6 +355,18 @@ http
     if (urlPath === "/api/contact") {
       if (req.method !== "POST") return void reply(res, 405, { error: "method" });
       handleContact(req, res);
+      return;
+    }
+    if (urlPath === "/api/hit") {
+      // the page reports each page view and button click here; answers instantly and keeps nothing personal
+      if (req.method !== "POST") { res.writeHead(405).end(); return; }
+      let size = 0;
+      const parts = [];
+      req.on("data", (c) => { size += c.length; if (size > 4000) req.destroy(); else parts.push(c); });
+      req.on("end", () => {
+        try { analytics.beacon(req, JSON.parse(Buffer.concat(parts).toString("utf8"))); } catch {}
+        res.writeHead(204, { "Cache-Control": "no-store" }).end();
+      });
       return;
     }
     const slug = urlPath.replace(/^\/+|\/+$/g, "");
@@ -240,6 +385,7 @@ http
       return;
     }
     if (TEMPLATE && hasRoute(slug)) {
+      analytics.crawler(req, slug);
       res.writeHead(200, {
         "Content-Type": "text/html; charset=utf-8",
         "Cache-Control": "no-cache",
@@ -258,6 +404,7 @@ http
         if (path.extname(urlPath)) {
           res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
         } else if (TEMPLATE) {
+          analytics.notFound(urlPath, req);
           res.writeHead(404, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" }).end(renderPage(slug, true));
         } else {
           fs.readFile(path.join(ROOT, "index.html"), (e, data) => {

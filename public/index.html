@@ -3301,6 +3301,7 @@ $$("[data-year]").forEach(el=>el.textContent=new Date().getFullYear());
 document.addEventListener("click",e=>{
   const a=e.target.closest("[data-ext]"); if(!a) return;
   e.preventDefault();
+  trackClick("ext:"+a.dataset.ext);
   const url=LINKS[a.dataset.ext];
   if(url) location.href=url;
   else toast(`Preview: the ${a.dataset.label} link goes here once the live URL is added.`);
@@ -3420,6 +3421,41 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
   "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
   "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",support:"/support",contact:"/contact",start:"/start-here",shop:"/shop"};
+/* ---------- private visitor counting: no cookies, no personal data, skipped when Do Not Track is on ---------- */
+const NOTRACK=(()=>{try{return localStorage.getItem("rc-owner")==="1"}catch(e){return false}})()||navigator.doNotTrack==="1";
+function track(t,o){ if(NOTRACK||!navigator.sendBeacon) return; try{ navigator.sendBeacon("/api/hit",JSON.stringify(Object.assign({t},o))); }catch(e){} }
+let lastView=null;
+/* how long a page held attention and how far it was read: sent once as the visitor leaves the page */
+let engSlug=null, engActive=0, engMax=0, engSent=true, engSince=0;
+function engStart(slug){ engSlug=slug; engActive=0; engMax=0; engSent=false; engSince=document.visibilityState==="visible"?performance.now():0; }
+function engSend(){
+  if(engSent||engSlug===null) return; engSent=true;
+  if(engSince){ engActive+=performance.now()-engSince; engSince=0; }
+  track("eng",{p:engSlug,s:Math.round(engMax),d:Math.round(engActive/1000)});
+}
+addEventListener("scroll",()=>{ const h=document.documentElement, room=h.scrollHeight-innerHeight, p=room<=0?100:scrollY/room*100; if(p>engMax) engMax=Math.min(100,p); },{passive:true});
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="hidden"){ if(engSince){ engActive+=performance.now()-engSince; engSince=0; } engSend(); }
+  else if(!engSent){ engSince=performance.now(); }
+});
+addEventListener("pagehide",engSend);
+function trackView(slug){
+  if(slug===lastView) return;
+  engSend();
+  const firstEver=lastView===null; lastView=slug;
+  let n=0, pv=1;
+  try{ if(!sessionStorage.getItem("rc-s")){ sessionStorage.setItem("rc-s","1"); n=1; } pv=(+sessionStorage.getItem("rc-pv")||0)+1; sessionStorage.setItem("rc-pv",pv); }catch(e){ n=firstEver?1:0; pv=firstEver?1:2; }
+  const o={p:slug}; if(n){ o.n=1; o.r=document.referrer||""; o.u=new URLSearchParams(location.search).get("utm_source")||""; }
+  if(pv===2) o.m=1;      // second page of the visit: not a bounce
+  track("view",o);
+  engStart(slug);
+}
+/* a click counts toward a goal once per visit */
+const GOAL_OF=k=>k.startsWith("mail:")?"email":({"ext:stan7week":"program","ext:stanJournalClub":"program","ext:stanEmail":"program","ext:stanApp":"program","ext:stanBooks":"books","ext:shopify":"shop","ext:support":"support","ext:sponsorFamily":"support","ext:scholarship":"support","ext:sponsorInitiative":"support","ext:instagram":"social","ext:tiktok":"social","ext:youtube":"social","ext:facebook":"social","ext:podcast":"social"})[k]||"";
+const goalsDone=new Set();
+function goalOnce(g){ try{ const a=JSON.parse(sessionStorage.getItem("rc-g")||"[]"); if(a.includes(g)) return false; a.push(g); sessionStorage.setItem("rc-g",JSON.stringify(a)); return true; }catch(e){ if(goalsDone.has(g)) return false; goalsDone.add(g); return true; } }
+function trackClick(k){ const g=GOAL_OF(k), o={k}; if(g&&goalOnce(g)) o.g=g; track("click",o); }
+document.addEventListener("click",e=>{ const a=e.target.closest('a[href^="mailto:"]'); if(a) trackClick("mail:"+a.getAttribute("href").slice(7).split("@")[0].toLowerCase().slice(0,40)); });
 let first=true, curPage=null;
 function route(){
   const slug=slugNow();
@@ -3437,6 +3473,7 @@ function route(){
   first=false;
   if(page==="home") startTree();
   applySeo(slug);
+  trackView(slug);
   window.dispatchEvent(new Event("routechange"));
 }
 const burger=$(".burger"), drawer=$("#drawer");
