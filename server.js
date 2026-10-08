@@ -119,6 +119,7 @@ function renderPage(slug, notFound) {
     html = html.replace(/<title>[^<]*<\/title>/, () => `<title>Page not found | ${escText(SEO.siteName)}</title>`);
     tags.push('<meta name="robots" content="noindex">');
   } else {
+    if (slug === "voices" && reviews.publishedCount() === 0) tags.push('<meta name="robots" content="noindex">'); // nothing to show yet
     const e = SEO.routes[slug];
     const url = SEO.origin + e.canonical;
     const image = SEO.origin + SEO.image;
@@ -144,13 +145,13 @@ function renderPage(slug, notFound) {
 }
 
 function sitemapXml() {
-  const urls = Object.values(SEO.routes)
-    .filter((e) => e.sitemap)
-    .map((e) => `  <url><loc>${escText(SEO.origin + e.canonical)}</loc></url>`);
+  const urls = Object.entries(SEO.routes)
+    .filter(([slug, e]) => e.sitemap || (slug === "voices" && reviews.publishedCount() > 0))
+    .map(([, e]) => `  <url><loc>${escText(SEO.origin + e.canonical)}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
-const robotsTxt = () => `User-agent: *\nAllow: /\n\nSitemap: ${SEO.origin}/sitemap.xml\n`;
+const robotsTxt = () => `User-agent: *\nAllow: /\nDisallow: /review/\n\nSitemap: ${SEO.origin}/sitemap.xml\n`;
 
 // ---- Contact form: emails each message to the right address for its topic, through Resend ----
 // The API key lives only in Railway's variables (RESEND_API_KEY). It is never written into the site files.
@@ -194,13 +195,13 @@ function reply(res, code, obj) {
 const digest = require("./digest");
 const DIGEST_TO = process.env.DIGEST_TO || MAIL_TO_OVERRIDE || "";
 const ADMIN_URL = (SEO.origin || "") + "/admin";
-async function sendMail({ to, subject, text, html }) {
+async function sendMail({ to, subject, text, html, replyTo }) {
   if (!RESEND_API_KEY || !to) return { ok: false, reason: "not_configured" };
   try {
     const r = await fetch(RESEND_URL, {
       method: "POST",
       headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: MAIL_FROM, to: [to], subject, text, ...(html ? { html } : {}) }),
+      body: JSON.stringify({ from: MAIL_FROM, to: [to], subject, text, ...(html ? { html } : {}), ...(replyTo ? { reply_to: replyTo } : {}) }),
     });
     if (!r.ok) { console.error("mail: the mail service refused a summary email, status", r.status); return { ok: false, reason: "refused" }; }
     return { ok: true };
@@ -236,6 +237,17 @@ async function digestTick() {
 }
 setInterval(digestTick, 10 * 60 * 1000).unref();
 setTimeout(digestTick, 90 * 1000).unref();
+
+// Voices of the Collective: verified, invitation-only reviews with manual approval (see reviews.js).
+// RETENTION_DAYS: how long private customer details are kept (default 730 = two years).
+const reviews = require("./reviews")({
+  dataDir: DATA_DIR,
+  sendMail,
+  siteOrigin: SEO.origin || "",
+  notifyTo: DIGEST_TO,
+  retentionDays: process.env.RETENTION_DAYS,
+});
+setInterval(() => reviews.purge(), 24 * 3600 * 1000).unref();
 
 function handleContact(req, res) {
   const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
@@ -298,9 +310,14 @@ http
       return;
     }
     // Private admin page: its own password, checked before anything else, hidden entirely until ADMIN_PASSWORD is set.
-    if (urlPath === "/admin" || urlPath === "/admin/" || urlPath === "/admin/data.json" || urlPath === "/admin/send-digest") {
-      const wantsPost = urlPath === "/admin/send-digest";
-      if (!ADMIN_PASSWORD || (wantsPost ? req.method !== "POST" : req.method !== "GET" && req.method !== "HEAD")) {
+    if (urlPath === "/admin" || urlPath.startsWith("/admin/")) {
+      const wantsPost = req.method === "POST";
+      const isPage = urlPath === "/admin" || urlPath === "/admin/";
+      const isReviewsPage = urlPath === "/admin/reviews" || urlPath === "/admin/reviews/";
+      const isReviewsApi = urlPath.startsWith("/admin/reviews/") && !isReviewsPage;
+      const known = isPage || isReviewsPage || isReviewsApi || urlPath === "/admin/data.json" || urlPath === "/admin/send-digest";
+      const methodOk = urlPath === "/admin/send-digest" ? wantsPost : isReviewsApi ? (wantsPost || req.method === "GET") : (req.method === "GET" || req.method === "HEAD");
+      if (!ADMIN_PASSWORD || !known || !methodOk) {
         res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
         return;
       }
@@ -332,14 +349,21 @@ http
         res.writeHead(200, { ...adminHeaders, "Content-Type": "application/json" }).end(JSON.stringify(snap));
         return;
       }
-      if (wantsPost) {
+      if (wantsPost && req.headers["x-admin-action"] !== "1") {
         // the custom header cannot be added by another website, which blocks cross-site requests
-        if (req.headers["x-admin-action"] !== "1") { res.writeHead(403, { ...adminHeaders, "Content-Type": "application/json" }).end('{"error":"forbidden"}'); return; }
+        res.writeHead(403, { ...adminHeaders, "Content-Type": "application/json" }).end('{"error":"forbidden"}');
+        return;
+      }
+      if (urlPath === "/admin/send-digest") {
         if (!DIGEST_TO) { res.writeHead(400, { ...adminHeaders, "Content-Type": "application/json" }).end('{"error":"no_recipient"}'); return; }
         sendWeekly().then((r) => res.writeHead(r.ok ? 200 : 502, { ...adminHeaders, "Content-Type": "application/json" }).end(JSON.stringify({ ok: r.ok, reason: r.reason || null })));
         return;
       }
-      fs.readFile(path.join(__dirname, "private", "admin.html"), (err, html) => {
+      if (isReviewsApi) {
+        if (!reviews.handleAdmin(req, res, urlPath, new URL(req.url, "http://x").searchParams, adminHeaders)) res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
+        return;
+      }
+      fs.readFile(path.join(__dirname, "private", isReviewsPage ? "reviews-admin.html" : "admin.html"), (err, html) => {
         if (err) res.writeHead(500, { ...adminHeaders, "Content-Type": "text/plain" }).end("Admin page missing.");
         else res.writeHead(200, { ...adminHeaders, "Content-Type": "text/html; charset=utf-8" }).end(html);
       });
@@ -355,6 +379,18 @@ http
     if (urlPath === "/api/contact") {
       if (req.method !== "POST") return void reply(res, 405, { error: "method" });
       handleContact(req, res);
+      return;
+    }
+    if (urlPath.startsWith("/api/review")) {
+      if (reviews.handlePublic(req, res, urlPath, new URL(req.url, "http://x").searchParams)) return;
+    }
+    // a customer's private review link: /review/<one-time token>. Never indexed, never shown in referrers.
+    if (urlPath.startsWith("/review/") && /^\/review\/[A-Za-z0-9_-]{20,80}$/.test(urlPath)) {
+      fs.readFile(path.join(__dirname, "private", "review.html"), (err, html) => {
+        const h = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer", "X-Frame-Options": "DENY", "X-Content-Type-Options": "nosniff" };
+        if (err) res.writeHead(500, { ...h, "Content-Type": "text/plain" }).end("Page missing.");
+        else res.writeHead(200, { ...h, "Content-Type": "text/html; charset=utf-8" }).end(html);
+      });
       return;
     }
     if (urlPath === "/api/hit") {

@@ -665,6 +665,32 @@ p{margin:0}
 .band--ivory .reach,.band--ivory2 .reach{color:var(--plum-muted)}
 .band--ivory .reach a,.band--ivory2 .reach a{color:var(--gold-ink)}
 .site-foot .reach{color:rgba(205,169,218,.9);margin-top:16px}
+/* Voices of the Collective: verified reviews */
+[data-page="voices"] .prose p.story-line{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.25;color:var(--gold-ink);margin:6px 0}
+.vx-chips{display:flex;flex-wrap:wrap;gap:8px}
+.vx-chips button{font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:999px;border:1px solid var(--line-light);background:var(--white);color:var(--plum);cursor:pointer}
+.vx-chips button[aria-pressed="true"]{background:var(--plum);color:var(--ivory);border-color:var(--plum)}
+.vx-chips button:focus-visible{outline:2px solid var(--gold-ink);outline-offset:2px}
+.vx-summary{display:grid;grid-template-columns:auto 1fr;gap:10px 32px;align-items:center;background:var(--white);border:1px solid var(--line-light);border-radius:8px;padding:20px 24px}
+.vx-big{font:600 3rem/1 var(--serif);color:var(--plum)}
+.vx-stars{color:var(--gold);letter-spacing:2px;white-space:nowrap}
+.vx-count{color:var(--plum-muted);font-size:13px;margin-top:4px}
+.vx-dist{display:grid;gap:5px;min-width:0}
+.vx-dist div{display:grid;grid-template-columns:34px 1fr 26px;gap:10px;align-items:center;font-size:12.5px;color:var(--plum-muted)}
+.vx-dist i{display:block;height:7px;background:rgba(37,7,47,.1);border-radius:4px;overflow:hidden}
+.vx-dist i b{display:block;height:100%;background:var(--gold);border-radius:4px}
+.vx-list{display:grid;gap:16px}
+.vx-card{background:var(--white);border:1px solid var(--line-light);border-left:4px solid var(--gold);border-radius:4px;padding:20px 22px}
+.vx-card .vx-stars{font-size:1.15rem}
+.vx-partial{position:relative;display:inline-block;font-size:1.3rem;line-height:1.2}
+.vx-partial .vx-fill{position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap}
+.vx-card p{margin:10px 0;color:var(--plum);font-size:15.5px;line-height:1.7;white-space:pre-line}
+.vx-meta{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:13px;color:var(--plum-muted)}
+.vx-meta b{color:var(--plum);font-size:15px}
+.vx-badge{font:700 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#2a7d4f;border:1px solid #2a7d4f;padding:2px 8px;border-radius:999px}
+.vx-off{font-style:italic}
+.vx-empty{color:var(--plum-muted);font-size:15px}
+@media(max-width:560px){.vx-summary{grid-template-columns:1fr}}
 .contact-aside address{font-style:normal;font-size:14px;line-height:1.7;color:var(--plum-muted)}
 .site-foot address.reach{font-style:normal;font-size:13px;line-height:1.75}
 .site-foot address.reach b{font-weight:600;color:var(--lav)}
@@ -2830,6 +2856,66 @@ details.course-mod summary::-webkit-details-marker{display:none}
   </div></section>
 </div>
 
+<!-- ===================== VOICES OF THE COLLECTIVE ===================== -->
+<div data-page="voices" hidden>
+  <section class="page-hero"><div class="wrap">
+    <span class="eyebrow">Verified Reviews</span>
+    <h1 class="h-xl">Voices of the Collective</h1>
+    <p class="script">Every Journey Has a Voice. Every Experience Matters.</p>
+    <div class="spectrum spectrum--short"></div>
+  </div></section>
+  <section class="lib-banner2">
+    <img class="lib-banner-img2" src="assets/voices-banner.webp" alt="A circle of women journaling and sharing together around a stone fire pit at sunset beside a lake, surrounded by rainbow-colored trees, lanterns, crystals and books, beside the Rooted and Crowned Collective tree and crown logo and the words Grounded Roots. Crown Driven." width="2000" height="750">
+  </section>
+
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:22px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">Voices of the Collective</span><h2 class="h-l">Your Experience. Your Perspective. Your Voice.</h2></div>
+    <div class="prose">
+      <p>At Rooted &amp; Crowned Collective, we believe that every experience carries a story worth sharing. Whether through a journey of self-discovery, a meaningful conversation, the pages of a journal, or a product that speaks to your purpose, each connection with our Collective is uniquely your own.</p>
+      <p class="story-line">Voices of the Collective is where those experiences are shared.</p>
+      <p>Here, you&rsquo;ll discover authentic reflections from individuals who have participated in our e-courses, live classes, Journal Club gatherings, and those who have purchased our books, journals, and lifestyle products.</p>
+      <p>Some experiences inspire new perspectives. Others encourage reflection, spark meaningful conversations, or simply bring a little more intention into everyday living.</p>
+      <p>Every voice offers something valuable, and every perspective deserves to be heard.</p>
+    </div>
+  </div></section>
+
+  <section class="band band--plum2"><div class="wrap" style="display:grid;gap:18px;max-width:860px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">Verified &amp; Reviewed</span><h2 class="h-l">Real People. Real Experiences. Genuine Reflections.</h2></div>
+    <p class="lede">We value authenticity, transparency, and the freedom to share your experience in your own words.</p>
+    <p class="lede">All reviews are submitted by verified customers or participants and are reviewed before publication to protect the integrity of this space. We welcome genuine feedback, whether positive, constructive, or somewhere in between.</p>
+  </div></section>
+
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:28px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">Browse</span><h2 class="h-l">Explore the Voices of Our Collective</h2><p class="lede" style="color:var(--plum-muted)">Discover customer experiences across our offerings:</p></div>
+    <div class="give-grid">
+      <div class="give" style="--c:#D62828"><h3>E-Courses</h3><p>Reflections from participants in our Root-to-Crown self-discovery journey.</p></div>
+      <div class="give" style="--c:#F77F00"><h3>Live Classes &amp; Workshops</h3><p>Experiences from our guided virtual gatherings.</p></div>
+      <div class="give" style="--c:#2EAD61"><h3>Journal Club</h3><p>Perspectives from individuals who have joined our reflective conversations.</p></div>
+      <div class="give" style="--c:#27A9D6"><h3>Books &amp; Journals</h3><p>Thoughts from readers and those exploring their journeys through writing.</p></div>
+      <div class="give" style="--c:#8E44AD"><h3>Lifestyle Products</h3><p>Customer feedback on the items designed to carry our message into everyday life.</p></div>
+    </div>
+    <div class="vx-chips" id="vxChips" role="group" aria-label="Filter reviews by category"></div>
+    <div id="vxSummary"></div>
+    <div class="vx-list" id="vxList" aria-live="polite"></div>
+    <div class="scope" style="background:var(--white)"><b>How our reviews work</b>Reviews are invitation-only and tied to a verified experience: a completed course, an attended class, a Journal Club session, or a confirmed purchase. Positive, neutral and critical feedback is all welcome, and every review is checked by hand before it appears, using the same standards for everyone. Reviewers choose how their name is shown, and email addresses and personal details are never displayed. Spam, harassment and private information about other people may be declined. A reviewer can ask to have their review edited or removed. No one is required to leave a review, or a positive one. Reviews describe individual experiences and are not a promise of any particular result. Our programs are not medical or mental-health treatment.</div>
+  </div></section>
+
+  <section class="band band--deep"><div class="wrap">
+    <div class="center" style="max-width:780px;gap:18px">
+      <span class="eyebrow" style="color:var(--gold-soft)">Your Perspective Matters</span>
+      <h2 class="h-l">Have You Experienced the Collective?</h2>
+      <p class="lede">Your perspective matters to us.</p>
+      <p class="lede">After completing an eligible class, attending a gathering, or purchasing one of our products, you may receive a personalized invitation to share your experience.</p>
+      <p class="lede">Every review is connected to a verified customer or participant and is carefully reviewed before appearing on our website.</p>
+      <p class="lede">Your words may help someone else discover a product, experience, or opportunity that resonates with their own journey.</p>
+      <div class="spectrum spectrum--short" aria-hidden="true"></div>
+      <p class="story-line" style="color:var(--gold-soft)">Thank you for allowing Rooted &amp; Crowned Collective to be part of your story.</p>
+      <p class="script" style="font-size:clamp(1.7rem,3vw,2.3rem)">Grounded Roots. Crown Driven.</p>
+      <p class="caps" style="color:var(--gold-soft);letter-spacing:.2em">&mdash; Coach Kia<br>Founder | Life Coach | Visionary<br>Rooted &amp; Crowned Collective</p>
+    </div>
+  </div></section>
+</div>
+
 <!-- ===================== CONTACT ===================== -->
 <div data-page="contact" hidden>
   <section class="page-hero"><div class="wrap">
@@ -2891,7 +2977,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li><a href="#/contact">Contact Us</a></li><li><a href="#/support">Support Us</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li data-vx-link hidden><a href="#/voices">Voices of the Collective</a></li><li><a href="#/contact">Contact Us</a></li><li><a href="#/support">Support Us</a></li>
       </ul>
     </div>
     <div class="foot-signup" data-signup></div>
@@ -3419,8 +3505,81 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
   "courses/root":"root-course","courses/sacral":"sacral-course","courses/solar-plexus":"solar-course","courses/heart":"heart-course","courses/throat":"throat-course","courses/third-eye":"thirdeye-course","courses/crown":"crown-course","chakra-ecourses":["programs","chakra-ecourses"],
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
   "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
-  "contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
+  "voices":"voices","contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",support:"/support",contact:"/contact",start:"/start-here",shop:"/shop"};
+/* ---------- Voices of the Collective: only approved, verified reviews are ever fetched or shown ---------- */
+const VX={reviews:[],cats:[],at:0,filter:"all"};
+const VX_SLOTS=[ // where review sections appear; each stays hidden until it has at least one approved review
+  {page:"root-course",offering:"course-root",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"sacral-course",offering:"course-sacral",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"solar-course",offering:"course-solar",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"heart-course",offering:"course-heart",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"throat-course",offering:"course-throat",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"thirdeye-course",offering:"course-thirdeye",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"crown-course",offering:"course-crown",eyebrow:"Student Experiences",title:"Verified Course Reviews",text:"Reviews from students who completed this course and their integration consultation."},
+  {page:"programs",categories:["zoom","journalclub"],eyebrow:"Voices of the Collective",title:"Verified Experiences",text:"Reviews from verified participants in our live classes and Journal Club."},
+  {page:"books",categories:["books","journals"],eyebrow:"Voices of the Collective",title:"Verified Reader Reviews",text:"Reviews from verified purchasers of our books and journals."},
+  {page:"shop",categories:["merch"],eyebrow:"Voices of the Collective",title:"Verified Purchaser Reviews",text:"Reviews from verified purchasers of our merchandise."},
+];
+const vxStars=n=>"★".repeat(n)+"☆".repeat(5-n);
+const vxMonth=ym=>{const [y,m]=String(ym).split("-");return y&&m?new Date(+y,+m-1,1).toLocaleDateString("en-US",{month:"long",year:"numeric"}):"";};
+function vxNode(tag,cls,text){const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
+function vxSummary(list){
+  const box=vxNode("div","vx-summary"), n=list.length, avg=list.reduce((a,r)=>a+r.rating,0)/n;
+  const left=vxNode("div"); left.append(vxNode("div","vx-big",avg.toFixed(1)));
+  const st=vxNode("div","vx-stars vx-partial"); st.setAttribute("aria-label",avg.toFixed(1)+" out of 5 stars"); // stars fill in proportion to the real average
+  const base=vxNode("span",null,"☆☆☆☆☆"), fill=vxNode("span","vx-fill","★★★★★"); fill.style.width=(avg/5*100)+"%"; base.setAttribute("aria-hidden","true"); fill.setAttribute("aria-hidden","true"); st.append(base,fill);
+  left.append(st,vxNode("div","vx-count",n+(n===1?" verified review":" verified reviews")));
+  const dist=vxNode("div","vx-dist");
+  for(let s=5;s>=1;s--){ const c=list.filter(r=>r.rating===s).length, row=vxNode("div"), bar=vxNode("i"), fill=vxNode("b"); fill.style.width=(c/n*100)+"%"; bar.append(fill); row.append(vxNode("span",null,s+" ★"),bar,vxNode("span",null,String(c))); dist.append(row); }
+  box.append(left,dist); return box;
+}
+function vxCard(r){
+  const c=vxNode("article","vx-card"), st=vxNode("div","vx-stars",vxStars(r.rating)); st.setAttribute("aria-label",r.rating+" out of 5 stars");
+  c.append(st);
+  if(r.text) c.append(vxNode("p",null,r.text));
+  const m=vxNode("div","vx-meta"); m.append(vxNode("b",null,r.name),vxNode("span","vx-badge",r.label),vxNode("span","vx-off",r.offering),vxNode("span",null,vxMonth(r.date)));
+  c.append(m); return c;
+}
+function vxFill(el,list){ el.replaceChildren(...list.map(vxCard)); }
+function vxSlots(){
+  VX_SLOTS.forEach(s=>{
+    const page=document.querySelector('[data-page="'+s.page+'"]'); if(!page) return;
+    let sec=page.querySelector(":scope > .vx-slot");
+    if(!sec){
+      sec=document.createElement("section"); sec.className="band band--ivory vx-slot"; sec.hidden=true;
+      sec.innerHTML='<div class="wrap" style="display:grid;gap:22px"><div class="sec-head" style="margin:0"><span class="eyebrow"></span><h2 class="h-l"></h2><p class="lede" style="color:var(--plum-muted)"></p></div><div class="vx-sum"></div><div class="vx-list"></div><p><a class="give-link" href="#/voices">Read all Voices of the Collective →</a></p></div>';
+      sec.querySelector(".eyebrow").textContent=s.eyebrow; sec.querySelector("h2").textContent=s.title; sec.querySelector(".lede").textContent=s.text;
+      const secs=page.querySelectorAll(":scope > section"); const last=secs[secs.length-1];
+      if(s.offering && last) page.insertBefore(sec,last); else page.append(sec);
+      sec.querySelector(".give-link").setAttribute("href","/voices");
+    }
+    const list=VX.reviews.filter(r=>s.offering?r.offeringId===s.offering:s.categories.includes(r.category));
+    sec.hidden=!list.length;
+    if(list.length){ sec.querySelector(".vx-sum").replaceChildren(vxSummary(list)); vxFill(sec.querySelector(".vx-list"),list.slice(0,6)); }
+  });
+}
+function vxPage(){
+  const chips=$("#vxChips"), cats=[{id:"all",label:"All Reviews"},...VX.cats];
+  chips.replaceChildren(...cats.map(c=>{const b=vxNode("button",null,c.label); b.type="button"; b.setAttribute("aria-pressed",String(VX.filter===c.id)); b.addEventListener("click",()=>{VX.filter=c.id; vxPage();}); return b;}));
+  const list=VX.filter==="all"?VX.reviews:VX.reviews.filter(r=>r.category===VX.filter);
+  const sum=$("#vxSummary"), out=$("#vxList");
+  if(!list.length){
+    sum.replaceChildren(); out.replaceChildren(vxNode("p","vx-empty",VX.reviews.length?"No reviews in this category yet.":"Verified customer and participant experiences will appear here as they are shared and approved."));
+  } else { sum.replaceChildren(vxSummary(list)); vxFill(out,list); }
+}
+async function vxLoad(force){
+  if(!force && VX.at && Date.now()-VX.at<300000) return;
+  try{
+    const r=await fetch("/api/reviews",{cache:"no-store"}); if(!r.ok) return;
+    const j=await r.json(); VX.reviews=j.reviews||[]; VX.cats=j.categories||[]; VX.at=Date.now();
+  }catch(e){ return; }
+  $$("[data-vx-link]").forEach(li=>li.hidden=!VX.reviews.length);
+  vxSlots(); if(!$('[data-page="voices"]').hidden) vxPage();
+}
+window.addEventListener("routechange",()=>{ vxLoad(false).then(()=>{ vxSlots(); if(!$('[data-page="voices"]').hidden) vxPage(); }); });
+vxLoad(true);
+
 /* ---------- private visitor counting: no cookies, no personal data, skipped when Do Not Track is on ---------- */
 const NOTRACK=(()=>{try{return localStorage.getItem("rc-owner")==="1"}catch(e){return false}})()||navigator.doNotTrack==="1";
 function track(t,o){ if(NOTRACK||!navigator.sendBeacon) return; try{ navigator.sendBeacon("/api/hit",JSON.stringify(Object.assign({t},o))); }catch(e){} }

@@ -152,6 +152,11 @@
       "canonical": "/start-here",
       "sitemap": true
     },
+    "voices": {
+      "title": "Voices of the Collective | Rooted & Crowned Collective",
+      "description": "Verified experiences from people who have taken part in Rooted & Crowned courses, classes, Journal Club, books, journals and products.",
+      "canonical": "/voices"
+    },
     "contact": {
       "title": "Contact Us | Rooted & Crowned Collective",
       "description": "Questions, speaking, workshops, podcast guests and collaborations: choose a topic so your message reaches the right place.",

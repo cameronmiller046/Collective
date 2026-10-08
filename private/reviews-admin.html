@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Review Center | Rooted &amp; Crowned Admin</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+:root{--plum:#25072F;--plum2:#341043;--card:#3B1048;--line:rgba(229,190,101,.22);--gold:#E5BE65;--gold-deep:#D4A64A;--lav:#CDA9DA;--ivory:#F7F1E8;--muted:#B79AC4;--good:#58C98A;--bad:#F08A7B;--warn:#F4C430;--serif:"Cormorant Garamond",Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--plum);color:var(--ivory);font:15px/1.55 var(--sans)}
+a{color:var(--gold)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#1d0525,var(--plum))}
+h1{margin:0;font:600 1.7rem/1.1 var(--serif)}
+.sub{margin:2px 0 0;color:var(--muted);font-size:13px}
+.nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill,button.pill{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory);background:transparent;border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer;text-decoration:none}
+.pill:hover{border-color:var(--gold)}
+main{max-width:1100px;margin:0 auto;padding:22px 18px 60px;display:grid;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.card h2{margin:0 0 12px;font:600 12px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.hint{color:var(--muted);font-size:13px;margin:0 0 12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.kpi .n{font:600 2.2rem/1 var(--serif)}.kpi .l{color:var(--lav);font-size:13px;margin-top:6px}
+.banner{border:1px solid var(--bad);background:rgba(240,138,123,.1);padding:12px 16px;border-radius:8px;font-size:14px}
+.note{border:1px solid var(--line);background:rgba(229,190,101,.08);padding:12px 16px;border-radius:8px;font-size:13.5px;color:var(--lav)}
+form.inv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+form.inv .full{grid-column:1/-1}
+@media(max-width:760px){form.inv{grid-template-columns:1fr}header{padding:16px}main{padding:16px 12px 48px}}
+label{display:grid;gap:5px;font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--lav)}
+input,select,textarea{font:15px var(--sans);color:var(--ivory);background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%}
+select option,select optgroup{color:#151117;background:#fff}
+textarea{min-height:84px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.btn{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;background:var(--gold-deep);color:var(--plum)}
+.btn:hover{background:var(--gold)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.line{background:transparent;color:var(--ivory);border:1px solid var(--line)}
+.btn.good{background:var(--good);color:#06240f}.btn.bad{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+.btn.sm{padding:8px 14px;font-size:11px}
+.msg{font-size:13.5px;margin-left:12px}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
+.rev{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:12px;background:rgba(0,0,0,.18)}
+.rev .top{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:baseline}
+.rev .who{font-weight:600}.rev .meta{color:var(--muted);font-size:12.5px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:18px}
+.rev .body{white-space:pre-wrap;margin:10px 0;color:var(--ivory)}
+.rev .empty{color:var(--muted);font-style:italic}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.reason{display:grid;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.badge{display:inline-block;font:700 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.badge.pending,.badge.clarify{color:var(--warn);border-color:var(--warn)}.badge.published,.badge.submitted,.badge.sent{color:var(--good);border-color:var(--good)}
+.badge.expired,.badge.rejected,.badge.revoked,.badge.hidden,.badge.failed{color:var(--bad);border-color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid rgba(229,190,101,.1);vertical-align:top}
+.scroll{overflow-x:auto}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}.tools input{max-width:280px}.tools select{max-width:200px}
+details summary{cursor:pointer;color:var(--gold);font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.log{font-size:12.5px;color:var(--muted);margin:10px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.empty-msg{color:var(--muted);margin:4px 0}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Review Center</h1><p class="sub">Voices of the Collective &middot; private</p></div>
+  <div class="nav"><a class="pill" href="/admin">&larr; Visitor dashboard</a><a class="pill" href="/admin/reviews/export.csv">Export CSV</a></div>
+</header>
+<main>
+  <div class="banner" id="temp" hidden><b>Records are stored temporarily.</b> Attach the Railway Volume and set <code>DATA_DIR</code> so reviews survive site updates.</div>
+
+  <section class="kpis" aria-label="Review numbers">
+    <div class="card kpi"><div class="n" id="kInv">&ndash;</div><div class="l">Invitations sent</div></div>
+    <div class="card kpi"><div class="n" id="kAwait">&ndash;</div><div class="l">Awaiting your approval</div></div>
+    <div class="card kpi"><div class="n" id="kPub">&ndash;</div><div class="l">Published</div></div>
+    <div class="card kpi"><div class="n" id="kFlag">&ndash;</div><div class="l">Need attention</div></div>
+  </section>
+
+  <section class="card">
+    <h2>Send a review invitation</h2>
+    <p class="hint">After someone completes their consultation, attends a class or receives an order, enter their details and send. They get a private one-time link that expires in 30 days. Invite everyone who is eligible, not only people you expect to be happy.</p>
+    <form class="inv" id="inviteForm">
+      <label>Customer's full name<input id="iName" required maxlength="100" autocomplete="off"></label>
+      <label>Customer's email<input id="iEmail" type="email" required maxlength="200" autocomplete="off"></label>
+      <label class="full">What are they reviewing?<select id="iOffering" required></select></label>
+      <label class="full">Optional detail (shown in the email), such as a class date or product<input id="iDetail" maxlength="120" placeholder="e.g. Zoom class on October 14"></label>
+      <div class="full"><button class="btn" id="iSend" type="submit">Send review invitation</button><span class="msg" id="iMsg" role="status"></span></div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Awaiting your approval</h2>
+    <div class="note" style="margin-bottom:12px">Every review waits here until you approve it. Reject only for a policy reason, such as spam, harassment, private information about someone else, or a medical or healing-outcome claim. Never reject a review only because it is critical. Your reason is recorded.</div>
+    <div id="queue"></div>
+  </section>
+
+  <section class="card"><h2>Published on the website</h2><div id="published"></div></section>
+
+  <section class="card">
+    <h2>Invitations</h2>
+    <div class="tools"><input id="q" type="search" placeholder="Search name, email or offering" aria-label="Search invitations"><select id="f" aria-label="Filter by status"><option value="">All statuses</option><option value="pending">Waiting for the customer</option><option value="submitted">Review submitted</option><option value="expired">Expired</option><option value="revoked">Revoked</option></select></div>
+    <div class="scroll"><table><thead><tr><th>Customer</th><th>Offering</th><th>Status</th><th>Sent</th><th></th></tr></thead><tbody id="invRows"></tbody></table></div>
+    <p class="empty-msg" id="invEmpty" hidden>No invitations yet.</p>
+  </section>
+
+  <section class="card" id="otherCard" hidden><h2>Rejected or taken down</h2><div id="other"></div></section>
+
+  <section class="card">
+    <details><summary>Activity log (latest 60)</summary><ul class="log" id="log"></ul></details>
+    <p class="hint" style="margin-top:14px" id="retain"></p>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+function el(tag,attrs,...kids){const e=document.createElement(tag);for(const k in attrs||{}){if(k==="class")e.className=attrs[k];else if(k==="text")e.textContent=attrs[k];else if(k.startsWith("on"))e.addEventListener(k.slice(2),attrs[k]);else e.setAttribute(k,attrs[k]);}kids.flat().forEach(c=>{if(c==null)return;e.append(c.nodeType?c:document.createTextNode(c));});return e;}
+const fmt=iso=>iso?new Date(iso).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}):"";
+let D=null;
+async function post(path,body){
+  const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Action":"1"},body:JSON.stringify(body)});
+  const j=await r.json().catch(()=>({}));
+  return {ok:r.ok,j};
+}
+const offName=id=>((D.offerings.find(o=>o.id===id)||{}).name)||id;
+const stars=n=>"★".repeat(n)+"☆".repeat(5-n);
+
+async function load(){
+  const r=await fetch("/admin/reviews/data.json",{cache:"no-store"});
+  if(!r.ok){ $("#kInv").textContent="!"; return; }
+  D=await r.json(); render();
+}
+function render(){
+  $("#temp").hidden=D.persistent!==false;
+  $("#kInv").textContent=D.stats.invited; $("#kAwait").textContent=D.stats.awaiting; $("#kPub").textContent=D.stats.published; $("#kFlag").textContent=D.stats.flagged;
+  const sel=$("#iOffering"); if(!sel.options.length){
+    sel.append(el("option",{value:"",text:"Choose one…"}));
+    D.categories.forEach(c=>{const g=el("optgroup",{label:c.label});D.offerings.filter(o=>o.category===c.id).forEach(o=>g.append(el("option",{value:o.id,text:o.name})));sel.append(g);});
+  }
+  renderQueue(); renderPublished(); renderInvites(); renderOther();
+  $("#log").replaceChildren(...D.audit.map(a=>el("li",{text:fmt(a.at)+" · "+a.action.replace(/_/g," ")+(a.reason?" — "+a.reason:"")})));
+  $("#retain").textContent="Private customer details (name and email) are kept for "+D.retentionDays+" days, then removed automatically. Published reviews keep their text and the display name the customer chose. Change the period with the RETENTION_DAYS setting in Railway.";
+}
+function reasonBox(label,placeholder,confirmLabel,cls,onConfirm){
+  const ta=el("textarea",{placeholder,"aria-label":label}), msg=el("span",{class:"msg",role:"status"});
+  const go=el("button",{class:"btn sm "+(cls||""),type:"button",text:confirmLabel,onclick:async()=>{go.disabled=true;msg.textContent="";const r=await onConfirm(ta.value);go.disabled=false;if(!r.ok){msg.className="msg err";msg.textContent=r.j.error||"Something went wrong.";}else await load();}});
+  return el("div",{class:"reason"},el("label",{},label,ta),el("div",{},go,msg));
+}
+function reviewCard(r,mode){
+  const card=el("div",{class:"rev"}), slot=el("div");
+  card.append(
+    el("div",{class:"top"},el("span",{class:"who",text:r.name+" · "+r.email}),el("span",{class:"meta",text:offName(r.offeringId)+" · submitted "+fmt(r.updatedAt)})),
+    el("div",{},el("span",{class:"stars","aria-label":r.rating+" out of 5",text:stars(r.rating)})," ",el("span",{class:"badge "+r.status,text:r.status==="clarify"?"waiting for customer":r.status}),el("span",{class:"meta",text:"  Shown publicly as: "+r.displayName})),
+    el("div",{class:"body"+(r.text?"":" empty"),text:r.text||"(rating only, no written feedback)"}),
+    (r.moderation&&r.moderation.reason)?el("div",{class:"meta",text:"Note on record: "+r.moderation.reason}):"",
+    slot);
+  const acts=el("div",{class:"acts"}); card.append(acts);
+  const open=(box)=>{slot.replaceChildren(box);};
+  if(mode==="queue"){
+    acts.append(
+      el("button",{class:"btn sm good",type:"button",text:"Approve & publish",onclick:async e=>{e.target.disabled=true;const x=await post("/admin/reviews/moderate",{reviewId:r.id,action:"approve"});if(x.ok)load();else{e.target.disabled=false;alert(x.j.error||"Something went wrong.");}}}),
+      el("button",{class:"btn sm line",type:"button",text:"Ask for changes",onclick:()=>open(reasonBox("Note to the customer (they'll receive it with a link to update their review)","e.g. Could you remove the name of the other participant?","Send note","line",t=>post("/admin/reviews/moderate",{reviewId:r.id,action:"clarify",reason:t})))}),
+      el("button",{class:"btn sm bad",type:"button",text:"Reject",onclick:()=>open(reasonBox("Policy reason (recorded, not shown to the public)","e.g. Contains another person's private information","Confirm rejection","bad",t=>post("/admin/reviews/moderate",{reviewId:r.id,action:"reject",reason:t})))}));
+  } else if(mode==="published"){
+    acts.append(
+      el("button",{class:"btn sm line",type:"button",text:"Let customer edit",onclick:async e=>{e.target.disabled=true;const x=await post("/admin/reviews/allow-edit",{reviewId:r.id});e.target.disabled=false;alert(x.ok?"An update link was emailed to the customer.":(x.j.error||"Something went wrong."));}}),
+      el("button",{class:"btn sm line",type:"button",text:"Take down",onclick:()=>open(reasonBox("Why is this being taken down?","Reason (recorded)","Take down","line",t=>post("/admin/reviews/moderate",{reviewId:r.id,action:"hide",reason:t})))}),
+      el("button",{class:"btn sm bad",type:"button",text:"Delete (customer request)",onclick:()=>open(reasonBox("Why is this being deleted?","e.g. Customer asked for it to be removed","Delete permanently","bad",t=>post("/admin/reviews/delete",{reviewId:r.id,reason:t})))}));
+  } else {
+    acts.append(
+      el("button",{class:"btn sm good",type:"button",text:"Approve & publish",onclick:async e=>{e.target.disabled=true;const x=await post("/admin/reviews/moderate",{reviewId:r.id,action:"approve"});if(x.ok)load();else{e.target.disabled=false;alert(x.j.error||"Something went wrong.");}}}),
+      el("button",{class:"btn sm bad",type:"button",text:"Delete",onclick:()=>open(reasonBox("Why is this being deleted?","Reason (recorded)","Delete permanently","bad",t=>post("/admin/reviews/delete",{reviewId:r.id,reason:t})))}));
+  }
+  return card;
+}
+function renderQueue(){
+  const list=D.reviews.filter(r=>r.status==="pending"||r.status==="clarify");
+  $("#queue").replaceChildren(...(list.length?list.map(r=>reviewCard(r,"queue")):[el("p",{class:"empty-msg",text:"Nothing is waiting. New reviews appear here and in an email to you."})]));
+}
+function renderPublished(){
+  const list=D.reviews.filter(r=>r.status==="published");
+  $("#published").replaceChildren(...(list.length?list.map(r=>reviewCard(r,"published")):[el("p",{class:"empty-msg",text:"No published reviews yet. The Voices page and the review sections stay hidden until the first one is approved."})]));
+}
+function renderOther(){
+  const list=D.reviews.filter(r=>r.status==="rejected"||r.status==="hidden");
+  $("#otherCard").hidden=!list.length; $("#other").replaceChildren(...list.map(r=>reviewCard(r,"other")));
+}
+function renderInvites(){
+  const q=$("#q").value.trim().toLowerCase(), f=$("#f").value;
+  const rows=D.invitations.filter(i=>(!f||i.status===f)&&(!q||(i.name+" "+i.email+" "+offName(i.offeringId)).toLowerCase().includes(q)));
+  $("#invEmpty").hidden=rows.length>0; $("#invEmpty").textContent=D.invitations.length?"No invitations match.":"No invitations yet.";
+  $("#invRows").replaceChildren(...rows.map(i=>{
+    const acts=el("div",{class:"acts",style:"margin:0"});
+    if(i.status==="pending"||i.status==="expired") acts.append(el("button",{class:"btn sm line",type:"button",text:"Resend",onclick:async e=>{e.target.disabled=true;const x=await post("/admin/reviews/resend",{id:i.id});e.target.disabled=false;if(x.ok)load();else alert(x.j.error||"Something went wrong.");}}),
+      el("button",{class:"btn sm bad",type:"button",text:"Revoke",onclick:async e=>{if(!confirm("Revoke this invitation? The link will stop working."))return;const x=await post("/admin/reviews/revoke",{id:i.id});if(x.ok)load();else alert(x.j.error||"Something went wrong.");}}));
+    return el("tr",{},
+      el("td",{},el("div",{text:i.name}),el("div",{class:"meta",style:"color:var(--muted);font-size:12.5px",text:i.email})),
+      el("td",{text:offName(i.offeringId)+(i.detail?" — "+i.detail:"")+(i.type==="edit"?" (edit link)":"")}),
+      el("td",{},el("span",{class:"badge "+i.status,text:i.status==="pending"?"waiting":i.status}),i.emailStatus==="failed"?el("div",{},el("span",{class:"badge failed",text:"email not sent"})):null),
+      el("td",{text:fmt(i.sentAt||i.createdAt)+(i.status==="pending"?" · expires "+fmt(i.expiresAt):"")}),
+      el("td",{},acts));
+  }));
+}
+$("#q").addEventListener("input",()=>D&&renderInvites()); $("#f").addEventListener("change",()=>D&&renderInvites());
+$("#inviteForm").addEventListener("submit",async e=>{
+  e.preventDefault(); const b=$("#iSend"), m=$("#iMsg"); b.disabled=true; m.className="msg"; m.textContent="Sending…";
+  const x=await post("/admin/reviews/invite",{name:$("#iName").value,email:$("#iEmail").value,offeringId:$("#iOffering").value,detail:$("#iDetail").value});
+  b.disabled=false;
+  if(x.ok){ m.className="msg ok"; m.textContent="Sent to "+$("#iEmail").value+"."; $("#iName").value=$("#iEmail").value=$("#iDetail").value=""; $("#iOffering").value=""; load(); }
+  else { m.className="msg err"; m.textContent=x.j.error||"Something went wrong."; if(x.j.id) load(); }
+});
+load(); setInterval(()=>{ if(!document.hidden && !document.querySelector(".reason")) load(); },60000);
+</script>
+</body>
+</html>
