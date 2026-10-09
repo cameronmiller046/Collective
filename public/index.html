@@ -50,6 +50,8 @@ gtag('config', 'G-QQBLTBHNEX');
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
+/* lining numerals everywhere: in the serif font a 1 otherwise looks like a small capital I and a 0 like an o */
+*,*::before,*::after{font-feature-settings:"lnum" 1!important}
 body{margin:0;background:var(--plum);color:var(--ivory);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
 img{max-width:100%}
 a{color:inherit}
@@ -856,7 +858,7 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){.chakra-glow{display:none}}
 @media (max-width:700px){.big-goal-row{gap:14px}.goal-tree-card--lg{padding:32px 20px 26px}}
 /* Support page: full-width scattered-leaf border strip, used above and below the goal-tree section's wording */
-.leaf-border{position:relative;width:100vw;left:50%;margin-left:-50vw;height:40px;overflow:visible;pointer-events:none}
+.leaf-border{position:relative;width:100vw;left:50%;margin-left:-50vw;height:40px;overflow:visible;overflow-x:clip;pointer-events:none}
 .lb-leaf{position:absolute;top:50%;width:15px;height:11px;border-radius:0 100% 0 100%;opacity:.85;box-shadow:0 1px 2px rgba(0,0,0,.25)}
 .support-goal-wrap{position:relative}
 .goal-leaf-fall{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none;z-index:1}
