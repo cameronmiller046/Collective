@@ -141,6 +141,11 @@ p{margin:0}
   .band{padding:76px 0}
 }
 @media (max-width:460px){.brand-text{display:none}}
+@media (max-width:360px){ /* the smallest phones: keep the logo, both buttons and the menu on one line */
+  .head-row{gap:6px}.head-cta{gap:6px}
+  .head-cta .btn{padding:0 8px;font-size:9px;letter-spacing:.05em}
+  .brand-logo{height:40px}.burger{width:38px;height:38px}
+}
 
 /* ============ hero ============ */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(88,32,100,.75),transparent 70%),var(--plum)}
@@ -691,6 +696,50 @@ p{margin:0}
 .vx-off{font-style:italic}
 .vx-empty{color:var(--plum-muted);font-size:15px}
 @media(max-width:560px){.vx-summary{grid-template-columns:1fr}}
+/* A Crowned Perspective: monthly digital magazine */
+.mag-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:560px;width:100%;margin:6px auto}
+.mag-count div{background:rgba(0,0,0,.28);border:1px solid var(--line-dark);border-radius:8px;padding:16px 6px}
+.mag-count b{display:block;font:600 clamp(2rem,6vw,3rem)/1 var(--serif);color:var(--gold-soft);font-variant-numeric:tabular-nums}
+.mag-count span{display:block;margin-top:6px;font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--lav)}
+.mag-open{background:radial-gradient(120% 90% at 50% 0%,#f3d58a 0%,#d9a24a 38%,#8c5a1f 72%,#3a1d12 100%);padding:clamp(44px,8vw,96px) 0}
+.mag-welcome{max-width:760px;margin:0 auto;display:grid;gap:16px;justify-items:center;text-align:center;background:rgba(37,7,47,.84);border:1px solid rgba(229,190,101,.4);border-radius:10px;padding:clamp(28px,5vw,54px) clamp(20px,5vw,56px);box-shadow:0 30px 70px -30px rgba(0,0,0,.7);backdrop-filter:blur(3px)}
+.mag-welcome p{font-size:16.5px;line-height:1.8;color:var(--ivory);max-width:58ch}
+.mag-welcome .mag-em{font-family:var(--serif);font-style:italic;font-size:1.55rem;line-height:1.35;color:var(--gold-soft)}
+.mag-crown{width:92px;height:auto;border-radius:50%;box-shadow:0 0 0 2px rgba(229,190,101,.6),0 10px 30px rgba(0,0,0,.5)}
+.mag-reader{padding:28px 0 46px}
+.mag-bar{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;justify-content:center;margin:0 auto 16px;padding:0 12px;color:var(--lav);font-size:14px}
+.mag-bar button,.mag-bar a{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory);background:transparent;border:1px solid var(--line-dark);padding:10px 16px;border-radius:999px;cursor:pointer;text-decoration:none}
+.mag-bar button:hover,.mag-bar a:hover{border-color:var(--gold)}
+.mag-bar button[disabled]{opacity:.35;cursor:default}
+.mag-bar button:focus-visible,.mag-bar a:focus-visible,.mag-thumbs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mag-sep{width:1px;height:22px;background:var(--line-dark)}
+#magPos{min-width:140px;text-align:center}
+.mag-stage{position:relative;max-width:1280px;margin:0 auto;display:flex;justify-content:center;perspective:2800px;overflow:hidden;padding:10px 0 18px;touch-action:pan-y}
+.mag-book{position:relative;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.4,.1,.2,1)}
+.mag-leaf{position:absolute;top:0;transform-origin:left center;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.45,.05,.25,1)}
+.mag-leaf.flipped{transform:rotateY(-180deg)}
+.mag-quick .mag-leaf,.mag-quick.mag-book{transition-duration:.35s}
+.mag-none,.mag-none *{transition:none!important}
+.mag-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#f4efe6;overflow:hidden;box-shadow:0 18px 40px -22px rgba(0,0,0,.8)}
+.mag-face.back{transform:rotateY(180deg)}
+.mag-face.blank{background:linear-gradient(135deg,#f6f1e8,#e9dfcf)}
+.mag-face img{display:block;width:100%;height:100%;object-fit:fill;user-select:none;-webkit-user-drag:none}
+.mag-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,rgba(0,0,0,.24),rgba(0,0,0,0) 9%)}
+.mag-face.back::after{background:linear-gradient(to left,rgba(0,0,0,.24),rgba(0,0,0,0) 9%)}
+.mag-empty,.mag-hint{text-align:center;color:var(--lav);font-size:13.5px;margin:6px 16px}
+.mag-thumbs{display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;max-width:1280px;margin:0 auto;scrollbar-width:thin}
+.mag-thumbs button{flex:none;width:64px;padding:0;border:2px solid transparent;background:#f4efe6;border-radius:3px;cursor:pointer;overflow:hidden;opacity:.75}
+.mag-thumbs button[aria-current="true"]{border-color:var(--gold);opacity:1}
+.mag-thumbs img{display:block;width:100%;height:auto}
+.mag-reader.mag-full{position:fixed;inset:0;z-index:1000;padding:12px 0;overflow:auto;background:var(--plum-deep)}
+.mag-reader.mag-full .mag-thumbs,.mag-reader.mag-full .mag-hint{display:none}
+.mag-zoom{position:fixed;inset:0;z-index:1100;background:rgba(10,2,14,.96);display:grid;grid-template-rows:auto 1fr}
+.mag-zoom header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;color:var(--lav);font-size:13px}
+.mag-zoom button{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory);background:transparent;border:1px solid var(--line-dark);padding:10px 16px;border-radius:999px;cursor:pointer}
+.mag-zoombox{overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;padding:0 8px 24px}
+.mag-zoomrow{display:flex;gap:6px;justify-content:center;width:max-content;min-width:100%;margin:0 auto}
+.mag-zoomrow img{display:block;width:var(--zw);height:auto;background:#f4efe6}
+@media (max-width:520px){.mag-count{gap:8px}.mag-count div{padding:12px 2px}.mag-bar button,.mag-bar a{padding:9px 13px}}
 .contact-aside address{font-style:normal;font-size:14px;line-height:1.7;color:var(--plum-muted)}
 .site-foot address.reach{font-style:normal;font-size:13px;line-height:1.75}
 .site-foot address.reach b{font-weight:600;color:var(--lav)}
@@ -2016,6 +2065,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p class="muted">Our three-page launch newsletter, free when you join. New episodes, reflections and upcoming experiences follow.</p>
       <a class="btn btn--gold" href="#" data-ext="stanEmail" data-label="Conversations sign-up (Stan)">Join the Conversation <span class="arr">→</span></a>
       <a class="btn btn--line" href="#/contact">Suggest a topic or be a guest</a>
+      <p class="reach">Emails from us arrive from <a href="mailto:magazine@rootedandcrownedcollective.org">magazine@rootedandcrownedcollective.org</a>. Add it to your contacts so it always reaches your inbox.</p>
       <p class="reach">Guest, interview and media inquiries: <a href="mailto:podcast@rootedandcrownedcollective.org">podcast@rootedandcrownedcollective.org</a></p>
     </aside>
   </div></section>
@@ -2856,6 +2906,67 @@ details.course-mod summary::-webkit-details-marker{display:none}
   </div></section>
 </div>
 
+<!-- ===================== A CROWNED PERSPECTIVE (MONTHLY DIGITAL MAGAZINE) ===================== -->
+<div data-page="magazine" hidden>
+  <section class="page-hero"><div class="wrap">
+    <span class="eyebrow">Rooted &amp; Crowned Collective Presents</span>
+    <h1 class="h-xl" id="magTitle">A Crowned Perspective</h1>
+    <p class="script" id="magTagline">The Journey Begins In YOU.</p>
+    <p class="caps" id="magEdition" style="color:var(--gold-soft)"></p>
+    <div class="spectrum spectrum--short"></div>
+  </div></section>
+
+  <section class="band mag-preview" id="magPreview" hidden style="padding:12px 0"><div class="wrap"><p class="caps" style="text-align:center;color:var(--gold-soft)">Private preview &middot; this issue is not public yet</p></div></section>
+
+  <section class="band band--plum2" id="magWait" hidden><div class="wrap center" style="max-width:780px;gap:18px">
+    <span class="eyebrow" style="color:var(--gold-soft)" id="magWaitEyebrow">Coming soon</span>
+    <h2 class="h-l" id="magWaitTitle"></h2>
+    <p class="lede" id="magWaitText"></p>
+    <div class="mag-count" id="magCount" hidden role="timer" aria-live="off">
+      <div><b id="cD">0</b><span>days</span></div><div><b id="cH">0</b><span>hours</span></div><div><b id="cM">0</b><span>minutes</span></div><div><b id="cS">0</b><span>seconds</span></div>
+    </div>
+    <p class="caps" id="magWhen" style="color:var(--gold-soft)"></p>
+    <p class="reach">Want a note when it&rsquo;s here? Write to <a href="mailto:magazine@rootedandcrownedcollective.org">magazine@rootedandcrownedcollective.org</a></p>
+  </div></section>
+
+  <section class="band mag-open" id="magOpen" hidden><div class="wrap">
+    <div class="mag-welcome">
+      <img class="mag-crown" src="assets/logo-emblem.png" alt="The Rooted and Crowned Collective crowned chakra tree" width="372" height="324">
+      <h2 class="h-l">Before You Turn the First Page&hellip;</h2>
+      <p class="story-line" style="color:var(--gold-soft)">Every journey begins somewhere. The most meaningful one begins within.</p>
+      <p>Welcome to <i>A Crowned Perspective</i>, a space created to encourage conscious awareness, self-discovery, reflection, and intentional growth.</p>
+      <p>Within these pages, you&rsquo;ll find perspectives that invite you to question familiar patterns, reconnect with your authentic self, and recognize the possibilities that emerge when you begin choosing differently.</p>
+      <p>This isn&rsquo;t about becoming someone else. It&rsquo;s about discovering, remembering, and embracing who you were created to be.</p>
+      <p class="mag-em">Your story is still unfolding. Your next chapter begins with YOU.</p>
+      <p class="script" style="font-size:clamp(1.7rem,3vw,2.3rem)">Grounded Roots. Crown Driven.</p>
+      <p class="caps" style="color:var(--gold-soft);letter-spacing:.2em">&mdash; Coach Kia<br>Founder, Rooted &amp; Crowned Collective</p>
+      <button class="btn btn--gold btn--lg" id="magOpenBtn" type="button">Open the Magazine</button>
+    </div>
+  </div></section>
+
+  <section class="band band--deep mag-reader" id="magReader" hidden aria-label="The digital magazine">
+    <div class="mag-bar">
+      <button type="button" id="magPrev" aria-label="Previous page">&lsaquo; Prev</button>
+      <span id="magPos" aria-live="polite"></span>
+      <button type="button" id="magNext" aria-label="Next page">Next &rsaquo;</button>
+      <span class="mag-sep" aria-hidden="true"></span>
+      <button type="button" id="magZoom">Zoom</button>
+      <button type="button" id="magFull">Full screen</button>
+      <a id="magPdf" hidden download>Download PDF</a>
+    </div>
+    <div class="mag-stage" id="magStage"><div class="mag-book" id="magBook"></div></div>
+    <p class="mag-empty" id="magEmpty" hidden>The pages are being prepared. Please check back soon.</p>
+    <p class="mag-hint" id="magHint">Swipe or use the arrow keys to turn pages. Tap Zoom to read closely.</p>
+    <div class="mag-thumbs" id="magThumbs" aria-label="Jump to a page"></div>
+  </section>
+
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:18px;max-width:860px">
+    <div class="sec-head" style="margin:0"><span class="eyebrow">About the magazine</span><h2 class="h-l">A monthly space for self-discovery.</h2></div>
+    <p class="lede" style="color:var(--plum-muted)"><i>A Crowned Perspective</i> is the monthly digital magazine of Rooted &amp; Crowned Collective, exploring conscious self-discovery, mindfulness, personal development, intentional living and the growing experiences within the Collective. Every issue stays here to read, free, with no sign-up needed.</p>
+    <div class="scope" style="background:var(--white)"><b>Educational and reflective</b>The magazine shares perspectives for reflection and personal growth. It is not medical care or mental-health treatment, and it does not replace the guidance of a licensed professional. If you are in crisis, contact local emergency services right away. In the U.S., call or text 988.</div>
+  </div></section>
+</div>
+
 <!-- ===================== VOICES OF THE COLLECTIVE ===================== -->
 <div data-page="voices" hidden>
   <section class="page-hero"><div class="wrap">
@@ -2977,7 +3088,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <img class="foot-logo" src="assets/logo-full.png" alt="Rooted and Crowned Collective. Grounded Roots. Crown Driven." width="458" height="430">
       </div>
       <ul class="foot-nav">
-        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li data-vx-link hidden><a href="#/voices">Voices of the Collective</a></li><li><a href="#/contact">Contact Us</a></li><li><a href="#/support">Support Us</a></li>
+        <li><a href="#/">Home</a></li><li><a href="#/about">Our Story</a></li><li><a href="#/root-to-crown">The Framework</a></li><li><a href="#/programs">Programs</a></li><li><a href="#/conversations">Podcast</a></li><li><a href="#/magazine">A Crowned Perspective</a></li><li><a href="#/books">Books &amp; Journals</a></li><li><a href="#/app">The App</a></li><li><a href="#/community">Community</a></li><li><a href="#/ecosystem">Our Ecosystem</a></li><li><a href="#/infinite-possibilities">Infinite Possibilities</a></li><li><a href="#/shop">Shop</a></li><li data-vx-link hidden><a href="#/voices">Voices of the Collective</a></li><li><a href="#/contact">Contact Us</a></li><li><a href="#/support">Support Us</a></li>
       </ul>
     </div>
     <div class="foot-signup" data-signup></div>
@@ -3367,7 +3478,8 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
 const SIGNUP = `<div style="display:grid;gap:8px"><h3>Stay Rooted. Stay Connected.</h3>
-  <p class="fine">Join the Rooted &amp; Crowned community for reflections, new conversations, upcoming experiences and first access to announcements.</p></div>
+  <p class="fine">Join the Rooted &amp; Crowned community for reflections, new conversations, upcoming experiences and first access to announcements.</p>
+  <p class="reach" style="margin-top:0">Our emails arrive from <a href="mailto:magazine@rootedandcrownedcollective.org">magazine@rootedandcrownedcollective.org</a></p></div>
   <form class="signup-form-wrap" novalidate><div class="signup-form">
     <input class="field" type="email" name="email" placeholder="Your email address" aria-label="Email address" autocomplete="email" required>
     <button class="btn btn--gold" type="submit">Join the Collective</button></div></form>`;
@@ -3505,8 +3617,178 @@ const ROUTES={"":"home","about":"about","root-to-crown":"framework","programs":"
   "courses/root":"root-course","courses/sacral":"sacral-course","courses/solar-plexus":"solar-course","courses/heart":"heart-course","courses/throat":"throat-course","courses/third-eye":"thirdeye-course","courses/crown":"crown-course","chakra-ecourses":["programs","chakra-ecourses"],
   "conversations":"conversations","books":"books","app":"app","community":"community","sisterhood":["community","sisterhood"],"mens-collective":["community","mens"],
   "children":["community","children"],"infinite-possibilities":"infinite","ecosystem":"ecosystem","support":"support","events":["community","extravaganza"],"shop":"shop","start-here":"start",
-  "voices":"voices","contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
+  "magazine":"magazine","voices":"voices","contact":"contact","speaking":["contact","speaking"],"legal":"legal","privacy":["legal","privacy"],"terms":["legal","terms"],"accessibility":["legal","accessibility"]};
 const PAGE_NAV={home:"/",about:"/about",framework:"/root-to-crown",programs:"/programs",conversations:"/conversations",books:"/books",app:"/app",community:"/community",ecosystem:"/ecosystem",infinite:"/infinite-possibilities",support:"/support",contact:"/contact",start:"/start-here",shop:"/shop"};
+/* ---------- A Crowned Perspective: monthly digital magazine (countdown, welcome screen, flip-page reader) ---------- */
+const MAG={list:[],real:0,curSrc:null,data:null,off:0,timer:null,open:false,aspect:11/8.5,aspectSet:false,f:0,L:0,fMax:0,spread:false,pw:0,ph:0,leaves:[],n:0,curPage:0,pagesKey:"",settle:null};
+const mg=id=>document.getElementById(id);
+const magTok=()=>new URLSearchParams(location.search).get("preview")||"";
+async function magLoad(){
+  const tok=magTok();
+  try{
+    const r=await fetch("/api/magazine"+(tok?"?preview="+encodeURIComponent(tok):""),{cache:"no-store"});
+    if(!r.ok) return;
+    MAG.data=await r.json(); MAG.off=MAG.data.serverNow-Date.now();
+  }catch(e){ return; }
+  magRender();
+}
+function magRender(){
+  const d=MAG.data; if(!d) return; const it=d.issue;
+  mg("magTitle").textContent=it.title; mg("magTagline").textContent=it.tagline;
+  mg("magEdition").textContent=[it.edition,it.volume,it.dateLabel].filter(Boolean).join(" · ");
+  clearInterval(MAG.timer);
+  const wait=mg("magWait"), open=mg("magOpen"), reader=mg("magReader");
+  wait.hidden=open.hidden=reader.hidden=true; mg("magPreview").hidden=!d.preview;
+  if(d.state!=="released"){
+    wait.hidden=false; const cnt=mg("magCount"); cnt.hidden=true; mg("magWhen").textContent="";
+    if(d.state==="tba"){
+      mg("magWaitEyebrow").textContent="Coming soon"; mg("magWaitTitle").textContent="Release date to be announced";
+      mg("magWaitText").textContent="Our first edition is being prepared with care. When the date is set, the countdown will appear right here.";
+    } else if(d.pendingApproval){
+      mg("magWaitEyebrow").textContent="Almost here"; mg("magWaitTitle").textContent="Arriving very soon";
+      mg("magWaitText").textContent="We’re putting the finishing touches on this edition.";
+      MAG.timer=setInterval(magLoad,60000);
+    } else {
+      mg("magWaitEyebrow").textContent="Opening soon"; mg("magWaitTitle").textContent="Opens "+d.releaseLabel;
+      mg("magWaitText").textContent="A Crowned Perspective opens right here, free to read, with no sign-up needed.";
+      mg("magWhen").textContent=d.releaseTimeLabel?"Opens at "+d.releaseTimeLabel:"";
+      if(d.showCountdown){
+        cnt.hidden=false;
+        const tick=()=>{
+          const ms=d.releaseAt-(Date.now()+MAG.off);
+          if(ms<=0){ clearInterval(MAG.timer); setTimeout(magLoad,1500); return; }
+          const s=Math.floor(ms/1000);
+          mg("cD").textContent=Math.floor(s/86400); mg("cH").textContent=Math.floor(s%86400/3600); mg("cM").textContent=Math.floor(s%3600/60); mg("cS").textContent=s%60;
+        };
+        tick(); MAG.timer=setInterval(tick,1000);
+      }
+    }
+    return;
+  }
+  if(!MAG.open){ open.hidden=false; return; }
+  reader.hidden=false;
+  const key=JSON.stringify(d.pages||[])+(d.pdf||"");
+  if(key!==MAG.pagesKey||!MAG.leaves.length){ MAG.pagesKey=key; magThumbs(); magBuild(); }
+}
+/* MAG.list holds the pages in reading order. In the two-page view a null entry is a blank page (an inside cover, or a filler that keeps open-book pairs together); on a phone blanks are skipped. */
+const magNum=i=>{ if(i<0||i>=MAG.list.length||!MAG.list[i]) return 0; let n=0; for(let k=0;k<=i;k++) if(MAG.list[k]) n++; return n; };
+function magFace(side,idx){
+  const d=document.createElement("div"); d.className="mag-face "+side;
+  if(idx>=0&&MAG.list[idx]){ const img=document.createElement("img"); img.alt="Page "+magNum(idx)+" of "+MAG.data.issue.title; img.draggable=false; img.dataset.src=MAG.list[idx]; d.append(img); }
+  else d.classList.add("blank");
+  return d;
+}
+function magVisible(){ const {f,L,n,spread}=MAG; return spread?(f===0?[0]:[...(f>0?[2*f-1]:[]),...((f<L&&2*f<n)?[2*f]:[])]):[f]; }
+function magBuild(){
+  const all=(MAG.data&&MAG.data.pages)||[], real=all.filter(Boolean), book=mg("magBook"), stage=mg("magStage");
+  mg("magEmpty").hidden=real.length>0; mg("magHint").hidden=!real.length; mg("magThumbs").hidden=!real.length;
+  const pdf=mg("magPdf"); pdf.hidden=!MAG.data.pdf; if(MAG.data.pdf) pdf.href=MAG.data.pdf;
+  book.replaceChildren(); MAG.leaves=[]; MAG.real=real.length;
+  if(!real.length){ MAG.list=[]; MAG.n=0; mg("magPos").textContent=""; mg("magPrev").disabled=mg("magNext").disabled=true; return; }
+  const full=mg("magReader").classList.contains("mag-full");
+  const sw=Math.min(stage.clientWidth||innerWidth,1280), spread=sw>=860&&real.length>1;
+  const pages=MAG.list=spread?all:real; MAG.n=pages.length;
+  let pw=spread?sw/2:sw, ph=pw*MAG.aspect;
+  const availH=full?innerHeight-120:Math.max(460,innerHeight-130);
+  if(ph>availH&&(spread||full||sw>600)){ ph=availH; pw=ph/MAG.aspect; }
+  pw=Math.floor(pw); ph=Math.floor(ph); Object.assign(MAG,{spread,pw,ph});
+  book.style.width=(spread?pw*2:pw)+"px"; book.style.height=ph+"px";
+  const L=spread?Math.ceil(pages.length/2):pages.length; MAG.L=L; MAG.fMax=spread?(pages.length%2===0?L:L-1):L-1; // an odd page count ends on a full spread, with no blank page
+  let cur=0; if(MAG.curSrc){ const k=pages.indexOf(MAG.curSrc); if(k>=0) cur=k; }
+  MAG.f=spread?(cur===0?0:Math.min(MAG.fMax,Math.ceil(cur/2))):Math.min(MAG.fMax,cur);
+  for(let i=0;i<L;i++){
+    const leaf=document.createElement("div"); leaf.className="mag-leaf";
+    leaf.style.cssText="left:"+(spread?pw:0)+"px;width:"+pw+"px;height:"+ph+"px";
+    const fi=spread?2*i:i, bi=spread?2*i+1:-1;
+    leaf.append(magFace("front",fi<pages.length?fi:-1),magFace("back",bi>=0&&bi<pages.length?bi:-1));
+    book.append(leaf); MAG.leaves.push(leaf);
+  }
+  book.classList.add("mag-none"); magShow(); requestAnimationFrame(()=>requestAnimationFrame(()=>book.classList.remove("mag-none")));
+}
+function magShow(){
+  const {f,L,spread,pw,n}=MAG, book=mg("magBook");
+  MAG.leaves.forEach((leaf,i)=>{ leaf.classList.toggle("flipped",i<f); leaf.style.zIndex=i<f?i+1:L-i+1; });
+  book.style.transform=spread?(f===0?"translateX("+(-pw/2)+"px)":(f>=L?"translateX("+(pw/2)+"px)":"translateX(0)")):"none";
+  const vis=magVisible(); MAG.curPage=vis[0]; MAG.curSrc=vis.map(i=>MAG.list[i]).find(Boolean)||null;
+  let txt;
+  if(spread){ if(f===0) txt="Cover"; else { const l=magNum(2*f-1), r=(2*f<n)?magNum(2*f):0; txt=l&&r?"Pages "+l+"–"+r+" of "+MAG.real:"Page "+(l||r)+" of "+MAG.real; } }
+  else txt="Page "+(f+1)+" of "+n;
+  mg("magPos").textContent=txt; mg("magPrev").disabled=f===0; mg("magNext").disabled=f>=MAG.fMax;
+  const shown=new Set(vis.map(i=>MAG.list[i]).filter(Boolean));
+  mg("magThumbs").querySelectorAll("button").forEach(b=>{ if(shown.has(b.dataset.src)) b.setAttribute("aria-current","true"); else b.removeAttribute("aria-current"); });
+  magImgs();
+}
+function magImgs(){
+  const lo=Math.max(0,MAG.f-3), hi=Math.min(MAG.L-1,MAG.f+3);
+  for(let i=lo;i<=hi;i++) MAG.leaves[i].querySelectorAll("img[data-src]").forEach(img=>{ if(!img.getAttribute("src")){ img.addEventListener("load",magAspect,{once:true}); img.src=img.dataset.src; } });
+}
+function magAspect(e){
+  if(MAG.aspectSet) return; MAG.aspectSet=true;
+  const a=e.target.naturalHeight/e.target.naturalWidth;
+  if(a&&Math.abs(a-MAG.aspect)>.01){ MAG.aspect=a; magBuild(); }
+}
+function magGo(nf){
+  nf=Math.max(0,Math.min(MAG.fMax,nf)); if(nf===MAG.f||!MAG.leaves.length) return;
+  const lo=Math.min(MAG.f,nf), hi=Math.max(MAG.f,nf), book=mg("magBook");
+  book.classList.toggle("mag-quick",hi-lo>1);
+  MAG.f=nf; magShow();
+  for(let i=lo;i<hi;i++) MAG.leaves[i].style.zIndex=500+i;       // the turning pages ride on top
+  clearTimeout(MAG.settle); const keep=nf;
+  MAG.settle=setTimeout(()=>{ if(MAG.f===keep) MAG.leaves.forEach((l,i)=>{ l.style.zIndex=i<MAG.f?i+1:MAG.L-i+1; }); },950);
+}
+function magJump(p){ magGo(MAG.spread?(p===0?0:Math.ceil(p/2)):p); }
+function magThumbs(){
+  const box=mg("magThumbs"), pages=((MAG.data&&MAG.data.pages)||[]).filter(Boolean); box.replaceChildren();
+  pages.forEach((src,i)=>{ const b=document.createElement("button"); b.type="button"; b.dataset.src=src; b.setAttribute("aria-label","Go to page "+(i+1));
+    const im=document.createElement("img"); im.loading="lazy"; im.decoding="async"; im.alt=""; im.src=src; b.append(im); b.addEventListener("click",()=>{ const k=MAG.list.indexOf(src); if(k>=0) magJump(k); }); box.append(b); });
+}
+function magZoom(){
+  if(!MAG.leaves.length||document.querySelector(".mag-zoom")) return;
+  const idxs=magVisible().filter(i=>MAG.list[i]);
+  if(!idxs.length) return;
+  const wrap=document.createElement("div"); wrap.className="mag-zoom"; wrap.setAttribute("role","dialog"); wrap.setAttribute("aria-modal","true"); wrap.setAttribute("aria-label","Zoomed page");
+  const head=document.createElement("header"), label=document.createElement("span"), close=document.createElement("button");
+  label.textContent="Scroll or pinch to read closely"; close.type="button"; close.textContent="Close"; head.append(label,close);
+  const box=document.createElement("div"); box.className="mag-zoombox"; const row=document.createElement("div"); row.className="mag-zoomrow";
+  const vw=innerWidth; row.style.setProperty("--zw",(vw<700?Math.round(vw*1.9):Math.round(Math.min(vw*0.9/idxs.length,900)))+"px");
+  idxs.forEach(i=>{ const im=document.createElement("img"); im.alt="Page "+magNum(i)+" enlarged"; im.src=MAG.list[i]; row.append(im); });
+  box.append(row); wrap.append(head,box); document.body.append(wrap); document.body.style.overflow="hidden"; close.focus();
+  const shut=()=>{ wrap.remove(); document.body.style.overflow=mg("magReader").classList.contains("mag-full")?"hidden":""; document.removeEventListener("keydown",esc); };
+  const esc=e=>{ if(e.key==="Escape") shut(); };
+  close.addEventListener("click",shut); document.addEventListener("keydown",esc);
+}
+function magFull(){
+  const r=mg("magReader"), on=!r.classList.contains("mag-full");
+  r.classList.toggle("mag-full",on); document.body.style.overflow=on?"hidden":""; mg("magFull").textContent=on?"Exit full screen":"Full screen";
+  if(on&&r.requestFullscreen) r.requestFullscreen().catch(()=>{}); else if(!on&&document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  magBuild();
+}
+document.addEventListener("fullscreenchange",()=>{ if(!document.fullscreenElement&&mg("magReader").classList.contains("mag-full")) magFull(); });
+mg("magOpenBtn").addEventListener("click",()=>{ MAG.open=true; magRender(); mg("magReader").scrollIntoView({behavior:"instant",block:"start"}); });
+mg("magPrev").addEventListener("click",()=>magGo(MAG.f-1));
+mg("magNext").addEventListener("click",()=>magGo(MAG.f+1));
+mg("magZoom").addEventListener("click",magZoom);
+mg("magFull").addEventListener("click",magFull);
+mg("magStage").addEventListener("click",e=>{
+  if(!MAG.leaves.length||!e.target.closest(".mag-face")) return;
+  if(!MAG.spread){ magZoom(); return; }                                  // on a phone, tapping a page opens it larger
+  const r=mg("magBook").getBoundingClientRect(); magGo(e.clientX>r.left+r.width/2?MAG.f+1:MAG.f-1);
+});
+(()=>{ let sx=0,sy=0; const st=mg("magStage");
+  st.addEventListener("touchstart",e=>{ sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+  st.addEventListener("touchend",e=>{ const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4) magGo(MAG.f+(dx<0?1:-1)); },{passive:true}); })();
+document.addEventListener("keydown",e=>{
+  if(mg("magReader").hidden||document.querySelector(".mag-zoom")||/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||""))) return;
+  if(e.key==="ArrowRight") magGo(MAG.f+1); else if(e.key==="ArrowLeft") magGo(MAG.f-1);
+  else if(e.key==="Escape"&&mg("magReader").classList.contains("mag-full")) magFull();
+});
+let magRz; window.addEventListener("resize",()=>{ clearTimeout(magRz); magRz=setTimeout(()=>{ if(!mg("magReader").hidden&&MAG.leaves.length) magBuild(); },200); });
+window.addEventListener("routechange",()=>{
+  const on=!document.querySelector('[data-page="magazine"]').hidden;
+  if(on) magLoad();
+  else { clearInterval(MAG.timer); if(mg("magReader").classList.contains("mag-full")) magFull(); const z=document.querySelector(".mag-zoom"); if(z) z.remove(); }
+});
+
 /* ---------- Voices of the Collective: only approved, verified reviews are ever fetched or shown ---------- */
 const VX={reviews:[],cats:[],at:0,filter:"all"};
 const VX_SLOTS=[ // where review sections appear; each stays hidden until it has at least one approved review

@@ -4,3 +4,5 @@ node_modules/
 Thumbs.db
 desktop.ini
 data/
+# unreleased magazine pages stay out of the public repository; they live on the private Railway volume
+private/magazine/

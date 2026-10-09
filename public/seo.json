@@ -152,6 +152,11 @@
       "canonical": "/start-here",
       "sitemap": true
     },
+    "magazine": {
+      "title": "A Crowned Perspective | Digital Magazine | Rooted & Crowned Collective",
+      "description": "A Crowned Perspective, the monthly digital magazine from Rooted & Crowned Collective: conscious self-discovery, reflection, mindful living and intentional growth. The Journey Begins In YOU.",
+      "canonical": "/magazine"
+    },
     "voices": {
       "title": "Voices of the Collective | Rooted & Crowned Collective",
       "description": "Verified experiences from people who have taken part in Rooted & Crowned courses, classes, Journal Club, books, journals and products.",

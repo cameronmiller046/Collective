@@ -120,6 +120,7 @@ function renderPage(slug, notFound) {
     tags.push('<meta name="robots" content="noindex">');
   } else {
     if (slug === "voices" && reviews.publishedCount() === 0) tags.push('<meta name="robots" content="noindex">'); // nothing to show yet
+    if (slug === "magazine" && !magazine.isLiveNow()) tags.push('<meta name="robots" content="noindex">'); // until the first issue is released
     const e = SEO.routes[slug];
     const url = SEO.origin + e.canonical;
     const image = SEO.origin + SEO.image;
@@ -146,7 +147,7 @@ function renderPage(slug, notFound) {
 
 function sitemapXml() {
   const urls = Object.entries(SEO.routes)
-    .filter(([slug, e]) => e.sitemap || (slug === "voices" && reviews.publishedCount() > 0))
+    .filter(([slug, e]) => e.sitemap || (slug === "voices" && reviews.publishedCount() > 0) || (slug === "magazine" && magazine.isLiveNow()))
     .map(([, e]) => `  <url><loc>${escText(SEO.origin + e.canonical)}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
@@ -249,6 +250,18 @@ const reviews = require("./reviews")({
 });
 setInterval(() => reviews.purge(), 24 * 3600 * 1000).unref();
 
+// A Crowned Perspective: the monthly digital magazine (see magazine.js). MAGAZINE_DIR can point elsewhere; default is private/magazine.
+const magazine = require("./magazine")({
+  dataDir: DATA_DIR,
+  mediaDir: process.env.MAGAZINE_DIR || path.join(__dirname, "private", "magazine"),
+  adminSecret: ADMIN_PASSWORD,
+});
+function readJsonBody(req, cb) {
+  let size = 0; const parts = [];
+  req.on("data", (c) => { size += c.length; if (size > 12000) req.destroy(); else parts.push(c); });
+  req.on("end", () => { try { cb(JSON.parse(Buffer.concat(parts).toString("utf8") || "{}")); } catch { cb(null); } });
+}
+
 function handleContact(req, res) {
   const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
   let size = 0;
@@ -315,8 +328,10 @@ http
       const isPage = urlPath === "/admin" || urlPath === "/admin/";
       const isReviewsPage = urlPath === "/admin/reviews" || urlPath === "/admin/reviews/";
       const isReviewsApi = urlPath.startsWith("/admin/reviews/") && !isReviewsPage;
-      const known = isPage || isReviewsPage || isReviewsApi || urlPath === "/admin/data.json" || urlPath === "/admin/send-digest";
-      const methodOk = urlPath === "/admin/send-digest" ? wantsPost : isReviewsApi ? (wantsPost || req.method === "GET") : (req.method === "GET" || req.method === "HEAD");
+      const isMagazinePage = urlPath === "/admin/magazine" || urlPath === "/admin/magazine/";
+      const isMagazineApi = urlPath.startsWith("/admin/magazine/") && !isMagazinePage;
+      const known = isPage || isReviewsPage || isReviewsApi || isMagazinePage || isMagazineApi || urlPath === "/admin/data.json" || urlPath === "/admin/send-digest";
+      const methodOk = urlPath === "/admin/send-digest" ? wantsPost : (isReviewsApi || isMagazineApi) ? (wantsPost || req.method === "GET") : (req.method === "GET" || req.method === "HEAD");
       if (!ADMIN_PASSWORD || !known || !methodOk) {
         res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
         return;
@@ -363,7 +378,11 @@ http
         if (!reviews.handleAdmin(req, res, urlPath, new URL(req.url, "http://x").searchParams, adminHeaders)) res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
         return;
       }
-      fs.readFile(path.join(__dirname, "private", isReviewsPage ? "reviews-admin.html" : "admin.html"), (err, html) => {
+      if (isMagazineApi) {
+        if (!magazine.handleAdmin(req, res, urlPath, adminHeaders, (cb) => readJsonBody(req, cb))) res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
+        return;
+      }
+      fs.readFile(path.join(__dirname, "private", isReviewsPage ? "reviews-admin.html" : isMagazinePage ? "magazine-admin.html" : "admin.html"), (err, html) => {
         if (err) res.writeHead(500, { ...adminHeaders, "Content-Type": "text/plain" }).end("Admin page missing.");
         else res.writeHead(200, { ...adminHeaders, "Content-Type": "text/html; charset=utf-8" }).end(html);
       });
@@ -380,6 +399,9 @@ http
       if (req.method !== "POST") return void reply(res, 405, { error: "method" });
       handleContact(req, res);
       return;
+    }
+    if (urlPath === "/api/magazine" || urlPath.startsWith("/magazine-media/")) {
+      if (magazine.handlePublic(req, res, urlPath, new URL(req.url, "http://x").searchParams)) return;
     }
     if (urlPath.startsWith("/api/review")) {
       if (reviews.handlePublic(req, res, urlPath, new URL(req.url, "http://x").searchParams)) return;

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Magazine Settings | Rooted &amp; Crowned Admin</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+:root{--plum:#25072F;--card:#3B1048;--line:rgba(229,190,101,.22);--gold:#E5BE65;--gold-deep:#D4A64A;--lav:#CDA9DA;--ivory:#F7F1E8;--muted:#B79AC4;--good:#58C98A;--bad:#F08A7B;--warn:#F4C430;--serif:"Cormorant Garamond",Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--plum);color:var(--ivory);font:15px/1.55 var(--sans)}
+a{color:var(--gold)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#1d0525,var(--plum))}
+h1{margin:0;font:600 1.7rem/1.1 var(--serif)}
+.sub{margin:2px 0 0;color:var(--muted);font-size:13px}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.pill{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory);border:1px solid var(--line);padding:9px 14px;border-radius:999px;text-decoration:none}
+.pill:hover{border-color:var(--gold)}
+main{max-width:900px;margin:0 auto;padding:22px 18px 60px;display:grid;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.card h2{margin:0 0 12px;font:600 12px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.hint{color:var(--muted);font-size:13px;margin:0 0 12px}
+.banner{border:1px solid var(--bad);background:rgba(240,138,123,.1);padding:12px 16px;border-radius:8px;font-size:14px}
+.status{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:15px}
+.badge{display:inline-block;font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:999px;border:1px solid var(--line)}
+.badge.live{color:var(--good);border-color:var(--good)}.badge.wait{color:var(--warn);border-color:var(--warn)}.badge.off{color:var(--muted)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.full{grid-column:1/-1}
+@media(max-width:700px){form{grid-template-columns:1fr}header{padding:16px}main{padding:16px 12px 48px}}
+label{display:grid;gap:5px;font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--lav)}
+input[type=text],input[type=date],input[type=time]{font:15px var(--sans);color:var(--ivory);background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;color-scheme:dark}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.check{display:flex;gap:12px;align-items:flex-start;text-transform:none;letter-spacing:0;font:15px var(--sans);color:var(--ivory);background:rgba(0,0,0,.22);padding:14px;border:1px solid var(--line);border-radius:8px}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold-deep);flex:none}
+.btn{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;background:var(--gold-deep);color:var(--plum)}
+.btn:hover{background:var(--gold)}.btn[disabled]{opacity:.6;cursor:wait}
+a.btn{display:inline-block;text-decoration:none}
+.btn.line{background:transparent;color:var(--ivory);border:1px solid var(--line)}
+.msg{font-size:13.5px;margin-left:12px}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
+ul.files{margin:8px 0 0;padding-left:18px;color:var(--lav);font-size:13.5px;columns:2}
+.note{border:1px solid var(--line);background:rgba(229,190,101,.08);padding:12px 16px;border-radius:8px;font-size:13.5px;color:var(--lav)}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Magazine Settings</h1><p class="sub">A Crowned Perspective &middot; private</p></div>
+  <div class="nav"><a class="pill" href="/admin">&larr; Visitor dashboard</a><a class="pill" href="/admin/reviews">Review Center</a></div>
+</header>
+<main>
+  <div class="banner" id="temp" hidden><b>Settings are stored temporarily.</b> Attach the Railway Volume and set <code>DATA_DIR</code> so they survive site updates.</div>
+
+  <section class="card">
+    <h2>Where this issue stands</h2>
+    <div class="status" id="status"></div>
+    <p class="hint" id="statusNote" style="margin-top:10px"></p>
+    <div style="margin-top:6px"><a class="btn line" id="previewBtn" target="_blank" rel="noopener" hidden>Open a private preview</a></div>
+  </section>
+
+  <section class="card">
+    <h2>Release &amp; approval</h2>
+    <p class="hint">Visitors never see an issue's pages until it is approved <b>and</b> its release time has arrived (Eastern Time). Until then the page shows a countdown, or "release date to be announced" if no date is set. The countdown appears automatically 60 days before the release.</p>
+    <form id="f">
+      <label>Release date<input type="date" id="rDate"></label>
+      <label>Release time (Eastern Time)<input type="time" id="rTime" value="00:00"></label>
+      <label class="check full"><input type="checkbox" id="approved"><span><b>Approved to publish.</b> When this is ticked and the release time arrives, the magazine opens to the public automatically. Leave it unticked while you are still reviewing the pages.</span></label>
+      <label>Magazine title<input type="text" id="title" maxlength="120"></label>
+      <label>Tagline<input type="text" id="tagline" maxlength="160"></label>
+      <label>Edition name<input type="text" id="edition" maxlength="120"></label>
+      <label>Issue theme<input type="text" id="theme" maxlength="160"></label>
+      <label>Volume line<input type="text" id="volume" maxlength="80"></label>
+      <label>Date shown on the cover<input type="text" id="dateLabel" maxlength="40"></label>
+      <div class="full"><button class="btn" id="save" type="submit">Save settings</button><span class="msg" id="msg" role="status"></span></div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Pages found for this issue</h2>
+    <div id="pages"></div>
+    <p class="hint" style="margin-top:12px">Page images are added by sending them to Claude Code, who places them in order (page-01, page-02 and so on). A PDF placed in the same folder shows up as a download link on the magazine page.</p>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+let D=null, I=null;
+async function post(path,body){
+  const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Action":"1"},body:JSON.stringify(body)});
+  return {ok:r.ok,j:await r.json().catch(()=>({}))};
+}
+const fmt=ms=>new Date(ms).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"long",month:"long",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"})+" ET";
+function badge(cls,text){const b=document.createElement("span");b.className="badge "+cls;b.textContent=text;return b;}
+async function load(){
+  const r=await fetch("/admin/magazine/data.json",{cache:"no-store"}); if(!r.ok) return;
+  D=await r.json(); I=D.issues[0]; render();
+}
+function render(){
+  $("#temp").hidden=D.persistent!==false;
+  const st=$("#status"); st.replaceChildren();
+  const left=I.releaseAt?I.releaseAt-D.serverNow:null;
+  if(I.released){ st.append(badge("live","Live"),document.createTextNode("The magazine is open to the public.")); $("#statusNote").textContent="Released "+fmt(I.releaseAt)+"."; }
+  else if(!I.releaseDate){ st.append(badge("off","Not scheduled"),document.createTextNode("Visitors see “Release date to be announced.”")); $("#statusNote").textContent="Set a release date below to begin the countdown."; }
+  else if(!I.approved){ st.append(badge("wait","Waiting for approval"),document.createTextNode("Scheduled for "+fmt(I.releaseAt))); $("#statusNote").textContent=(left<=0?"The release time has passed, but ":"")+"nothing opens to the public until you tick “Approved to publish.”"; }
+  else { st.append(badge("wait","Approved & scheduled"),document.createTextNode("Opens "+fmt(I.releaseAt))); $("#statusNote").textContent=Math.max(0,Math.ceil(left/86400000))+" day(s) to go. It opens automatically at that moment."; }
+  const p=$("#previewBtn"); p.hidden=!I.pages.length; p.href="/magazine?preview="+encodeURIComponent(D.previewToken);
+  $("#rDate").value=I.releaseDate||""; $("#rTime").value=I.releaseTime||"00:00"; $("#approved").checked=!!I.approved;
+  for(const k of ["title","tagline","edition","theme","volume","dateLabel"]) $("#"+k).value=I[k]||"";
+  const box=$("#pages"); box.replaceChildren();
+  if(!I.pages.length){ const q=document.createElement("p"); q.className="note"; q.textContent="No page images yet. The magazine page shows its opening screen and countdown, and the reader appears once pages are added."; box.append(q); }
+  else { const q=document.createElement("p"); q.textContent=I.pages.length+" page image"+(I.pages.length===1?"":"s")+" found"+(I.pdf?", plus a PDF ("+I.pdf+")":"")+"."; box.append(q); const ul=document.createElement("ul"); ul.className="files"; I.pages.forEach(f=>{const li=document.createElement("li");li.textContent=f;ul.append(li);}); box.append(ul); }
+}
+$("#f").addEventListener("submit",async e=>{
+  e.preventDefault(); const b=$("#save"), m=$("#msg"); b.disabled=true; m.className="msg"; m.textContent="Saving…";
+  const x=await post("/admin/magazine/save",{id:I.id,releaseDate:$("#rDate").value,releaseTime:$("#rTime").value||"00:00",approved:$("#approved").checked,
+    title:$("#title").value,tagline:$("#tagline").value,edition:$("#edition").value,theme:$("#theme").value,volume:$("#volume").value,dateLabel:$("#dateLabel").value});
+  b.disabled=false;
+  if(x.ok){ m.className="msg ok"; m.textContent="Saved."; await load(); } else { m.className="msg err"; m.textContent=x.j.error||"Something went wrong."; }
+});
+load();
+</script>
+</body>
+</html>
