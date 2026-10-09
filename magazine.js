@@ -133,7 +133,9 @@ module.exports = function createMagazine({ dataDir, mediaDir, adminSecret, uploa
       const [, id, name] = m, it = db.issues.find((i) => i.id === id), tok = params.get("preview");
       const preview = validPreview(tok);
       const ext = path.extname(name).toLowerCase();
-      if (!it || !TYPES[ext] || (!preview && !isReleased(it))) { res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found"); return true; }
+      // only pages listed in the issue's order (and its PDF) are ever served; any other file in the folder stays unreachable
+      const listed = it ? pageFiles(id).filter(Boolean) : [];
+      if (!it || !TYPES[ext] || (!preview && !isReleased(it)) || !(listed.includes(name) || name === pdfFile(id))) { res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found"); return true; }
       fs.readFile(path.join(mediaDir, id, name), (err, data) => {
         if (err) { res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found"); return; }
         res.writeHead(200, { "Content-Type": TYPES[ext], "Cache-Control": preview ? "no-store" : "public, max-age=3600", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": ext === ".pdf" ? "noindex" : "all" }).end(data);
