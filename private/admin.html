@@ -115,6 +115,10 @@ main{max-width:1180px;margin:0 auto;padding:24px 20px 56px;display:grid;gap:20px
     <section class="card"><h2>Goals reached</h2><p class="hint">Share of visits where someone did this at least once.</p><ul class="bars" id="goals"></ul></section>
   </div>
   <div class="grid2">
+    <section class="card"><h2>U.S. states</h2><p class="hint">Where visits come from, by state. Approximate.</p><ul class="bars" id="states"></ul></section>
+    <section class="card"><h2>Countries</h2><p class="hint">Counted once per visit. Approximate, and some visitors can't be placed.</p><ul class="bars" id="countries"></ul></section>
+  </div>
+  <div class="grid2">
     <section class="card"><h2>How people read each page</h2><p class="hint">Average time on the page, and the share who scrolled most of the way down.</p><ul class="bars" id="eng"></ul></section>
     <section class="card"><h2>Busiest days</h2><p class="hint">Page views by day of the week.</p><ul class="bars" id="weekdays"></ul></section>
   </div>
@@ -153,6 +157,8 @@ function delta(el,cur,prev,unit){
   el.classList.add(p>=0?"up":"down");
   el.textContent=(p>=0?"▲ ":"▼ ")+Math.abs(p)+"% vs the previous "+unit;
 }
+let regionNames=null; try{ regionNames=new Intl.DisplayNames(["en"],{type:"region"}); }catch(e){}
+function countryName(cc){ try{ return (regionNames&&regionNames.of(cc))||cc; }catch(e){ return cc; } }
 function bars(el,entries,opts={}){
   entries=entries.filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,opts.max||10);
   if(!entries.length){ el.innerHTML='<li class="empty">'+(opts.empty||"Nothing recorded yet.")+'</li>'; return; }
@@ -213,6 +219,10 @@ function render(j){
   bars($("#pages"),Object.entries(sumMaps(cur,"pages")),{label:k=>esc(titles[k]||k)+"<small>"+esc(k)+"</small>",empty:"No page views yet. Numbers appear as visitors browse the site."});
   bars($("#refs"),Object.entries(sumMaps(cur,"refs")),{pct:true,empty:"No visits recorded yet."});
   bars($("#devices"),Object.entries(sumMaps(cur,"devices")),{pct:true,empty:"No visits recorded yet."});
+  const geo=sumMaps(cur,"geo"), byCountry={}, byState={};
+  for(const [k,n] of Object.entries(geo)){ const [cc,st]=k.split("|"); byCountry[cc]=(byCountry[cc]||0)+n; if(cc==="US"&&st) byState[st]=n; }
+  bars($("#states"),Object.entries(byState),{max:12,pct:true,empty:"No U.S. visits placed yet. Locations appear as new visitors arrive."});
+  bars($("#countries"),Object.entries(byCountry),{max:10,pct:true,label:cc=>cc==="?"?"Not placed":esc(countryName(cc)),empty:"No visits placed yet. Locations appear as new visitors arrive."});
   bars($("#clicks"),Object.entries(sumMaps(cur,"clicks")),{label:k=>esc(clickLabel(k)),empty:"No clicks recorded yet."});
   bars($("#forms"),Object.entries(forms).map(([k,f])=>[k,f.ok+f.fail]),{label:k=>esc(k)+' <small><span class="ok">'+forms[k].ok+' sent</span>'+(forms[k].fail?' &middot; <span class="fail">'+forms[k].fail+' failed</span>':'')+'</small>',empty:"No contact form messages yet."});
   const spam=tot(cur,d=>d.blocked&&d.blocked.spam), rate=tot(cur,d=>d.blocked&&d.blocked.rate);
@@ -223,7 +233,7 @@ function render(j){
   bars($("#nf"),Object.entries(sumMaps(cur,"notFound")),{label:k=>'<code>'+esc(k)+'</code>',empty:"No broken links hit. Nicely done."});
   $("#tempBanner").hidden=j.persistent!==false;
   window.__digest=j.digest||{};
-  $("#foot").innerHTML="<b>How this is counted.</b> The site counts itself: no cookies, no names, no IP addresses are stored, only daily totals. A <b>visit</b> is someone's first page in a browser session. <b>Daily visitors</b> counts each person once per day, so across several days the same person counts once per day. Robots are kept separate from visitors. Your own visits from this browser are not counted. Days run on Atlanta time. Counting started "+(j.firstDay||"today")+"; earlier history lives in Google Analytics. <b>Weekly email:</b> "+(j.digest&&j.digest.on?"on, sent to "+esc(j.digest.to)+" every Monday around 8 AM Atlanta time, plus a note if the contact form fails or broken links spike.":"off. Set <code>DIGEST_TO</code> in Railway to turn it on.");
+  $("#foot").innerHTML="<b>How this is counted.</b> The site counts itself: no cookies, no names, no IP addresses are stored, only daily totals. <b>Locations</b> (state and country) are worked out from a visitor's address at the moment they arrive; the address itself is thrown away and only the place name is counted, so they are approximate (internet providers and VPNs can place people in the wrong state, and counting started the day this was added). Location data: <a href=\"https://db-ip.com\" rel=\"noopener\" target=\"_blank\">IP Geolocation by DB-IP</a>. A <b>visit</b> is someone's first page in a browser session. <b>Daily visitors</b> counts each person once per day, so across several days the same person counts once per day. Robots are kept separate from visitors. Your own visits from this browser are not counted. Days run on Atlanta time. Counting started "+(j.firstDay||"today")+"; earlier history lives in Google Analytics. <b>Weekly email:</b> "+(j.digest&&j.digest.on?"on, sent to "+esc(j.digest.to)+" every Monday around 8 AM Atlanta time, plus a note if the contact form fails or broken links spike.":"off. Set <code>DIGEST_TO</code> in Railway to turn it on.");
   $("#stamp").textContent="Updated "+new Date(j.generatedAt).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
 }
 async function load(){

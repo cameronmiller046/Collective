@@ -10,6 +10,11 @@ const CLICK_LABELS = {
   "ext:podcast": "Listen on a podcast app", "ext:instagram": "Instagram", "ext:tiktok": "TikTok", "ext:youtube": "YouTube", "ext:facebook": "Facebook",
 };
 const clickLabel = (k) => CLICK_LABELS[k] || (k.startsWith("mail:") ? "Email: " + k.slice(5) + "@" : k.replace(/^ext:/, ""));
+let regionNames = null;
+try { regionNames = new Intl.DisplayNames(["en"], { type: "region" }); } catch { /* falls back to the two-letter code */ }
+const countryName = (cc) => { try { return (regionNames && regionNames.of(cc)) || cc; } catch { return cc; } };
+// "US|California" -> "California", "CA|Ontario" -> "Ontario, Canada", "GB" -> "United Kingdom"
+const placeName = (k) => { const [cc, st] = k.split("|"); return st ? (cc === "US" ? st : st + ", " + countryName(cc)) : countryName(cc); };
 const dateLabel = (key) => { const [, m, d] = key.split("-"); return MONTHS[Number(m) - 1] + " " + Number(d); };
 const hourLabel = (h) => (h % 12 === 0 ? 12 : h % 12) + (h < 12 ? " AM" : " PM");
 const change = (cur, prev) => (prev ? (cur >= prev ? "▲ " : "▼ ") + Math.abs(Math.round(((cur - prev) / prev) * 100)) + "%" : "");
@@ -37,6 +42,7 @@ function build(w, adminUrl) {
     ["Most viewed pages", top(a.pages, 5).map(([p, n]) => [pageName(p), n])],
     ["Where visits begin", top(a.entries, 5).map(([p, n]) => [pageName(p), n])],
     ["Where visitors came from", top(a.refs, 5)],
+    ["Where visitors are (approximate)", top(Object.fromEntries(Object.entries(a.geo || {}).filter(([k]) => k !== "?")), 6).map(([k, n]) => [placeName(k), n])],
     ["What people clicked", top(a.clicks, 6).map(([k, n]) => [clickLabel(k), n])],
     ["Goals reached (visits)", goals.map(([l, n]) => [l, n + (a.visits ? " (" + (n / a.visits * 100).toFixed(1) + "% of visits)" : "")])],
     ["Search engines and link previews", top(a.bots, 5)],

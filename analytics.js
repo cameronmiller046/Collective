@@ -1,5 +1,5 @@
 // Built-in, privacy-friendly visitor counting for the Rooted & Crowned site. No dependencies.
-// What is stored: daily totals only (page views, visits, devices, referrers, button clicks, goals, engagement, form results, crawler hits, broken links).
+// What is stored: daily totals only (page views, visits, devices, referrers, button clicks, goals, engagement, form results, crawler hits, broken links, and visits per country / U.S. state).
 // What is never stored: IP addresses, names, emails, message text, cookies or any per-person record.
 // A visitor is counted once per day with a throw-away fingerprint that lives only in memory and changes daily.
 const fs = require("fs");
@@ -8,7 +8,7 @@ const crypto = require("crypto");
 
 const TZ = "America/New_York"; // days roll over at midnight Atlanta time
 const KEEP_DAYS = 800;
-const CAP = { pages: 80, refs: 120, clicks: 120, notFound: 100, bots: 40, botPages: 80, forms: 40 };
+const CAP = { pages: 80, refs: 120, clicks: 120, notFound: 100, bots: 40, botPages: 80, forms: 40, geo: 320 };
 const GOALS = {
   program: "Clicked a program or sign-up button",
   books: "Clicked a book button",
@@ -98,13 +98,13 @@ function aggregate(days) {
     views, visits, multi, uniques: sum(days, (d) => d.uniques), forms,
     bounce: visits ? Math.max(0, Math.round((1 - multi / visits) * 100)) : null,
     avgSeconds: engN ? Math.round(engSec / engN) : null,
-    pages: merge(days, "pages"), refs: merge(days, "refs"), clicks: merge(days, "clicks"), goals: merge(days, "goals"),
+    pages: merge(days, "pages"), refs: merge(days, "refs"), clicks: merge(days, "clicks"), goals: merge(days, "goals"), geo: merge(days, "geo"),
     entries: merge(days, "entries"), bots: merge(days, "bots"), notFound: merge(days, "notFound"),
     byWeekday, byHour,
   };
 }
 
-module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles }) {
+module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles, geo }) {
   const file = path.join(dataDir, "analytics.json");
   let data = { version: 2, days: {}, meta: {} };
   let dirty = false;
@@ -139,7 +139,7 @@ module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles }
     }
     const d = data.days[k];
     // days saved by the first version have no entries/goals/eng/hours yet
-    d.multi = d.multi || 0; d.entries = d.entries || {}; d.goals = d.goals || {}; d.eng = d.eng || {};
+    d.multi = d.multi || 0; d.entries = d.entries || {}; d.goals = d.goals || {}; d.eng = d.eng || {}; d.geo = d.geo || {};
     if (!Array.isArray(d.hours)) d.hours = new Array(24).fill(0);
     return d;
   }
@@ -187,6 +187,7 @@ module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles }
           bump(d.entries, labelOf(slug), CAP.pages);
           bump(d.devices, deviceOf(ua), 10);
           bump(d.refs, refOf(body.r, body.u, siteHost), CAP.refs);
+          if (geo) bump(d.geo, geo.lookup(ip), CAP.geo); // the address is looked up and dropped; only the place name is kept
         }
         if (body.m) d.multi++; // the visit has now looked at a second page, so it is not a bounce
         const fp = crypto.createHash("sha256").update(salt + seenDay + ip + ua).digest("hex").slice(0, 20);

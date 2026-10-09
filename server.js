@@ -102,6 +102,7 @@ const analytics = require("./analytics")({
   isRoute: (s) => hasRoute(s),
   siteHost: SEO.origin ? new URL(SEO.origin).hostname.replace(/^www\./, "") : "",
   titles: pageTitles,
+  geo: require("./geo")(), // country / U.S. state from the visitor's address, in memory only
 });
 setInterval(() => analytics.flush(), 30000).unref();
 for (const sig of ["SIGTERM", "SIGINT"]) process.on(sig, () => { analytics.flush(); process.exit(0); });
