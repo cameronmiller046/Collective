@@ -255,6 +255,7 @@ const magazine = require("./magazine")({
   dataDir: DATA_DIR,
   mediaDir: process.env.MAGAZINE_DIR || path.join(__dirname, "private", "magazine"),
   adminSecret: ADMIN_PASSWORD,
+  uploadToken: process.env.MAGAZINE_UPLOAD_TOKEN || "", // leave unset except while uploading a new issue
 });
 function readJsonBody(req, cb) {
   let size = 0; const parts = [];
@@ -399,6 +400,9 @@ http
       if (req.method !== "POST") return void reply(res, 405, { error: "method" });
       handleContact(req, res);
       return;
+    }
+    if (urlPath.startsWith("/api/magazine-upload/")) {
+      if (magazine.handleUpload(req, res, urlPath)) return;
     }
     if (urlPath === "/api/magazine" || urlPath.startsWith("/magazine-media/")) {
       if (magazine.handlePublic(req, res, urlPath, new URL(req.url, "http://x").searchParams)) return;

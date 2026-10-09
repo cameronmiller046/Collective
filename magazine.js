@@ -32,7 +32,7 @@ const DEFAULT_ISSUE = {
   releaseDate: "2026-11-01", releaseTime: "00:00", approved: false, updatedAt: null,
 };
 
-module.exports = function createMagazine({ dataDir, mediaDir, adminSecret }) {
+module.exports = function createMagazine({ dataDir, mediaDir, adminSecret, uploadToken }) {
   const file = path.join(dataDir, "magazine.json");
   let db = { issues: [{ ...DEFAULT_ISSUE }] };
   let persistent = true;
@@ -143,6 +143,46 @@ module.exports = function createMagazine({ dataDir, mediaDir, adminSecret }) {
     return false;
   }
 
+  // One-time page upload. It exists only while MAGAZINE_UPLOAD_TOKEN is set in Railway; with no token set, this route does not exist.
+  // PUT /api/magazine-upload/<issue>/<page-NN.webp | order.json | name.pdf>, "Authorization: Bearer <token>"; GET /api/magazine-upload/<issue> lists what is stored.
+  const upFails = new Map();
+  const sha = (s) => crypto.createHash("sha256").update(String(s)).digest();
+  function handleUpload(req, res, urlPath) {
+    if (!uploadToken) return false;
+    const m = /^\/api\/magazine-upload\/([a-z0-9-]{1,40})(?:\/([A-Za-z0-9._-]{1,100}))?$/.exec(urlPath);
+    if (!m || (req.method !== "PUT" && req.method !== "GET")) return false;
+    const [, id, name] = m;
+    const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+    const now = Date.now(), recent = (upFails.get(ip) || []).filter((t) => now - t < 15 * 60 * 1000);
+    if (recent.length >= 10) { send(res, 429, { error: "Too many attempts." }); return true; }
+    const given = String(req.headers["authorization"] || "").replace(/^Bearer\s+/i, "");
+    if (!crypto.timingSafeEqual(sha(given), sha(uploadToken))) { recent.push(now); upFails.set(ip, recent); send(res, 401, { error: "Unauthorized." }); return true; }
+    if (req.method === "GET") {
+      let list = [];
+      try { list = fs.readdirSync(path.join(mediaDir, id)).map((f) => ({ name: f, bytes: fs.statSync(path.join(mediaDir, id, f)).size })); } catch {}
+      send(res, 200, { issue: id, files: list });
+      return true;
+    }
+    if (!name || !(name === "order.json" || /^page-\d\d\.webp$/.test(name) || /^[A-Za-z0-9._-]+\.pdf$/.test(name))) { send(res, 400, { error: "That file name is not allowed." }); return true; }
+    const parts = []; let size = 0, tooBig = false;
+    req.on("data", (c) => {
+      if (tooBig) return;
+      size += c.length;
+      if (size > 12 * 1024 * 1024) { tooBig = true; parts.length = 0; send(res, 413, { error: "File too large." }, { Connection: "close" }); return; }
+      parts.push(c);
+    });
+    req.on("end", () => {
+      if (tooBig) return;
+      try {
+        fs.mkdirSync(path.join(mediaDir, id), { recursive: true });
+        const dest = path.join(mediaDir, id, name), tmp = dest + ".part";
+        fs.writeFileSync(tmp, Buffer.concat(parts)); fs.renameSync(tmp, dest);
+        send(res, 200, { ok: true, name, bytes: size });
+      } catch (e) { console.error("magazine: upload failed:", e.message); send(res, 500, { error: "Could not save the file." }); }
+    });
+    return true;
+  }
+
   // admin: read and save the release settings (the caller has already checked the sign-in and the safety header)
   function handleAdmin(req, res, urlPath, headers, readBody) {
     if (urlPath === "/admin/magazine/data.json" && req.method === "GET") {
@@ -177,5 +217,5 @@ module.exports = function createMagazine({ dataDir, mediaDir, adminSecret }) {
     return false;
   }
 
-  return { handlePublic, handleAdmin, isLiveNow, etInstant, current: () => current(), publicInfo };
+  return { handlePublic, handleAdmin, handleUpload, isLiveNow, etInstant, current: () => current(), publicInfo };
 };
