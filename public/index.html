@@ -322,7 +322,8 @@ p{margin:0}
 .shop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .shop .script{font-size:clamp(2rem,3.2vw,2.6rem)}
 .cat-list{display:flex;flex-wrap:wrap;gap:10px 0;font-family:var(--serif);font-size:1.5rem;line-height:1.35;color:var(--plum)}
-.cat-list span{white-space:nowrap}
+.cat-list span{white-space:nowrap;max-width:100%}
+@media (max-width:900px){.cat-list span{white-space:normal}}
 .cat-list span:not(:last-child)::after{content:"•";color:var(--gold);margin:0 14px;font-size:1rem;vertical-align:middle}
 @media (max-width:860px){.shop{grid-template-columns:1fr;gap:36px}}
 
