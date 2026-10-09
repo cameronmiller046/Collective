@@ -28,7 +28,7 @@ function etInstant(dateStr, timeStr) {
 const DEFAULT_ISSUE = {
   id: "issue-1", title: "A Crowned Perspective", tagline: "The Journey Begins In YOU.",
   edition: "The Fall Founder’s Edition", theme: "A Season of Returning to Self",
-  volume: "Volume 1 · Issue 1", dateLabel: "October 2026",
+  volume: "Volume 1 · Issue 1", dateLabel: "November 2026",
   releaseDate: "2026-11-01", releaseTime: "00:00", approved: false, updatedAt: null,
 };
 
