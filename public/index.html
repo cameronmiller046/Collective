@@ -696,6 +696,20 @@ p{margin:0}
 .vx-off{font-style:italic}
 .vx-empty{color:var(--plum-muted);font-size:15px}
 @media(max-width:560px){.vx-summary{grid-template-columns:1fr}}
+/* home page banner for the digital magazine */
+.mag-banner{position:relative;background:radial-gradient(90% 160% at 100% 0%,rgba(214,162,58,.42),rgba(214,162,58,0) 60%),linear-gradient(100deg,#1A0421 0%,#3B1048 55%,#582064 100%);border-top:1px solid rgba(229,190,101,.45);border-bottom:1px solid rgba(229,190,101,.45)}
+.mag-banner-in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px 56px;align-items:center;padding-block:44px}
+.mag-banner-copy{display:grid;gap:8px;justify-items:start}
+.mag-banner-copy h2{color:var(--ivory)}
+.mag-banner-copy .script{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1;color:var(--gold-soft)}
+.mag-banner-msg{color:var(--lav);font-size:15.5px;line-height:1.75;max-width:52ch;margin-top:4px}
+.mag-banner-act{display:grid;gap:14px;justify-items:start;align-content:center}
+.mag-banner-act .caps{color:var(--gold-soft);letter-spacing:.2em}
+.mag-banner .mag-count--sm{margin:0;max-width:430px}
+.mag-banner .mag-count--sm div{padding:12px 4px}
+.mag-banner .mag-count--sm b{font-size:clamp(1.55rem,3.2vw,2.1rem)}
+.mag-banner .mag-count--sm span{font-size:10px;letter-spacing:.14em}
+@media (max-width:820px){.mag-banner-in{grid-template-columns:1fr;gap:22px;padding-block:36px;text-align:center}.mag-banner-copy,.mag-banner-act{justify-items:center}.mag-banner .mag-count--sm{margin-inline:auto;width:100%}}
 /* A Crowned Perspective: monthly digital magazine */
 .mag-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:560px;width:100%;margin:6px auto}
 .mag-count div{background:rgba(0,0,0,.28);border:1px solid var(--line-dark);border-radius:8px;padding:16px 6px}
@@ -1086,6 +1100,25 @@ details.course-mod summary::-webkit-details-marker{display:none}
       </div>
       <div class="tree-wrap hero--logo">
         <canvas id="tree" role="img" aria-label="The Rooted and Crowned Collective logo: a rainbow tree of life with seven chakra points rising up the trunk from Root to Crown (Ground, Create, Empower, Love, Speak, See, Integrate), a golden crown hanging from a branch above a family, and roots below."></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b · DIGITAL MAGAZINE BANNER (follows the magazine's real state: to be announced, countdown, or released) -->
+  <section class="mag-banner" id="homeMag" aria-label="A Crowned Perspective, our monthly digital magazine">
+    <div class="wrap mag-banner-in">
+      <div class="mag-banner-copy">
+        <span class="eyebrow" id="hmEyebrow">Our Monthly Digital Magazine</span>
+        <h2 class="h-l">A Crowned Perspective</h2>
+        <p class="script">The Journey Begins In YOU.</p>
+        <p class="mag-banner-msg" id="hmMsg">Conscious self-discovery, reflection and intentional living, free to read right here on our website.</p>
+      </div>
+      <div class="mag-banner-act">
+        <p class="caps" id="hmWhen">Opening soon</p>
+        <div class="mag-count mag-count--sm" id="hmCount" hidden role="timer" aria-live="off">
+          <div><b id="hD">0</b><span>days</span></div><div><b id="hH">0</b><span>hours</span></div><div><b id="hM">0</b><span>minutes</span></div><div><b id="hS">0</b><span>seconds</span></div>
+        </div>
+        <a class="btn btn--gold btn--lg" id="hmBtn" href="#/magazine">Visit the Magazine <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -3650,7 +3683,7 @@ function magRender(){
       MAG.timer=setInterval(magLoad,60000);
     } else {
       mg("magWaitEyebrow").textContent="Opening soon"; mg("magWaitTitle").textContent="Opens "+d.releaseLabel;
-      mg("magWaitText").textContent="A Crowned Perspective opens right here, free to read, with no sign-up needed.";
+      mg("magWaitText").innerHTML="<i>A Crowned Perspective</i> opens right here, free to read, with no sign-up needed.";
       mg("magWhen").textContent=d.releaseTimeLabel?"Opens at "+d.releaseTimeLabel:"";
       if(d.showCountdown){
         cnt.hidden=false;
@@ -3788,6 +3821,39 @@ window.addEventListener("routechange",()=>{
   if(on) magLoad();
   else { clearInterval(MAG.timer); if(mg("magReader").classList.contains("mag-full")) magFull(); const z=document.querySelector(".mag-zoom"); if(z) z.remove(); }
 });
+
+/* ---------- home page magazine banner: shows the real state (to be announced, countdown or released); the static text is the fallback ---------- */
+const HM={timer:null};
+async function homeMagLoad(){
+  const box=document.getElementById("homeMag"); if(!box) return;
+  let d; try{ const r=await fetch("/api/magazine",{cache:"no-store"}); if(!r.ok) return; d=await r.json(); }catch(e){ return; }
+  const off=d.serverNow-Date.now(), g=id=>document.getElementById(id), cnt=g("hmCount");
+  clearInterval(HM.timer); cnt.hidden=true;
+  const it=d.issue, btn=g("hmBtn");
+  if(d.state==="released"){
+    g("hmEyebrow").textContent="The New Issue Is Here";
+    g("hmMsg").textContent=[it.edition,it.dateLabel].filter(Boolean).join(" · ")+". Free to read, with no sign-up needed.";
+    g("hmWhen").textContent="Now open";
+    btn.firstChild.textContent="Read the Magazine ";
+    return;
+  }
+  btn.firstChild.textContent="Visit the Magazine ";
+  if(d.state==="tba"){ g("hmEyebrow").textContent="Coming Soon"; g("hmWhen").textContent="Release date to be announced"; return; }
+  g("hmEyebrow").textContent="Coming Soon · "+(it.dateLabel||"Our Monthly Digital Magazine");
+  if(d.pendingApproval){ g("hmWhen").textContent="Arriving very soon"; HM.timer=setInterval(homeMagLoad,60000); return; }
+  g("hmWhen").textContent="Opens "+d.releaseLabel+(d.releaseTimeLabel?" at "+d.releaseTimeLabel:"");
+  if(d.showCountdown){
+    cnt.hidden=false;
+    const tick=()=>{
+      const ms=d.releaseAt-(Date.now()+off);
+      if(ms<=0){ clearInterval(HM.timer); setTimeout(homeMagLoad,1500); return; }
+      const s=Math.floor(ms/1000);
+      g("hD").textContent=Math.floor(s/86400); g("hH").textContent=Math.floor(s%86400/3600); g("hM").textContent=Math.floor(s%3600/60); g("hS").textContent=s%60;
+    };
+    tick(); HM.timer=setInterval(tick,1000);
+  }
+}
+homeMagLoad();
 
 /* ---------- Voices of the Collective: only approved, verified reviews are ever fetched or shown ---------- */
 const VX={reviews:[],cats:[],at:0,filter:"all"};
