@@ -174,6 +174,7 @@ const TOPIC_TO = {
   "Vendor / community event": "community",
   "Sponsorship / community partner": "partnerships",
   "Infinite Possibilities inquiry": "infinitepossibilities",
+  "Alignment Studio question": "studio",
   "Media inquiry": "podcast",
   "Customer / order assistance": "shop",
   "App technical support": "hello",
