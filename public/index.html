@@ -263,7 +263,17 @@ p{margin:0}
 .rc-row p span+span::before{content:"•";font-style:normal;font-size:.6em;color:var(--gold);margin:0 .7em;vertical-align:middle}
 @media (max-width:640px){.rc-row{grid-template-columns:1fr;gap:6px}}
 @media (max-width:980px){.stages{grid-template-columns:repeat(4,1fr)}.stage::after{display:none}.stage:nth-child(5){border-left:0}.stage:nth-child(n+5){border-top-width:3px}.frame-foot{grid-template-columns:1fr;gap:36px}}
-@media (max-width:560px){.stages{grid-template-columns:1fr 1fr}.stage:nth-child(odd){border-left:0}.stage:nth-child(even){border-left:1px solid var(--line-dark)}.updown{grid-template-columns:1fr;gap:22px}.updown>div{padding:0}.updown>div+div{border-left:0;border-top:1px solid var(--line-dark);padding-top:22px}}
+@media (max-width:560px){
+  /* phones: one numbered stage per row, joined by a line, so the Root-to-Crown order reads top to bottom */
+  .stages{grid-template-columns:1fr;counter-reset:stage;border-bottom:0;max-width:420px}
+  .stage,.stage+.stage,.stage:nth-child(n+5){counter-increment:stage;grid-template-columns:44px 1fr;grid-template-rows:auto auto;align-content:center;column-gap:18px;row-gap:2px;justify-items:start;align-items:center;text-align:left;padding:16px 4px;border-top:0;border-left:0}
+  .stage .dot{grid-row:1/3;position:relative;z-index:1;width:44px;height:44px;display:grid;place-items:center}
+  .stage .dot::before{content:counter(stage);font:700 16px var(--sans);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+  .stage:nth-child(2) .dot::before,.stage:nth-child(3) .dot::before{color:var(--plum-deep);text-shadow:none}
+  .stage b{font-size:1.7rem;align-self:end}
+  .stage span{align-self:start}
+  .stage:not(:last-child)::after{display:block;content:"";position:absolute;left:21px;top:50%;width:2px;height:100%;transform:none;padding:0;background:linear-gradient(var(--c),color-mix(in srgb,var(--c) 40%,var(--plum)))}
+  .updown{grid-template-columns:1fr;gap:22px}.updown>div{padding:0}.updown>div+div{border-left:0;border-top:1px solid var(--line-dark);padding-top:22px}}
 
 /* ============ home: centered sections ============ */
 .center{display:grid;gap:22px;justify-items:center;text-align:center;max-width:780px;margin:0 auto}
