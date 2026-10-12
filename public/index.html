@@ -949,13 +949,19 @@ a.branch:hover{border-color:var(--gold);border-left-color:var(--c);transform:tra
 .pod-photo img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 34px 60px -28px rgba(0,0,0,.7)}
 @media (max-width:600px){.pod-photo img{outline-offset:5px}}
 /* The Alignment Studio: five practice areas, each a row of video cards (empty "coming soon" cards until videos are added) */
-.studio-jump{justify-content:center}
 .studio-jump a.tag{text-decoration:none}
 .studio-jump a.tag:hover{border-color:var(--gold-soft);color:var(--ivory)}
 .studio-areas{display:grid;gap:64px;margin-top:8px}
 .studio-area{display:grid;gap:24px;padding-left:22px;border-left:3px solid var(--c)}
 .studio-head{display:grid;gap:8px;max-width:720px}
 .studio-head .eyebrow{color:var(--c);filter:brightness(.8)}
+.studio-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.studio-top.flip .studio-photo{order:-1}
+.studio-photo{margin:0}
+.studio-photo img{display:block;width:100%;height:auto;border-radius:2px;outline:1px solid rgba(214,162,58,.5);outline-offset:8px;box-shadow:0 30px 52px -28px rgba(0,0,0,.6)}
+.studio-members{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:56px;align-items:center}
+.studio-members .studio-photo{justify-self:center;width:100%}
+@media (max-width:860px){.studio-top,.studio-members{grid-template-columns:1fr;gap:26px}.studio-top.flip .studio-photo{order:0}.studio-members .studio-photo{max-width:420px}.studio-photo img{outline-offset:5px}}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .vcard{display:grid;gap:10px;align-content:start}
 .vthumb{position:relative;display:grid;place-items:center;aspect-ratio:16/9;width:100%;padding:0;border:1px solid rgba(229,190,101,.35);border-radius:2px;color:var(--gold-soft);overflow:hidden;
@@ -3166,7 +3172,10 @@ details.course-mod summary::-webkit-details-marker{display:none}
     </div>
     <div class="studio-areas">
       <article class="studio-area" id="studio-sound" style="--c:#27A9D6;scroll-margin-top:110px">
-        <div class="studio-head"><span class="eyebrow">Sound</span><h3 class="h-m">Vibrational Awareness</h3><p class="lede">Sound bowls, resonant tones, mindful listening and relaxation.</p></div>
+        <div class="studio-top">
+          <div class="studio-head"><span class="eyebrow">Sound</span><h3 class="h-m">Vibrational Awareness</h3><p class="lede">Sound bowls, resonant tones, mindful listening and relaxation.</p></div>
+          <figure class="studio-photo"><img src="assets/alignment-studio-sound.webp" alt="Golden sound bowls engraved with chakra symbols, a handpan and wind chimes on a woven rug beside a lake at sunset, with the Rooted and Crowned Collective logo: Grounded Roots. Crown Driven." width="1536" height="1024" loading="lazy"></figure>
+        </div>
         <div class="vgrid" data-vgrid="sound"></div>
       </article>
       <article class="studio-area" id="studio-breath" style="--c:#2EAD61;scroll-margin-top:110px">
@@ -3174,7 +3183,10 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <div class="vgrid" data-vgrid="breath"></div>
       </article>
       <article class="studio-area" id="studio-stillness" style="--c:#4653B8;scroll-margin-top:110px">
-        <div class="studio-head"><span class="eyebrow">Stillness</span><h3 class="h-m">Meditation &amp; Reflection</h3><p class="lede">Guided meditation, intentional silence and inward observation.</p></div>
+        <div class="studio-top flip">
+          <div class="studio-head"><span class="eyebrow">Stillness</span><h3 class="h-m">Meditation &amp; Reflection</h3><p class="lede">Guided meditation, intentional silence and inward observation.</p></div>
+          <figure class="studio-photo"><img src="assets/alignment-studio-stillness.webp" alt="Coach Kia sitting cross-legged in meditation beside a sunlit waterfall, with sound bowls, crystals and a lantern, with the Rooted and Crowned Collective logo: Grounded Roots. Crown Driven." width="1536" height="1024" loading="lazy"></figure>
+        </div>
         <div class="vgrid" data-vgrid="stillness"></div>
       </article>
       <article class="studio-area" id="studio-roots" style="--c:#D62828;scroll-margin-top:110px">
@@ -3182,19 +3194,23 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <div class="vgrid" data-vgrid="roots"></div>
       </article>
       <article class="studio-area" id="studio-movement" style="--c:#F77F00;scroll-margin-top:110px">
-        <div class="studio-head"><span class="eyebrow">Movement</span><h3 class="h-m">Yoga &amp; Mindful Movement</h3><p class="lede">Accessible yoga, gentle stretching and body awareness.</p></div>
+        <div class="studio-top">
+          <div class="studio-head"><span class="eyebrow">Movement</span><h3 class="h-m">Yoga &amp; Mindful Movement</h3><p class="lede">Accessible yoga, gentle stretching and body awareness.</p></div>
+          <figure class="studio-photo"><img src="assets/alignment-studio-movement.webp" alt="A woman in cobra pose on a yoga mat on a wooden deck at sunrise, beside sound bowls, candles and crystals, with the Rooted and Crowned Collective logo: Grounded Roots. Crown Driven." width="1536" height="1024" loading="lazy"></figure>
+        </div>
         <div class="vgrid" data-vgrid="movement"></div>
       </article>
     </div>
     <p class="muted studio-privacy">Videos load from YouTube only when you press play.</p>
   </div></section>
 
-  <section class="band band--plum2"><div class="wrap">
-    <div class="center" style="max-width:760px;gap:18px">
+  <section class="band band--plum2"><div class="wrap studio-members">
+    <figure class="studio-photo studio-photo--tall"><img src="assets/alignment-studio-members.webp" alt="Coach Kia playing a golden sound bowl with a red mallet, seated among sound bowls and crystals on a wooden deck among the trees, with the Rooted and Crowned Collective logo: Grounded Roots. Crown Driven." width="1024" height="1536" loading="lazy"></figure>
+    <div style="display:grid;gap:18px;align-content:center">
       <span class="eyebrow">The Members’ Studio</span>
       <h2 class="h-l">Go deeper, inside the private studio.</h2>
       <p class="lede">Our private membership community will hold the complete video library: guided breathwork, grounding exercises, meditation, sound bowl practices and yoga. As the community grows, it will also include monthly practice challenges, member discussions and exclusive sessions.</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
         <span class="status-pill">Coming soon</span>
         <a class="btn btn--gold" href="#" data-ext="skool" data-label="Members’ Studio">Enter the Members’ Studio <span class="arr">→</span></a>
       </div>
