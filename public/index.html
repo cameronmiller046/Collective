@@ -90,6 +90,19 @@ p{margin:0}
 .band{padding:104px 0}
 .band--plum2{background:var(--plum-2)}
 .band--deep{background:var(--plum-deep)}
+/* soft forest-green band for "join the community" on the Community page */
+.band--forest{background:linear-gradient(160deg,#245443,#183b2e);color:var(--ivory);padding:88px 0}
+.cj{display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:64px;align-items:center;max-width:1040px;margin:0 auto}
+.cj-emblem{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 34px rgba(0,0,0,.35))}
+.cj-copy{display:grid;gap:18px;align-content:center}
+.band--forest .lede{color:#EADFCB}
+.band--forest .script{color:var(--gold-soft)}
+.band--forest .caps{color:var(--gold-soft)}
+.cj-inside{display:grid;gap:12px;padding:20px 22px;border:1px solid rgba(229,190,101,.4);border-radius:2px;background:rgba(0,0,0,.14)}
+.band--forest .facts li{color:#EADFCB;font-size:15px}
+.band--forest .reach{color:#EADFCB;margin-top:0}
+.cj-sign{letter-spacing:.3em;margin-top:2px}
+@media (max-width:860px){.band--forest{padding:64px 0}.cj{grid-template-columns:1fr;gap:28px}.cj-emblem{max-width:190px;margin:0 auto}}
 .band--ivory,.band--ivory2{background:var(--ivory);color:var(--plum)}
 .band--ivory2{background:var(--ivory-2)}
 .band--ivory .eyebrow,.band--ivory2 .eyebrow{color:var(--gold-ink)}
@@ -2475,6 +2488,29 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="band" style="padding-top:0"><div class="wrap">
     <img class="media media--frame" src="assets/community-main.webp" alt="The Rooted and Crowned Collective community: women, men and children together in green, beneath the tree logo, Grounded Roots. Crown Driven., and banners reading Heal, Learn, Grow, Belong, Make an Impact and Different Journeys, Stronger Together. Individual shirts read Women Support Women, Different Minds Brighter Futures, I Am Capable I Am Seen I Matter I Belong, Men's Collective, Brotherhood Purpose Progress Impact, and Big Dreams Bright Futures. A sign reads Community Changes Everything. Below: One Root. Many Branches. Different Journeys. Stronger Together, with People, Purpose, Community, Education, Wellness, Opportunity, Legacy." width="1536" height="1024">
     <p class="reach" style="text-align:center;margin-top:22px">Questions about gatherings, the Sisterhood Circle or the Men’s Collective? <a href="mailto:community@rootedandcrownedcollective.org">community@rootedandcrownedcollective.org</a></p>
+  </div></section>
+  <section class="band band--forest" id="join-the-collective"><div class="wrap">
+    <div class="cj">
+      <img class="cj-emblem" src="assets/gold-tree-emblem.webp" alt="" aria-hidden="true" width="843" height="778" loading="lazy">
+      <div class="cj-copy">
+        <span class="status-pill">Coming soon</span>
+        <h2 class="h-l">The Collective Is Growing. Your Place Is Waiting.</h2>
+        <p class="script">One Root. Many Journeys. One Community.</p>
+        <p class="lede">Growth doesn’t have to happen in isolation. Rooted &amp; Crowned Collective will soon open the doors to our private online community: a space for conscious self-discovery, meaningful conversations, intentional reflection, personal growth and alignment.</p>
+        <p class="lede">Whether you’re beginning again, discovering who you are becoming, or simply seeking a community where your voice matters, there is room for your journey here.</p>
+        <div class="cj-inside">
+          <span class="caps">Inside the community, you’ll find</span>
+          <ul class="facts">
+            <li>Private community access</li>
+            <li>Member conversations and meaningful connections</li>
+            <li>Guided reflection prompts and selected resources</li>
+            <li>Community activities and shared growth experiences as they become available</li>
+          </ul>
+        </div>
+        <p class="reach">Membership details will be shared soon. Membership inquiries: <a href="mailto:collective@rootedandcrownedcollective.org">collective@rootedandcrownedcollective.org</a></p>
+        <p class="caps cj-sign">Grounded Roots. Crown Driven.</p>
+      </div>
+    </div>
   </div></section>
   <section class="band"><div class="wrap">
     <article class="branch-sec" id="sisterhood">
