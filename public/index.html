@@ -2161,10 +2161,10 @@ details.course-mod summary::-webkit-details-marker{display:none}
       </ul>
     </div>
     <aside class="gift">
-      <span class="caps">Free welcome resource</span>
-      <h3>The Conversations Newsletter</h3>
-      <p class="muted">Our three-page launch newsletter, free when you join. New episodes, reflections and upcoming experiences follow.</p>
-      <a class="btn btn--gold" href="#" data-ext="stanEmail" data-label="Conversations sign-up (Stan)">Join the Conversation <span class="arr">→</span></a>
+      <span class="caps">Free monthly magazine</span>
+      <h3>A Crowned Perspective</h3>
+      <p class="muted">Our monthly digital magazine of conscious self-discovery, reflection and intentional growth, free to read. Featured podcast episodes and reflections appear in each issue.</p>
+      <a class="btn btn--gold" href="#/magazine">Read the Magazine <span class="arr">→</span></a>
       <a class="btn btn--line" href="#/contact">Suggest a topic or be a guest</a>
       <p class="reach">Emails from us arrive from <a href="mailto:magazine@rootedandcrownedcollective.org">magazine@rootedandcrownedcollective.org</a>. Add it to your contacts so it always reaches your inbox.</p>
       <p class="reach">Guest, interview and media inquiries: <a href="mailto:podcast@rootedandcrownedcollective.org">podcast@rootedandcrownedcollective.org</a></p>
@@ -3392,7 +3392,7 @@ const WEEKS = [
 const CATS = ["T-shirts","Sweatshirts","Baseball Caps","Coffee Mugs","Travel Cups","Beach Towels","Yoga Mats","Chakra Exercise Weights","Journals","Stationery","Keychains","Bookmarks","Bags & Accessories"];
 
 const DOORS = [
-  ["Listen free","Rooted & Crowned Conversations","Hear the message and get the free three-page welcome newsletter.","Free","stanEmail","Join the Conversation"],
+  ["Listen free","Rooted & Crowned Conversations","Hear the message, then read our free monthly magazine, A Crowned Perspective.","Free","/magazine","Read the Magazine"],
   ["Experience","The 7-Week Root-to-Crown Experience","Seven live Zoom classes, one for each energy center.","Coming soon","stan7week","Start Your Transformation"],
   ["Stay in rhythm","Rooted & Crowned Journal Club","Weekly live reflection, conversation and accountability.","Coming soon","stanJournalClub","Join the Journal Journey"],
   ["Take it home","Books & Journals","Digital guided journals, affirmations and story.","From $39","stanBooks","Browse Books"],
@@ -3482,7 +3482,7 @@ $$("[data-cats]").forEach(el=>el.innerHTML=CATS.map(c=>`<span>${c}</span>`).join
 
 $$("[data-doors]").forEach(el=>el.innerHTML=DOORS.map(([k,t,d,p,link,cta],i)=>`
   <li class="door"><span class="step">${i+1}</span><div><p class="kind caps" style="color:var(--gold-ink);margin-bottom:4px">${k}</p><h3>${t}</h3><p>${d}</p></div>
-  <span class="p">${p}</span><a class="btn btn--gold btn--sm" href="#" data-ext="${link}" data-label="${esc(t)} (Stan)">${cta}</a></li>`).join(""));
+  <span class="p">${p}</span>${link[0]==="/"?`<a class="btn btn--gold btn--sm" href="#${link}">${cta}</a>`:`<a class="btn btn--gold btn--sm" href="#" data-ext="${link}" data-label="${esc(t)}">${cta}</a>`}</li>`).join(""));
 
 $$("[data-branches]").forEach(el=>el.innerHTML=BRANCHES.map(([n,t,href],i)=>{
   const c=CHAKRAS[i%7].c, inner=`<h3>${esc(n)}</h3><p>${esc(t)}</p>${href?`<span class="go">Explore →</span>`:""}`;
