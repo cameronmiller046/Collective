@@ -23,12 +23,12 @@ const OFFERINGS = [
   { id: "journalclub", category: "journalclub", name: "Rooted & Crowned Journal Club", page: "programs" },
   { id: "book-survival", category: "books", name: "A Journey from Survival to Healing", page: "books" },
   { id: "book-practitioner", category: "books", name: "Practitioner Double Book Series", page: "books" },
-  { id: "book-other", category: "books", name: "Another Rooted & Crowned book", page: "books" },
+  { id: "book-other", category: "books", name: "Another Rooted & Crowned Collective book", page: "books" },
   { id: "journal-journey", category: "journals", name: "My Rooted & Crowned Journey", page: "books" },
   { id: "journal-words", category: "journals", name: "Rooted in Words, Crowned in Truth", page: "books" },
   { id: "journal-daily", category: "journals", name: "Rooted and Crowned Daily Journal", page: "books" },
-  { id: "journal-other", category: "journals", name: "Another Rooted & Crowned journal", page: "books" },
-  { id: "merch", category: "merch", name: "Rooted & Crowned merchandise", page: "shop" },
+  { id: "journal-other", category: "journals", name: "Another Rooted & Crowned Collective journal", page: "books" },
+  { id: "merch", category: "merch", name: "Rooted & Crowned Collective merchandise", page: "shop" },
 ];
 
 module.exports = { CATEGORIES, OFFERINGS };
