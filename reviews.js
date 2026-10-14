@@ -14,7 +14,7 @@ const oneLine = (s) => String(s ?? "").replace(/[\r\n\t]+/g, " ").replace(/\s+/g
 const offeringById = (id) => OFFERINGS.find((o) => o.id === id);
 const categoryById = (id) => CATEGORIES.find((c) => c.id === id);
 const EMAIL_RE = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
-const MAILING = "Rooted & Crowned Collective LLC · Business Mailing Address: 8735 Dunwoody Place #13729, Atlanta, GA 30350";
+const MAILING = "Rooted and Crowned Collective LLC · Business Mailing Address: 8735 Dunwoody Place #13729, Atlanta, GA 30350";
 
 module.exports = function createReviews({ dataDir, sendMail, siteOrigin, notifyTo, retentionDays }) {
   const RETAIN = (Number(retentionDays) > 0 ? Number(retentionDays) : 730) * DAY;
