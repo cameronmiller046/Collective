@@ -131,7 +131,7 @@ main{max-width:1180px;margin:0 auto;padding:24px 20px 56px;display:grid;gap:20px
     <section class="card"><h2>Contact form</h2><ul class="bars" id="forms"></ul><div class="split" id="formSplit"></div></section>
     <section class="card"><h2>Search engines &amp; link previews</h2><p class="hint">Robots visiting the site (Google, Bing, social previews). Not counted as visitors.</p><ul class="bars" id="bots"></ul><div class="split" id="botPages"></div></section>
   </div>
-  <section class="card"><h2>Broken links people hit</h2><p class="hint">Addresses that don't exist. Worth fixing if a number keeps growing.</p><ul class="bars" id="nf"></ul></section>
+  <section class="card"><h2>Broken links people hit</h2><p class="hint">Real page addresses that don't exist. Worth fixing if a number keeps growing. Robot probes for hidden files and admin pages are not listed here.</p><ul class="bars" id="nf"></ul><div class="split" id="nfSplit"></div></section>
 
   <p class="note" id="foot"></p>
 </main>
@@ -231,6 +231,7 @@ function render(j){
   const bp=Object.entries(sumMaps(cur,"botPages")).sort((a,b)=>b[1]-a[1]).slice(0,5);
   $("#botPages").innerHTML=bp.length?'<span>Most checked pages: <b>'+bp.map(([k,c])=>esc(titles[k]||k)+" ("+c+")").join(", ")+'</b></span>':"";
   bars($("#nf"),Object.entries(sumMaps(cur,"notFound")),{label:k=>'<code>'+esc(k)+'</code>',empty:"No broken links hit. Nicely done."});
+  $("#nfSplit").innerHTML='<span>Automated probes ignored: <b>'+NF.format(tot(cur,d=>d.probes))+'</b></span>';
   $("#tempBanner").hidden=j.persistent!==false;
   window.__digest=j.digest||{};
   $("#foot").innerHTML="<b>How this is counted.</b> The site counts itself: no cookies, no names, no IP addresses are stored, only daily totals. <b>Locations</b> (state and country) are worked out from a visitor's address at the moment they arrive; the address itself is thrown away and only the place name is counted, so they are approximate (internet providers and VPNs can place people in the wrong state, and counting started the day this was added). Location data: <a href=\"https://db-ip.com\" rel=\"noopener\" target=\"_blank\">IP Geolocation by DB-IP</a>. A <b>visit</b> is someone's first page in a browser session. <b>Daily visitors</b> counts each person once per day, so across several days the same person counts once per day. Robots are kept separate from visitors. Your own visits from this browser are not counted. Days run on Atlanta time. Counting started "+(j.firstDay||"today")+"; earlier history lives in Google Analytics. <b>Weekly email:</b> "+(j.digest&&j.digest.on?"on, sent to "+esc(j.digest.to)+" every Monday around 8 AM Atlanta time, plus a note if the contact form fails or broken links spike.":"off. Set <code>DIGEST_TO</code> in Railway to turn it on.");

@@ -465,7 +465,11 @@ http
     fs.stat(file, (err, stat) => {
       if (err || stat.isDirectory()) {
         // not a file and not a known page: a real 404 (missing images get plain text; pages still show the site)
-        if (path.extname(urlPath)) {
+        if (analytics.isProbe(urlPath)) {
+          // a scanner guessing at hidden files or admin addresses: count it, answer with a few bytes
+          analytics.probe();
+          res.writeHead(404, { "Content-Type": "text/plain", "Cache-Control": "no-store" }).end("Not found");
+        } else if (path.extname(urlPath)) {
           res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
         } else if (TEMPLATE) {
           analytics.notFound(urlPath, req);

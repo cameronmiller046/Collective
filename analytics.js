@@ -73,6 +73,17 @@ function refOf(ref, utm, siteHost) {
   return host.slice(0, 60);
 }
 
+// Addresses that only automated scanners ask for (hidden config files, WordPress/PHP admin pages, API and credential guesses).
+// They are counted as "probes" instead of broken links, and answered with a tiny "not found".
+const PROBE = [
+  /(^|\/)\.[a-z0-9_-]/i, // dotfiles and folders: /.git/config, /.env, /.well-known/guesses
+  /\.(php\d?|asp|aspx|jsp|jspx|cgi|pl|py|sh|bak|old|orig|sql|sqlite|db|zip|tar|gz|tgz|rar|7z|ya?ml|ini|conf|cfg|log|swp|env|pem|key)$/i,
+  /^\/(wp-|wordpress|xmlrpc|phpmyadmin|pma|myadmin|adminer|cgi-bin|vendor\/|node_modules|actuator|console|server-status|solr|jenkins|manager|owa|ecp|autodiscover|boaform|hnap1|goform|geoserver|struts)/i,
+  /^\/(api|rest|graphql|v[0-9]+|ai|bedrock|openai|foundation-models|sdk|swagger|openapi)(\/|$)/i,
+  /^\/(backup|backups|config|database|db|dump|old|test|tmp|temp|debug|administrator|install|setup)(\/|\.|$)/i,
+];
+const isProbe = (p) => PROBE.some((re) => re.test(String(p || "")));
+
 const sum = (days, f) => days.reduce((a, d) => a + (f(d) || 0), 0);
 function merge(days, key) {
   const o = {};
@@ -99,7 +110,7 @@ function aggregate(days) {
     bounce: visits ? Math.max(0, Math.round((1 - multi / visits) * 100)) : null,
     avgSeconds: engN ? Math.round(engSec / engN) : null,
     pages: merge(days, "pages"), refs: merge(days, "refs"), clicks: merge(days, "clicks"), goals: merge(days, "goals"), geo: merge(days, "geo"),
-    entries: merge(days, "entries"), bots: merge(days, "bots"), notFound: merge(days, "notFound"),
+    entries: merge(days, "entries"), bots: merge(days, "bots"), notFound: merge(days, "notFound"), probes: sum(days, (d) => d.probes),
     byWeekday, byHour,
   };
 }
@@ -161,7 +172,16 @@ module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles, 
     return false;
   }
   const labelOf = (slug) => (slug === "" ? "/" : "/" + slug);
-  const dayOrEmpty = (k) => ({ date: k, ...(data.days[k] || {}) });
+  // Reports show real missing pages only: scanner probes (and the overflow bucket they fill) are moved into a "probes" count.
+  const dayOrEmpty = (k) => {
+    const d = data.days[k] || {};
+    const nf = {};
+    let moved = 0;
+    for (const [p, n] of Object.entries(d.notFound || {})) {
+      if (p === "(other)" || isProbe(p)) moved += n; else nf[p] = n;
+    }
+    return { date: k, ...d, notFound: nf, probes: (d.probes || 0) + moved };
+  };
   const daysEnding = (endKey, n) => Array.from({ length: n }, (_, i) => dayOrEmpty(shift(endKey, -(n - 1 - i))));
 
   return {
@@ -231,14 +251,18 @@ module.exports = function createAnalytics({ dataDir, isRoute, siteHost, titles, 
       if (botName(req.headers["user-agent"])) return;
       bump(today().notFound, String(pathname).slice(0, 100), CAP.notFound);
     },
+    isProbe,
+    // a scanner asked for a hidden or admin-style address: counted, never listed as a broken link
+    probe() { const d = today(); d.probes = (d.probes || 0) + 1; dirty = true; },
     // things worth knowing about right now
     alerts() {
       const d = today(), out = [];
       const fails = Object.values(d.forms).reduce((a, f) => a + (f.fail || 0), 0);
       if (fails >= 3) out.push({ id: "form", text: fails + " contact form messages could not be sent today. Visitors were asked to email hello@ directly. Check the email service in Railway and Resend." });
-      const nf = Object.entries(d.notFound).sort((a, b) => b[1] - a[1]);
+      // only real page addresses count: scanner probes are ignored here (see PROBE above)
+      const nf = Object.entries(dayOrEmpty(dayKey()).notFound).sort((a, b) => b[1] - a[1]);
       const nfTotal = nf.reduce((a, e) => a + e[1], 0);
-      if (nf.length && (nf[0][1] >= 15 || nfTotal >= 40)) out.push({ id: "404", text: nfTotal + " visits hit pages that don't exist today (most often " + nf[0][0] + "). A broken link may be going around." });
+      if (nf.length && (nf[0][1] >= 5 || nfTotal >= 15)) out.push({ id: "404", text: nfTotal + " visits asked for pages that don't exist today (most often " + nf[0][0] + ", " + nf[0][1] + " times). A link to it may be broken or going around." });
       return out;
     },
     snapshot(n) {
