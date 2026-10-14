@@ -80,6 +80,9 @@ const PROBE = [
   /\.(php\d?|asp|aspx|jsp|jspx|cgi|pl|py|sh|bak|old|orig|sql|sqlite|db|zip|tar|gz|tgz|rar|7z|ya?ml|ini|conf|cfg|log|swp|env|pem|key)$/i,
   /^\/(wp-|wordpress|xmlrpc|phpmyadmin|pma|myadmin|adminer|cgi-bin|vendor\/|node_modules|actuator|console|server-status|solr|jenkins|manager|owa|ecp|autodiscover|boaform|hnap1|goform|geoserver|struts)/i,
   /^\/(api|rest|graphql|v[0-9]+|ai|bedrock|openai|foundation-models|sdk|swagger|openapi)(\/|$)/i,
+  // cloud, AI-service and credential guesses: /llm/credentials, /invoke, /inference-profiles, /codedeploy ...
+  /^\/(llm|invoke|inference|codedeploy|sagemaker|lambda|models|completions|embeddings|credentials|secrets?|tokens?|oauth|saml|sso|jwt|mcp|prompts?)(\/|-|$)/i,
+  /\/(credentials|secrets?|inference-profiles|application-properties)(\/|$)/i,
   /^\/(backup|backups|config|database|db|dump|old|test|tmp|temp|debug|administrator|install|setup)(\/|\.|$)/i,
 ];
 const isProbe = (p) => PROBE.some((re) => re.test(String(p || "")));
