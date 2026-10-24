@@ -798,6 +798,43 @@ p{margin:0}
 .cookie-note-btns{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
 @media (max-width:480px){.cookie-note{left:12px;right:12px;bottom:12px;padding:18px}.cookie-note-btns{justify-content:stretch}.cookie-note-btns .btn{flex:1}}
 
+/* ============ Find Your Path (site guide widget) ============ */
+.fyp-btn{position:fixed;right:20px;bottom:20px;z-index:90;display:flex;align-items:center;gap:10px;padding:7px 18px 7px 8px;border-radius:999px;border:1px solid var(--gold);background:linear-gradient(145deg,var(--purple),var(--plum-deep));color:var(--ivory);font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 38px -14px rgba(0,0,0,.65);transition:transform .2s,border-color .2s,box-shadow .2s}
+.fyp-btn:hover{transform:translateY(-2px);border-color:var(--gold-soft)}
+.fyp-btn::after{content:"";position:absolute;left:18px;right:18px;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--root) 0 14.285%,var(--sacral) 14.285% 28.57%,var(--solar) 28.57% 42.855%,var(--heart) 42.855% 57.14%,var(--throat) 57.14% 71.425%,var(--third) 71.425% 85.71%,var(--crown) 85.71% 100%)}
+.fyp-btn img{display:block;width:38px;height:38px;object-fit:contain;border-radius:50%;background:var(--plum-deep);padding:3px}
+.fyp-panel{position:fixed;right:20px;bottom:84px;z-index:95;width:min(380px,calc(100vw - 24px));max-height:min(640px,calc(100vh - 110px));display:flex;flex-direction:column;background:var(--plum);color:var(--ivory);border:1px solid var(--gold);border-radius:6px;box-shadow:0 40px 70px -24px rgba(0,0,0,.75);overflow:hidden}
+.fyp-panel[hidden]{display:none}
+.fyp-spectrum{flex:none;height:4px;background:linear-gradient(90deg,var(--root) 0 14.285%,var(--sacral) 14.285% 28.57%,var(--solar) 28.57% 42.855%,var(--heart) 42.855% 57.14%,var(--throat) 57.14% 71.425%,var(--third) 71.425% 85.71%,var(--crown) 85.71% 100%)}
+.fyp-head{flex:none;display:flex;align-items:center;gap:12px;padding:14px 16px 10px}
+.fyp-head img{width:46px;height:auto;flex:none}
+.fyp-head h2{margin:0;font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1.1;color:var(--ivory)}
+.fyp-head p{margin:2px 0 0;font-family:var(--script);font-size:1.15rem;line-height:1.2;color:var(--gold-soft)}
+.fyp-close{margin-left:auto;flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-dark);background:transparent;color:var(--gold-soft);font-size:22px;line-height:1;cursor:pointer}
+.fyp-close:hover{border-color:var(--gold)}
+.fyp-search{flex:none;padding:0 16px 10px}
+.fyp-search input{width:100%;box-sizing:border-box;min-height:44px;padding:0 14px;border-radius:2px;border:1px solid var(--line-dark);background:var(--plum-deep);color:var(--ivory);font:500 14px var(--sans)}
+.fyp-search input::placeholder{color:var(--lav);opacity:.8}
+.fyp-search input:focus{outline:2px solid var(--gold-soft);outline-offset:1px}
+.fyp-body{overflow-y:auto;padding:2px 12px 14px;-webkit-overflow-scrolling:touch}
+.fyp-label{display:block;margin:8px 4px 8px;font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+.fyp-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fyp-list a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:3px;border:1px solid transparent;border-left:3px solid var(--c,var(--gold));background:rgba(255,255,255,.04);color:var(--ivory);text-decoration:none;font-size:13.5px;line-height:1.35;transition:background .2s,border-color .2s}
+.fyp-list a:hover,.fyp-list a:focus-visible{background:rgba(255,255,255,.09);border-color:var(--line-dark);border-left-color:var(--c,var(--gold))}
+.fyp-list i{flex:none;width:11px;height:11px;border-radius:50%;background:var(--c,var(--gold));box-shadow:0 0 10px -1px var(--c,var(--gold))}
+.fyp-list b{display:block;font-weight:600}
+.fyp-list small{display:block;font-size:11.5px;color:var(--lav)}
+.fyp-list .go{margin-left:auto;color:var(--gold-soft)}
+.fyp-empty{margin:6px 4px 10px;color:var(--lav);font-size:13.5px}
+.fyp-foot{margin:12px 4px 0;font-size:12px;color:var(--lav)}
+.fyp-foot a{color:var(--gold-soft)}
+body:has(#cookieNote:not([hidden])) .fyp-btn{bottom:calc(20px + var(--cookie-h,150px))}
+body:has(#cookieNote:not([hidden])) .fyp-panel{bottom:calc(84px + var(--cookie-h,150px));max-height:min(640px,calc(100vh - 110px - var(--cookie-h,150px)))}
+@media (min-width:640px){body:has(#cookieNote:not([hidden])) .fyp-btn{bottom:20px}body:has(#cookieNote:not([hidden])) .fyp-panel{bottom:84px;max-height:min(640px,calc(100vh - 110px))}}
+@media (max-width:480px){.fyp-btn{right:12px;bottom:12px}.fyp-panel{right:12px;bottom:76px}}
+@media (prefers-reduced-motion:reduce){.fyp-btn{transition:none}}
+@media print{.fyp-btn,.fyp-panel{display:none}}
+
 /* ============ photography ============ */
 .arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .media{display:block;width:100%;height:auto;border-radius:2px;box-shadow:0 34px 60px -32px rgba(21,17,23,.6)}
@@ -2417,7 +2454,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <img src="assets/app-poster.webp" alt="The Rooted and Crowned App: Coach Kia in a plum suit beside the message Meet Yourself Where You Are, Align With Where You're Going, with the seven chakra areas and a Join the App Waitlist button" width="1145" height="1374" loading="lazy">
     </figure>
   </div></section>
-  <section class="band band--plum2"><div class="wrap app-grid">
+  <section class="band band--plum2"><div class="wrap app-grid" id="appGrid">
     <div style="display:grid;gap:40px">
       <div style="display:grid;gap:18px">
         <p class="lede">Check in with how you're arriving today. Your answers point to a Root-to-Crown reflection theme with an insight, an affirmation, a prompt and a short practice. Over time, your journal and progress show the themes you return to.</p>
@@ -2435,7 +2472,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         </ul>
       </div>
     </div>
-    <div class="phone" aria-label="Interactive app preview">
+    <div class="phone" id="appPreview" aria-label="Interactive app preview">
       <div class="screen">
         <div class="status"><span>9:41</span><span>Rooted &amp; Crowned</span></div>
         <div class="scr-body" id="scr" aria-live="polite"></div>
@@ -3308,6 +3345,19 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <p class="copy">Copyright © <span data-year></span> Rooted and Crowned Collective LLC. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- Find Your Path: a small site guide in the corner of every page -->
+<button class="fyp-btn" id="fypBtn" type="button" aria-expanded="false" aria-controls="fypPanel"><img src="assets/logo-emblem.png" alt="" width="372" height="324"><span>Find Your Path</span></button>
+<div class="fyp-panel" id="fypPanel" role="dialog" aria-label="Find Your Path" hidden>
+  <div class="fyp-spectrum" aria-hidden="true"></div>
+  <div class="fyp-head">
+    <img src="assets/logo-emblem.png" alt="" width="372" height="324">
+    <div><h2>Find Your Path</h2><p>Where would you like to go?</p></div>
+    <button class="fyp-close" id="fypClose" type="button" aria-label="Close Find Your Path">&times;</button>
+  </div>
+  <div class="fyp-search"><input id="fypSearch" type="search" placeholder="Search the site: journal, podcast, app…" aria-label="Search the site" autocomplete="off"></div>
+  <div class="fyp-body" id="fypBody" aria-live="polite"></div>
+</div>
 
 <div class="toast" role="status" aria-live="polite" id="toast"></div>
 
@@ -4580,6 +4630,90 @@ scr.addEventListener("click",e=>{
 });
 renderApp();
 route();
+
+/* ---------- Find Your Path: a small site guide (quick choices in Root-to-Crown colors + search) ---------- */
+(function(){
+  const btn=$("#fypBtn"), panel=$("#fypPanel"), body=$("#fypBody"), input=$("#fypSearch"), closeB=$("#fypClose");
+  if(!btn||!panel||!body||!input) return;
+  /* one quick choice for each of the seven Root-to-Crown colors */
+  const START=[
+    ["I'm new here","A short welcome to the Collective","/start-here","var(--root)"],
+    ["I want to try the app","Take the sample energy check-in","/app","var(--sacral)","#appGrid"],
+    ["I want to heal and grow","Programs, courses and Journal Club","/programs","var(--solar)"],
+    ["I want to join the community","Sisterhood, Men's Collective and families","/community","var(--heart)"],
+    ["I'd like to listen","The podcast: Conversations","/conversations","var(--throat)"],
+    ["I'm looking for books and journals","Books & Journals","/books","var(--third)"],
+    ["I have a question","Contact the Collective","/contact","var(--crown)"]];
+  /* every page, with the words people might type */
+  const PAGES=[
+    ["Home","/","welcome tree emblem"],
+    ["Start Here","/start-here","new begin welcome first visit"],
+    ["Our Story","/about","about coach kia founder story"],
+    ["The Framework","/root-to-crown","root to crown chakra seven stages framework"],
+    ["Programs","/programs","heal grow courses learn 7 week experience journal club ecourse"],
+    ["7-Week Experience","/root-to-crown-experience","seven week program experience"],
+    ["Journal Club","/journal-club","journal book club"],
+    ["Chakra eCourses","/chakra-ecourses","ecourse course root sacral solar plexus heart throat third eye crown"],
+    ["The Alignment Studio","/alignment-studio","studio sound bowls breath movement stillness practice video"],
+    ["Podcast: Conversations","/conversations","podcast listen episodes interview audio"],
+    ["A Crowned Perspective Magazine","/magazine","magazine digital flip free monthly issue read"],
+    ["Books & Journals","/books","books journals library read write"],
+    ["The App","/app","app energy check in daily sample demo phone try","#appGrid"],
+    ["Community","/community","community belong gather join"],
+    ["Sisterhood Circle","/sisterhood","women sisterhood circle"],
+    ["Men's Collective","/mens-collective","men brotherhood"],
+    ["Children & Families","/children","children kids family"],
+    ["Events","/events","events extravaganza gathering"],
+    ["Our Ecosystem","/ecosystem","ecosystem circles map"],
+    ["Infinite Possibilities","/infinite-possibilities","affirmations cards confetti infinite possibilities"],
+    ["Shop the Collective","/shop","shop store merch buy"],
+    ["Support Us","/support","donate sponsor scholarship give support"],
+    ["Voices of the Collective","/voices","reviews testimonials voices stories"],
+    ["Speaking & Workshops","/speaking","speaking workshop book coach kia"],
+    ["Contact Us","/contact","email question help contact form"],
+    ["Accessibility","/accessibility","accessibility access"],
+    ["Privacy Policy","/privacy","privacy data cookies"],
+    ["Terms of Use","/terms","terms conditions legal"]];
+  const link=(t,s,h,c,sc)=>`<li><a href="${h}" style="--c:${c}"${sc?` data-fyp-scroll="${sc}"`:""}><i aria-hidden="true"></i><span><b>${esc(t)}</b>${s?`<small>${esc(s)}</small>`:""}</span><span class="go" aria-hidden="true">→</span></a></li>`;
+  function showStart(){
+    body.innerHTML=`<span class="fyp-label">Start with what fits you</span><ul class="fyp-list">${START.map(([t,s,h,c,sc])=>link(t,s,h,c,sc)).join("")}</ul>
+    <p class="fyp-foot">Can't find it? <a href="/contact">Contact us</a>.</p>`;
+  }
+  function showResults(q){
+    const words=q.toLowerCase().split(/\s+/).filter(Boolean);
+    const hits=PAGES.filter(([t,h,k])=>words.every(w=>(t+" "+k).toLowerCase().includes(w))).slice(0,7);
+    const COLORS=["var(--root)","var(--sacral)","var(--solar)","var(--heart)","var(--throat)","var(--third)","var(--crown)"];
+    body.innerHTML=hits.length
+      ? `<span class="fyp-label">${hits.length} ${hits.length===1?"page":"pages"} found</span><ul class="fyp-list">${hits.map(([t,h,k,sc],i)=>link(t,"",h,COLORS[i%7],sc)).join("")}</ul>`
+      : `<p class="fyp-empty">Nothing matches that yet. Try another word, or <a href="/contact" style="color:var(--gold-soft)">contact us</a> and we'll point you the right way.</p>`;
+  }
+  function setCookieGap(){ const c=$("#cookieNote"); if(c&&!c.hidden) document.documentElement.style.setProperty("--cookie-h",(c.offsetHeight+8)+"px"); }
+  function open(){
+    setCookieGap(); showStart(); input.value="";
+    panel.hidden=false; btn.setAttribute("aria-expanded","true");
+    if(window.matchMedia("(hover:hover) and (pointer:fine)").matches) input.focus(); else { panel.tabIndex=-1; panel.focus({preventScroll:true}); }
+  }
+  function close(back){
+    if(panel.hidden) return;
+    panel.hidden=true; btn.setAttribute("aria-expanded","false");
+    if(back) btn.focus();
+  }
+  btn.addEventListener("click",()=>{ panel.hidden?open():close(true); });
+  closeB.addEventListener("click",()=>close(true));
+  input.addEventListener("input",()=>{ const q=input.value.trim(); q?showResults(q):showStart(); });
+  input.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const a=body.querySelector(".fyp-list a"); if(a) a.click(); } });
+  panel.addEventListener("click",e=>{
+    const a=e.target.closest("a[href]"); if(!a) return;
+    const sc=a.dataset.fypScroll;
+    close(false);
+    if(sc) setTimeout(()=>{ const el=document.querySelector(sc); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-130,behavior:"instant"}); },350);
+  });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!panel.hidden) close(true); });
+  document.addEventListener("click",e=>{ if(!panel.hidden&&!panel.contains(e.target)&&!btn.contains(e.target)) close(false); });
+  window.addEventListener("routechange",()=>close(false));
+  const cn=$("#cookieNote"); if(cn&&"ResizeObserver" in window) new ResizeObserver(setCookieGap).observe(cn);
+  window.addEventListener("resize",setCookieGap);
+})();
 
 </script>
 
