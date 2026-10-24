@@ -830,7 +830,7 @@ p{margin:0}
 .fyp-foot a{color:var(--gold-soft)}
 body:has(#cookieNote:not([hidden])) .fyp-btn{bottom:calc(20px + var(--cookie-h,150px))}
 body:has(#cookieNote:not([hidden])) .fyp-panel{bottom:calc(84px + var(--cookie-h,150px));max-height:min(640px,calc(100vh - 110px - var(--cookie-h,150px)))}
-@media (min-width:640px){body:has(#cookieNote:not([hidden])) .fyp-btn{bottom:20px}body:has(#cookieNote:not([hidden])) .fyp-panel{bottom:84px;max-height:min(640px,calc(100vh - 110px))}}
+@media (min-width:980px){body:has(#cookieNote:not([hidden])) .fyp-btn{bottom:20px}body:has(#cookieNote:not([hidden])) .fyp-panel{bottom:84px;max-height:min(640px,calc(100vh - 110px))}}
 @media (max-width:480px){.fyp-btn{right:12px;bottom:12px}.fyp-panel{right:12px;bottom:76px}}
 @media (prefers-reduced-motion:reduce){.fyp-btn{transition:none}}
 @media print{.fyp-btn,.fyp-panel{display:none}}
@@ -4643,7 +4643,9 @@ route();
     ["I want to join the community","Sisterhood, Men's Collective and families","/community","var(--heart)"],
     ["I'd like to listen","The podcast: Conversations","/conversations","var(--throat)"],
     ["I'm looking for books and journals","Books & Journals","/books","var(--third)"],
-    ["I have a question","Contact the Collective","/contact","var(--crown)"]];
+    ["I have a question","Contact the Collective","/contact","var(--crown)"],
+    ["I want to shop the Collective","Books, journals and more","/shop","var(--gold)"],
+    ["I want to donate","Give, sponsor or support our work","/support","var(--gold-soft)"]];
   /* every page, with the words people might type */
   const PAGES=[
     ["Home","/","welcome tree emblem"],
