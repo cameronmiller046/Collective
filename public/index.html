@@ -825,6 +825,7 @@ p{margin:0}
 .fyp-list b{display:block;font-weight:600}
 .fyp-list small{display:block;font-size:11.5px;color:var(--lav)}
 .fyp-list .go{margin-left:auto;color:var(--gold-soft)}
+.fyp-list+.fyp-label{margin-top:18px}
 .fyp-empty{margin:6px 4px 10px;color:var(--lav);font-size:13.5px}
 .fyp-foot{margin:12px 4px 0;font-size:12px;color:var(--lav)}
 .fyp-foot a{color:var(--gold-soft)}
@@ -4646,6 +4647,10 @@ route();
     ["I have a question","Contact the Collective","/contact","var(--crown)"],
     ["I want to shop","Visit the Shop","/shop","var(--gold)"],
     ["I want to support","Give, sponsor or support our work","/support","var(--gold-soft)"]];
+  /* the two "what is" questions a new visitor asks first */
+  const WHO=[
+    ["What is Rooted & Crowned Collective?","Our story and our founder, Coach Kia","/about","var(--gold)"],
+    ["What is Infinite Possibilities?","Support for neurodiverse families","/infinite-possibilities","var(--gold-soft)"]];
   /* every page, with the words people might type */
   const PAGES=[
     ["Home","/","welcome tree emblem"],
@@ -4667,7 +4672,7 @@ route();
     ["Children & Families","/children","children kids family"],
     ["Events","/events","events extravaganza gathering"],
     ["Our Ecosystem","/ecosystem","ecosystem circles map"],
-    ["Infinite Possibilities","/infinite-possibilities","affirmations cards confetti infinite possibilities"],
+    ["Infinite Possibilities","/infinite-possibilities","neurodiverse neurodivergent families caregivers parents children support classes workshops infinite possibilities"],
     ["Shop the Collective","/shop","shop store merch buy"],
     ["Support Us","/support","donate sponsor scholarship give support"],
     ["Voices of the Collective","/voices","reviews testimonials voices stories"],
@@ -4678,7 +4683,8 @@ route();
     ["Terms of Use","/terms","terms conditions legal"]];
   const link=(t,s,h,c,sc)=>`<li><a href="${h}" style="--c:${c}"${sc?` data-fyp-scroll="${sc}"`:""}><i aria-hidden="true"></i><span><b>${esc(t)}</b>${s?`<small>${esc(s)}</small>`:""}</span><span class="go" aria-hidden="true">→</span></a></li>`;
   function showStart(){
-    body.innerHTML=`<span class="fyp-label">Start with what fits you</span><ul class="fyp-list">${START.map(([t,s,h,c,sc])=>link(t,s,h,c,sc)).join("")}</ul>
+    body.innerHTML=`<span class="fyp-label">Who we are</span><ul class="fyp-list">${WHO.map(([t,s,h,c,sc])=>link(t,s,h,c,sc)).join("")}</ul>
+    <span class="fyp-label">Start with what fits you</span><ul class="fyp-list">${START.map(([t,s,h,c,sc])=>link(t,s,h,c,sc)).join("")}</ul>
     <p class="fyp-foot">Can't find it? <a href="/contact">Contact us</a>.</p>`;
   }
   function showResults(q){
