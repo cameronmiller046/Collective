@@ -3747,10 +3747,11 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
 $$("[data-topics]").forEach(el=>el.innerHTML=`<option value="">Choose a topic</option>`+TOPICS.map(t=>`<option>${t}</option>`).join(""));
 
 const SIGNUP = `<div style="display:grid;gap:8px"><h3>Stay Rooted. Stay Connected.</h3>
-  <p class="fine">Join the Rooted &amp; Crowned Collective community for reflections, new conversations, upcoming experiences and first access to announcements.</p>
+  <p class="fine">Join the Rooted &amp; Crowned Collective community for reflections, new conversations, upcoming experiences and first access to announcements. Get our free Root-to-Crown Reflection Guide when you join.</p>
   <p class="reach" style="margin-top:0">Our emails arrive from <a href="mailto:magazine@rootedandcrownedcollective.org">magazine@rootedandcrownedcollective.org</a></p></div>
   <form class="signup-form-wrap" novalidate><div class="signup-form">
     <input class="field" type="email" name="email" placeholder="Your email address" aria-label="Email address" autocomplete="email" required>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <button class="btn btn--gold" type="submit">Join the Collective</button></div></form>`;
 $$("[data-signup]").forEach(el=>el.innerHTML=SIGNUP);
 
@@ -3877,8 +3878,21 @@ document.addEventListener("submit",e=>{
       .finally(()=>{btn.disabled=false;});
     return;
   }
+  if(f.classList.contains("signup-form-wrap")){
+    const btn=f.querySelector('[type="submit"]'), fail="We couldn’t add you just now. Please email hello@rootedandcrownedcollective.org and we will add you.";
+    btn.disabled=true;
+    fetch("/api/signup",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email.value,website:(f.querySelector('[name="website"]')||{}).value||""})})
+      .then(r=>r.json().catch(()=>({})).then(j=>({ok:r.ok,j})))
+      .then(({ok,j})=>{
+        if(ok){f.reset();toast(j.already?"You’re already on the list. Thank you!":"Welcome to the Collective. Check your email for your free Root-to-Crown Reflection Guide.");}
+        else toast(j.error==="rate"?"That was a few tries in a row. Please wait a few minutes and try again.":fail);
+      })
+      .catch(()=>toast(fail))
+      .finally(()=>{btn.disabled=false;});
+    return;
+  }
   f.reset();
-  toast(f.id==="contact-form"?"Preview: this form isn't connected to an inbox yet. Once it is, your message is sent here.":"Preview: sign-ups start once the email service is connected.");
+  toast("Preview: this form isn't connected yet.");
 });
 
 /* ---------- The Alignment Studio: free practice videos ----------

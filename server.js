@@ -312,6 +312,46 @@ function handleContact(req, res) {
   });
 }
 
+// ---- Email sign-up ("Join the Collective"): saves the address, sends a welcome email with the free reflection guide, and tells the owner ----
+// Addresses are kept in DATA_DIR/subscribers.json (point DATA_DIR at the Railway Volume so they survive updates). Nothing is shared with anyone else.
+const SUBSCRIBERS_FILE = path.join(DATA_DIR, "subscribers.json");
+function loadSubscribers() {
+  try { const list = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf8")); return Array.isArray(list) ? list : []; } catch { return []; }
+}
+function saveSubscribers(list) {
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+    const tmp = SUBSCRIBERS_FILE + ".tmp";
+    fs.writeFileSync(tmp, JSON.stringify(list));
+    fs.renameSync(tmp, SUBSCRIBERS_FILE);
+    return true;
+  } catch (e) { console.error("signup: could not save the list:", e.message); return false; }
+}
+function handleSignup(req, res) {
+  const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+  readJsonBody(req, (b) => {
+    if (!b || typeof b !== "object") return reply(res, 400, { error: "invalid" });
+    if (b.website) return reply(res, 200, { ok: true }); // hidden field only bots fill in
+    const email = oneLine(b.email).toLowerCase();
+    if (!/^\S+@\S+\.\S+$/.test(email) || email.length > 200) return reply(res, 400, { error: "invalid" });
+    if (tooMany(ip)) return reply(res, 429, { error: "rate" });
+    const list = loadSubscribers();
+    if (list.some((s) => s.email === email)) return reply(res, 200, { ok: true, already: true });
+    list.push({ email, at: new Date().toISOString() });
+    if (!saveSubscribers(list)) return reply(res, 500, { error: "save_failed" });
+    reply(res, 200, { ok: true });
+    const guide = (SEO.origin || "") + "/reflection-guide.html";
+    sendMail({
+      to: email,
+      replyTo: "hello@" + MAIL_DOMAIN,
+      subject: "Welcome to Rooted & Crowned Collective: your free Root-to-Crown Reflection Guide",
+      text: `Welcome to Rooted & Crowned Collective.\n\nThank you for joining us. Here is your free Root-to-Crown Reflection Guide, seven prompts, affirmations and short practices, one for each step of the journey:\n\n${guide}\n\nYou can print it or save it as a PDF from your browser.\n\nGrounded Roots. Crown Driven.\nLife Coach Kia\n\nYou are getting this because you joined the Collective on our website. To stop hearing from us, reply to this email with the word unsubscribe.\nRooted & Crowned Collective is not medical or mental-health care.\n`,
+      html: `<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#25072F;line-height:1.6"><h2 style="color:#25072F">Welcome to Rooted &amp; Crowned Collective</h2><p>Thank you for joining us. Here is your free <b>Root-to-Crown Reflection Guide</b>: seven prompts, affirmations and short practices, one for each step of the journey.</p><p><a href="${guide}" style="display:inline-block;background:#D6A23A;color:#25072F;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Open your guide</a></p><p>You can print it or save it as a PDF from your browser.</p><p><i>Grounded Roots. Crown Driven.</i><br>Life Coach Kia</p><p style="font-size:12px;color:#5B4263">You are getting this because you joined the Collective on our website. To stop hearing from us, reply to this email with the word unsubscribe. Rooted &amp; Crowned Collective is not medical or mental-health care.</p></div>`,
+    }).catch(() => {});
+    if (DIGEST_TO) sendMail({ to: DIGEST_TO, subject: "New Collective sign-up", text: `${email} joined the Collective from the website.\nTotal subscribers: ${list.length}\n` }).catch(() => {});
+  });
+}
+
 http
   .createServer((req, res) => {
     let urlPath;
@@ -401,6 +441,11 @@ http
     if (urlPath === "/api/contact") {
       if (req.method !== "POST") return void reply(res, 405, { error: "method" });
       handleContact(req, res);
+      return;
+    }
+    if (urlPath === "/api/signup") {
+      if (req.method !== "POST") return void reply(res, 405, { error: "method" });
+      handleSignup(req, res);
       return;
     }
     if (urlPath.startsWith("/api/magazine-upload/")) {
