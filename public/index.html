@@ -1152,17 +1152,21 @@ button.vthumb:hover .vplay,button.vthumb:focus-visible .vplay{background:var(--g
 details.course-mod summary{list-style:none;cursor:pointer}
 details.course-mod summary::-webkit-details-marker{display:none}
 /* ============ lighter look: white and pale lavender on Home, Our Story, Framework and Start Here (purple kept for the header, hero art panel, accent bands and footer) ============ */
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory:not(.thanks){background:#FFFFFF}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory2:not(.thanks){background:#F5EFF9}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold:hover{background:var(--purple);border-color:var(--purple)}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--line{color:var(--plum);border-color:var(--plum)}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory .stage+.stage::after{background:#FFFFFF}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory2 .stage+.stage::after{background:#F5EFF9}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero{background:radial-gradient(ellipse 50% 90% at 85% 0%,rgba(205,169,218,.4),transparent 70%),#FFFFFF;color:var(--plum)}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero--art::after{background:linear-gradient(90deg,rgba(255,255,255,.96) 0,rgba(255,255,255,.72) 50%,rgba(255,255,255,0) 82%)}
-:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero--art h1{text-shadow:none}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .band--ivory:not(.thanks){background:#FFFFFF}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .band--ivory2:not(.thanks){background:#F5EFF9}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold:hover{background:var(--purple);border-color:var(--purple)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--line{color:var(--plum);border-color:var(--plum)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .band--ivory .stage+.stage::after{background:#FFFFFF}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .band--ivory2 .stage+.stage::after{background:#F5EFF9}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .page-hero{background:radial-gradient(ellipse 50% 90% at 85% 0%,rgba(205,169,218,.4),transparent 70%),#FFFFFF;color:var(--plum)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .page-hero--art::after{background:linear-gradient(90deg,rgba(255,255,255,.96) 0,rgba(255,255,255,.72) 50%,rgba(255,255,255,0) 82%)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .page-hero--art h1{text-shadow:none}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .band{display:flow-root}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) .gift{background:linear-gradient(160deg,#FFFFFF,#F7F0FB);border-color:var(--gold)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"],[data-page="conversations"],[data-page="app"],[data-page="community"]) :is(.pod-photo,.poster) img{box-shadow:0 30px 56px -28px rgba(37,7,47,.4)}
+[data-page="app"] .phone{--ivory:#F7F1E8;--lav:#CDA9DA;--gold-soft:#E5BE65;--line-dark:rgba(229,190,101,.22)}
 [data-page="home"] :is(.hero,.final){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
 [data-page="home"] .hero{background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(205,169,218,.38),transparent 70%),#FFFFFF;color:var(--plum)}
 [data-page="home"] .hero .tree-wrap{background:radial-gradient(ellipse 62% 58% at 50% 46%,#582064 0%,#3B1048 55%,#25072F 100%);border-radius:28px;border:1px solid rgba(214,162,58,.55);box-shadow:0 22px 50px rgba(37,7,47,.28)}
@@ -1172,6 +1176,18 @@ details.course-mod summary::-webkit-details-marker{display:none}
 [data-page="home"] .final{background:radial-gradient(ellipse 60% 90% at 50% 0%,rgba(205,169,218,.3),transparent 70%),#FFFFFF;color:var(--plum)}
 [data-page="home"] :is(.hero,.final) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
 [data-page="home"] :is(.hero,.final) .btn--line{color:var(--plum);border-color:var(--plum)}
+[data-page="community"] .branch-sec{padding-bottom:0}
+.band--gold{background:linear-gradient(160deg,#E9C874,#D6A23A);color:var(--plum);padding:104px 0}
+.band--gold{--line-dark:rgba(37,7,47,.28);--gold-soft:#4A2F04;--ivory:var(--plum);--lav:var(--plum)}
+.band--gold .eyebrow,.band--gold .caps{color:#4A2F04}
+.band--gold .status-pill{border-color:var(--plum);color:var(--plum)}
+.band--gold .btn--line{color:var(--plum);border-color:var(--plum)}
+.band--gold .btn--line:hover{background:rgba(37,7,47,.08)}
+.band--gold .media{outline-color:rgba(37,7,47,.35)}
+[data-page="community"] .page-hero.page-hero{background:radial-gradient(ellipse 50% 90% at 85% 0%,rgba(88,32,100,.7),transparent 70%),var(--plum);color:var(--ivory);--line-dark:rgba(229,190,101,.22);--gold-soft:#E5BE65;--ivory:#F7F1E8;--lav:#CDA9DA}
+/* gold bar under the page names, across the top of every page */
+.site-head{border-bottom:0}
+.site-head::after{content:"";display:block;height:14px;background:linear-gradient(90deg,#B8872A 0%,#D6A23A 22%,#E5BE65 50%,#D6A23A 78%,#B8872A 100%)}
 </style>
 </head>
 <body>
@@ -2205,12 +2221,12 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <p class="lede">Real Conversations. Deeper Healing. Purposeful Living. Start here to hear the message, meet Coach Kia and feel the philosophy, then choose where to grow next.</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
-  <section class="band" style="padding-top:0"><div class="wrap">
+  <section class="band band--ivory" style="padding-top:0"><div class="wrap">
     <figure class="pod-photo pod-photo--wide">
       <img src="assets/podcast-set.webp" alt="The Rooted and Crowned Collective podcast set: two cream armchairs with plum and teal cushions around a round plum table, beneath the Rooted and Crowned Collective logo, with a candle reading Same Energy, Different Frequency and the words Real Conversations, Deeper Healing, Purposeful Living" width="1374" height="1145">
     </figure>
   </div></section>
-  <section class="band band--plum2"><div class="wrap conv">
+  <section class="band band--ivory2"><div class="wrap conv">
     <div style="display:grid;gap:22px">
       <span class="eyebrow">Same Energy. Different Frequency.</span>
       <h2 class="h-m">What we talk about</h2>
@@ -2231,12 +2247,12 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p class="reach">Guest, interview and media inquiries: <a href="mailto:podcast@rootedandcrownedcollective.org">podcast@rootedandcrownedcollective.org</a></p>
     </aside>
   </div></section>
-  <section class="band band--deep"><div class="wrap">
+  <section class="band band--ivory"><div class="wrap">
     <figure class="pod-photo">
       <img src="assets/podcast-conversation.webp" alt="Conversations Create Change, the podcast with Coach Kia: Coach Kia in a teal blazer resting her chin on her hand as she listens to a guest, in a warm plum and gold studio, with the words Real Conversations, Deeper Healing, Purposeful Living on the table" width="1374" height="1145" loading="lazy">
     </figure>
   </div></section>
-  <section class="band"><div class="wrap" style="display:grid;gap:20px">
+  <section class="band band--ivory2"><div class="wrap" style="display:grid;gap:20px">
     <span class="eyebrow">Episodes</span>
     <div class="gift" style="border-style:dashed;background:transparent">
       <h3 class="h-s">Episodes will stream here.</h3>
@@ -2473,12 +2489,12 @@ details.course-mod summary::-webkit-details-marker{display:none}
     <p class="script">Answer. Align. Elevate.</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
-  <section class="band band--deep"><div class="wrap">
+  <section class="band band--ivory2"><div class="wrap">
     <figure class="poster">
       <img src="assets/app-poster.webp" alt="The Rooted and Crowned App: Coach Kia in a plum suit beside the message Meet Yourself Where You Are, Align With Where You're Going, with the seven chakra areas and a Join the App Waitlist button" width="1145" height="1374" loading="lazy">
     </figure>
   </div></section>
-  <section class="band band--plum2"><div class="wrap app-grid" id="appGrid">
+  <section class="band band--ivory"><div class="wrap app-grid" id="appGrid">
     <div style="display:grid;gap:40px">
       <div style="display:grid;gap:18px">
         <p class="lede">Check in with how you're arriving today. Your answers point to a Root-to-Crown reflection theme with an insight, an affirmation, a prompt and a short practice. Over time, your journal and progress show the themes you return to.</p>
@@ -2505,7 +2521,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
     </div>
   </div></section>
 
-  <section class="band band--ivory"><div class="wrap two">
+  <section class="band band--ivory2"><div class="wrap two">
     <div style="display:grid;gap:16px">
       <span class="eyebrow">How the app speaks</span>
       <h2 class="h-l">Supports reflection, not diagnosis.</h2>
@@ -2520,7 +2536,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
     </div>
   </div></section>
 
-  <section class="band"><div class="wrap" style="display:grid;gap:40px">
+  <section class="band band--ivory"><div class="wrap" style="display:grid;gap:40px">
     <div class="sec-head" style="margin:0"><span class="eyebrow">Membership</span><h2 class="h-l">Start free. Grow with us.</h2></div>
     <div class="tiers">
       <div class="gift" style="background:transparent;border-color:var(--line-dark)">
@@ -2573,7 +2589,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       </div>
     </div>
   </div></section>
-  <section class="band"><div class="wrap">
+  <section class="band band--plum2"><div class="wrap">
     <article class="branch-sec" id="sisterhood">
       <div style="display:grid;gap:14px;align-content:start">
         <span class="status-pill">Gathering now</span>
@@ -2587,6 +2603,8 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <div class="tags"><span class="tag">Support</span><span class="tag">Community</span><span class="tag">Wellness</span><span class="tag">Personal Growth</span><span class="tag">Leadership</span><span class="tag">Opportunity</span></div>
       </div>
     </article>
+  </div></section>
+  <section class="band band--forest"><div class="wrap">
     <article class="branch-sec" id="mens">
       <div style="display:grid;gap:14px;align-content:start">
         <span class="status-pill">Coming soon</span>
@@ -2599,6 +2617,8 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <div class="tags"><span class="tag">Brotherhood</span><span class="tag">Emotional awareness</span><span class="tag">Communication</span><span class="tag">Relationships</span><span class="tag">Purpose</span><span class="tag">Leadership</span><span class="tag">Legacy</span></div>
       </div>
     </article>
+  </div></section>
+  <section class="band band--plum2"><div class="wrap">
     <article class="branch-sec" id="children">
       <div style="display:grid;gap:14px;align-content:start">
         <span class="status-pill">Coming soon</span>
@@ -2611,6 +2631,8 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <div class="tags"><span class="tag">Family resources</span><span class="tag">Educational support</span><span class="tag">Inclusion</span><span class="tag">Confidence</span><span class="tag">Emotional wellness</span><span class="tag">Community connection</span></div>
       </div>
     </article>
+  </div></section>
+  <section class="band band--gold"><div class="wrap">
     <article class="branch-sec" id="extravaganza">
       <div style="display:grid;gap:14px;align-content:start">
         <span class="status-pill">Future</span>
