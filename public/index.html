@@ -29,7 +29,7 @@ gtag('config', 'G-QQBLTBHNEX');
 <meta property="og:image:alt" content="Rooted &amp; Crowned Collective: Grounded Roots. Crown Driven. A rainbow tree and golden crown above a sunlit lake and mountain landscape at sunrise.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.rootedandcrownedcollective.org/assets/og-share.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.rootedandcrownedcollective.org/#organization","name":"Rooted & Crowned Collective","legalName":"Rooted and Crowned Collective LLC","alternateName":["Rooted and Crowned Collective","Rooted & Crowned Collective LLC"],"url":"https://www.rootedandcrownedcollective.org/","logo":"https://www.rootedandcrownedcollective.org/assets/favicon-512.png","image":"https://www.rootedandcrownedcollective.org/assets/og-share.jpg","slogan":"Grounded Roots. Crown Driven.","description":"Rooted & Crowned Collective is a personal-development and community company, founded by Coach Kia, built around the Root-to-Crown framework: reflection, growth and intentional living through programs, books, journals, conversations and community.","email":"hello@rootedandcrownedcollective.org","founder":{"@type":"Person","name":"Coach Kia","jobTitle":"Founder and Life Coach","worksFor":{"@id":"https://www.rootedandcrownedcollective.org/#organization"}},"sameAs":["https://www.facebook.com/profile.php?id=61596381260751","https://www.instagram.com/rootedandcrownedcollective/"],"knowsAbout":["Personal development","Conscious self-discovery","Chakra alignment","Journaling and reflection","Community support","Support for neurodiverse families"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.rootedandcrownedcollective.org/#organization","name":"Rooted & Crowned Collective","legalName":"Rooted and Crowned Collective LLC","alternateName":["Rooted and Crowned Collective","Rooted & Crowned Collective LLC"],"url":"https://www.rootedandcrownedcollective.org/","logo":"https://www.rootedandcrownedcollective.org/assets/favicon-512.png","image":"https://www.rootedandcrownedcollective.org/assets/og-share.jpg","slogan":"Grounded Roots. Crown Driven.","description":"Rooted & Crowned Collective is a personal-development and community company, founded by Coach Kia, built around the Root-to-Crown framework: reflection, growth and intentional living through programs, books, journals, conversations and community.","email":"hello@rootedandcrownedcollective.org","founder":{"@type":"Person","name":"Coach Kia","jobTitle":"Founder and Life Coach","worksFor":{"@id":"https://www.rootedandcrownedcollective.org/#organization"}},"sameAs":["https://www.facebook.com/profile.php?id=61596381260751","https://www.instagram.com/rootedandcrownedcollective/","https://www.youtube.com/@rootedandcrownedcollective"],"knowsAbout":["Personal development","Conscious self-discovery","Chakra alignment","Journaling and reflection","Community support","Support for neurodiverse families"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://www.rootedandcrownedcollective.org/#website","name":"Rooted & Crowned Collective","alternateName":"Rooted and Crowned Collective","url":"https://www.rootedandcrownedcollective.org/","publisher":{"@id":"https://www.rootedandcrownedcollective.org/#organization"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1151,15 +1151,18 @@ button.vthumb:hover .vplay,button.vthumb:focus-visible .vplay{background:var(--g
 
 details.course-mod summary{list-style:none;cursor:pointer}
 details.course-mod summary::-webkit-details-marker{display:none}
-/* ============ home page: lighter look (white and pale lavender; purple kept for the header, magazine banner, community band and footer) ============ */
-[data-page="home"] .band--ivory{background:#FFFFFF}
-[data-page="home"] .band--ivory2{background:#F5EFF9}
-[data-page="home"] :is(.band--ivory,.band--ivory2){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
-[data-page="home"] :is(.band--ivory,.band--ivory2) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
-[data-page="home"] :is(.band--ivory,.band--ivory2) .btn--gold:hover{background:var(--purple);border-color:var(--purple)}
-[data-page="home"] :is(.band--ivory,.band--ivory2) .btn--line{color:var(--plum);border-color:var(--plum)}
-[data-page="home"] .band--ivory .stage+.stage::after{background:#FFFFFF}
-[data-page="home"] .band--ivory2 .stage+.stage::after{background:#F5EFF9}
+/* ============ lighter look: white and pale lavender on Home, Our Story, Framework and Start Here (purple kept for the header, hero art panel, accent bands and footer) ============ */
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory:not(.thanks){background:#FFFFFF}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory2:not(.thanks){background:#F5EFF9}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--gold:hover{background:var(--purple);border-color:var(--purple)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) :is(:is(.band--ivory,.band--ivory2):not(.thanks),.page-hero) .btn--line{color:var(--plum);border-color:var(--plum)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory .stage+.stage::after{background:#FFFFFF}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .band--ivory2 .stage+.stage::after{background:#F5EFF9}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero{background:radial-gradient(ellipse 50% 90% at 85% 0%,rgba(205,169,218,.4),transparent 70%),#FFFFFF;color:var(--plum)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero--art::after{background:linear-gradient(90deg,rgba(255,255,255,.96) 0,rgba(255,255,255,.72) 50%,rgba(255,255,255,0) 82%)}
+:is([data-page="home"],[data-page="about"],[data-page="framework"],[data-page="start"]) .page-hero--art h1{text-shadow:none}
 [data-page="home"] :is(.hero,.final){--line-dark:var(--line-light);--gold-soft:var(--gold-ink);--ivory:var(--plum);--lav:var(--plum-muted)}
 [data-page="home"] .hero{background:radial-gradient(ellipse 60% 70% at 72% 40%,rgba(205,169,218,.38),transparent 70%),#FFFFFF;color:var(--plum)}
 [data-page="home"] .hero .tree-wrap{background:radial-gradient(ellipse 62% 58% at 50% 46%,#582064 0%,#3B1048 55%,#25072F 100%);border-radius:28px;border:1px solid rgba(214,162,58,.55);box-shadow:0 22px 50px rgba(37,7,47,.28)}
@@ -1169,7 +1172,6 @@ details.course-mod summary::-webkit-details-marker{display:none}
 [data-page="home"] .final{background:radial-gradient(ellipse 60% 90% at 50% 0%,rgba(205,169,218,.3),transparent 70%),#FFFFFF;color:var(--plum)}
 [data-page="home"] :is(.hero,.final) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
 [data-page="home"] :is(.hero,.final) .btn--line{color:var(--plum);border-color:var(--plum)}
-
 </style>
 </head>
 <body>
@@ -1505,7 +1507,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <div class="btns"><a class="btn btn--gold" href="#/root-to-crown">Discover the Root-to-Crown Framework <span class="arr">→</span></a></div>
     </div>
   </div></section>
-  <section class="band"><div class="wrap two">
+  <section class="band band--ivory"><div class="wrap two">
     <div style="display:grid;gap:18px;align-content:start">
       <span class="eyebrow">The Mission</span>
       <h2 class="h-l">Heal, align and rise.</h2>
@@ -1558,7 +1560,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="band band--ivory"><div class="wrap">
     <ol class="ladder" data-ladder></ol>
   </div></section>
-  <section class="band"><div class="wrap">
+  <section class="band band--ivory2"><div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">The Method</span>
       <h2 class="h-l">Heal from the Root Up. Live from the Crown Down.</h2>
@@ -1591,7 +1593,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <p class="caps" style="color:var(--gold-soft)">7 Weeks • 7 Chakras • One Guided Journey</p>
         <p class="caps" style="color:var(--lav)">Live Virtual Classes via Zoom • Coming soon</p>
       </div>
-      <div class="btns"><a class="btn btn--gold btn--lg" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Begin Your Root-to-Crown Journey <span class="arr">→</span></a></div>
+      <div class="btns"><a class="btn btn--gold btn--lg" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment">Begin Your Root-to-Crown Journey <span class="arr">→</span></a></div>
       <p class="reach">Questions about Root-to-Crown chakra education or workshops? <a href="mailto:chakras@rootedandcrownedcollective.org">chakras@rootedandcrownedcollective.org</a></p>
     </div>
   </div></section>
@@ -1623,7 +1625,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         </ul>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
           <span class="status-pill">Coming soon</span>
-          <a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a>
+          <a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment">Start Your Transformation <span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -1769,7 +1771,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <p class="muted" style="font-size:15px">Your membership includes weekly LIVE Zoom gatherings, guided journal prompts, reflection themes, meaningful conversation, accountability, encouragement and community support.</p>
         <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
           <span class="status-pill">Coming soon</span>
-          <a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a>
+          <a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership">Join the Journal Journey <span class="arr">→</span></a>
         </div>
         <p class="reach"><b>Connect With Our Journal Club</b><br>For participation, upcoming gatherings, and journaling experiences, contact:<br><a href="mailto:journalclub@rootedandcrownedcollective.org">journalclub@rootedandcrownedcollective.org</a></p>
       </div>
@@ -1799,7 +1801,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         </ul>
         <div class="offer-foot">
           <div class="price-line"><span class="caps">7 Weeks</span><span class="status-pill">Coming soon</span></div>
-          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment (Stan)">Start Your Transformation <span class="arr">→</span></a></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stan7week" data-label="7-Week Experience enrollment">Start Your Transformation <span class="arr">→</span></a></div>
         </div>
       </article>
       <article class="offer">
@@ -1813,7 +1815,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         </ul>
         <div class="offer-foot">
           <div class="price-line"><span class="caps">Weekly Live Gatherings</span><span class="status-pill">Coming soon</span></div>
-          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership (Stan)">Join the Journal Journey <span class="arr">→</span></a></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanJournalClub" data-label="Journal Club membership">Join the Journal Journey <span class="arr">→</span></a></div>
         </div>
       </article>
     </div>
@@ -2313,7 +2315,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <p class="t">This isn’t a story about pretending the past didn’t happen.</p>
         <p class="disc-q" style="font-size:1.5rem">It’s about discovering what can happen when the past no longer gets to write the ending.</p>
         <div class="disc-meta" data-release="Now Available • $49 • PDF Only">Upcoming Book • $49 • PDF Only</div>
-        <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="A Journey from Survival to Healing (Stan)">Discover the Story <span class="arr">→</span></a></div>
+        <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="A Journey from Survival to Healing">Discover the Story <span class="arr">→</span></a></div>
         <p class="disc-close">Your story matters. Your healing creates change.</p>
       </div>
     </div>
@@ -2336,7 +2338,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p class="disc-q" style="font-size:1.4rem">It gives you space to discover who you are becoming.</p>
       <div class="disc-asks"><span class="caps">Perfect for you if you’re asking:</span><p>Why do I keep repeating this?</p><p>What have I outgrown?</p><p>What do I really want now?</p></div>
       <div class="disc-meta">75 Pages • Printable Digital Journal • $49</div>
-      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="My Rooted &amp; Crowned Journey (Stan)">Begin My Journey <span class="arr">→</span></a></div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="My Rooted &amp; Crowned Journey">Begin My Journey <span class="arr">→</span></a></div>
       <p class="disc-close">Sometimes the way forward begins by returning to yourself.</p>
     </div>
   </div></section>
@@ -2360,7 +2362,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <p class="t">The special Throat Chakra Edition, wrapped in radiant blue, honors voice, truth, communication and self-expression—reminding you that sometimes growth requires giving language to what you already know inside.</p>
       <div class="disc-meta">50 Pages • Printable Digital Journal • $49<span>Hard Copy Coming Soon</span></div>
       <div class="disc-more">
-        <a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted in Words, Crowned in Truth (Stan)">Find My Voice <span class="arr">→</span></a>
+        <a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted in Words, Crowned in Truth">Find My Voice <span class="arr">→</span></a>
       </div>
       <p class="disc-close">Your voice is more than sound. It is expression. It is choice. It is truth.</p>
     </div>
@@ -2383,7 +2385,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <div class="disc-asks"><p>You don’t need hours.</p><p>You don’t need the perfect words.</p><p>You simply need a few intentional moments that belong to you.</p></div>
       <p class="t">Inside, you’ll discover daily prompts, intention-setting exercises, personal anchors, gratitude and abundance practices, weekly reflections, a monthly check-in and a six-week closing reflection.</p>
       <div class="disc-meta">50 Pages • Fillable &amp; Printable Digital Journal • $39</div>
-      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted and Crowned Daily Journal (Stan)">Put Me First <span class="arr">→</span></a></div>
+      <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Rooted and Crowned Daily Journal">Put Me First <span class="arr">→</span></a></div>
       <p class="disc-close">Finding Me → Putting Me First → Becoming More Intentional About Me.</p>
     </div>
   </div></section>
@@ -2425,7 +2427,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <p class="desc">A two-journal practitioner and business-strategy system created to help turn purpose into practice.</p>
         <div class="offer-foot">
           <div class="price-line"><span class="caps">Series</span><span class="price">$99</span></div>
-          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Practitioner Double Book Series (Stan)">Explore the Series <span class="arr">→</span></a></div>
+          <div class="btns"><a class="btn btn--gold" href="#" data-ext="stanBooks" data-label="Practitioner Double Book Series">Explore the Series <span class="arr">→</span></a></div>
         </div>
       </article>
       <article class="offer">
@@ -2530,7 +2532,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
         <span class="caps">Rooted &amp; Crowned Member</span>
         <h3 style="display:flex;align-items:baseline;gap:10px">$9.99 <small class="caps" style="color:var(--lav)">/ month · introductory</small></h3>
         <p class="muted">Daily check-ins, personalized reflections, your full history, the journal, progress insights, the complete Root-to-Crown library, premium prompts and member resources.</p>
-        <a class="btn btn--gold" href="#" data-ext="stanApp" data-label="App membership (Stan)">Join the App Waitlist <span class="arr">→</span></a>
+        <a class="btn btn--gold" href="#" data-ext="stanApp" data-label="App membership">Join the App Waitlist <span class="arr">→</span></a>
       </div>
     </div>
   </div></section>
@@ -3081,7 +3083,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="page-hero"><div class="wrap">
     <span class="eyebrow">Start Here</span>
     <h1 class="h-xl">Every journey starts at the root.</h1>
-    <p class="lede">Not sure where to begin? Take the doors in order. Each opens in our Stan Store, the home of our classes, memberships and digital resources.</p>
+    <p class="lede">Not sure where to begin? Take the doors in order. Some are open now, and the rest are coming soon.</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
   <section class="band band--ivory"><div class="wrap">
@@ -3420,7 +3422,7 @@ const LINKS = {
   sponsorInitiative: "", // Rooted Together: sponsor an initiative
   podcast: "",         // Podcast platform
   skool: "",           // Members' Studio (private membership community)
-  instagram: "https://www.instagram.com/rootedandcrownedcollective/", tiktok: "", youtube: "", facebook: "https://www.facebook.com/profile.php?id=61596381260751"
+  instagram: "https://www.instagram.com/rootedandcrownedcollective/", tiktok: "", youtube: "https://www.youtube.com/@rootedandcrownedcollective", facebook: "https://www.facebook.com/profile.php?id=61596381260751"
 };
 
 const CHAKRAS = [
@@ -4615,8 +4617,8 @@ function renderApp(){
     <div class="feel">${["Lighter","About the same","Still sitting with it"].map(f=>`<button class="pbtn ${app.feel===f?"":"pbtn--ghost"}" data-feel="${f}">${f}</button>`).join("")}</div>
     ${app.feel?`<div class="focus-card" style="--c:${c.c}"><span class="caps">Practice complete</span><p style="font-family:var(--serif);font-size:1.35rem;line-height:1.2">Welcome back. Your journey continues.</p></div>
     <span class="steps-mini">READY TO GO DEEPER?</span>
-    <button class="path-item" data-demo="7-Week Experience enrollment (Stan)" style="--c:${c.c}"><i></i><b>Explore the 7-Week Experience<span>Week ${app.focus+1} · ${c.name}</span></b><span>→</span></button>
-    <button class="path-item" data-demo="${esc(c.book)} (Stan)" style="--c:${c.c}"><i></i><b>${esc(c.book)}<span>Related book</span></b><span>→</span></button>
+    <button class="path-item" data-demo="7-Week Experience enrollment" style="--c:${c.c}"><i></i><b>Explore the 7-Week Experience<span>Week ${app.focus+1} · ${c.name}</span></b><span>→</span></button>
+    <button class="path-item" data-demo="${esc(c.book)}" style="--c:${c.c}"><i></i><b>${esc(c.book)}<span>Related book</span></b><span>→</span></button>
     <button class="path-item" data-demo="podcast platform" style="--c:${c.c}"><i></i><b>Listen to Conversations<span>Episodes on ${c.focus.toLowerCase()}</span></b><span>→</span></button>
     <button class="pbtn pbtn--ghost" data-go="home">Back to Home</button>`:""}`;
   } else if(s==="journal"){
@@ -4646,7 +4648,7 @@ function renderApp(){
       <div class="rx"><span class="caps">Reflection question</span><p class="big">“${c.prompt}”</p></div>
       <div class="rx"><span class="caps">Affirmation</span><p class="big">${c.affirm}</p></div>
       <div class="rx"><span class="caps">Practice · ${c.ptype}</span><p>${c.practice}</p></div>
-      <button class="path-item" data-demo="${esc(c.book)} (Stan)" style="--c:${c.c}"><i></i><b>${esc(c.book)}<span>Related book</span></b><span>→</span></button>`;
+      <button class="path-item" data-demo="${esc(c.book)}" style="--c:${c.c}"><i></i><b>${esc(c.book)}<span>Related book</span></b><span>→</span></button>`;
     } else {
       h=`<p class="greet" style="font-size:1.7rem">Root-to-Crown</p><p class="greet-sub" style="margin-top:-6px">Tap a chakra to explore.</p>
       ${[...CHAKRAS].map((c,i)=>({c,i})).reverse().map(({c,i})=>`<button class="path-item" data-detail="${i}" style="--c:${c.c}"><i></i><b>${c.name}<span>${c.themes}</span></b><span>→</span></button>`).join("")}`;
@@ -4657,7 +4659,7 @@ function renderApp(){
     ${["Podcast","Audio reflections","Short teachings","Affirmations","Prompts","Downloadable resources","Classes","Books","Community resources"].map(x=>`<button class="path-item" data-demo="${x} library" style="--c:var(--gold)"><i></i><b>${x}</b><span>→</span></button>`).join("")}`;
   } else if(s==="connect"){
     h=`<button class="back" data-go="home">← Home</button><p class="greet" style="font-size:1.7rem">Ready to Go Deeper?</p>
-    ${[["Explore the 7-Week Experience","Stan"],["Join Journal Club","Stan"],["Browse Books","Stan"],["Listen to Conversations","Podcast"],["Shop the Collective","Shopify"],["Explore Community","Website"]].map(([t,d])=>`<button class="path-item" data-demo="${t} (${d})" style="--c:var(--gold)"><i></i><b>${t}<span>${d}</span></b><span>→</span></button>`).join("")}`;
+    ${[["Explore the 7-Week Experience","Classes"],["Join Journal Club","Membership"],["Browse Books","Books"],["Listen to Conversations","Podcast"],["Shop the Collective","Shopify"],["Explore Community","Website"]].map(([t,d])=>`<button class="path-item" data-demo="${t} (${d})" style="--c:var(--gold)"><i></i><b>${t}<span>${d}</span></b><span>→</span></button>`).join("")}`;
   }
   scr.innerHTML=h;
 }
