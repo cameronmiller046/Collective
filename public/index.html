@@ -1176,6 +1176,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
 [data-page="home"] .final{background:radial-gradient(ellipse 60% 90% at 50% 0%,rgba(205,169,218,.3),transparent 70%),#FFFFFF;color:var(--plum)}
 [data-page="home"] :is(.hero,.final) .btn--gold{background:var(--plum);border-color:var(--plum);color:#F7F1E8}
 [data-page="home"] :is(.hero,.final) .btn--line{color:var(--plum);border-color:var(--plum)}
+[data-page="community"] section:has(> .wrap > .branch-sec){padding:64px 0}
 [data-page="community"] .branch-sec{padding-bottom:0}
 .band--gold{background:linear-gradient(160deg,#E9C874,#D6A23A);color:var(--plum);padding:104px 0}
 .band--gold{--line-dark:rgba(37,7,47,.28);--gold-soft:#4A2F04;--ivory:var(--plum);--lav:var(--plum)}
@@ -3106,7 +3107,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
   <section class="page-hero"><div class="wrap">
     <span class="eyebrow">Start Here</span>
     <h1 class="h-xl">Every journey starts at the root.</h1>
-    <p class="lede">Not sure where to begin? Take the doors in order. Some are open now, and the rest are coming soon.</p>
+    <p class="lede">Not sure where to begin? Take the doors in order.</p>
     <div class="spectrum spectrum--short"></div>
   </div></section>
   <section class="band band--ivory"><div class="wrap">
@@ -4682,7 +4683,7 @@ function renderApp(){
     ${["Podcast","Audio reflections","Short teachings","Affirmations","Prompts","Downloadable resources","Classes","Books","Community resources"].map(x=>`<button class="path-item" data-demo="${x} library" style="--c:var(--gold)"><i></i><b>${x}</b><span>→</span></button>`).join("")}`;
   } else if(s==="connect"){
     h=`<button class="back" data-go="home">← Home</button><p class="greet" style="font-size:1.7rem">Ready to Go Deeper?</p>
-    ${[["Explore the 7-Week Experience","Classes"],["Join Journal Club","Membership"],["Browse Books","Books"],["Listen to Conversations","Podcast"],["Shop the Collective","Shopify"],["Explore Community","Website"]].map(([t,d])=>`<button class="path-item" data-demo="${t} (${d})" style="--c:var(--gold)"><i></i><b>${t}<span>${d}</span></b><span>→</span></button>`).join("")}`;
+    ${[["Explore the 7-Week Experience",""],["Join Journal Club",""],["Browse Books",""],["Listen to Conversations","Podcast"],["Shop the Collective","Shopify"],["Explore Community","Website"]].map(([t,d])=>`<button class="path-item" data-demo="${t}${d?` (${d})`:""}" style="--c:var(--gold)"><i></i><b>${t}<span>${d}</span></b><span>→</span></button>`).join("")}`;
   }
   scr.innerHTML=h;
 }
