@@ -1194,6 +1194,21 @@ details.course-mod summary::-webkit-details-marker{display:none}
 /* gold bar under the page names, across the top of every page */
 .site-head{border-bottom:0}
 .site-head::after{content:"";display:block;height:5px;background:linear-gradient(90deg,#B8872A 0%,#D6A23A 22%,#E5BE65 50%,#D6A23A 78%,#B8872A 100%)}
+/* Our Story mission: rainbow hand in the middle, wording on each side */
+[data-page="about"] section.band.mission-bg{position:relative;overflow:hidden;background:#fff}
+[data-page="about"] section.band.mission-bg::before{content:"";position:absolute;inset:-120px;background:url(/assets/our-story-hand-center.webp) center/cover no-repeat;filter:blur(70px) saturate(1.15);z-index:0}
+[data-page="about"] section.band.mission-bg::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.5) 26%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.5) 74%,rgba(255,255,255,.78) 100%),linear-gradient(180deg,rgba(255,255,255,0) 58%,rgba(255,255,255,.92) 86%,#fff 100%)}
+[data-page="about"] section.band.mission-bg>.wrap{position:relative;z-index:1}
+@media (min-width:861px){
+[data-page="about"] section.band.mission-bg .wrap.two{grid-template-columns:minmax(0,.8fr) minmax(0,1.35fr) minmax(0,.95fr);gap:28px;min-height:520px}
+[data-page="about"] section.band.mission-bg .wrap.two>div:first-child{grid-column:1}
+[data-page="about"] section.band.mission-bg .wrap.two>.prose{grid-column:3}
+[data-page="about"] section.band.mission-bg .hand-sharp{position:absolute;left:50%;top:20px;width:1000px;height:667px;max-width:100%;margin-left:-34px;transform:translateX(-50%);background:url(/assets/our-story-hand-center.webp) center/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 64%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 64%,transparent 100%);z-index:0}
+}
+@media (max-width:860px){
+[data-page="about"] section.band.mission-bg .hand-sharp{display:none}
+[data-page="about"] section.band.mission-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.9))}
+}
 </style>
 </head>
 <body>
@@ -1529,7 +1544,7 @@ details.course-mod summary::-webkit-details-marker{display:none}
       <div class="btns"><a class="btn btn--gold" href="#/root-to-crown">Discover the Root-to-Crown Framework <span class="arr">→</span></a></div>
     </div>
   </div></section>
-  <section class="band band--ivory"><div class="wrap two">
+  <section class="band band--ivory mission-bg"><div class="hand-sharp" aria-hidden="true"></div><div class="wrap two">
     <div style="display:grid;gap:18px;align-content:start">
       <span class="eyebrow">The Mission</span>
       <h2 class="h-l">Heal, align and rise.</h2>
