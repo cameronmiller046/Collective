@@ -146,10 +146,14 @@ function renderPage(slug, notFound) {
   return html.replace("</head>", () => tags.join("\n") + "\n</head>");
 }
 
-function sitemapXml() {
-  const urls = Object.entries(SEO.routes)
+function sitemapAddresses() {
+  return Object.entries(SEO.routes)
     .filter(([slug, e]) => e.sitemap || (slug === "voices" && reviews.publishedCount() > 0) || (slug === "magazine" && magazine.isLiveNow()))
-    .map(([, e]) => `  <url><loc>${escText(SEO.origin + e.canonical)}</loc></url>`);
+    .map(([, e]) => SEO.origin + e.canonical);
+}
+
+function sitemapXml() {
+  const urls = sitemapAddresses().map((u) => `  <url><loc>${escText(u)}</loc></url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
@@ -543,4 +547,13 @@ http
       });
     });
   })
-  .listen(PORT, "0.0.0.0", () => console.log(`Rooted & Crowned site on :${PORT}`));
+  .listen(PORT, "0.0.0.0", () => {
+    console.log(`Rooted & Crowned site on :${PORT}`);
+    // a minute after start-up (so the new version is live), tell Bing if the pages changed
+    try {
+      const ping = require("./indexnow")({ origin: SEO.origin, dataDir: DATA_DIR, rootDir: ROOT, urls: sitemapAddresses });
+      setTimeout(() => ping.run(), 60000).unref();
+    } catch (e) {
+      console.error("IndexNow setup skipped:", e.message);
+    }
+  });
